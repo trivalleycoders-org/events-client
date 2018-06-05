@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "semi": ["warn", "never"],
+        "quotes": ["warn", "single"]
+    },
+    "parser": "babel-eslint"
+}
