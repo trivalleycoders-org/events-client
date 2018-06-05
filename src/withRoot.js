@@ -11,6 +11,14 @@ const theme = createMuiTheme({
     type: 'dark',
     primary: blue,
   },
+  typography: {
+    headline: {
+      fontSize: '0.937em',
+    },
+    subheading: {
+      fontSize: '0.837em',
+    }
+  }
   // typography: {
   //   display1: {
   //     fontSize: '3rem',
