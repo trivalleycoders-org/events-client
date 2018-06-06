@@ -106,26 +106,26 @@ const styles = {
   },
 }
 
-const CardNew = () => {
+const CardNew = ({ date, image, location, price, title }) => {
   return (
     <div style={styles.card}>
       <a href='#' style={styles.header}>
-        <div style={styles.image}>
-          <img src={iBriia} />
+        <div>
+          <img src={image} />
         </div>
         <div style={styles.body}>
-          <time style={styles.time}>TUE, JUN 12 9:00 AM</time>
+          <time style={styles.time}>{date}</time>
           <div style={styles.title}>
-            BRIIA Investor Demo Day
+            {title}
           </div>
           <div style={styles.venu}>
-            Roundhouse Conference Center, San Ramon
+            {location}
           </div>
         </div>
       </a>
       <div style={styles.footer}>
         <div style={styles.tags}>
-          <div style={styles.tag}>
+          <div>
             <a href='#' style={styles.tag}>#Business</a>
           </div>
           <div style={styles.tag}>

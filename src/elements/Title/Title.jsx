@@ -5,11 +5,11 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import { green } from 'logger'
 
-const Body1 = ({ children, noGutter }) => {
+const Title = ({ children, noGutter, ...rest }) => {
   return (
-    <Typography variant='title' gutterBottom={!noGutter}>
+    <Typography variant='title' gutterBottom={!noGutter} {...rest}>
       {children}
     </Typography>
   )
 }
-export default Body1
+export default Title
