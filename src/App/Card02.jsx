@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Headline from 'elements/Headline'
-import Body1 from 'elements/Body1'
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import red from '@material-ui/core/colors/red';
+import ShareIcon from '@material-ui/icons/Share';
+import Typography from '@material-ui/core/Typography';
+
+// User
 import SubHeading from 'elements/SubHeading'
 import Tag from './Tag'
 
@@ -49,6 +50,7 @@ const styles = theme => ({
     display: 'flex',
     flexFlow: 'column',
     fontFamily: "'Roboto Condensed', sans-serif",
+    maxWidth: 460,
   },
   footer: {
     borderTop: '1px solid rgb(50, 50, 50)',
@@ -69,6 +71,10 @@ const styles = theme => ({
   image: {
     backgroundColor: 'white',
     // margin: '0 auto',
+  },
+  media: {
+    height: 0,
+    paddingTop: '50%',
   },
   tags: {
     display: 'flex',
@@ -134,9 +140,13 @@ class Event extends React.Component {
     return (
       <Card className={classes.card}>
         <a className={classes.header}>
-          <div>
-            <img src={image}/>
-          </div>
+          <CardMedia
+            className={classes.media}
+            image={image}
+
+            >
+            {/* <img src={image}/> */}
+          </CardMedia>
 
           <CardContent className={classes.body}>
             <SubHeading>
