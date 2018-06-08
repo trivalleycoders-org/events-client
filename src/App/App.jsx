@@ -9,6 +9,10 @@ import React, { Component, Fragment } from 'react'
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom'
 import EventGrid from './EventGrid'
 import EventGridWithCard from './EventGridWithCard'
+import Typography from "@material-ui/core/Typography";
+import EventGrid2 from './EventGrid2'
+import EventGrid3 from './EventGrid3'
+
 
 const styles = theme => ({
   // cardWrapper: {
@@ -20,10 +24,15 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    height: 313.5,
-    width: 330,
-  }
+  oneEM: {
+    fontSize: '1em',
+  },
+  twoEM: {
+    fontSize: '2rem',
+  },
+  root: {
+    fontSize: '2em',
+  },
 })
 
 class App extends Component {
@@ -45,7 +54,19 @@ class App extends Component {
       <Router>
         <Fragment>
           <AppBar title='Events' />
+          {/* <Typography variant="body1">
+            No adjustment.
+            </Typography>
+            <Typography variant="body1" className={classes.oneEM}>
+            Adjust to 1em
+            </Typography>
+            <Typography variant="body1" className={classes.twoEM}>
+            Adjust to 2em
+          </Typography> */}
+
           <Route path='/grid' component={EventGrid} />
+          <Route path='/grid2' component={EventGrid2} />
+          <Route path='/grid3' component={EventGrid3} />
           <Route path='/grid-with-card' component={EventGridWithCard} />
           <Route path='/01' render={() => (
             <Fragment>
@@ -55,13 +76,13 @@ class App extends Component {
                   <Grid container justify="center" spacing={Number(spacing)}>
                     {cardData.map(c => (
                       <Grid key={c.title} item>
-                       <Card01
-                         image={c.image}
-                         price={c.price}
-                         time={c.time}
-                         title={c.title}
-                         tags={c.tags}
-                         venu={c.venu}
+                        <Card01
+                          image={c.image}
+                          price={c.price}
+                          time={c.time}
+                          title={c.title}
+                          tags={c.tags}
+                          venu={c.venu}
                        />
                       </Grid>
                     ))}
