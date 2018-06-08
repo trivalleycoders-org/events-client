@@ -5,7 +5,8 @@ import { green } from 'logger'
 const styles = {
   tag: {
     color: 'white',
-    fontSize: 13,
+    fontFamily: "'Roboto Condensed', sans-serif",
+    fontSize: 12,
     fontWeight: 400,
     letterSpacing: '0.5px',
     lineHeight: '40px',
