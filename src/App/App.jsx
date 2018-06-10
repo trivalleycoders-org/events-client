@@ -12,14 +12,12 @@ import EventGridWithCard from './EventGridWithCard'
 import Typography from "@material-ui/core/Typography";
 import EventGrid2 from './EventGrid2'
 import EventGrid3 from './EventGrid3'
+import OneCardOnGrid from './OneCardOnGrid'
 
 
 const styles = theme => ({
-  // cardWrapper: {
-  //   display: 'flex',
-  // },
   gridItem: {
-    flexBasis: '33.33333%',
+    // flexBasis: '33.33333%',
   },
   root: {
     flexGrow: 1,
@@ -67,6 +65,7 @@ class App extends Component {
           <Route path='/grid' component={EventGrid} />
           <Route path='/grid2' component={EventGrid2} />
           <Route path='/grid3' component={EventGrid3} />
+          <Route path='/one-card' component={OneCardOnGrid} />
           <Route path='/grid-with-card' component={EventGridWithCard} />
           <Route path='/01' render={() => (
             <Fragment>

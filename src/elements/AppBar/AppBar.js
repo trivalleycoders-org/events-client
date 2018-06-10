@@ -32,7 +32,7 @@ function MainAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
-            Rotary Club
+            Drone Events
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

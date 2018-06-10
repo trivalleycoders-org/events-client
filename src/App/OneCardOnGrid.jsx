@@ -15,6 +15,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import Tag from './Tag'
 import { cardData } from '../mock-data/card-data'
 
+const oneCard = cardData[0]
+
 const styles = theme => ({
   actions: {
     display: 'flex',
@@ -26,7 +28,7 @@ const styles = theme => ({
     minHeight: 0,
     minWidth: 0,
     maxHeight: 800,
-    maxWidth: 300,
+    // maxWidth: 300,
     padding: '10px',
   },
   cardContent: {
@@ -92,28 +94,28 @@ class EventGrid extends React.Component {
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(spacing)} alignItems='space-between'>
-          {cardData.map(c => (
+          {[1].map(c => (
             <Grid key={c.id} item xs={12} sm={4} md={4} lg={3} xl={2} className={classes.gridItem}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.media}
-                  image={c.image}
+                  image={oneCard.image}
                   >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
                   <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
+                    {oneCard.title}
                   </Typography>
                   <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {c.time}
+                    {oneCard.time}
                   </Typography>
                   <Typography variant='caption' component='p' noWrap className={classes.venu}>
-                    {c.venu}
+                    {oneCard.venu}
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
                   <div className={classes.tags}>
-                    {c.tags.map(t => (
+                    {oneCard.tags.map(t => (
                       <Tag label={t} />
                     ))}
                   </div>
