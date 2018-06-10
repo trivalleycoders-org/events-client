@@ -19,8 +19,8 @@ const styles = theme => ({
   actions: {
     display: 'flex',
     flexFlow: 'row nowrap',
-    justifyContent: 'space-between',
     height: 41.5,
+    justifyContent: 'space-between',
   },
   card: {
     minHeight: 0,
