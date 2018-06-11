@@ -26,15 +26,14 @@ const styles = theme => ({
     borderRight: 'solid 1px white',
     minHeight: 0,
     minWidth: 0,
-    maxHeight: 800,
-    maxWidth: 300,
+    // maxHeight: 800,
+    // maxWidth: 300,
     padding: '10px',
   },
   cardContent: {
     padding: '16px 12px 24px 12px',
   },
   grid: {
-    // justifyContent: 'space-around'
   },
   image: {
     margin: 'auto',
@@ -48,17 +47,22 @@ const styles = theme => ({
     paddingTop: '50%',
   },
   pageMock: {
-    // marginLeft: 15,
-    // marginRight: 15,
     margin: 'auto',
     backgroundColor: 'blue',
   },
   tags: {
+    color: 'white',
     display: 'flex',
-    flexFlow: 'row nowrap'
+    flexFlow: 'row nowrap',
+    overflow: 'hidden',
+    // textOverflow: 'ellipsis',
+    // whiteSpace: 'nowrap',
   },
   time: {
     marginTop: '4px',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   title: {
     height: '40px',
@@ -69,10 +73,12 @@ const styles = theme => ({
   },
   venu: {
     marginTop: '4px',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   grid1: {
     backgroundColor: 'green',
-    // margin: 'auto',
   },
   grid1: {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',

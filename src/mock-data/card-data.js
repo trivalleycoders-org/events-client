@@ -50,7 +50,7 @@ export const cardData = [
       'Summer',
       'Urban'
     ],
-    title: 'Jopwell #SummerUnlocked: Tech Edition Jopwell #SummerUnlocked: Tech Edition',
+    title: 'Jopwell #SummerUnlocked: Tech Edition',
   },
   {
     id: 'a005',
