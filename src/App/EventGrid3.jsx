@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 import iBriia from '../media/briia.jpg'
-import Card from "@material-ui/core/Card";
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import IconButton from '@material-ui/core/IconButton';
-import ShareIcon from '@material-ui/icons/Share';
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import IconButton from '@material-ui/core/IconButton'
+import ShareIcon from '@material-ui/icons/Share'
 import Tag from './Tag'
 import { cardData } from '../mock-data/card-data'
 
@@ -23,6 +23,7 @@ const styles = theme => ({
     justifyContent: 'space-between',
   },
   card: {
+    borderRight: 'solid 1px white',
     minHeight: 0,
     minWidth: 0,
     maxHeight: 800,
@@ -35,9 +36,6 @@ const styles = theme => ({
   grid: {
     // justifyContent: 'space-around'
   },
-  gridItem: {
-    // border: 'solid 1px yellow',
-  },
   image: {
     margin: 'auto',
     width: '100%',
@@ -47,11 +45,13 @@ const styles = theme => ({
   },
   media: {
     height: 0,
-    paddingTop: "50%",
+    paddingTop: '50%',
   },
   pageMock: {
-    marginLeft: 15,
-    marginRight: 15,
+    // marginLeft: 15,
+    // marginRight: 15,
+    margin: 'auto',
+    backgroundColor: 'blue',
   },
   tags: {
     display: 'flex',
@@ -61,39 +61,53 @@ const styles = theme => ({
     marginTop: '4px',
   },
   title: {
-    height: "40px",
-    letterSpacing: "0px",
+    height: '40px',
+    letterSpacing: '0px',
     lineHeight: '19px',
     margin: 0,
     overflow: 'hidden',
   },
   venu: {
     marginTop: '4px',
-  }
-});
+  },
+  grid1: {
+    backgroundColor: 'green',
+    // margin: 'auto',
+  },
+  grid1: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    // margin: '30px',
+    // margin: 'auto',
+  },
+  // grid3: {
+  //   // border: 'solid 1px yellow',
+  //   backgroundColor: 'pink',
+  //   margin: 'auto',
+  // },
+})
 
 const numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
 class EventGrid extends React.Component {
   state = {
-    spacing: "16"
-  };
+    spacing: '16'
+  }
 
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value
-    });
-  };
-
+    })
+  }
+// justify='center'
   render() {
-    const { classes } = this.props;
-    const { spacing } = this.state;
-    console.log("classes", classes);
+    const { classes } = this.props
+    const { spacing } = this.state
+    console.log('classes', classes)
     return (
       <div className={classes.pageMock}>
-        <Grid container spacing={Number(spacing)} alignItems='space-between'>
+        <Grid container spacing={Number(spacing)} className={classes.grid1} >
           {cardData.map(c => (
-            <Grid key={c.id} item xs={12} sm={4} md={4} lg={3} xl={2} className={classes.gridItem}>
+            <Grid key={c.id} item xs={12} sm={4} md={4} lg={3} xl={2} className={classes.grid2}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.media}
@@ -119,12 +133,12 @@ class EventGrid extends React.Component {
                   </div>
                   <div className={classes.actions}>
                     <div className={classes.action}>
-                      <IconButton aria-label="Add to favorites">
+                      <IconButton aria-label='Add to favorites'>
                         <FavoriteIcon />
                       </IconButton>
                     </div>
                     <div className={classes.action}>
-                      <IconButton aria-label="Share">
+                      <IconButton aria-label='Share'>
                         <ShareIcon />
                       </IconButton>
                     </div>
@@ -135,12 +149,12 @@ class EventGrid extends React.Component {
           ))}
         </Grid>
       </div>
-    );
+    )
   }
 }
 
 EventGrid.propTypes = {
   classes: PropTypes.object.isRequired
-};
+}
 
-export default withStyles(styles)(EventGrid);
+export default withStyles(styles)(EventGrid)

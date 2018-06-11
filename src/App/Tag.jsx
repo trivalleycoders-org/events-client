@@ -1,5 +1,5 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import { green } from 'logger'
 
 const styles = {
@@ -25,4 +25,4 @@ const Tag = ({ classes, label }) => {
   )
 }
 
-export default withStyles(styles)(Tag);
+export default withStyles(styles)(Tag)
