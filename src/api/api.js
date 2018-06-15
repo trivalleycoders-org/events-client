@@ -1,7 +1,21 @@
-import { fetchJson } from './api-helpers'
+import { fetchJson, fetchUploadImage } from './api-helpers'
 import { pink } from 'logger'
 
 export default {
+  images: {
+    create(formData) {
+      return fetchUploadImage(
+        '/images',
+        {
+          method: 'POST',
+          body: formData
+        }
+      ).then((data) => {
+        pink('/images/create', data)
+        return data
+      })
+    }
+  },
   members: {
     create(member) {
       pink('api.members.create: member in', member)

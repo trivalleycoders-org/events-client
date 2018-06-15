@@ -105,8 +105,6 @@ const styles = theme => ({
   // },
 })
 
-const numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-
 class EventGrid extends React.Component {
   state = {
     spacing: '16'
@@ -117,11 +115,10 @@ class EventGrid extends React.Component {
       [key]: value
     })
   }
-// justify='center'
+
   render() {
     const { classes } = this.props
     const { spacing } = this.state
-    console.log('classes', classes)
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >
@@ -147,7 +144,7 @@ class EventGrid extends React.Component {
                 <CardActions className={classes.actions} disableActionSpacing>
                   <div className={classes.tags}>
                     {c.tags.map(t => (
-                      <Tag label={t} />
+                      <Tag key={t} label={t} />
                     ))}
                   </div>
                   <div className={classes.actions}>

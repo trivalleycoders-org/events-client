@@ -20,4 +20,15 @@ export const fetchJson = (url, options = {}) => (
   .then((res) => res.json())
 )
 
-export default { fetchJson }
+export const fetchUploadImage = (url, options = {}) => (
+  fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+    },
+  })
+  .then(rejectErrors)
+  .then(res => res.send())
+)
+
+export default { fetchJson, fetchUploadImage }

@@ -11,7 +11,9 @@ const styles = theme => ({
   },
   tag: {
     color: theme.palette.primary.contrastText,
+    /* eslint-disable */
     fontFamily: "'Roboto Condensed', sans-serif",
+    /* eslint-disable */
     fontSize: 14,
     fontWeight: 400,
     letterSpacing: '0.5px',
@@ -21,7 +23,6 @@ const styles = theme => ({
   }
 })
 const Tag = ({ classes, label }) => {
-  green('label', label)
   return (
     <div className={classes.tagWrapper}>
       <a href='#' className={classes.tag}>#{label}</a>

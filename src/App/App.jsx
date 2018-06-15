@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 // import EventGrid2 from './EventGrid2'
 import EventGrid3 from './EventGrid3'
 // import OneCardOnGrid from './OneCardOnGrid'
+import UploadImage from './UploadImage'
 
 
 const styles = theme => ({
@@ -44,8 +45,7 @@ class App extends Component {
       <Router>
         <Fragment>
           <AppBar title='Events' />
-          {/* <Route path='/grid' component={EventGrid} />
-          <Route path='/grid2' component={EventGrid2} /> */}
+          <Route path='/upload' component={UploadImage} />
           <Route path='/' component={EventGrid3} />
           {/* <Route path='/one-card' component={OneCardOnGrid} />
           <Route path='/grid-with-card' component={EventGridWithCard} />
