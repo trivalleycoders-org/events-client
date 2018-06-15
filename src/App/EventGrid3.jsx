@@ -16,31 +16,36 @@ import Tag from './Tag'
 import { cardData } from '../mock-data/card-data'
 
 const styles = theme => ({
+  action: {
+    border: 'none',
+  },
   actions: {
+    // alignItems: 'center',
     display: 'flex',
     flexFlow: 'row nowrap',
     height: 41.5,
     justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0px 15px 0px 15px',
   },
   card: {
-    borderRight: 'solid 1px white',
+    // borderRight: 'solid 1px white',
     minHeight: 0,
     minWidth: 0,
     // maxHeight: 800,
     // maxWidth: 300,
-    padding: '10px',
+    padding: '15px 5px 0 5px',
   },
   cardContent: {
-    padding: '16px 12px 24px 12px',
-  },
-  grid: {
+    padding: '5px 15px 5px 15px',
+    borderBottom: 'solid 0.5px gray',
   },
   image: {
     margin: 'auto',
     width: '100%',
   },
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   media: {
     height: 0,
@@ -48,10 +53,10 @@ const styles = theme => ({
   },
   pageMock: {
     margin: 'auto',
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
   },
   tags: {
-    color: 'white',
+    // color: theme.palette.primary.contrastText,
     display: 'flex',
     flexFlow: 'row nowrap',
     overflow: 'hidden',
@@ -59,8 +64,8 @@ const styles = theme => ({
     // whiteSpace: 'nowrap',
   },
   time: {
-    marginTop: '4px',
     overflow: 'hidden',
+    paddingTop: '.4rem',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
@@ -70,20 +75,28 @@ const styles = theme => ({
     lineHeight: '19px',
     margin: 0,
     overflow: 'hidden',
+    paddingTop: '5px',
   },
   venu: {
-    marginTop: '4px',
     overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  grid1: {
-    backgroundColor: 'green',
+  grid1111: {
+    // backgroundColor: 'green',
+    paddingBottom: '40px'
   },
-  grid1: {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  grid22222: {
+    // backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    // backgroundColor: 'blue',
     // margin: '30px',
     // margin: 'auto',
+    // color: 'orange',
+    margin: '30px',
+    padding: '30px',
+    // border: 'solid 3px orange'
   },
   // grid3: {
   //   // border: 'solid 1px yellow',
@@ -111,9 +124,9 @@ class EventGrid extends React.Component {
     console.log('classes', classes)
     return (
       <div className={classes.pageMock}>
-        <Grid container spacing={Number(spacing)} className={classes.grid1} >
+        <Grid container spacing={Number(8)} className={classes.grid1111} >
           {cardData.map(c => (
-            <Grid key={c.id} item xs={12} sm={4} md={4} lg={3} xl={2} className={classes.grid2}>
+            <Grid key={c.id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.media}
@@ -121,11 +134,11 @@ class EventGrid extends React.Component {
                   >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
-                  <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
-                  </Typography>
                   <Typography variant='caption' component='p' noWrap className={classes.time}>
                     {c.time}
+                  </Typography>
+                  <Typography variant='subheading' component='p' className={classes.title}>
+                    {c.title}
                   </Typography>
                   <Typography variant='caption' component='p' noWrap className={classes.venu}>
                     {c.venu}

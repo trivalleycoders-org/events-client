@@ -7,6 +7,15 @@ import { blue } from '@material-ui/core/colors'
 // It's optional.
 const theme = createMuiTheme({
   // ...darkBaseTheme,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 480,
+      md: 800,
+      lg: 1280,
+      xl: 1920,
+    }
+  },
   palette: {
     type: 'dark',
     primary: blue,
