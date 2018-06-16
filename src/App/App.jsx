@@ -15,7 +15,9 @@ import EventGrid3 from './EventGrid3'
 // import OneCardOnGrid from './OneCardOnGrid'
 import UploadImage from './UploadImage'
 import Admin from './Admin'
-
+import { connect } from 'react-redux'
+import * as imageActions from 'store/image-actions'
+import { compose } from 'recompose'
 
 const styles = theme => ({
   gridItem: {
@@ -38,6 +40,10 @@ class App extends Component {
     })
   }
 
+  handleButtonClick = () => {
+    this.props.requestImageGetTest()
+  }
+
   render() {
     const { classes } = this.props
     const { spacing } = this.state
@@ -46,6 +52,7 @@ class App extends Component {
       <Router>
         <Fragment>
           <AppBar title='Events' />
+          <button type='button' onClick={this.handleButtonClick}>GET</button>
           <Route path='/upload' component={UploadImage} />
           <Route path='/grid' component={EventGrid3} />
           <Route path='/admin' component={Admin} />
@@ -128,7 +135,16 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App)
+// export default withStyles(styles)(App)
+
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, imageActions)
+)(App)
 
 /*
 <Fragment>

@@ -1,5 +1,8 @@
+import { pink, red } from 'logger'
+
 const rejectErrors = (res) => {
   const { status } = res
+  // pink('api-helpers.rejectErrors: status', status)
   if (status >= 200 && status < 300) {
     return res
   }
@@ -17,7 +20,10 @@ export const fetchJson = (url, options = {}) => (
     },
   })
   .then(rejectErrors)
-  .then((res) => res.json())
+  .then((res) => {
+    pink('api-helpers.fetchJson: res', res)
+    res.json()
+  })
 )
 
 export const fetchUploadImage = (url, options = {}) => (

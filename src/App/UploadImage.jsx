@@ -14,7 +14,12 @@ class UploadImage extends React.Component {
     // console.log('this.fileInput.files[0]', this.fileInput.files[0])
     let formData = new FormData()
     formData.append('upload', this.fileInput.files[0])
+    console.log('formData', formData)
     this.props.requestUploadOneImage(formData)
+
+  }
+  handleGetTest = () => {
+    this.props.requestImageGetTest()
 
   }
 
@@ -34,6 +39,7 @@ class UploadImage extends React.Component {
           </label>
           <br />
           <button type="submit">Submit</button>
+          <button type='button' onClick={this.handleGetTest}>GET</button>
         </form>
       </div>
     )
