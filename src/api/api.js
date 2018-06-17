@@ -20,15 +20,14 @@ export default {
     },
     getTest() {
       return fetchJson(
-        '/images',
-        {
-          method: 'GET',
-        }
+        '/images/test',
+        { method: 'GET' }
       ).then(data => {
+        pink('api.images.getTest: data', data)
         return data
       }).catch(e => {
-        red('api.images.getTest: ERROR: ', e)
+        console.log('api.images.getTest ERROR: ', e)
       })
-    },
+    }
   },
 }

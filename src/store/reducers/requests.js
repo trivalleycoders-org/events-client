@@ -1,4 +1,5 @@
 import { merge } from 'ramda'
+
 const requests = (state = {}, { type, payload, meta }) => {
   switch (type) {
     case 'app/markRequestPending':

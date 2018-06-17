@@ -5,18 +5,24 @@ import { orange } from 'logger'
 export const keyUploadOneImage = 'actionKeyUploadOneImage'
 
 export const requestKeyUploadOneImage = 'requestKeyUploadOneImage'
-export const requestKeyImageGetTest = 'requestKeyImageGetTest'
+
+export const requestKeyGetTest = 'requestGetTest'
+
+const uploadOneImage = (imageInfo) => ({
+  type: keyUploadOneImage,
+  payload: imageInfo
+})
 
 export const requestUploadOneImage = createRequestThunk({
   request: api.images.create,
   key: requestKeyUploadOneImage,
-  success: [ logReturnValue ],
+  success: [ uploadOneImage ],
   failure: [ logError ]
 })
 
-export const requestImageGetTest = createRequestThunk({
+export const requestGetTest = createRequestThunk({
   request: api.images.getTest,
-  key: requestKeyImageGetTest,
+  key: requestKeyGetTest,
   success: [ logReturnValue ],
   failure: [ logError ]
 })

@@ -4,7 +4,7 @@ export const logError = (err) => {
   red('actions.logError', err)
 }
 export const logReturnValue = (value) => {
-  // orange('actions.logReturnValue', value)
+  orange('actions.logReturnValue', value)
   return ({
     type: 'app/noAction'
   })

@@ -20,10 +20,7 @@ export const fetchJson = (url, options = {}) => (
     },
   })
   .then(rejectErrors)
-  .then((res) => {
-    pink('api-helpers.fetchJson: res', res)
-    res.json()
-  })
+  .then((res) => res.json())
 )
 
 export const fetchUploadImage = (url, options = {}) => (
@@ -31,10 +28,11 @@ export const fetchUploadImage = (url, options = {}) => (
     ...options,
     headers: {
       ...options.headers,
+      'Accept': 'application/json',
     },
   })
   .then(rejectErrors)
-  .then(res => res.send())
+  .then(res => res.json())
 )
 
 export default { fetchJson, fetchUploadImage }
