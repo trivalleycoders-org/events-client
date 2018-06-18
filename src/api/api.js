@@ -11,7 +11,7 @@ export default {
           method: 'POST',
           body: formData
         }
-      ).then((data) => {
+      ).then(data => {
         pink('/images/create', data)
         return data
       }).catch(e => {
@@ -26,8 +26,21 @@ export default {
         pink('api.images.getTest: data', data)
         return data
       }).catch(e => {
-        console.log('api.images.getTest ERROR: ', e)
+        red('api.images.getTest ERROR: ', e)
       })
+    }
+  },
+  events: {
+    async create(event) {
+      pink('event', event)
+      const data = await fetchJson(
+        '/events',
+        {
+          method: 'POST',
+          body: JSON.stringify(event)
+        }
+      )
+      return data
     }
   },
 }

@@ -25,8 +25,8 @@ class App extends Component {
         <Fragment>
           <AppBar title='Events' />
           <Route path='/upload' component={UploadImage} />
-          <Route path='/grid' component={EventGrid3} />
           <Route path='/new-event' component={NewEvent} />
+          <Route exact path='/' component={EventGrid3} />
         </Fragment>
       </Router>
     )

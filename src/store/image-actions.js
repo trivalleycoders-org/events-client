@@ -17,12 +17,12 @@ export const requestUploadOneImage = createRequestThunk({
   request: api.images.create,
   key: requestKeyUploadOneImage,
   success: [ uploadOneImage ],
-  failure: [ logError ]
+  failure: [ logError ],
 })
 
 export const requestGetTest = createRequestThunk({
   request: api.images.getTest,
   key: requestKeyGetTest,
   success: [ logReturnValue ],
-  failure: [ logError ]
+  failure: [ logError ],
 })

@@ -1,14 +1,8 @@
-import iBriia from '../media/briia.jpg'
-import iHolistic from '../media/holistic.jpg'
-import iReunion from '../media/reunion.png'
-import iSummerUnlocked from '../media/summer-unlocked.jpg'
-import iWhatIf from '../media/whatif.jpg'
-
 export const cardData = [
   {
-    id: 'a001',
+    _id: 'a001',
     time: 'Tue, Jun 12, 9:00am',
-    image: iBriia,
+    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
     venu: 'Roundhouse Conference Center',
     price: '75',
     tags: [
@@ -18,21 +12,21 @@ export const cardData = [
     title: 'BRIIA Investor Demo Day',
   },
   {
-    id: 'a002',
+    _id: 'a002',
     time: 'Thu, Jun 7, 6:30pm',
-    image: iHolistic,
+    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/holistic.jpg',
     venu: 'The Wellness Method, Danville',
     price: 'Free',
     tags: [
       'Health',
       'Women'
     ],
-    title: 'A Holistic Approach to Hormonal Imbanances',
+    title: 'A Holistic Approach to Hormonal Imbalances',
   },
   {
-    id: 'a003',
+    _id: 'a003',
     time: 'Sat, Oct 13, 7:00pm',
-    image: iReunion,
+    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/reunion.png',
     venu: 'Harvest, Danville',
     price: 'Free',
     tags: [
@@ -41,9 +35,9 @@ export const cardData = [
     title: 'San Ramon Valley High School Class of 98 - 20th Reunion',
   },
   {
-    id: 'a004',
+    _id: 'a004',
     time: 'Sat, Jul 14, 12:00pm',
-    image: iSummerUnlocked,
+    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/summer-unlocked.jpg',
     venu: 'Oakland, CA',
     price: 'Free',
     tags: [
@@ -53,9 +47,9 @@ export const cardData = [
     title: 'Jopwell #SummerUnlocked: Tech Edition',
   },
   {
-    id: 'a005',
+    _id: 'a005',
     time: 'Sat, Sep 14, 12:00pm',
-    image: iWhatIf,
+    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/whatif.jpg',
     venu: 'Danville, CA',
     price: '20',
     tags: [

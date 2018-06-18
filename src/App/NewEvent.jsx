@@ -1,8 +1,11 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import * as eventActions from 'store/event-actions'
+
 import { compose } from 'recompose'
 
 const styles = {}
@@ -11,13 +14,19 @@ const NewEvent = ({
                     handleSubmit,
                     pristine,
                     reset,
+                    requestCreateEvent,
                     submitting,
                     values
                   }) => {
 
   const onSubmit = (values) => {
-    console.log('handleSubmit')
-    console.log('values', values)
+    // console.log('handleSubmit')
+    // console.log('values', values)
+    requestCreateEvent({
+      time: values.time,
+      title: values.title,
+      venu: values.venu,
+    })
 
   }
   const renderTextField = ({
@@ -39,23 +48,23 @@ const NewEvent = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Field
-            name="date"
+            name='time'
             component={renderTextField}
-            label="Event date"
+            label='Event date'
           />
         </div>
         <div>
           <Field
-            name="title"
+            name='title'
             component={renderTextField}
-            label="Event title"
+            label='Event title'
           />
         </div>
         <div>
           <Field
-            name="venu"
+            name='venu'
             component={renderTextField}
-            label="Venu"
+            label='Venu'
           />
         </div>
         <div>
@@ -71,4 +80,12 @@ const NewEvent = ({
   )
 }
 
-export default compose(withStyles(styles), reduxForm({ form: 'newEvent' }))(NewEvent)
+const mapStateToProps = (state) => {
+  return { }
+}
+
+export default compose(
+  withStyles(styles),
+  reduxForm({ form: 'newEvent' }),
+  connect(mapStateToProps, eventActions)
+)(NewEvent)

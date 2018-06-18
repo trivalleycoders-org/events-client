@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
+import Tag from './Tag'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import iBriia from '../media/briia.jpg'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -12,8 +13,11 @@ import CardContent from '@material-ui/core/CardContent'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import IconButton from '@material-ui/core/IconButton'
 import ShareIcon from '@material-ui/icons/Share'
-import Tag from './Tag'
-import { cardData } from '../mock-data/card-data'
+
+
+// import * as eventsSelectors from 'store/events-selectors'
+import * as eventsSelectors from '../store/events-selectors'
+
 
 const styles = theme => ({
   action: {
@@ -117,17 +121,16 @@ class EventGrid extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
-    const { spacing } = this.state
+    const { classes, events } = this.props
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >
-          {cardData.map(c => (
-            <Grid key={c.id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
+          {events.map(c => (
+            <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.media}
-                  image={c.image}
+                  image={c.imageUrl}
                   >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
@@ -173,4 +176,13 @@ EventGrid.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(EventGrid)
+const mapStateToProps = (state) => {
+  return {
+    events: eventsSelectors.getAllEvents(state)
+  }
+}
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps)
+)(EventGrid)
