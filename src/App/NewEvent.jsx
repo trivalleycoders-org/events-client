@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import * as eventActions from 'store/event-actions'
+import * as eventActions from 'store/actions/event-actions'
 
 import { compose } from 'recompose'
 
@@ -65,6 +65,13 @@ const NewEvent = ({
             name='venu'
             component={renderTextField}
             label='Venu'
+          />
+        </div>
+        <div>
+          <Field
+            name='price'
+            component={renderTextField}
+            label='Price'
           />
         </div>
         <div>

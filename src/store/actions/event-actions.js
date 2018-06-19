@@ -16,6 +16,6 @@ export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
   key: requestKeyCreateNewEvent,
   success: [ createNewEvent ],
-  failure: [ logError ]
+  failure: [ error => logError(error, requestKeyCreateNewEvent) ]
 })
 

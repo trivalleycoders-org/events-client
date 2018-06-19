@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as imageActions from 'store/image-actions'
-import * as imageSelectors from 'store/images-selectors'
+import * as imageActions from 'store/actions/image-actions'
+import * as imageSelectors from 'store/selectors/images-selectors'
 import { green } from 'logger'
 import { isNil } from 'ramda'
 

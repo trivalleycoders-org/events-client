@@ -1,5 +1,5 @@
 import { merge } from 'ramda'
-import { keyUploadOneImage } from '../image-actions'
+import { keyUploadOneImage } from '../actions/image-actions'
 import { blue } from 'logger'
 
 const images = (state = {}, { type, payload }) => {

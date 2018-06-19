@@ -16,7 +16,7 @@ import ShareIcon from '@material-ui/icons/Share'
 
 
 // import * as eventsSelectors from 'store/events-selectors'
-import * as eventsSelectors from '../store/events-selectors'
+import * as eventsSelectors from '../store/selectors/events-selectors'
 
 
 const styles = theme => ({

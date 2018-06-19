@@ -2,6 +2,19 @@ import { fetchJson, fetchUploadImage } from './api-helpers'
 import { pink, red } from 'logger'
 
 export default {
+  events: {
+    async create(event) {
+      pink('event', event)
+      const data = await fetchJson(
+        '/events',
+        {
+          method: 'POST',
+          body: JSON.stringify(event)
+        }
+      )
+      return data
+    }
+  },
   images: {
     create(formData) {
       pink('api.images: formData', formData)
@@ -30,17 +43,17 @@ export default {
       })
     }
   },
-  events: {
-    async create(event) {
-      pink('event', event)
+  tags: {
+    async create(tag) {
+      pink('tag', tag)
       const data = await fetchJson(
-        '/events',
+        '/tags',
         {
           method: 'POST',
-          body: JSON.stringify(event)
+          body: JSON.stringify(tag)
         }
       )
       return data
     }
-  },
+  }
 }

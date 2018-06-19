@@ -1,6 +1,7 @@
 import { createRequestThunk, logError, logReturnValue } from './action-helpers'
 import api from 'api'
 import { orange } from 'logger'
+import {requestKeyCreateNewTag} from './tag-actions'
 
 export const keyUploadOneImage = 'actionKeyUploadOneImage'
 
@@ -17,12 +18,12 @@ export const requestUploadOneImage = createRequestThunk({
   request: api.images.create,
   key: requestKeyUploadOneImage,
   success: [ uploadOneImage ],
-  failure: [ logError ],
+  failure: [ error => logError(error, requestKeyUploadOneImage) ],
 })
 
 export const requestGetTest = createRequestThunk({
   request: api.images.getTest,
   key: requestKeyGetTest,
   success: [ logReturnValue ],
-  failure: [ logError ],
+  failure: [ error => logError(error, requestKeyGetTest) ],
 })

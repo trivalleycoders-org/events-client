@@ -1,5 +1,5 @@
 import { merge } from 'ramda'
-import { keyCreateNewEvent } from '../event-actions'
+import { keyCreateNewEvent } from '../actions/event-actions'
 import { blue } from 'logger'
 import { cardData } from 'mock-data/card-data'
 

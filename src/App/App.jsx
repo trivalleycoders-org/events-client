@@ -7,8 +7,9 @@ import EventGrid3 from './EventGrid3'
 import UploadImage from './UploadImage'
 import NewEvent from './NewEvent' // is dropzone component
 import { connect } from 'react-redux'
-import * as imageActions from 'store/image-actions'
+import * as imageActions from 'store/actions/image-actions'
 import { compose } from 'recompose'
+import Tags from './Tags'
 
 const styles = theme => ({
   root: {
@@ -26,6 +27,7 @@ class App extends Component {
           <AppBar title='Events' />
           <Route path='/upload' component={UploadImage} />
           <Route path='/new-event' component={NewEvent} />
+            <Route path='/tags' component={Tags} />
           <Route exact path='/' component={EventGrid3} />
         </Fragment>
       </Router>
