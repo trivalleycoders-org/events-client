@@ -13,7 +13,17 @@ export default {
         }
       )
       return data
-    }
+    },
+    async read() {
+      const data = await fetchJson(
+        '/events',
+        {
+          method: 'GET',
+        }
+      )
+      pink('api.event.read: data', data)
+      return data
+    },
   },
   images: {
     create(formData) {

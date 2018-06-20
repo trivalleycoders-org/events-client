@@ -1,15 +1,18 @@
-
-import { withStyles } from '@material-ui/core/styles'
-import AppBar from 'elements/AppBar'
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'recompose'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
+
 import EventGrid3 from './EventGrid3'
 import UploadImage from './UploadImage'
 import NewEvent from './NewEvent' // is dropzone component
-import { connect } from 'react-redux'
-import * as imageActions from 'store/actions/image-actions'
-import { compose } from 'recompose'
+
+import * as eventActions from 'store/actions/event-actions'
+import * as eventSelectors from 'store/selectors/events-selectors'
+
 import Tags from './Tags'
+import AppBar from 'elements/AppBar'
 
 const styles = theme => ({
   root: {
@@ -18,8 +21,10 @@ const styles = theme => ({
   },
 })
 
-class App extends Component {
-
+class App extends React.Component {
+  componentDidMount() {
+    this.props.requestReadEvents()
+  }
   render() {
     return (
       <Router>
@@ -27,7 +32,7 @@ class App extends Component {
           <AppBar title='Events' />
           <Route path='/upload' component={UploadImage} />
           <Route path='/new-event' component={NewEvent} />
-            <Route path='/tags' component={Tags} />
+          <Route path='/tags' component={Tags} />
           <Route exact path='/' component={EventGrid3} />
         </Fragment>
       </Router>
@@ -36,10 +41,12 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    // events: eventSelectors.getAllEvents(state)
+  }
 }
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, imageActions)
+  connect(mapStateToProps, eventActions)
 )(App)

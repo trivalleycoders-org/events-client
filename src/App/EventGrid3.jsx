@@ -17,7 +17,7 @@ import ShareIcon from '@material-ui/icons/Share'
 
 // import * as eventsSelectors from 'store/events-selectors'
 import * as eventsSelectors from '../store/selectors/events-selectors'
-
+import { green } from 'logger'
 
 const styles = theme => ({
   action: {
@@ -122,6 +122,7 @@ class EventGrid extends React.Component {
 
   render() {
     const { classes, events } = this.props
+    green('EventGrid3.events', events)
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >

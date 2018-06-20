@@ -2,20 +2,44 @@ import { createRequestThunk, logError, logReturnValue } from './action-helpers'
 import api from 'api'
 import { orange } from 'logger'
 
-export const keyCreateNewEvent = 'actionKeyCreateEvent'
 
-export const requestKeyCreateNewEvent = 'requestKeyCreateEvent'
-
+// Create
+export const keyCreateEvent = 'actionKeyCreateEvent'
+export const requestKeyCreateEvent = 'requestKeyCreateEvent'
 
 const createNewEvent = (event) => ({
-  type: keyCreateNewEvent,
+  type: keyCreateEvent,
   payload: { event },
 })
 
 export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
-  key: requestKeyCreateNewEvent,
+  key: requestKeyCreateEvent,
   success: [ createNewEvent ],
-  failure: [ error => logError(error, requestKeyCreateNewEvent) ]
+  failure: [ error => logError(error, requestKeyCreateEvent) ]
+})
+
+// Read
+export const keyReadEvents = 'actionKeyReadEvents'
+export const requestKeyReadEvents = 'requestKeyReadEvents'
+
+// const readEvents = (events) => ({
+//   type: keyReadEvents,
+//   payload: { events },
+// })
+
+const readEvents = (events) => {
+  orange('readEvents', events)
+  return ({
+    type: keyReadEvents,
+    payload: events, // events is already an object?
+  })
+}
+
+export const requestReadEvents = createRequestThunk({
+  request: api.events.read,
+  key: requestKeyReadEvents,
+  success: [ readEvents ],
+  failure: [ error => logError(error, requestKeyReadEvents) ]
 })
 
