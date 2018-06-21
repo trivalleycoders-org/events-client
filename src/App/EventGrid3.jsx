@@ -109,6 +109,27 @@ const styles = theme => ({
   // },
 })
 
+const hourAmPm = (date) => {
+  const h = date.getHours()
+  const m = date.getMinutes()
+  console.log('h', h)
+  console.log('m', m)
+  return (h > 12)
+    ? `${h-12}:${m} PM`
+    : `${h}:${m} AM`
+}
+
+const formattedDate = (isoDateString) => {
+  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const d = new Date(isoDateString)
+  const MMM = monthNames[d.getMonth()]
+  const DDD = dayNames[d.getDay()]
+  const dd = d.getDate()
+  const hour = hourAmPm(d)
+  return `${DDD}, ${MMM} ${dd} ${hour}`
+}
+
 class EventGrid extends React.Component {
   state = {
     spacing: '16'
@@ -126,47 +147,50 @@ class EventGrid extends React.Component {
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >
-          {events.map(c => (
-            <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.media}
-                  image={c.imageUrl}
-                  >
-                </CardMedia>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {c.time}
-                  </Typography>
-                  <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venu}>
-                    {c.venu}
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.actions} disableActionSpacing>
-                  <div className={classes.tags}>
-                    {c.tags.map(t => (
-                      <Tag key={t} label={t} />
-                    ))}
-                  </div>
-                  <div className={classes.actions}>
-                    <div className={classes.action}>
-                      <IconButton aria-label='Add to favorites'>
-                        <FavoriteIcon />
-                      </IconButton>
+          {events.map(c => {
+            green('c', c)
+            return (
+              <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.media}
+                    image={c.imageUrl}
+                    >
+                  </CardMedia>
+                  <CardContent className={classes.cardContent}>
+                    <Typography variant='caption' component='p' noWrap className={classes.time}>
+                      {formattedDate(c.startDateTime)}
+                    </Typography>
+                    <Typography variant='subheading' component='p' className={classes.title}>
+                      {c.title}
+                    </Typography>
+                    <Typography variant='caption' component='p' noWrap className={classes.venu}>
+                      {c.venu}
+                    </Typography>
+                  </CardContent>
+                  <CardActions className={classes.actions} disableActionSpacing>
+                    <div className={classes.tags}>
+                      {c.tags.map(t => (
+                        <Tag key={t} label={t} />
+                      ))}
                     </div>
-                    <div className={classes.action}>
-                      <IconButton aria-label='Share'>
-                        <ShareIcon />
-                      </IconButton>
+                    <div className={classes.actions}>
+                      <div className={classes.action}>
+                        <IconButton aria-label='Add to favorites'>
+                          <FavoriteIcon />
+                        </IconButton>
+                      </div>
+                      <div className={classes.action}>
+                        <IconButton aria-label='Share'>
+                          <ShareIcon />
+                        </IconButton>
+                      </div>
                     </div>
-                  </div>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+                  </CardActions>
+                </Card>
+              </Grid>
+            )
+          })}
         </Grid>
       </div>
     )

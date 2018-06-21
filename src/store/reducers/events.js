@@ -1,10 +1,8 @@
 import { merge } from 'ramda'
 import { keyCreateEvent, keyReadEvents } from '../actions/event-actions'
 import { blue } from 'logger'
-import { cardData } from 'mock-data/card-data'
 
-
-const events = (state = cardData, { type, payload }) => {
+const events = (state = [], { type, payload }) => {
 
   switch (type) {
     case keyCreateEvent:

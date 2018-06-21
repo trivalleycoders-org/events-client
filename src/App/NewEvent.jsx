@@ -61,6 +61,7 @@ const NewEvent = ({
         'tag-b',
         'tag-c',
       ],
+      venu: 'Dublin Concert Hall',
     }
     green('toDb', toDb)
     requestCreateEvent(toDb)
