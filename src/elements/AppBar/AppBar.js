@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar }from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
@@ -34,6 +35,11 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
+
+          <Link to='/'><Button colro='inherit'>Home</Button></Link>
+          <Link to='/new-event'><Button colro='inherit'>New Event</Button></Link>
+          <Link to='/upload'><Button colro='inherit'>Upload</Button></Link>
+          <Link to='/tags'><Button colro='inherit'>Tags</Button></Link>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

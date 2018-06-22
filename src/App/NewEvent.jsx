@@ -31,38 +31,39 @@ const NewEvent = ({
 
   const onSubmit = (values) => {
     // console.log('handleSubmit')
-    // console.log('values', values)
-    // const toDb = {
-    //   imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
-    //     title: values.title,
-    //   startDate: values.startDate,
-    //   startTime: values.startTime,
-    //   endDate: values.endDate,
-    //   endTime: values.endTime,
-    //   price: values.price,
-    //   tags: [
-    //     values.tag01,
-    //     values.tag02,
-    //     values.tag03
-    //   ],
-    // }
-    const startDate = '2018-12-25'
-    const startTime = '09:00'
-    const endDate = '2018-12-26'
-    const endTime = '10:00'
+    console.log('values', values)
     const toDb = {
+      endDateTime: values.endDateTime,
       imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
-      startDateTime: `${startDate}T${startTime}`,
-      endDateTime: `${endDate}T${endTime}`,
-      title: 'Title X',
-      price: 10,
+      organization: values.organization,
+      price: values.price,
+      startDateTime: values.startDateTime,
       tags: [
-        'tag-a',
-        'tag-b',
-        'tag-c',
+        values.tag01,
+        values.tag02,
+        values.tag03
       ],
-      venu: 'Dublin Concert Hall',
+      title: values.title,
+      venu: values.venu,
     }
+    // const startDate = '2018-12-25'
+    // const startTime = '09:00'
+    // const endDate = '2018-12-26'
+    // const endTime = '10:00'
+    // const toDbHard = {
+    //   endDateTime: `${endDate}T${endTime}`,
+    //   imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
+    //   organization: 'TVC',
+    //   price: 10,
+    //   startDateTime: `${startDate}T${startTime}`,
+    //   tags: [
+    //     'tag-a',
+    //     'tag-b',
+    //     'tag-c',
+    //   ],
+    //   title: 'Title X',
+    //   venu: 'Dublin Concert Hall',
+    // }
     green('toDb', toDb)
     requestCreateEvent(toDb)
 
@@ -125,6 +126,13 @@ const NewEvent = ({
               name='endTime'
             />
           </div>
+        </div>
+        <div>
+          <Field
+            name='organization'
+            component={renderTextField}
+            label='Organization'
+          />
         </div>
         <div>
           <Field

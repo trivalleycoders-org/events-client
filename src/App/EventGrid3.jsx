@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import Tag from './Tag'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
@@ -13,11 +12,11 @@ import CardContent from '@material-ui/core/CardContent'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import IconButton from '@material-ui/core/IconButton'
 import ShareIcon from '@material-ui/icons/Share'
-
+import Tag from './Tag'
 
 // import * as eventsSelectors from 'store/events-selectors'
 import * as eventsSelectors from '../store/selectors/events-selectors'
-import { green } from 'logger'
+// import { green } from 'logger'
 
 const styles = theme => ({
   action: {
@@ -81,6 +80,15 @@ const styles = theme => ({
     overflow: 'hidden',
     paddingTop: '5px',
   },
+  organization: {
+    height: '33px',
+    lineHeight: '16.5px',
+    overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
   venu: {
     overflow: 'hidden',
     paddingTop: '7px',
@@ -112,8 +120,8 @@ const styles = theme => ({
 const hourAmPm = (date) => {
   const h = date.getHours()
   const m = date.getMinutes()
-  console.log('h', h)
-  console.log('m', m)
+  // console.log('h', h)
+  // console.log('m', m)
   return (h > 12)
     ? `${h-12}:${m} PM`
     : `${h}:${m} AM`
@@ -143,12 +151,12 @@ class EventGrid extends React.Component {
 
   render() {
     const { classes, events } = this.props
-    green('EventGrid3.events', events)
+    // green('EventGrid3.events', events)
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >
           {events.map(c => {
-            green('c', c)
+            // green('c', c)
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
                 <Card className={classes.card}>
@@ -163,6 +171,9 @@ class EventGrid extends React.Component {
                     </Typography>
                     <Typography variant='subheading' component='p' className={classes.title}>
                       {c.title}
+                    </Typography>
+                    <Typography variant='caption' component='p' noWrap className={classes.organization}>
+                      {c.organization}
                     </Typography>
                     <Typography variant='caption' component='p' noWrap className={classes.venu}>
                       {c.venu}
