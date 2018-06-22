@@ -1,24 +1,26 @@
+<img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg"
+
 # Events Client
 Event Listing App to list the events in the US. For now, the focus is to list Drone Events.
 
 ## Parked Items
 
-<a href="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114222413.jpg"><img src="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114222413.jpg" width="300"/></a>
+<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg" width="300"/></a>
 
 ## Event Card
 
-<a href="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114209837.jpg"><img src="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114209837.jpg" width="300"/></a>
+<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg" width="300"/></a>
 
 ## New Event
 
-<a href="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114201473.jpg"><img src="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114201473.jpg" width="300"/></a>
+<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/new-event.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/new-event.jpg" width="300"/></a>
 
 ## Admin Registration
 
-<a href="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114213564.jpg"><img src="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114213564.jpg" width="300"/></a>
+<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/register-admin.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/register-admin.jpg" width="300"/></a>
 
 ## Features & Possible Features
-<a href="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114219605.jpg"><img src="https://s3-us-west-2.amazonaws.com/tvc-events/IMG_20180604_114219605.jpg" width="300"/></a>
+<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg" width="300"/></a>
 
 
 
