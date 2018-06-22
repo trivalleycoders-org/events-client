@@ -1,5 +1,3 @@
-<img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg"
-
 # Events Client
 Event Listing App to list the events in the US. For now, the focus is to list Drone Events.
 
