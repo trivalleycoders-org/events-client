@@ -1,7 +1,6 @@
 import { createRequestThunk, logError, logReturnValue } from './action-helpers'
 import api from 'api'
-import { orange } from 'logger'
-import {requestKeyCreateNewTag} from './tag-actions'
+// import { orange } from 'logger'
 
 export const keyUploadOneImage = 'actionKeyUploadOneImage'
 

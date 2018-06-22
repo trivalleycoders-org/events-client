@@ -1,4 +1,4 @@
-import { createRequestThunk, logError, logReturnValue } from './action-helpers'
+import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
 import { orange } from 'logger'
 

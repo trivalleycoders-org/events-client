@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as imageActions from 'store/actions/image-actions'
 import * as imageSelectors from 'store/selectors/images-selectors'
-import { green } from 'logger'
+// import { green } from 'logger'
 import { isNil } from 'ramda'
 
 const wrapper = {
@@ -38,7 +38,7 @@ class UploadImage extends React.Component {
       return null
     } else {
       // green('currentImage: returning <img')
-      return <img src={img} alt='uploaded image' />
+      return <img src={img} alt='uploaded' />
     }
 
   }

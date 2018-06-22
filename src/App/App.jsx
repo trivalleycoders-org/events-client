@@ -9,7 +9,6 @@ import UploadImage from './UploadImage'
 import NewEvent from './NewEvent' // is dropzone component
 
 import * as eventActions from 'store/actions/event-actions'
-import * as eventSelectors from 'store/selectors/events-selectors'
 
 import Tags from './Tags'
 import AppBar from 'elements/AppBar'

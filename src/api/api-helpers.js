@@ -1,5 +1,3 @@
-import { pink, red } from 'logger'
-
 const rejectErrors = (res) => {
   const { status } = res
   // pink('api-helpers.rejectErrors: status', status)
