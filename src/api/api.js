@@ -4,7 +4,7 @@ import { pink, red } from 'logger'
 export default {
   events: {
     async create(event) {
-      pink('event', event)
+      
       const data = await fetchJson(
         '/events',
         {
