@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { Button, TextField } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
-import DateTimeChooser from './DateTimeChooser'
+import DateTimeChooser from 'ui/ui-elements/DateTimeChooser'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 
 const styles = {

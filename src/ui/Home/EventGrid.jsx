@@ -15,8 +15,8 @@ import { Favorite as FavoriteIcon } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
 import { Share as ShareIcon } from '@material-ui/icons'
 
-// User
-import Tag from './Tag'
+/* User */
+import Tag from 'ui/ui-elements/Tag'
 import * as eventsSelectors from 'store/selectors/events-selectors'
 // import { green } from 'logger'
 
