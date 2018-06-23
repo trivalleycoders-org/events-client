@@ -1,6 +1,7 @@
+import { pink } from 'logger'
+
 const rejectErrors = (res) => {
   const { status } = res
-  // pink('api-helpers.rejectErrors: status', status)
   if (status >= 200 && status < 300) {
     return res
   }
