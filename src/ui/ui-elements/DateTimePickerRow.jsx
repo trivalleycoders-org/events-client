@@ -14,9 +14,9 @@ export const DateTimePickerRow = ({
       name={name}
       error={touched && Boolean(error)}
       helperText={touched && error}
-      value={value}
+      value={value || new Date()}
       onChange={onChange}
-      format='DD/MM/YYYY'
+      format='MMM, DD YYYY    hh:mm A'
       {...other}
     />
   )
