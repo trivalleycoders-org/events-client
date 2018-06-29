@@ -79,7 +79,7 @@ const populateEvent =(values) => {
   return ({
     category: values.category,
     endDateTime: endDate,
-    imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
+    imageUrl: this.state.imageUrl,
     organization: values.organization,
     price: values.price,
     startDateTime: endDate,
@@ -95,7 +95,8 @@ const populateEvent =(values) => {
 
 class NewEvent extends React.Component {
   state = {
-    values: ''
+    values: '',
+    imageUrl: '',
   }
    
   onSubmit = (values) => {
@@ -105,6 +106,11 @@ class NewEvent extends React.Component {
     })
     this.props.requestCreateEvent(validatedValues)
   }
+
+  getImageUrl = (url) => {
+    green('getImageData: url', url)
+
+  }
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
     return (
@@ -113,21 +119,8 @@ class NewEvent extends React.Component {
         >
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-            {/* 
-            <div className={classes.imageArea}>
-              <div className={classes.dummyImage}>
-                <Typography variant="body2" gutterBottom>
-                  Image will got here
-                </Typography>
-              </div>
-              <div className={classes.uploadControls}>
-                <TextInput
-                  label='url to image'
-                  name='imageUrl'
-                />
-              </div>
-            </div>
-            */}
+            {/* hema's component getImageUrl={this.getImageUrl} */}
+            
             <div className={classes.titleArea}>
               <TextFieldRedux
                 fieldName='title'
