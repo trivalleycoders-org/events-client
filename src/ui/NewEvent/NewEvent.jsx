@@ -63,7 +63,7 @@ const styles = theme => ({
   uploadControls: {
     height: '100px',
   },
-  venuArea: {
+  venueArea: {
     padding: '20px 0 20px 0'
   },
 })
@@ -89,7 +89,7 @@ const populateEvent =(values) => {
       values.tag03
     ],
     title: values.title,
-    venu: values.venu,
+    venue: values.venue,
   })
 }
 
@@ -120,7 +120,7 @@ class NewEvent extends React.Component {
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
             {/* hema's component getImageUrl={this.getImageUrl} */}
-            
+
             <div className={classes.titleArea}>
               <TextFieldRedux
                 fieldName='title'
@@ -150,11 +150,11 @@ class NewEvent extends React.Component {
               />
             </div>
             
-            <div className={classes.venuArea}>
+            <div className={classes.venueArea}>
               <TextFieldRedux
                 fullWidth
-                fieldLabel='Venu'
-                fieldName='venu'
+                fieldLabel='Venue'
+                fieldName='venue'
               />
             </div>
             

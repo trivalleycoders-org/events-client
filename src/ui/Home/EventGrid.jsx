@@ -91,7 +91,7 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  venu: {
+  venue: {
     overflow: 'hidden',
     paddingTop: '7px',
     paddingBottom: '4px',
@@ -178,8 +178,8 @@ class EventGrid extends React.Component {
                     <Typography variant='caption' component='p' noWrap className={classes.organization}>
                       {c.organization}
                     </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.venu}>
-                      {c.venu}
+                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                      {c.venue}
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions} disableActionSpacing>
