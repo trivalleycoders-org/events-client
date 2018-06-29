@@ -7,8 +7,6 @@ import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
 import NewEvent from 'ui/NewEvent'
 import withRoot from './withRoot'
-import SelectTest from './SelectTest/SelectTest';
-import SelectTry from './SelectTry'
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,8 +18,6 @@ class App extends React.Component {
       <Router>
         <Fragment>
         <AppBar />
-        <Route path='/select' component={SelectTest} />
-        <Route path='/select-try' component={SelectTry} />
         <Route path='/new-event' component={NewEvent} />
         <Route exact path='/' component={Home} />
         </Fragment>
