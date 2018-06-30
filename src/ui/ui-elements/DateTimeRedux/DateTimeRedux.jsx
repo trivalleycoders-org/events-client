@@ -2,6 +2,7 @@ import React from 'react'
 import { DateTimePicker } from 'material-ui-pickers'
 import { Field } from 'redux-form'
 import { green } from 'logger'
+import { has } from 'ramda'
 
 class DateTimeField extends React.Component {
   state = {
@@ -34,18 +35,28 @@ class DateTimeField extends React.Component {
     this.setState({
       currentDateTime: date,
     })
+    const hasField = has('onFieldChange')
+    if (hasField(this.props)) {
+      this.props.onFieldChange(date)
+    }
   }
+
   
   render() {
-    const { fieldLabel, fieldName, required } = this.props
-    
+    const { disablePast, fieldLabel, fieldName, minDate, required } = this.props
+    if (minDate) {
+      // this.handleDateChange(minDate)
+      green('if minDate: date', minDate)
+    }
     return (
       <Field
         component={this.dateTimePicker}
+        disablePast={disablePast}
         name={fieldName}
         label={fieldLabel}
         onChange={(event, date) => this.handleDateChange(event, date)}
         required={required}
+        minDate={minDate}
       />
     )
   }

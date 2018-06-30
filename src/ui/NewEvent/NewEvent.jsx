@@ -9,99 +9,39 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
+import isValid from 'date-fns/isValid'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
-import DateTimeRedux from 'ui/ui-elements/DateTimeRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
+import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
+import styles from './styles'
+import validate from './validate'
 import { green } from 'logger'
 
-const validate = values => {
-  const errors = {}
-  const { category, endDateTime, imageUrl, linkToUrl, organization, price, startDateTime, tags, title, venue } = values
-  if (!category) {
-    errors.category = 'Required'
-  }
-  if (!endDateTime) {
-    errors.category = 'Required'
-  }
-  if (!startDateTime) {
-    errors.startDateTime = 'Required'
-  }
-  if (!title) {
-    errors.title = 'Required'
-  }
-  return errors
-}
-
-const styles = theme => ({
-  dateGroup: {
-    display: 'flex',
-
-  },
-  dummyImage: {
-    backgroundColor: 'gray',
-    height: '230px',
-    width: '460px',
-  },
-  categoryArea: {
-    padding: '20px 0 20px 0'
-  },
-  dateArea: {
-    padding: '20px 0 20px 0'
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
-  },
-  imageArea: {
-    border: '1px solid white'
-  },
-  organizationArea: {
-    padding: '20px 0 20px 0'
-  },
-  pageWrapper: {
-    padding: '20px'
-  },
-  priceArea: {
-    padding: '20px 0 20px 0'
-  },
-  tagArea: {
-    padding: '20px 0 20px 0'
-  },
-  timeField: {
-    paddingRight: '15px'
-  },
-  titleArea: {
-    padding: '20px 0 20px 0'
-  },
-  uploadControls: {
-    height: '100px',
-  },
-  venueArea: {
-    padding: '20px 0 20px 0'
-  },
-})
-
 const populateEvent =(values) => {
-  
-  const sd = new Date(values.startDateTime)
-  const startDate = sd.toISOString()
-  const ed = new Date(values.endDateTime)
-  const endDate = ed.toISOString()
-  green(`start:${startDate}, end:${endDate}`)
-  // console.log('dt', dt)
+  const { startDate, endDate } = values.combinedDateTime
+  green('startDate', startDate)
+  green('endDtae', endDate)
+  green('isValid startDate', isValid(startDate))
+  green('isValid endDate', isValid(endDate))
+  const startDateISO = new Date(startDate).toISOString()
+  green('startDateISO', startDateISO)
+  const endDateISO = new Date(endDate).toISOString()
+  green('endDateISO', endDateISO)
+  green('populateEvent: values', values)
+
   return ({
     category: values.category,
-    endDateTime: endDate,
-    imageUrl: this.state.imageUrl || '',
+    endDateTime: endDateISO,
+    imageUrl: 'to do: imageUrl',
     linkToUrl: values.linkToUrl,
     organization: values.organization,
     price: values.price,
-    startDateTime: endDate,
+    startDateTime: startDateISO,
     tags: [
       values.tag01,
       values.tag02,
@@ -115,9 +55,14 @@ const populateEvent =(values) => {
 class NewEvent extends React.Component {
   state = {
     values: '',
-    imageUrl: '',
+    imageUrl: 'kkk',
+    endDateMin: null,
   }
-   
+
+  getImageUrl = (url) => {
+    green('getImageData: url', url)
+  } 
+
   onSubmit = (values) => {
     const validatedValues = populateEvent(values)
     this.setState({
@@ -125,11 +70,14 @@ class NewEvent extends React.Component {
     })
     this.props.requestCreateEvent(validatedValues)
   }
-
-  getImageUrl = (url) => {
-    green('getImageData: url', url)
-
+  startDateChange = (date) => {
+    green('startDateChange', typeof date)
+    this.setState({
+      endDateMin: date,
+    })
   }
+
+  
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
     return (
@@ -144,21 +92,18 @@ class NewEvent extends React.Component {
               <TextFieldRedux
                 fieldName='title'
                 fieldLabel='Event title'
-                required      
+                // required      
               />
             </div>
             <div>
               
             </div>
             <div className={classes.dateArea}>
-              <DateTimeRedux
-                fieldName='startDateTime'
-                fieldLabel='Start Date & Time'
+              <StartEndDateRedux
+                disablePast
+                fieldName='combinedDateTime'
+                fieldLabel='Date & Time'
                 required
-              />
-              <DateTimeRedux
-                fieldName='endDateTime'
-                fieldLabel='End Dat & Time'
               />
             </div>
             

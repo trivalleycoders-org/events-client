@@ -9,6 +9,7 @@ import { green } from 'logger'
 const renderTextField = (
   { input, label, meta: { error, touched, warning }, ...custom },
 ) => {
+
   const hasErrorSet = typeof error === 'undefined' ? false : true
   const isError = hasErrorSet && touched
   return (
