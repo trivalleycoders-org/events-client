@@ -9,15 +9,23 @@ class DateTimeField extends React.Component {
   }
 
   dateTimePicker = (props) => {
-    const { onChange, ...rest } = props.input
+    // green('props', props)
+    const { input, meta, ...rest} = props
+    const { touched, error, warning } = meta
+    const { onChange } = input
     const { currentDateTime } = this.state  
+    // green('input', props.input)
+    // green('rest', rest)
     return (
-      <DateTimePicker
-        {...rest}
-        onChange={onChange}
-        value={currentDateTime}
-        format='MMM DD YYYY hh:mm A'
-      />
+      <div>
+        <DateTimePicker
+          {...rest}
+          onChange={onChange}
+          value={currentDateTime}
+          format='MMM DD YYYY hh:mm A'
+        />
+        
+      </div>
     )
   }
 
@@ -29,7 +37,7 @@ class DateTimeField extends React.Component {
   }
   
   render() {
-    const { fieldLabel, fieldName } = this.props
+    const { fieldLabel, fieldName, required } = this.props
     
     return (
       <Field
@@ -37,6 +45,7 @@ class DateTimeField extends React.Component {
         name={fieldName}
         label={fieldLabel}
         onChange={(event, date) => this.handleDateChange(event, date)}
+        required={required}
       />
     )
   }

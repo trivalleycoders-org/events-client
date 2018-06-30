@@ -1,27 +1,21 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import { TextField } from '@material-ui/core'
-import { green } from 'logger'
 
-/*
-    error: in redux-form, error is a text field. In mui it is a boolean
-*/
 const renderTextField = (
   { input, label, meta: { error, touched, warning }, ...custom },
-) => {
-  const hasErrorSet = typeof error === 'undefined' ? false : true
-  const isError = hasErrorSet && touched
-  return (
+) => (
+  <div>
     <TextField
       placeholder={label}
       label={label}
-      helperText={touched && error}
-      error={isError}
+      error={touched && error}
       {...input}
       {...custom}
     />
-  )
-}
+    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
 
 const TextFieldRedux = props => {
   const { fieldName, fieldLabel, required, rows=0 } = props

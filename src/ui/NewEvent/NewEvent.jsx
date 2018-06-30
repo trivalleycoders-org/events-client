@@ -19,6 +19,24 @@ import SelectRedux from 'ui/ui-elements/SelectRedux'
 import ShowValues from 'ui/ui-elements/ShowValues'
 import { green } from 'logger'
 
+const validate = values => {
+  const errors = {}
+  const { category, endDateTime, imageUrl, linkToUrl, organization, price, startDateTime, tags, title, venue } = values
+  if (!category) {
+    errors.category = 'Required'
+  }
+  if (!endDateTime) {
+    errors.category = 'Required'
+  }
+  if (!startDateTime) {
+    errors.startDateTime = 'Required'
+  }
+  if (!title) {
+    errors.title = 'Required'
+  }
+  return errors
+}
+
 const styles = theme => ({
   dateGroup: {
     display: 'flex',
@@ -79,7 +97,8 @@ const populateEvent =(values) => {
   return ({
     category: values.category,
     endDateTime: endDate,
-    imageUrl: this.state.imageUrl,
+    imageUrl: this.state.imageUrl || '',
+    linkToUrl: values.linkToUrl,
     organization: values.organization,
     price: values.price,
     startDateTime: endDate,
@@ -125,7 +144,7 @@ class NewEvent extends React.Component {
               <TextFieldRedux
                 fieldName='title'
                 fieldLabel='Event title'
-                
+                required      
               />
             </div>
             <div>
@@ -135,6 +154,7 @@ class NewEvent extends React.Component {
               <DateTimeRedux
                 fieldName='startDateTime'
                 fieldLabel='Start Date & Time'
+                required
               />
               <DateTimeRedux
                 fieldName='endDateTime'
@@ -157,7 +177,13 @@ class NewEvent extends React.Component {
                 fieldName='venue'
               />
             </div>
-            
+            <div className={classes.venueArea}>
+              <TextFieldRedux
+                fullWidth
+                fieldLabel='Link to Url'
+                fieldName='linkToUrl'
+              />
+            </div>
             <div className={classes.priceArea}>
               <TextFieldRedux
                 fullWidth
@@ -221,6 +247,7 @@ export default compose(
   withStyles(styles),
   reduxForm({
     form: 'form',
+    validate,
   }),
   connect(mapStateToProps, eventActions)
 )(NewEvent)
