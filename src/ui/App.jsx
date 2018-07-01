@@ -7,6 +7,7 @@ import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
 import NewEvent from 'ui/NewEvent'
 import withRoot from './withRoot'
+import UploadImage from './NewEvent/UploadImage';
 // import SelectTest from './SelectTest/SelectTest';
 
 class App extends React.Component {
@@ -18,10 +19,11 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-        <AppBar />
-        {/* <Route path='/select' component={SelectTest} /> */}
-        <Route path='/new-event' component={NewEvent} />
-        <Route exact path='/' component={Home} />
+          <AppBar />
+          {/* <Route path='/select' component={SelectTest} /> */}
+          <Route path='/new-event' component={NewEvent} />
+          <Route exact path='/upload' component={UploadImage} />
+          <Route exact path='/' component={Home} />
         </Fragment>
       </Router>
     )
@@ -29,7 +31,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { }
+  return {}
 }
 
 export default connect(mapStateToProps, eventActions)(withRoot(App))

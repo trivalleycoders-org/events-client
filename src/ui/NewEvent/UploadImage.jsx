@@ -49,7 +49,7 @@ class UploadImage extends React.Component {
       <div style={wrapper}>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Upload file:
+            Upload file
             <input
               type="file"
               ref={input => {
@@ -73,6 +73,7 @@ const mapStateToProps = (state) => {
   return {
     currentImageLocation: imageSelectors.getCurrentImageLocation(state),
     currentImageName: imageSelectors.getCurrentImageName(state),
+    requestUploadOneImage: imageActions.requestKeyUploadOneImage,
   }
 }
 export default connect(mapStateToProps, imageActions)(UploadImage)
