@@ -7,7 +7,7 @@ import { green } from 'logger'
 const hasCombinedDateTime = has('combinedDateTime')
 
 const validate = values => {
-  green('validate: values', values)
+  // green('validate: values', values)
   
   const errors = {}
   const { category, linkToUrl, organization, price, tags, title, venue } = values
@@ -24,7 +24,7 @@ const validate = values => {
     
 
 
-  green('compare', compareAsc(new Date(startDateTime), new Date(endDateTime)))
+  // green('compare', compareAsc(new Date(startDateTime), new Date(endDateTime)))
   if (!category) {
     errors.category = 'Required'
   }

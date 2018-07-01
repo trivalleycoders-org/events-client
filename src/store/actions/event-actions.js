@@ -29,7 +29,7 @@ export const requestKeyReadEvents = 'requestKeyReadEvents'
 // })
 
 const readEvents = (events) => {
-  orange('readEvents', events)
+  // orange('readEvents', events)
   return ({
     type: keyReadEvents,
     payload: events, // events is already an object?

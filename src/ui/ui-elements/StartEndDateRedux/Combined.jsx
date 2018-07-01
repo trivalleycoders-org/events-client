@@ -87,7 +87,7 @@ class Combined extends React.Component {
   
     const { startDate, endDate } = this.state
     const { classes } = this.props
-    green('props', this.props)
+    // green('props', this.props)
     
     return (
       <div className={classes.wrapper}>
@@ -95,12 +95,9 @@ class Combined extends React.Component {
           <DateTimePicker
               //{...rest}
               className={classes.dateTimePicker}
-              label='Start Date'
-              onChange={(date) => this.localOnChange(date, 'startDate')}
-              value={startDate}
-              format={this.props.format}
-              minDate={startMinDate}
               disablePast
+              label='Start Date / Time'
+              format={this.props.format}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end' className={classes.adornment}>
@@ -109,16 +106,14 @@ class Combined extends React.Component {
                   </InputAdornment>
                 )
               }}
+              minDate={startMinDate}
+              onChange={(date) => this.localOnChange(date, 'startDate')}
+              value={startDate}
             />
           <DateTimePicker
             // {...rest}
-            label='End Date'
-            onChange={(date) => this.localOnChange(date, 'endDate')}
-            value={endDate}
-            format={this.props.format}
-            minDate={startDate}
-            minDateMessage='End date must be after start date'
             disablePast
+            format={this.props.format}
             InputProps={{
                 endAdornment: (
                   <InputAdornment position='end' className={classes.adornment}>
@@ -127,6 +122,11 @@ class Combined extends React.Component {
                   </InputAdornment>
                 )
               }}
+            label='End Date / Time'
+            minDate={startDate}
+            minDateMessage='End date must be after start date'
+            onChange={(date) => this.localOnChange(date, 'endDate')}
+            value={endDate}
           />
         </div>
         {/* <p className={classes.messageWrapper}>

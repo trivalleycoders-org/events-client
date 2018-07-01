@@ -10,46 +10,64 @@ import {
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import isValid from 'date-fns/isValid'
+import { has } from 'ramda'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
+import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
+
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
 import styles from './styles'
 import validate from './validate'
 import { green } from 'logger'
 
+
+const hasImageUrl = has('imageUrl')
+const hasTag01 = has('tag01')
+const hasTag02 = has('tag02')
+const hasTag03 = has('tag03')
+
 const populateEvent =(values) => {
   const { startDate, endDate } = values.combinedDateTime
-  green('startDate', startDate)
-  green('endDtae', endDate)
-  green('isValid startDate', isValid(startDate))
-  green('isValid endDate', isValid(endDate))
   const startDateISO = new Date(startDate).toISOString()
-  green('startDateISO', startDateISO)
   const endDateISO = new Date(endDate).toISOString()
-  green('endDateISO', endDateISO)
   green('populateEvent: values', values)
-
-  return ({
+  //  const 
+  const toDb = {
     category: values.category,
     endDateTime: endDateISO,
-    imageUrl: 'to do: imageUrl',
     linkToUrl: values.linkToUrl,
     organization: values.organization,
-    price: values.price,
     startDateTime: startDateISO,
-    tags: [
-      values.tag01,
-      values.tag02,
-      values.tag03
-    ],
     title: values.title,
     venue: values.venue,
-  })
+  }
+  if (values.free) {
+    toDb.free = true
+  } else {
+    toDb.price = values.price
+  }
+  if (hasImageUrl(values)) {
+    toDb.imageUrl = 'to do: imageUrl'
+  }
+  const tags = []
+  if (hasTag01(values)) {
+    tags.push(values.tag01)
+  }
+  if (hasTag02(values)) {
+    tags.push(values.tag02)
+  }
+  if (hasTag03(values)) {
+    tags.push(values.tag03)
+  }
+  if (tags.length > 0) {
+    toDb.tags = tags
+  }
+  return toDb
 }
 
 class NewEvent extends React.Component {
@@ -57,6 +75,7 @@ class NewEvent extends React.Component {
     values: '',
     imageUrl: 'kkk',
     endDateMin: null,
+    free: false,
   }
 
   getImageUrl = (url) => {
@@ -77,6 +96,12 @@ class NewEvent extends React.Component {
     })
   }
 
+  freeClick = () => {
+    green('freeClick')
+    this.setState((prevState) => {
+      return {free: !prevState.free}
+    })
+  }
   
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
@@ -130,12 +155,24 @@ class NewEvent extends React.Component {
               />
             </div>
             <div className={classes.priceArea}>
-              <TextFieldRedux
-                fullWidth
-                fieldLabel='Price'
-                fieldName='price'
+              {
+                !this.state.free
+                  ? <TextFieldRedux
+                      fullWidth
+                      fieldLabel='Price'
+                      fieldName='price'
+                      disabled={this.state.free}
+                    />
+                  : null
+              }
+              
+              <CheckboxRedux
+                fieldLabel='Free'
+                fieldName='free'
+                onChange={() => this.freeClick()}
               />
             </div>
+            
             
             <div className={classes.categoryArea}>
               <SelectRedux

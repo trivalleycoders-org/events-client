@@ -1,45 +1,56 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import { TextField } from '@material-ui/core'
-// import { green } from 'logger'
+import { green } from 'logger'
 
 /*
     error: in redux-form, error is a text field. In mui it is a boolean
 */
 const renderTextField = (
-  { input, label, meta: { error, touched, warning }, ...custom },
+  { input, label, meta, ...custom },
 ) => {
-
+  const { error, touched, warning } = meta
+  const { disabled, ...customRest } = custom
+  // green('input', input)
+  // green('custom', custom)
   const hasErrorSet = typeof error === 'undefined' ? false : true
   const isError = hasErrorSet && touched
+
   return (
     <TextField
-      placeholder={label}
-      label={label}
-      helperText={touched && error}
+      disabled={disabled}
       error={isError}
+      helperText={touched && error}
+      label={label}
+      placeholder={label}
+
       {...input}
-      {...custom}
+      {...customRest}
     />
   )
 }
 
 const TextFieldRedux = props => {
-  const { fieldName, fieldLabel, required, rows=0 } = props
+  const { fieldName, fieldLabel, disabled, required, rows=0 } = props
+  // if (fieldName === 'price') {
+  //   green('TextFieldRedux: disabled', disabled)
+  // }
   const multilineField = rows > 1
   return multilineField
     ? <Field 
-        name={fieldName} 
         component={renderTextField}
+        disabled={disabled}
         label={fieldLabel}
         multiline={rows > 1}
+        name={fieldName} 
         required={required}
         rows={rows}
       />
     : <Field 
-        name={fieldName} 
         component={renderTextField}
+        disabled={disabled}
         label={fieldLabel}
+        name={fieldName} 
         required={required}
       />
 }

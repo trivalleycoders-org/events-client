@@ -21,13 +21,13 @@ export default {
           method: 'GET',
         }
       )
-      pink('api.event.read: data', data)
+      // pink('api.event.read: data', data)
       return data
     },
   },
   images: {
     create(formData) {
-      pink('api.images: formData', formData)
+      // pink('api.images: formData', formData)
       return fetchUploadImage(
         '/images',
         {
@@ -35,7 +35,7 @@ export default {
           body: formData
         }
       ).then(data => {
-        pink('/images/create', data)
+        // pink('/images/create', data)
         return data
       }).catch(e => {
         red('api.images.create: ERROR: ', e)
@@ -46,7 +46,7 @@ export default {
         '/images/test',
         { method: 'GET' }
       ).then(data => {
-        pink('api.images.getTest: data', data)
+        // pink('api.images.getTest: data', data)
         return data
       }).catch(e => {
         red('api.images.getTest ERROR: ', e)

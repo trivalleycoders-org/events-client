@@ -8,7 +8,7 @@ const events = (state = [], { type, payload }) => {
     case keyCreateEvent:
       return merge(state, payload.event)
     case keyReadEvents:
-      blue('reducers.events: payload', payload)
+      // blue('reducers.events: payload', payload)
       return payload.events
     default:
       return state

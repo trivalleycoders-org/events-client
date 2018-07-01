@@ -13,13 +13,14 @@ const renderCheckbox = ({ input }) => (
 )
 
 const CheckboxRedux = props => {
-  const { fieldName, fieldLabel } = props
+  const { fieldName, fieldLabel, onChange } = props
   return (
     <FormControlLabel
       control={
         <Field 
-        name={fieldName}
-        component={renderCheckbox} 
+          name={fieldName}
+          component={renderCheckbox} 
+          onChange={onChange}
         />
       }
       label={fieldLabel}
