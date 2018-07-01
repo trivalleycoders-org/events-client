@@ -25,10 +25,6 @@ class UploadImage extends React.Component {
 
   }
 
-  handleGetClick = () => {
-    this.props.requestGetTest()
-  }
-
   currentImage = () => {
     const img = this.props.currentImageLocation
     // green('img', img)
@@ -60,7 +56,6 @@ class UploadImage extends React.Component {
           </label>
           <br />
           <button type="submit">Submit</button><br />
-          <button type="button" onClick={this.handleGetClick}>GET</button>
         </form>
         {this.currentImage()} <br />
         {currentImageName}
