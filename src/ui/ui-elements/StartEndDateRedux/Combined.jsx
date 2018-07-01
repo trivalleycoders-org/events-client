@@ -2,13 +2,19 @@ import React from 'react'
 import { DateTimePicker } from 'material-ui-pickers'
 import isBefore from 'date-fns/isBefore'
 import { withStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography';
+import { IconButton, Icon, InputAdornment } from '@material-ui/core'
+import AlarmIcon from '@material-ui/icons/Alarm'
+import EventIcon from '@material-ui/icons/Event'
+// import Typography from '@material-ui/core/Typography';
 
 
 /* User */
 import { green } from 'logger'
 
 const styles = theme => ({
+  adornment: {
+    padding: '3px 0',
+  },
   wrapper: {
     display: 'flex',
     flexFlow: 'column nowrap'
@@ -16,6 +22,9 @@ const styles = theme => ({
   datesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap'
+  },
+  dateTimePicker: {
+    paddingRight: '20px'
   },
   message: {
     color: theme.palette.error.main,
@@ -27,15 +36,20 @@ const styles = theme => ({
   }
 })
 
+let startMinDate
+
 // color: '#f44336'
 // 
 class Combined extends React.Component {
-  
-  state = {
-    minDate: new Date(),
-    startDate: new Date(),
-    endDate: new Date(),
+  constructor(props) {
+    super(props); 
+    this.state = {
+      // DateTimePicker 'label' will only be shown when value = null
+      startDate: null,
+      endDate: null,
+    }
   }
+  
 
   localOnChange = (date, control) => {
     // green('date', date)
@@ -58,30 +72,43 @@ class Combined extends React.Component {
       startDate: sd,
       endDate: ed,
     })
+
+    // calls redux-form onChange()
     this.props.onChange({
       startDate: sd,
       endDate: ed,
     })
   }
-
+  // onOpen = (a) => {
+  //   green('a', a)
+  //   startMinDate = new Date()
+  // }
   render() {
   
-    const { startDate, endDate, message, todayDate } = this.state
+    const { startDate, endDate } = this.state
     const { classes } = this.props
-    // green('props', this.props)
-    green('classes', classes.message)
+    green('props', this.props)
     
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>
           <DateTimePicker
               //{...rest}
+              className={classes.dateTimePicker}
               label='Start Date'
               onChange={(date) => this.localOnChange(date, 'startDate')}
               value={startDate}
               format={this.props.format}
-              minDate={todayDate}
+              minDate={startMinDate}
               disablePast
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end' className={classes.adornment}>
+                    <EventIcon />
+                    <AlarmIcon />
+                  </InputAdornment>
+                )
+              }}
             />
           <DateTimePicker
             // {...rest}
@@ -90,15 +117,23 @@ class Combined extends React.Component {
             value={endDate}
             format={this.props.format}
             minDate={startDate}
-            minDateMessage='End date cannot be before start date'
+            minDateMessage='End date must be after start date'
             disablePast
+            InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end' className={classes.adornment}>
+                    <EventIcon />
+                    <AlarmIcon />
+                  </InputAdornment>
+                )
+              }}
           />
         </div>
-        <p className={classes.messageWrapper}>
+        {/* <p className={classes.messageWrapper}>
           <Typography variant="caption" className={classes.message}>
             {message}
           </Typography>
-        </p>
+        </p> */}
         
         
       </div>

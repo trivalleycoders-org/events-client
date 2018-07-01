@@ -184,8 +184,8 @@ class EventGrid extends React.Component {
                   </CardContent>
                   <CardActions className={classes.actions} disableActionSpacing>
                     <div className={classes.tags}>
-                      {c.tags.map(t => (
-                        <Tag key={t} label={t} />
+                      {c.tags.map((t, index) => (
+                        <Tag key={`t${index}`} label={t} />
                       ))}
                     </div>
                     <div className={classes.actions}>
