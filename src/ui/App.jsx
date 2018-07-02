@@ -7,11 +7,7 @@ import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
 import NewEvent from 'ui/NewEvent'
 import withRoot from './withRoot'
-<<<<<<< HEAD
-import UploadImage from './NewEvent/UploadImage';
-// import SelectTest from './SelectTest/SelectTest';
-=======
->>>>>>> eb0d0540a7ae74fa593a4db396e43153772cb479
+import UploadImage from './NewEvent/UploadImage'
 
 class App extends React.Component {
   componentDidMount() {
