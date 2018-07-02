@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import isValid from 'date-fns/isValid'
 import { has } from 'ramda'
 
 /* User */

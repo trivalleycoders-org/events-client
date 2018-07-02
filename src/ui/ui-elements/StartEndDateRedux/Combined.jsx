@@ -2,14 +2,14 @@ import React from 'react'
 import { DateTimePicker } from 'material-ui-pickers'
 import isBefore from 'date-fns/isBefore'
 import { withStyles } from '@material-ui/core/styles'
-import { IconButton, Icon, InputAdornment } from '@material-ui/core'
+import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
-// import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography'
 
 
 /* User */
-import { green } from 'logger'
+// import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
@@ -42,7 +42,7 @@ let startMinDate
 // 
 class Combined extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props)
     this.state = {
       // DateTimePicker 'label' will only be shown when value = null
       startDate: null,

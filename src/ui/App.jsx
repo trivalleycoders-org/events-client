@@ -7,6 +7,7 @@ import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
 import NewEvent from 'ui/NewEvent'
 import withRoot from './withRoot'
+import MyEvents from 'ui/MyEvents'
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
         <Fragment>
         <AppBar />
         <Route path='/new-event' component={NewEvent} />
+        <Route path='/my-events' component={MyEvents} />
         <Route exact path='/' component={Home} />
         </Fragment>
       </Router>

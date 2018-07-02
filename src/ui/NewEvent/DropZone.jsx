@@ -33,7 +33,7 @@ class Admin extends Component {
 
   render() {
 
-    // console.log('props', this.props);
+    // console.log('props', this.props)
     // const {handleSubmit} = this.props
     return (
       <div>

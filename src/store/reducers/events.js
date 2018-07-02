@@ -1,6 +1,6 @@
 import { merge } from 'ramda'
 import { keyCreateEvent, keyReadEvents } from '../actions/event-actions'
-import { blue } from 'logger'
+// import { blue } from 'logger'
 
 const events = (state = [], { type, payload }) => {
 
