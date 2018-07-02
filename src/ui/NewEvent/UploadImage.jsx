@@ -13,7 +13,8 @@ const wrapper = {
 class UploadImage extends React.Component {
 
   state = {
-    currentImage: this.props.currentImage
+    currentImage: this.props.currentImage,
+    currentImageLocation: this.props.currentImageLocation
   }
 
   handleSubmit = (event) => {
@@ -22,7 +23,7 @@ class UploadImage extends React.Component {
     let formData = new FormData()
     formData.append('upload', this.fileInput.files[0])
     this.props.requestUploadOneImage(formData)
-
+    this.props.getImageUrl(this.props.currentImageLocation)
   }
 
   currentImage = () => {
