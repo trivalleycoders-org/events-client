@@ -153,7 +153,7 @@ class EventGrid extends React.Component {
 
   render() {
     const { classes, events } = this.props
-    console.log('events', events)
+    // console.log('events', events)
     // green('EventGrid3.events', events)
     return (
       <div className={classes.pageMock}>

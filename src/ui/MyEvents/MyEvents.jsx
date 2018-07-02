@@ -17,7 +17,7 @@ import format from 'date-fns/format'
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
 import * as eventsSelectors from 'store/selectors/events-selectors'
-// import { green } from 'logger'
+import { green } from 'logger'
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -44,7 +44,7 @@ class MyEvents extends React.Component {
   
   state = {
     order: 'asc',
-    orderBy: 'calories',
+    orderBy: 'startDateTime',
     selected: [],
     page: 0,
     rowsPerPage: 5,
@@ -61,21 +61,40 @@ class MyEvents extends React.Component {
     this.setState({ order, orderBy })
   }
 
+  // handleSelectAllClick = (event, checked) => {
+  //   if (checked) {
+  //     this.setState(state => ({ selected: state.data.map(n => n._id) }))
+  //     return
+  //   }
+  //   this.setState({ selected: [] })
+  // }
   handleSelectAllClick = (event, checked) => {
+    const { events } = this.props
+    green('handleSelectAllClick: events', events)
+    
     if (checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }))
+      const selectedEvents = events.map(e => {
+        // green('e', e)
+        return e
+      })
+      green('selectedEvents', selectedEvents)
+      this.setState({ selected: selectedEvents })
+      // this.setState(events => ({ selected: events.map(n => n._id) }))
       return
     }
     this.setState({ selected: [] })
   }
 
-  handleClick = (event, id) => {
+  handleClick = (event, _id) => {
+    green('handleClick: _id', _id)
     const { selected } = this.state
-    const selectedIndex = selected.indexOf(id)
+    green('handleClick: selected', selected)
+    const selectedIndex = selected.indexOf(_id)
+    green('handleClick: selectedIndex', selectedIndex)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id)
+      newSelected = newSelected.concat(selected, _id)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -98,7 +117,11 @@ class MyEvents extends React.Component {
     this.setState({ rowsPerPage: event.target.value })
   }
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1
+  isSelected = _id => {
+    green('isSelected selected', this.state.selected)
+    green('isSelected indexOf', this.state.selected.indexOf(_id))
+    this.state.selected.indexOf(_id) !== -1
+  }
 
   render() {
     const { classes, events } = this.props
@@ -123,11 +146,11 @@ class MyEvents extends React.Component {
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.id)
+                  const isSelected = this.isSelected(n._id)
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
+                      onClick={event => this.handleClick(event, n._id)}
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
