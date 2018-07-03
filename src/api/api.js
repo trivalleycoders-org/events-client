@@ -1,5 +1,6 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
-import { pink, red } from 'logger'
+import { red } from 'logger'
+// import { pink } from 'logger'
 
 export default {
   events: {
@@ -21,7 +22,6 @@ export default {
           method: 'GET',
         }
       )
-      // pink('api.event.read: data', data)
       return data
     },
   },
@@ -55,7 +55,7 @@ export default {
   },
   tags: {
     async create(tag) {
-      pink('tag', tag)
+      // pink('tag', tag)
       const data = await fetchJson(
         '/tags',
         {

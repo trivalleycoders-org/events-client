@@ -3,7 +3,7 @@ import { compose } from 'recompose'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { 
+import {
   Button,
   MenuItem,
 } from '@material-ui/core'
@@ -17,11 +17,12 @@ import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
+import validate from './validate'
+import styles from './styles'
+import UploadWrapped from 'ui/ui-elements/UploadImage'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
-import styles from './styles'
-import validate from './validate'
 import { green } from 'logger'
 
 
@@ -30,7 +31,7 @@ const hasTag01 = has('tag01')
 const hasTag02 = has('tag02')
 const hasTag03 = has('tag03')
 
-const populateEvent =(values) => {
+const populateEvent = (values) => {
   const { startDate, endDate } = values.combinedDateTime
   const startDateISO = new Date(startDate).toISOString()
   const endDateISO = new Date(endDate).toISOString()
@@ -39,6 +40,7 @@ const populateEvent =(values) => {
   const toDb = {
     category: values.category,
     endDateTime: endDateISO,
+    imageUrl: values.imageUrl,
     linkToUrl: values.linkToUrl,
     organization: values.organization,
     startDateTime: startDateISO,
@@ -79,7 +81,7 @@ class NewEvent extends React.Component {
 
   getImageUrl = (url) => {
     green('getImageData: url', url)
-  } 
+  }
 
   onSubmit = (values) => {
     const validatedValues = populateEvent(values)
@@ -106,21 +108,23 @@ class NewEvent extends React.Component {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
     return (
       <MuiPickersUtilsProvider
-          utils={DateFnsUtils}
-        >
+        utils={DateFnsUtils}
+      >
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-            {/* hema's component getImageUrl={this.getImageUrl} */}
-
+            <UploadWrapped
+              fieldName='imageUrl'
+              fieldLabel='Upload Image'
+            />
             <div className={classes.titleArea}>
               <TextFieldRedux
                 fieldName='title'
                 fieldLabel='Event title'
-                // required      
+              // required
               />
             </div>
             <div>
-              
+
             </div>
             <div className={classes.dateArea}>
               <StartEndDateRedux
@@ -130,7 +134,7 @@ class NewEvent extends React.Component {
                 required
               />
             </div>
-            
+
             <div className={classes.organizationArea}>
               <TextFieldRedux
                 fullWidth
@@ -138,7 +142,7 @@ class NewEvent extends React.Component {
                 fieldName='organization'
               />
             </div>
-            
+
             <div className={classes.venueArea}>
               <TextFieldRedux
                 fullWidth
@@ -183,9 +187,9 @@ class NewEvent extends React.Component {
                 <MenuItem value='Racing'>Racing</MenuItem>
                 <MenuItem value='Video'>Video</MenuItem>
               </SelectRedux>
-              
+
             </div>
-             
+
             <div className={classes.tagArea}>
               <TextFieldRedux
                 fieldLabel='tag 1'
@@ -200,14 +204,15 @@ class NewEvent extends React.Component {
                 fieldName='tag03'
               />
             </div>
-            
             <div>
-              {/*<Button type='submit' disabled={pristine || submitting}>*/}
-                {/*Submit*/}
-              {/*</Button>*/}
-              <Button type='submit' >
+              <Button type='submit' disabled={pristine || submitting}>
                 Submit
               </Button>
+
+              {/* This button is used for testing. Eventually delete.
+               <Button type='submit' >
+                Submit
+              </Button> */}
               <Button type='button' disabled={pristine || submitting} onClick={reset}>
                 Clear Values
               </Button>
@@ -221,7 +226,7 @@ class NewEvent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { }
+  return {}
 }
 
 export default compose(

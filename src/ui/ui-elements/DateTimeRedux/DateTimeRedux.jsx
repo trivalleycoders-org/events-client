@@ -31,7 +31,7 @@ class DateTimeField extends React.Component {
   }
 
   handleDateChange = (event, date) => {
-    green('handleDateChange: date', date)
+    // green('handleDateChange: date', date)
     this.setState({
       currentDateTime: date,
     })
@@ -46,7 +46,7 @@ class DateTimeField extends React.Component {
     const { disablePast, fieldLabel, fieldName, minDate, required } = this.props
     if (minDate) {
       // this.handleDateChange(minDate)
-      green('if minDate: date', minDate)
+      // green('if minDate: date', minDate)
     }
     return (
       <Field

@@ -2,7 +2,7 @@ import compareAsc from 'date-fns/compareAsc'
 import isEqual from 'date-fns/isEqual'
 import { has } from 'ramda'
 /* User */
-import { green } from 'logger'
+// import { green } from 'logger'
 
 const hasCombinedDateTime = has('combinedDateTime')
 
@@ -10,7 +10,7 @@ const validate = values => {
   // green('validate: values', values)
   
   const errors = {}
-  const { category, linkToUrl, organization, price, tags, title, venue } = values
+  const { category, linkToUrl, organization, /*price, tags,*/ title, venue } = values
   let endDateTime
   let startDateTime
 
@@ -31,7 +31,7 @@ const validate = values => {
   if (!endDateTime) {
     errors.endDateTime = 'Required'
   } else if (compareAsc(new Date(startDateTime), new Date(endDateTime)) === 1) {
-    green('start is before')
+    // green('start is before')
     errors.endDateTime = 'End date cannot be before start date'
   }
   if (!linkToUrl) {

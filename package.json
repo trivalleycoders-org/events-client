@@ -65,7 +65,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "export NODE_PATH=src && node scripts/start.js",
+    "start": "SET \"NODE_PATH=src\" && node scripts/start.js || export NODE_PATH=src && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },

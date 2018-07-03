@@ -29,7 +29,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { }
+  return {}
 }
 
 export default connect(mapStateToProps, eventActions)(withRoot(App))
