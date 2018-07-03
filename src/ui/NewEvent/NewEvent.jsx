@@ -16,13 +16,13 @@ import * as eventActions from 'store/actions/event-actions'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
-/* Dev */
-import ShowValues from 'ui/ui-elements/ShowValues'
-import styles from './styles'
 import validate from './validate'
-import { green } from 'logger'
+import styles from './styles'
 // import UploadImage from './UploadImage'
 import UploadWrapped from 'ui/ui-elements/UploadImage'
+/* Dev */
+import ShowValues from 'ui/ui-elements/ShowValues'
+import { green } from 'logger'
 
 const populateEvent = (values) => {
   const { startDate, endDate } = values.combinedDateTime
@@ -169,12 +169,14 @@ class NewEvent extends React.Component {
               />
             </div>
             <div>
-              {/*<Button type='submit' disabled={pristine || submitting}>*/}
-              {/*Submit*/}
-              {/*</Button>*/}
-              <Button type='submit' >
+              <Button type='submit' disabled={pristine || submitting}>
                 Submit
               </Button>
+
+              {/* This button is used for testing. Eventually delete.
+               <Button type='submit' >
+                Submit
+              </Button> */}
               <Button type='button' disabled={pristine || submitting} onClick={reset}>
                 Clear Values
               </Button>
