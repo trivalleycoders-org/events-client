@@ -17,6 +17,7 @@ import format from 'date-fns/format'
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
 import * as eventsSelectors from 'store/selectors/events-selectors'
+/* Dev */
 import { green } from 'logger'
 
 function getSorting(order, orderBy) {
@@ -70,29 +71,18 @@ class MyEvents extends React.Component {
   // }
   handleSelectAllClick = (event, checked) => {
     const { events } = this.props
-    green('handleSelectAllClick: events', events)
-    
     if (checked) {
-      const selectedEvents = events.map(e => {
-        // green('e', e)
-        return e
-      })
-      green('selectedEvents', selectedEvents)
-      this.setState({ selected: selectedEvents })
-      // this.setState(events => ({ selected: events.map(n => n._id) }))
+      // this.setState(state => ({ selected: events.map(n => n.id) }))
+      this.setState({ selected: events.map(n => n._id) })
       return
     }
     this.setState({ selected: [] })
-  }
+  };
 
   handleClick = (event, _id) => {
-    green('handleClick: _id', _id)
     const { selected } = this.state
-    green('handleClick: selected', selected)
     const selectedIndex = selected.indexOf(_id)
-    green('handleClick: selectedIndex', selectedIndex)
     let newSelected = []
-
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, _id)
     } else if (selectedIndex === 0) {
@@ -105,7 +95,6 @@ class MyEvents extends React.Component {
         selected.slice(selectedIndex + 1),
       )
     }
-
     this.setState({ selected: newSelected })
   }
 
@@ -118,9 +107,13 @@ class MyEvents extends React.Component {
   }
 
   isSelected = _id => {
-    green('isSelected selected', this.state.selected)
-    green('isSelected indexOf', this.state.selected.indexOf(_id))
-    this.state.selected.indexOf(_id) !== -1
+    green('isSelected: selected', this.state.selected)
+    green('isSelected: _id', _id)
+    const idx = this.state.selected.indexOf(_id)
+    green('isSelected: idx', idx)
+    // green('isSelected indexOf', this.state.selected.indexOf(_id))
+
+    return idx !== -1
   }
 
   render() {
