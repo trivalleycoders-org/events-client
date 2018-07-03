@@ -27,7 +27,7 @@ const styles = theme => ({
     padding: '20px 0 20px 0'
   },
   pageWrapper: {
-    padding: '20px'
+    padding: '20px',
   },
   priceArea: {
     padding: '20px 0 20px 0'

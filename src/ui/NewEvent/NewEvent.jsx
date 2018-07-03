@@ -21,7 +21,8 @@ import ShowValues from 'ui/ui-elements/ShowValues'
 import styles from './styles'
 import validate from './validate'
 import { green } from 'logger'
-import UploadImage from './UploadImage';
+// import UploadImage from './UploadImage'
+import UploadWrapped from 'ui/ui-elements/UploadImage'
 
 const populateEvent = (values) => {
   const { startDate, endDate } = values.combinedDateTime
@@ -38,7 +39,7 @@ const populateEvent = (values) => {
   return ({
     category: values.category,
     endDateTime: endDateISO,
-    imageUrl: 'to do: imageUrl',
+    imageUrl: values.imageUrl,
     linkToUrl: values.linkToUrl,
     organization: values.organization,
     price: values.price,
@@ -87,7 +88,10 @@ class NewEvent extends React.Component {
       >
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-
+            <UploadWrapped
+              fieldName='imageUrl'
+              fieldLabel='Upload Image'
+            />
             <div className={classes.titleArea}>
               <TextFieldRedux
                 fieldName='title'
@@ -164,9 +168,6 @@ class NewEvent extends React.Component {
                 fieldName='tag03'
               />
             </div>
-
-            <UploadImage getImageUrl={this.getImageUrl} />
-
             <div>
               {/*<Button type='submit' disabled={pristine || submitting}>*/}
               {/*Submit*/}

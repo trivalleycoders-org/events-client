@@ -1,6 +1,6 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-import { orange } from 'logger'
+// import { orange } from 'logger'
 
 
 // Create
@@ -29,7 +29,7 @@ export const requestKeyReadEvents = 'requestKeyReadEvents'
 // })
 
 const readEvents = (events) => {
-  orange('readEvents', events)
+  // orange('readEvents', events)
   return ({
     type: keyReadEvents,
     payload: events, // events is already an object?
