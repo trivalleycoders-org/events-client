@@ -3,7 +3,7 @@ import { compose } from 'recompose'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { 
+import {
   Button,
   MenuItem,
 } from '@material-ui/core'
@@ -21,8 +21,9 @@ import ShowValues from 'ui/ui-elements/ShowValues'
 import styles from './styles'
 import validate from './validate'
 import { green } from 'logger'
+import UploadImage from './UploadImage';
 
-const populateEvent =(values) => {
+const populateEvent = (values) => {
   const { startDate, endDate } = values.combinedDateTime
   green('startDate', startDate)
   green('endDtae', endDate)
@@ -61,7 +62,7 @@ class NewEvent extends React.Component {
 
   getImageUrl = (url) => {
     green('getImageData: url', url)
-  } 
+  }
 
   onSubmit = (values) => {
     const validatedValues = populateEvent(values)
@@ -77,26 +78,25 @@ class NewEvent extends React.Component {
     })
   }
 
-  
+
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
     return (
       <MuiPickersUtilsProvider
-          utils={DateFnsUtils}
-        >
+        utils={DateFnsUtils}
+      >
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-            {/* hema's component getImageUrl={this.getImageUrl} */}
 
             <div className={classes.titleArea}>
               <TextFieldRedux
                 fieldName='title'
                 fieldLabel='Event title'
-                // required      
+              // required
               />
             </div>
             <div>
-              
+
             </div>
             <div className={classes.dateArea}>
               <StartEndDateRedux
@@ -106,7 +106,7 @@ class NewEvent extends React.Component {
                 required
               />
             </div>
-            
+
             <div className={classes.organizationArea}>
               <TextFieldRedux
                 fullWidth
@@ -114,7 +114,7 @@ class NewEvent extends React.Component {
                 fieldName='organization'
               />
             </div>
-            
+
             <div className={classes.venueArea}>
               <TextFieldRedux
                 fullWidth
@@ -136,7 +136,7 @@ class NewEvent extends React.Component {
                 fieldName='price'
               />
             </div>
-            
+
             <div className={classes.categoryArea}>
               <SelectRedux
                 fieldName='category'
@@ -147,9 +147,9 @@ class NewEvent extends React.Component {
                 <MenuItem value='Racing'>Racing</MenuItem>
                 <MenuItem value='Video'>Video</MenuItem>
               </SelectRedux>
-              
+
             </div>
-             
+
             <div className={classes.tagArea}>
               <TextFieldRedux
                 fieldLabel='tag 1'
@@ -164,10 +164,12 @@ class NewEvent extends React.Component {
                 fieldName='tag03'
               />
             </div>
-            
+
+            <UploadImage getImageUrl={this.getImageUrl} />
+
             <div>
               {/*<Button type='submit' disabled={pristine || submitting}>*/}
-                {/*Submit*/}
+              {/*Submit*/}
               {/*</Button>*/}
               <Button type='submit' >
                 Submit
@@ -185,7 +187,7 @@ class NewEvent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { }
+  return {}
 }
 
 export default compose(

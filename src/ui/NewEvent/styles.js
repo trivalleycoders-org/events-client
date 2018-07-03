@@ -1,7 +1,9 @@
 const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
   dateGroup: {
     display: 'flex',
-
   },
   dummyImage: {
     backgroundColor: 'gray',
@@ -37,6 +39,9 @@ const styles = theme => ({
     paddingRight: '15px'
   },
   titleArea: {
+    padding: '20px 0 20px 0'
+  },
+  uploadArea: {
     padding: '20px 0 20px 0'
   },
   uploadControls: {
