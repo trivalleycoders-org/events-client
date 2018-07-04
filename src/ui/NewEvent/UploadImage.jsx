@@ -27,7 +27,7 @@ class UploadImage extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     let formData = new FormData()
-    formData.append('upload', this.fileInput.files[0])
+    formData.append('upload', this.fileInput.current.files[0])
     await this.props.requestUploadOneImage(formData)
     this.props.getImageUrl(this.props.currentImageUrl)
     this.currentImageName = this.props.currentImageName
@@ -82,7 +82,9 @@ class UploadImage extends React.Component {
             </label>
           </Button>
           <TextField
-            disabled="true"
+            InputProps={{
+              readOnly: true,
+            }}
             value={this.state.selectedFileName}
           />
           <Button disabled={isEmpty(this.state.selectedFileName)} size="small" variant="contained" color="primary" className={classes.button} onClick={this.handleSubmit}>
