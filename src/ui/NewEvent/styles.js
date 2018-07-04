@@ -16,9 +16,27 @@ const styles = theme => ({
   dateArea: {
     padding: '20px 0 20px 0'
   },
+  fileInput: {
+    display: 'none'
+  },
+  folderIcon: {
+    verticalAlign: 'middle'
+  },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconArea: {
+    padding: '20px 0 20px 0'
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: 'red[800]',
+    },
   },
   imageArea: {
     border: '1px solid white'
