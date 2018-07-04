@@ -44,11 +44,12 @@ const dateFormat = 'MMM DD, YYYY  hh:mm A'
 class MyEvents extends React.Component {
   
   state = {
+
     order: 'asc',
     orderBy: 'startDateTime',
-    selected: [],
     page: 0,
     rowsPerPage: 5,
+    selected: [],
   }
 
   handleRequestSort = (event, property) => {
@@ -88,6 +89,7 @@ class MyEvents extends React.Component {
         selected.slice(selectedIndex + 1),
       )
     }
+    // green('newSelected', newSelected)
     this.setState({ selected: newSelected })
   }
 
@@ -111,7 +113,10 @@ class MyEvents extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <TableToolbar numSelected={selected.length} />
+        <TableToolbar 
+          selected={selected}
+          // numSelected={selected.length}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <TableHead

@@ -1,23 +1,23 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
-
 import {
   Toolbar,
   Typography,
   IconButton,
   Tooltip,
 } from '@material-ui/core'
-
-// import DeleteIcon from '@material-ui/icons/Delete'
-// import FilterListIcon from '@material-ui/icons/FilterList'
 import {
   Delete as DeleteIcon,
   FilterList as FilterListIcon,
   Edit as EditIcon
 } from '@material-ui/icons'
 import { lighten } from '@material-ui/core/styles/colorManipulator'
+/* Dev */
+import { green } from 'logger'
+
 
 const styles = theme => ({
   actions: {
@@ -48,8 +48,30 @@ const styles = theme => ({
   },
 })
 
-let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props
+
+const handleEditClick = (event, _id) => {
+  /* 
+      Use react reactRouter <Link/> component passing it the _id.
+      The link will be to NewEvent
+      Having received an _id, NewEvent will initialize values
+  */
+  green('handleEditClick: _id', _id)
+  return (
+    <Redirect to={`/new-event/:${_id}`}/>
+  )
+}
+
+let TableToolbar = props => {
+  const { selected, classes } = props
+  const numSelected = selected.length
+  green('TableToobar: props', props)
+  let _id = ''
+  if (numSelected === 1) {
+    green('**num = 1')
+    green('if selected', selected[0])
+    _id = selected[0]
+    green('_id', _id)
+  }
 
   return (
     <Toolbar
@@ -73,7 +95,7 @@ let EnhancedTableToolbar = props => {
         {numSelected > 0 ? (
           <div className={classes.editDeleteGroup}>
             <Tooltip title="Edit">
-              <IconButton aria-label="Edit" disabled={numSelected > 1}>
+              <IconButton aria-label="Edit" disabled={numSelected > 1} onClick={e => handleEditClick(e, _id)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
@@ -95,11 +117,11 @@ let EnhancedTableToolbar = props => {
   )
 }
 
-EnhancedTableToolbar.propTypes = {
+TableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
+  selected: PropTypes.array.isRequired,
 }
 
-EnhancedTableToolbar = withStyles(styles)(EnhancedTableToolbar)
+TableToolbar = withStyles(styles)(TableToolbar)
 
-export default EnhancedTableToolbar
+export default TableToolbar
