@@ -14,29 +14,34 @@ import {
 // import FilterListIcon from '@material-ui/icons/FilterList'
 import {
   Delete as DeleteIcon,
-  FilterList as FilterListIcon
+  FilterList as FilterListIcon,
+  Edit as EditIcon
 } from '@material-ui/icons'
 import { lighten } from '@material-ui/core/styles/colorManipulator'
 
-const toolbarStyles = theme => ({
-  root: {
-    paddingRight: theme.spacing.unit,
+const styles = theme => ({
+  actions: {
+    color: theme.palette.text.secondary,
+  },
+  editDeleteGroup: {
+    display: 'flex',
+    flexflow: 'row nowrap'
   },
   highlight:
     theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+    ? {
+      color: theme.palette.secondary.main,
+      backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+    }
+    : {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.secondary.dark,
+    },
+  root: {
+    paddingRight: theme.spacing.unit,
+  },
   spacer: {
     flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
   },
   title: {
     flex: '0 0 auto',
@@ -66,11 +71,18 @@ let EnhancedTableToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
+          <div className={classes.editDeleteGroup}>
+            <Tooltip title="Edit">
+              <IconButton aria-label="Edit" disabled={numSelected > 1}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Delete">
+              <IconButton aria-label="Delete">
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
         ) : (
           <Tooltip title="Filter list">
             <IconButton aria-label="Filter list">
@@ -88,6 +100,6 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 }
 
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar)
+EnhancedTableToolbar = withStyles(styles)(EnhancedTableToolbar)
 
 export default EnhancedTableToolbar

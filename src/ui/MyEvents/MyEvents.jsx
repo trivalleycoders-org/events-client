@@ -62,13 +62,6 @@ class MyEvents extends React.Component {
     this.setState({ order, orderBy })
   }
 
-  // handleSelectAllClick = (event, checked) => {
-  //   if (checked) {
-  //     this.setState(state => ({ selected: state.data.map(n => n._id) }))
-  //     return
-  //   }
-  //   this.setState({ selected: [] })
-  // }
   handleSelectAllClick = (event, checked) => {
     const { events } = this.props
     if (checked) {
@@ -107,12 +100,7 @@ class MyEvents extends React.Component {
   }
 
   isSelected = _id => {
-    green('isSelected: selected', this.state.selected)
-    green('isSelected: _id', _id)
     const idx = this.state.selected.indexOf(_id)
-    green('isSelected: idx', idx)
-    // green('isSelected indexOf', this.state.selected.indexOf(_id))
-
     return idx !== -1
   }
 
