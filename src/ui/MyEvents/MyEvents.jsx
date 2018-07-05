@@ -66,7 +66,6 @@ class MyEvents extends React.Component {
   handleSelectAllClick = (event, checked) => {
     const { events } = this.props
     if (checked) {
-      // this.setState(state => ({ selected: events.map(n => n.id) }))
       this.setState({ selected: events.map(n => n._id) })
       return
     }
@@ -89,8 +88,10 @@ class MyEvents extends React.Component {
         selected.slice(selectedIndex + 1),
       )
     }
-    // green('newSelected', newSelected)
-    this.setState({ selected: newSelected })
+    this.setState({
+      selected: newSelected,
+    })
+    
   }
 
   handleChangePage = (event, page) => {
@@ -110,12 +111,10 @@ class MyEvents extends React.Component {
     const { classes, events } = this.props
     const { order, orderBy, selected, rowsPerPage, page } = this.state
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, events.length - page * rowsPerPage)
-
     return (
       <Paper className={classes.root}>
         <TableToolbar 
           selected={selected}
-          // numSelected={selected.length}
         />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">

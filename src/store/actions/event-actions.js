@@ -1,6 +1,6 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-// import { orange } from 'logger'
+import { orange } from 'logger'
 
 
 // Create
@@ -23,13 +23,7 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 export const requestKeyReadEvents = 'requestKeyReadEvents'
 
-// const readEvents = (events) => ({
-//   type: keyReadEvents,
-//   payload: { events },
-// })
-
 const readEvents = (events) => {
-  // orange('readEvents', events)
   return ({
     type: keyReadEvents,
     payload: events, // events is already an object?
@@ -43,3 +37,13 @@ export const requestReadEvents = createRequestThunk({
   failure: [ error => logError(error, requestKeyReadEvents) ]
 })
 
+// EventsUi
+export const keySetEdit_id = 'actionKeySetEdit_id'
+
+export const setEdit_id = (_id) => {
+  orange('event-actions.setEdit_id: _id', _id)
+  return ({
+    type: keySetEdit_id,
+    payload: { _id }
+  })
+}

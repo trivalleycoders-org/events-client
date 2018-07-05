@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 // User
 import * as eventActions from 'store/actions/event-actions'
@@ -19,8 +19,9 @@ class App extends React.Component {
       <Router>
         <Fragment>
         <AppBar />
-        <Route path='/new-event' component={NewEvent} />
-        <Route path='/my-events' component={MyEvents} />
+        <Route exact path='/my-events' component={MyEvents} />
+        <Route exact path='/new-event' component={NewEvent} />
+        <Route exact path='/new-event/:_id' component={NewEvent} />
         <Route exact path='/' component={Home} />
         </Fragment>
       </Router>

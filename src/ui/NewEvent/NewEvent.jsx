@@ -13,6 +13,8 @@ import { has } from 'ramda'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
+import * as eventSelectors from 'store/selectors/events-selectors'
+                                
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
@@ -74,7 +76,7 @@ const populateEvent = (values) => {
 class NewEvent extends React.Component {
   state = {
     values: '',
-    imageUrl: 'kkk',
+    imageUrl: '',
     endDateMin: null,
     free: false,
   }
@@ -91,14 +93,14 @@ class NewEvent extends React.Component {
     this.props.requestCreateEvent(validatedValues)
   }
   startDateChange = (date) => {
-    green('startDateChange', typeof date)
+    // green('startDateChange', typeof date)
     this.setState({
       endDateMin: date,
     })
   }
 
   freeClick = () => {
-    green('freeClick')
+    // green('freeClick')
     this.setState((prevState) => {
       return {free: !prevState.free}
     })
@@ -106,6 +108,8 @@ class NewEvent extends React.Component {
   
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
+    // green('NewEvent: props', this.props)
+    green('eventSelectors', eventSelectors)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -226,7 +230,15 @@ class NewEvent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  const _id = eventSelectors.getEventEdit_id(state)
+  const event = eventSelectors.getOneEvent(state, _id)
+  const o = {
+    initialValues: event
+  }
+  green('NewEvent.mapStateToProps: o', o)
+  return {
+    o
+  }
 }
 
 export default compose(
@@ -234,6 +246,7 @@ export default compose(
   reduxForm({
     form: 'form',
     validate,
+    
   }),
   connect(mapStateToProps, eventActions)
 )(NewEvent)

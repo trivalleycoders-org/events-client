@@ -1,8 +1,9 @@
 import { merge } from 'ramda'
-import { keyCreateEvent, keyReadEvents } from '../actions/event-actions'
+import { keyCreateEvent, keyReadEvents, keySetEdit_id } from '../actions/event-actions'
 // import { blue } from 'logger'
 
-const events = (state = [], { type, payload }) => {
+
+export const events = (state = [], { type, payload }) => {
 
   switch (type) {
     case keyCreateEvent:
@@ -15,4 +16,15 @@ const events = (state = [], { type, payload }) => {
   }
 }
 
-export default events
+export const eventsUi = (state = {}, { type, payload }) => {
+  // blue('reducers.eventsUi: type', type)
+  // blue('reducers.eventsUi: payload', payload)
+  switch (type) {
+    case keySetEdit_id:
+      return merge(state, {edit_id: payload._id})
+    default:
+      return state
+  }
+}
+
+export default { events, eventsUi }

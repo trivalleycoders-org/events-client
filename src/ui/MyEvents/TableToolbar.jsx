@@ -1,4 +1,6 @@
 import React from 'react'
+import { compose } from 'recompose'
+import { connect } from 'react-redux'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
@@ -15,6 +17,9 @@ import {
   Edit as EditIcon
 } from '@material-ui/icons'
 import { lighten } from '@material-ui/core/styles/colorManipulator'
+/* User */
+// import { setEdit_id } from 'store/actions/event-actions'
+import * as eventActions from 'store/actions/event-actions'
 /* Dev */
 import { green } from 'logger'
 
@@ -52,28 +57,20 @@ const styles = theme => ({
 
 class TableToolbar extends React.Component {
   state = {
-    selectedId: '',
     editClicked: false,
   }
   
   handleEditClick = (event) => {
-    /* 
-        Use react reactRouter <Link/> component passing it the _id.
-        The link will be to NewEvent
-        Having received an _id, NewEvent will initialize values
-    */
     const { selected } = this.props
     
-    let _id = ''
     if (selected.length === 1) {
+      green('handleEditClick: selected', selected)
+      // green('handleEditClick: setEdit_id', setEdit_id)
+      this.props.setEdit_id(selected[0])
       this.setState({
-        selectedId: selected[0],
         editClicked: true,
       })
     }
-    
-    green('handleEditClick: _id', _id)
-    return <Redirect to={`/new-event/:${_id}`}/>
     
   }
   
@@ -81,10 +78,14 @@ class TableToolbar extends React.Component {
   render() {
     const { selected, classes } = this.props
     const numSelected = selected.length
-    green('TableToobar: this.props', this.props)
-    const { selectedId, editClicked } = this.state
-    if (selectedId && editClicked) {
-      return <Redirect to={`/new-event/${selectedId}`}/>
+    const { editClicked } = this.state
+
+    // green('TableToobar: this.props', this.props)
+    // green('TableToobar: this.state', this.state)
+    // green('TableToobar: editClicked', editClicked)
+    
+    if (numSelected > 0 && editClicked) {
+      return <Redirect to={'/new-event'}/>
     }
     
 
@@ -139,6 +140,15 @@ TableToolbar.propTypes = {
   selected: PropTypes.array.isRequired,
 }
 
-TableToolbar = withStyles(styles)(TableToolbar)
+// TableToolbar = withStyles(styles)(TableToolbar)
 
-export default TableToolbar
+// export default TableToolbar
+
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, eventActions)
+)(TableToolbar)
