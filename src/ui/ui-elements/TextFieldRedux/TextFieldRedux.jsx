@@ -9,7 +9,7 @@ import { TextField } from '@material-ui/core'
 const renderTextField = (
   { input, label, meta, ...custom },
 ) => {
-  const { error, touched, warning } = meta
+  const { error, touched } = meta
   const { disabled, ...customRest } = custom
   // green('input', input)
   // green('custom', custom)

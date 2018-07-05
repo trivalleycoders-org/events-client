@@ -1,7 +1,7 @@
 import React from 'react'
 import UploadComponent from './UploadComponent'
 import { Field } from 'redux-form'
-import { green } from 'logger'
+// import { green } from 'logger'
 
 class UploadImage extends React.Component {
   

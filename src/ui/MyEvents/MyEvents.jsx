@@ -18,7 +18,7 @@ import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
 import * as eventsSelectors from 'store/selectors/events-selectors'
 /* Dev */
-import { green } from 'logger'
+// import { green } from 'logger'
 
 function getSorting(order, orderBy) {
   return order === 'desc'
