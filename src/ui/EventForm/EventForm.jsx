@@ -80,12 +80,9 @@ class NewEvent extends React.Component {
     free: this.props.initialValues.free || false,
   }
 
-  getImageUrl = (url) => {
-    green('getImageData: url', url)
-  }
-
   onSubmit = (values) => {
-    const validatedValues = populateEvent(values)
+    this.setState({ vlaues: values})
+    // const validatedValues = populateEvent(values)
     // this.setState({
     //   values: validatedValues
     // })
@@ -107,8 +104,6 @@ class NewEvent extends React.Component {
   
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
-    green('NewEvent: props', this.props)
-    // green('eventSelectors', eventSelectors)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -254,7 +249,6 @@ const mapStateToProps = (state) => {
   // const o = {
   //   initialValues: event
   // }
-  // green('NewEvent.mapStateToProps: o', o)
   return {
     initialValues: initData
   }

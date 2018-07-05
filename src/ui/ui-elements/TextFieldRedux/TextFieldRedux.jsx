@@ -11,8 +11,6 @@ const renderTextField = (
 ) => {
   const { error, touched } = meta
   const { disabled, ...customRest } = custom
-  // green('input', input)
-  // green('custom', custom)
   const hasErrorSet = typeof error === 'undefined' ? false : true
   const isError = hasErrorSet && touched
 
@@ -32,9 +30,6 @@ const renderTextField = (
 
 const TextFieldRedux = props => {
   const { fieldName, fieldLabel, disabled, required, rows=0 } = props
-  // if (fieldName === 'price') {
-  //   green('TextFieldRedux: disabled', disabled)
-  // }
   const multilineField = rows > 1
   return multilineField
     ? <Field 

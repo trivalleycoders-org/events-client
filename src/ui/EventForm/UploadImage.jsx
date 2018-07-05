@@ -27,16 +27,11 @@ class UploadImage extends React.Component {
 
   currentImage = () => {
     const img = this.props.currentImageUrl
-    // green('img', img)
-    // green('img.Location', img.Location)
     if (isNil(img)) {
-      // green('currentImage: returning null')
       return null
     } else {
-      // green('currentImage: returning <img')
       return <img src={img} alt='uploaded' />
     }
-
   }
 
   render() {

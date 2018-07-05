@@ -5,9 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
-// import Typography from '@material-ui/core/Typography'
-
-
 /* User */
 import { green } from 'logger'
 
@@ -49,11 +46,8 @@ class Combined extends React.Component {
       endDate: this.props.initial.endDate || null,
     }
   }
-  
 
   localOnChange = (date, control) => {
-    // green('date', date)
-    // green('control', control)
     let sd
     let ed
     if (control === 'startDate') {
@@ -79,15 +73,10 @@ class Combined extends React.Component {
       endDate: ed,
     })
   }
-  // onOpen = (a) => {
-  //   green('a', a)
-  //   startMinDate = new Date()
-  // }
   render() {
   
     const { startDate, endDate } = this.state
     const { classes } = this.props
-    green('Combined: props', this.props)
     
     return (
       <div className={classes.wrapper}>
@@ -129,17 +118,9 @@ class Combined extends React.Component {
             value={endDate}
           />
         </div>
-        {/* <p className={classes.messageWrapper}>
-          <Typography variant="caption" className={classes.message}>
-            {message}
-          </Typography>
-        </p> */}
-        
-        
       </div>
     )
   }
-  
 }
 
 export default withStyles(styles)(Combined)

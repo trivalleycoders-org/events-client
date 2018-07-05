@@ -10,13 +10,10 @@ class DateTimeField extends React.Component {
   }
 
   dateTimePicker = (props) => {
-    // green('props', props)
     const { input, meta, ...rest} = props
     const { touched, error, warning } = meta
     const { onChange } = input
     const { currentDateTime } = this.state  
-    // green('input', props.input)
-    // green('rest', rest)
     return (
       <div>
         <DateTimePicker
@@ -25,13 +22,11 @@ class DateTimeField extends React.Component {
           value={currentDateTime}
           format='MMM DD YYYY hh:mm A'
         />
-        
       </div>
     )
   }
 
   handleDateChange = (event, date) => {
-    // green('handleDateChange: date', date)
     this.setState({
       currentDateTime: date,
     })
@@ -40,14 +35,9 @@ class DateTimeField extends React.Component {
       this.props.onFieldChange(date)
     }
   }
-
   
   render() {
     const { disablePast, fieldLabel, fieldName, minDate, required } = this.props
-    if (minDate) {
-      // this.handleDateChange(minDate)
-      // green('if minDate: date', minDate)
-    }
     return (
       <Field
         component={this.dateTimePicker}

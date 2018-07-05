@@ -6,7 +6,6 @@ import { green } from 'logger'
 class StartEndDateRedux extends React.Component {
 
   picker = (props) => {
-    green('picker: props', props)
     const { onChange, ...rest } = props.input
     return (
       <Combined
@@ -20,7 +19,6 @@ class StartEndDateRedux extends React.Component {
   
   render() {
     const { fieldLabel, fieldName } = this.props
-    green('StartEndDateRedux: props', this.props)
     return (
       <Field
         component={this.picker}
