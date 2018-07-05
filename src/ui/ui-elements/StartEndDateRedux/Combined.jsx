@@ -9,7 +9,7 @@ import EventIcon from '@material-ui/icons/Event'
 
 
 /* User */
-// import { green } from 'logger'
+import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
@@ -45,8 +45,8 @@ class Combined extends React.Component {
     super(props)
     this.state = {
       // DateTimePicker 'label' will only be shown when value = null
-      startDate: null,
-      endDate: null,
+      startDate: this.props.initial.startDate || null,
+      endDate: this.props.initial.endDate || null,
     }
   }
   
@@ -87,7 +87,7 @@ class Combined extends React.Component {
   
     const { startDate, endDate } = this.state
     const { classes } = this.props
-    // green('props', this.props)
+    green('Combined: props', this.props)
     
     return (
       <div className={classes.wrapper}>

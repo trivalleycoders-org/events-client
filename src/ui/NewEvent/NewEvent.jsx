@@ -27,7 +27,6 @@ import UploadWrapped from 'ui/ui-elements/UploadImage'
 import ShowValues from 'ui/ui-elements/ShowValues'
 import { green } from 'logger'
 
-
 const hasImageUrl = has('imageUrl')
 const hasTag01 = has('tag01')
 const hasTag02 = has('tag02')
@@ -78,7 +77,7 @@ class NewEvent extends React.Component {
     values: '',
     imageUrl: '',
     endDateMin: null,
-    free: false,
+    free: this.props.initialValues.free || false,
   }
 
   getImageUrl = (url) => {
@@ -87,10 +86,10 @@ class NewEvent extends React.Component {
 
   onSubmit = (values) => {
     const validatedValues = populateEvent(values)
-    this.setState({
-      values: validatedValues
-    })
-    this.props.requestCreateEvent(validatedValues)
+    // this.setState({
+    //   values: validatedValues
+    // })
+    // this.props.requestCreateEvent(validatedValues)
   }
   startDateChange = (date) => {
     // green('startDateChange', typeof date)
@@ -108,8 +107,8 @@ class NewEvent extends React.Component {
   
   render() {
     const { classes, handleSubmit, pristine, reset, submitting } = this.props
-    // green('NewEvent: props', this.props)
-    green('eventSelectors', eventSelectors)
+    green('NewEvent: props', this.props)
+    // green('eventSelectors', eventSelectors)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -229,24 +228,43 @@ class NewEvent extends React.Component {
   }
 }
 
+const initData = {
+  imageUrl: 'image-url',
+  category: 'Octocopter',
+  title: 'Event Title',
+  combinedDateTime: {
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+  // endDateTime: new Date(),
+  free: true,
+  linkToUrl: 'link-to-url',
+  organization: 'some org',
+  price: 25,
+  // startDateTime: new Date(),
+  tag01: 't1',
+  tag02: 't2',
+  tag03: 't3',
+  venue: 'A place near me',
+}
+
 const mapStateToProps = (state) => {
-  const _id = eventSelectors.getEventEdit_id(state)
-  const event = eventSelectors.getOneEvent(state, _id)
-  const o = {
-    initialValues: event
-  }
-  green('NewEvent.mapStateToProps: o', o)
+  // const _id = eventSelectors.getEventEdit_id(state)
+  // const event = eventSelectors.getOneEvent(state, _id)
+  // const o = {
+  //   initialValues: event
+  // }
+  // green('NewEvent.mapStateToProps: o', o)
   return {
-    o
+    initialValues: initData
   }
 }
 
 export default compose(
   withStyles(styles),
+  connect(mapStateToProps, eventActions),
   reduxForm({
-    form: 'form',
+    form: 'NewEvent',
     validate,
-    
   }),
-  connect(mapStateToProps, eventActions)
 )(NewEvent)
