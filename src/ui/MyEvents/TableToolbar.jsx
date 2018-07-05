@@ -21,8 +21,7 @@ import { lighten } from '@material-ui/core/styles/colorManipulator'
 // import { setEdit_id } from 'store/actions/event-actions'
 import * as eventActions from 'store/actions/event-actions'
 /* Dev */
-import { green } from 'logger'
-
+// import { green } from 'logger'
 
 const styles = theme => ({
   actions: {
@@ -53,8 +52,6 @@ const styles = theme => ({
   },
 })
 
-
-
 class TableToolbar extends React.Component {
   state = {
     editClicked: false,
@@ -71,7 +68,6 @@ class TableToolbar extends React.Component {
     }
     
   }
-  
   
   render() {
     const { selected, classes } = this.props
@@ -132,10 +128,6 @@ TableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   selected: PropTypes.array.isRequired,
 }
-
-// TableToolbar = withStyles(styles)(TableToolbar)
-
-// export default TableToolbar
 
 const mapStateToProps = (state) => {
   return {}

@@ -6,7 +6,7 @@ import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
 /* User */
-import { green } from 'logger'
+// import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
