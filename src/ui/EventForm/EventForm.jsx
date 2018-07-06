@@ -21,7 +21,7 @@ import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import validate from './validate'
 import styles from './styles'
-import UploadWrapped from 'ui/ui-elements/UploadImage'
+import UploadImage from 'ui/ui-elements/UploadImage'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
@@ -37,16 +37,18 @@ const populateEvent = (values) => {
   const startDateISO = new Date(startDate).toISOString()
   const endDateISO = new Date(endDate).toISOString()
   green('populateEvent: values', values)
-  //  const 
+  //  required properties
   const toDb = {
     category: values.category,
     endDateTime: endDateISO,
     imageUrl: values.imageUrl,
-    linkToUrl: values.linkToUrl,
     organization: values.organization,
     startDateTime: startDateISO,
     title: values.title,
     venue: values.venue,
+  }
+  if (values.linkToUrl) {
+    toDb.linkToUrl = values.linkToUrl
   }
   if (values.free) {
     toDb.free = true
@@ -88,15 +90,8 @@ class NewEvent extends React.Component {
     // })
     // this.props.requestCreateEvent(validatedValues)
   }
-  startDateChange = (date) => {
-    // green('startDateChange', typeof date)
-    this.setState({
-      endDateMin: date,
-    })
-  }
 
   freeClick = () => {
-    // green('freeClick')
     this.setState((prevState) => {
       return {free: !prevState.free}
     })
@@ -110,7 +105,7 @@ class NewEvent extends React.Component {
       >
         <div className={classes.pageWrapper}>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-            <UploadWrapped
+            <UploadImage
               fieldName='imageUrl'
               fieldLabel='Upload Image'
             />
@@ -224,7 +219,7 @@ class NewEvent extends React.Component {
 }
 
 const initData = {
-  imageUrl: 'image-url',
+  imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
   category: 'Octocopter',
   title: 'Event Title',
   combinedDateTime: {

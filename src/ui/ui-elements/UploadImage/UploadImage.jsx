@@ -11,6 +11,7 @@ class UploadImage extends React.Component {
       <UploadComponent
         {...rest}
         onChange={onChange}
+        initial={props.meta.initial}
       />
     )
   }
