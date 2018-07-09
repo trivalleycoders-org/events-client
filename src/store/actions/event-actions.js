@@ -6,6 +6,9 @@ import { orange } from 'logger'
 // Create
 export const keyCreateEvent = 'actionKeyCreateEvent'
 export const requestKeyCreateEvent = 'requestKeyCreateEvent'
+export const keySearchEvent = 'actionKeySearchEvent'
+export const requestKeySearchEvents = 'requestKeySearchEvents'
+export const keySetEvents = 'actionKeySetEvents'
 
 const createNewEvent = (event) => ({
   type: keyCreateEvent,
@@ -23,11 +26,6 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 export const requestKeyReadEvents = 'requestKeyReadEvents'
 
-// const readEvents = (events) => ({
-//   type: keyReadEvents,
-//   payload: { events },
-// })
-
 const readEvents = (events) => {
   orange('readEvents', events)
   return ({
@@ -43,3 +41,24 @@ export const requestReadEvents = createRequestThunk({
   failure: [ error => logError(error, requestKeyReadEvents) ]
 })
 
+const setEvents = (events) => {
+  orange('readEvents', events)
+  return ({
+    type: keySetEvents,
+    payload: events, // events is already an object?
+  })
+}
+
+const searchEvents = (searchTerm) => ({
+  type: keySearchEvent,
+  payload: { searchTerm },
+  success: [ setEvents ],
+  failure: [ error => logError(error, searchEvents) ]
+})
+
+export const requestSearchEvents = createRequestThunk({
+  request: api.events.search,
+  key: requestKeySearchEvents,
+  success: [ setEvents ],
+  failure: [ error => logError(error, requestKeySearchEvents) ]
+})

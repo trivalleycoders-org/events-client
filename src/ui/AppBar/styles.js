@@ -1,5 +1,8 @@
 const styles = theme => ({
-  folderIcon: {
+  searchIcon: {
+    verticalAlign: 'middle'
+  },
+  cancelIcon: {
     verticalAlign: 'middle'
   },
 })

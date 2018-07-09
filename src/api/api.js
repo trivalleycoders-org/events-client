@@ -4,7 +4,7 @@ import { pink, red } from 'logger'
 export default {
   events: {
     async create(event) {
-      
+
       const data = await fetchJson(
         '/events',
         {
@@ -22,6 +22,16 @@ export default {
         }
       )
       pink('api.event.read: data', data)
+      return data
+    },
+    async search(event) {
+      const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
+      const data = await fetchJson(
+        searchUrl,
+        {
+          method: 'GET',
+        }
+      )
       return data
     },
   },
