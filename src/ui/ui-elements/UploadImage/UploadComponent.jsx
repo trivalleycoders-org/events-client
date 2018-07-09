@@ -6,24 +6,20 @@ import { withStyles } from '@material-ui/core/styles'
 
 /* User */
 import * as imageActions from 'store/actions/image-actions'
-import * as imageSelectors from 'store/selectors/images-selectors'
-import { isNil } from 'ramda'
 /* Dev */
-import { green } from 'logger'
+// import { green } from 'logger'
 
 const styles = {}
 
 class UploadImageComponent extends React.Component {
   constructor(props) {
     super(props)
-    green('*********8props', props)
     this.state = {
-      imageUrl: this.props.uploadedImageUrl,
+      imageUrl: this.props.initial || null,
       imageName: '',
     }
 
   }
-  
 
   localOnChange = async (event) => {
     let formData = new FormData()
@@ -33,19 +29,8 @@ class UploadImageComponent extends React.Component {
     this.props.onChange(this.state.imageUrl)
   }
 
-  currentImage = () => {
-    const img = this.state.imageUrl
-    if (isNil(img)) {
-      return null
-    } else {
-      return <img src={img} alt='uploaded' />
-    }
-  }
-
   render() {
     const { classes } = this.props
-    green('UploadComponent.render: props', this.props)
-    green('UploadComponent.render: state', this.state)
     return (
       <Paper className={classes.root} elevation={1}>
         <Typography variant='subheading'>
@@ -61,21 +46,17 @@ class UploadImageComponent extends React.Component {
             onChange={this.localOnChange}
           />
         </div>
-        {this.currentImage()}
-        <img src={this.state.uploadedImageUrl} />
+        
+        <img src={this.state.imageUrl} alt='uploaded' />
       </Paper>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const o = {
-  uploadedImageUrl: imageSelectors.getUploadedImageUrl(state),
-  uploadedImageName: imageSelectors.getUploadedImageName(state),
-  requestUploadOneImage: imageActions.requestKeyUploadOneImage
+  return {
+    requestUploadOneImage: imageActions.requestKeyUploadOneImage
   }
-  // green('o', o)
-  return o
 }
 
 export default compose(

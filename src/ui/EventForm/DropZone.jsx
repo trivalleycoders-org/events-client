@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {compose} from 'recompose'
 import UploadImage2 from './UploadImage2'
-import UploadImage from './UploadImage'
+import UploadImage from './zz.UploadImage'
 
 const styles = {}
 

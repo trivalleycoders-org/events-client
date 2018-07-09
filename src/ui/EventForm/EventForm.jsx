@@ -9,7 +9,8 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { has } from 'ramda'
+import { dissoc, clone, has, mergeAll, omit, zipObj } from 'ramda'
+
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
@@ -84,11 +85,11 @@ class NewEvent extends React.Component {
 
   onSubmit = (values) => {
     this.setState({ vlaues: values})
-    // const validatedValues = populateEvent(values)
-    // this.setState({
-    //   values: validatedValues
-    // })
-    // this.props.requestCreateEvent(validatedValues)
+    const validatedValues = populateEvent(values)
+    this.setState({
+      values: validatedValues
+    })
+    this.props.requestCreateEvent(validatedValues)
   }
 
   freeClick = () => {
@@ -179,6 +180,7 @@ class NewEvent extends React.Component {
                 <MenuItem value='Octocopter'>Octocopter</MenuItem>
                 <MenuItem value='Racing'>Racing</MenuItem>
                 <MenuItem value='Video'>Video</MenuItem>
+                <MenuItem value='Video'>Startup</MenuItem>
               </SelectRedux>
 
             </div>
@@ -223,29 +225,47 @@ const initData = {
   category: 'Octocopter',
   title: 'Event Title',
   combinedDateTime: {
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date(), // needs nesting
+    endDate: new Date(), // needs nesting
   },
-  // endDateTime: new Date(),
   free: true,
   linkToUrl: 'link-to-url',
   organization: 'some org',
-  price: 25,
-  // startDateTime: new Date(),
-  tag01: 't1',
-  tag02: 't2',
-  tag03: 't3',
+  price: 25, // absent if free=true
+  tag01: 't1', // un-nest
+  tag02: 't2', // un-nest
+  tag03: 't3', // un-nest
   venue: 'A place near me',
 }
 
+const shapeData = (data) => {
+  green('EventForm.shapeData: data', data)
+  
+  const r1 = omit(['tags', 'startDateTime', 'endDateTime'], clone(data))
+  
+  green('EventForm.shapeData: r1', r1)
+  
+  const r2 = mergeAll ([
+    r1,
+    zipObj(
+        ['combinedDateTime'],
+        [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
+      ), 
+    zipObj(['tag01', 'tag02', 'tag03'], data.tags)
+  ])
+  green('r2', r2)
+  green('EventForm.shapeData: r2', r2)
+  return r2
+  
+}
+
 const mapStateToProps = (state) => {
-  // const _id = eventSelectors.getEventEdit_id(state)
-  // const event = eventSelectors.getOneEvent(state, _id)
-  // const o = {
-  //   initialValues: event
-  // }
+  const _id = eventSelectors.getEventEdit_id(state)
+  const data = eventSelectors.getOneEvent(state, _id)
+  green('EventForm.mapStateToProps: data', data)
+  const shapedData = shapeData(data)
   return {
-    initialValues: initData
+    initialValues: shapedData
   }
 }
 
@@ -257,3 +277,4 @@ export default compose(
     validate,
   }),
 )(NewEvent)
+

@@ -7,7 +7,7 @@ class UploadImage extends React.Component {
   
   picker = (props) => {
     const { onChange, ...rest } = props.input
-    return(
+    return (
       <UploadComponent
         {...rest}
         onChange={onChange}
