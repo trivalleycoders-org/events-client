@@ -2,26 +2,23 @@ import React from 'react'
 import { DateTimePicker } from 'material-ui-pickers'
 import isBefore from 'date-fns/isBefore'
 import { withStyles } from '@material-ui/core/styles'
-import { InputAdornment } from '@material-ui/core'
+import { InputAdornment, Typography } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
+
 /* User */
-// import { green } from 'logger'
+import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
     padding: '3px 0',
   },
-  wrapper: {
-    display: 'flex',
-    flexFlow: 'column nowrap'
+  dateTimePicker: {
+    paddingRight: '20px'
   },
   datesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap'
-  },
-  dateTimePicker: {
-    paddingRight: '20px'
   },
   message: {
     color: theme.palette.error.main,
@@ -30,7 +27,11 @@ const styles = theme => ({
   },
   messageWrapper: {
     margin: '8px 0 0 0',
-  }
+  },
+  wrapper: {
+    display: 'flex',
+    flexFlow: 'column nowrap'
+  },
 })
 
 let startMinDate
@@ -41,9 +42,8 @@ class Combined extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // DateTimePicker 'label' will only be shown when value = null
-      startDate: this.props.initial.startDate || null,
-      endDate: this.props.initial.endDate || null,
+      startDate: props.initial ? props.initial.startDate : null,
+      endDate: props.initial ? props.initial.startDate : null,
     }
   }
 

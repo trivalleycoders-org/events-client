@@ -1,82 +1,59 @@
-## redux fields (8)
+## shape neede by form to init
 ```js
-{
-  _id: String,
-  endDateTime: Date,
-  imageUrl: String,
-  price: Number,
-  startDateTime: Date,
-  tags ['tag', 'tag'],
-  title: String,
-  venu: String,
-}
-```
-**missing**
-- category
-- linkToUrl
-- organization
-- free
-
-## NewEvent (UI - form)
-```js
-{
-  category: String,
-  endDateTime: Date,
-  free: Boolean,
-  imageUrl: String,
-  linkToUrl: String,
-  organization: String,
-  price: Number,
-  startDateTime: Date,
-  title: String,
-  tags: [String, String, String]
-  venu: String,
-}
-```
-**missing**
-- NONE
-**rules**
-- if free -> no price field
-- tags[].length <= 3
-
-
-## onSubmit values (10)
-```js
-{
-  'category': String,
-  'combinedDateTime': {
-    'startDate': Date,
-    'endDate': Date,
+const initData = {
+  category: 'Octocopter',
+  combinedDateTime: {
+    startDate: new Date(), // needs nesting
+    endDate: new Date(), // needs nesting
   },
-  'linkToUrl': String,
-  'organization': String,
-  'price': Number,
-  'tag01': String,
-  'tag02': String,
-  'tag03': String
-  'title': String
-  'venue': String,
+  free: true,
+  imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
+  linkToUrl: 'link-to-url',
+  organization: 'some org',
+  price: 25, // absent if free=true
+  tag01: 't1', // un-nest
+  tag02: 't2', // un-nest
+  tag03: 't3', // un-nest
+  title: 'Event Title',
+  venue: 'A place near me',
 }
 ```
-**missing?**
-- endDateTime (shape)
-- free
-- imageUrl: String,
-- startDateTime (shape)
-- tags (shape)
 
-mongodDG
+# shape in mongoDb
 ```js
 {
-  '_id': String,
-  'category': String,
-  'endDateTime': Date,
-  'imageUrl': String,
-  'linkToUrl': String,
-  'organization': String,
-  'price': Number,
-  'startDateTime': Date,
-  'tags':[String, String , String],
-  'title': String,
-  'venue': String,
+  "category": "Video",
+  "endDateTime": "2018-06-12T17:00:00.000Z",
+  "imageUrl": "to do: imageUrl",
+  "linkToUrl": "http://briia.io",
+  "organization": "BRIIA",
+  "price": 75,
+  "startDateTime": "2018-06-12T16:00:00.000Z",
+  "title": "BRIIA Investor Demo Day",
+  "tags": [
+    "Business",
+    "Appearance"
+  ],
+  "venue": "Dublin Concert Hall",
+}
+```
+
+## onSubmit values
+```js
+{
+  "_id": "5b2a811bbdd1db1ef104f70a",
+  "category": "Racing"
+  "combinedDateTime": {
+    "startDate": "2018-06-13T02:00:00.000Z",
+    "endDate": "2018-06-13T03:00:00.000Z"
+  },
+  "free": true,
+  "imageUrl": "https://s3-us-west-2.amazonaws.com/photo-app-tvc/reunion.png",
+  "linkToUrl": "some-url-bla",
+  "organization": "Holistic Snake Oil",
+  "tag01": "Health",
+  "tag02": "Women",
+  "title": "A Holistic Approach to Hormonal Imbalances",
+  "venue": "Dublin Concert Hall",
+}
 ```

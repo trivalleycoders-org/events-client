@@ -1,11 +1,10 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
-// import { pink } from 'logger'
+import { pink } from 'logger'
 
 export default {
   events: {
     async create(event) {
-      
       const data = await fetchJson(
         '/events',
         {
@@ -24,6 +23,18 @@ export default {
       )
       return data
     },
+    async patch(event) {
+      pink('api.patch: event', event)
+      const _id = event._id
+      const data = await fetchJson(
+        `/events/${_id}`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(event)
+        }
+      )
+      return data
+    }
   },
   images: {
     create(formData) {

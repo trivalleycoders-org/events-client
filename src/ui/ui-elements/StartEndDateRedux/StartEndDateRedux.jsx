@@ -19,6 +19,7 @@ class StartEndDateRedux extends React.Component {
   
   render() {
     const { fieldLabel, fieldName } = this.props
+
     return (
       <Field
         component={this.picker}

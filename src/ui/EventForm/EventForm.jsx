@@ -2,15 +2,17 @@ import React from 'react'
 import { compose } from 'recompose'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Button,
   MenuItem,
+  Typography,
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { dissoc, clone, has, mergeAll, omit, zipObj } from 'ramda'
-
+import { mergeAll, omit, pick, prop, values, zipObj } from 'ramda'
+import isBefore from 'date-fns/isBefore'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
@@ -28,68 +30,54 @@ import UploadImage from 'ui/ui-elements/UploadImage'
 import ShowValues from 'ui/ui-elements/ShowValues'
 import { green } from 'logger'
 
-const hasImageUrl = has('imageUrl')
-const hasTag01 = has('tag01')
-const hasTag02 = has('tag02')
-const hasTag03 = has('tag03')
+const EDIT_MODE = 'edit-mode'
+const CREATE_MODE = 'create-mode'
 
-const populateEvent = (values) => {
-  const { startDate, endDate } = values.combinedDateTime
-  const startDateISO = new Date(startDate).toISOString()
-  const endDateISO = new Date(endDate).toISOString()
-  green('populateEvent: values', values)
-  //  required properties
-  const toDb = {
-    category: values.category,
-    endDateTime: endDateISO,
-    imageUrl: values.imageUrl,
-    organization: values.organization,
-    startDateTime: startDateISO,
-    title: values.title,
-    venue: values.venue,
-  }
-  if (values.linkToUrl) {
-    toDb.linkToUrl = values.linkToUrl
-  }
-  if (values.free) {
-    toDb.free = true
-  } else {
-    toDb.price = values.price
-  }
-  if (hasImageUrl(values)) {
-    toDb.imageUrl = 'to do: imageUrl'
-  }
-  const tags = []
-  if (hasTag01(values)) {
-    tags.push(values.tag01)
-  }
-  if (hasTag02(values)) {
-    tags.push(values.tag02)
-  }
-  if (hasTag03(values)) {
-    tags.push(values.tag03)
-  }
-  if (tags.length > 0) {
-    toDb.tags = tags
-  }
-  return toDb
+const shapeDataOut = (formValues) => {
+  const dates = pick(['combinedDateTime'], formValues)
+  const tags = pick(['tag01', 'tag02', 'tag03'], formValues)
+
+  const fieldsToOmit = ['combinedDateTime', 'tag01', 'tag02', 'tag03']
+  const fv0 = omit(fieldsToOmit, formValues)
+  // If free=true, remove field 'price' if present
+  var freeTrue =  formValues.free
+  const fv1 = freeTrue ? omit(['price'], fv0) : fv0
+
+  const mergedData = mergeAll([
+    {endDateTime: dates.combinedDateTime.endDate},
+    {startDateTime: dates.combinedDateTime.startDate},
+    {tags: values(tags)},
+    fv1
+  ])
+  // green('mergedData', mergedData)
+  return mergedData
 }
-
 class NewEvent extends React.Component {
   state = {
     values: '',
     imageUrl: '',
-    endDateMin: null,
-    free: this.props.initialValues.free || false,
+    free: this.props.free,
   }
 
   onSubmit = (values) => {
-    this.setState({ vlaues: values})
-    const validatedValues = populateEvent(values)
+    const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
+    const validatedValues = shapeDataOut(values)
     this.setState({
       values: validatedValues
     })
-    this.props.requestCreateEvent(validatedValues)
+    green('EventForm: validatedValues', validatedValues)
+    if (mode === EDIT_MODE) {
+      green('onSubmit: mode', mode)
+      requestPatchOneEvent(validatedValues)
+      // unsetEdit_id()
+    } else {
+      green('onSubmit: mode', mode)
+      requestPatchOneEvent(validatedValues)
+      // requestCreateEvent(validatedValues)
+    }
+    
+
+    /* <Redirect path='/my-events' /> */
   }
 
   freeClick = () => {
@@ -99,12 +87,21 @@ class NewEvent extends React.Component {
   }
   
   render() {
-    const { classes, handleSubmit, pristine, reset, submitting } = this.props
+    const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
+    // green('_id', _id)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
       >
         <div className={classes.pageWrapper}>
+          {
+            pastEvent
+              ? <div>
+                  <Typography variant='display1' className={classes.pastEvent}>
+                    This event is in the past
+                  </Typography></div>
+              : null
+          } 
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <UploadImage
               fieldName='imageUrl'
@@ -176,11 +173,11 @@ class NewEvent extends React.Component {
                 fieldName='category'
                 fieldLabel='Category'
               >
-                <MenuItem value='Quadcopter'>Quadcopter</MenuItem>
-                <MenuItem value='Octocopter'>Octocopter</MenuItem>
-                <MenuItem value='Racing'>Racing</MenuItem>
-                <MenuItem value='Video'>Video</MenuItem>
-                <MenuItem value='Video'>Startup</MenuItem>
+                <MenuItem value='quadcopter'>Quadcopter</MenuItem>
+                <MenuItem value='octocopter'>Octocopter</MenuItem>
+                <MenuItem value='racing'>Racing</MenuItem>
+                <MenuItem value='video'>Video</MenuItem>
+                <MenuItem value='startup'>Startup</MenuItem>
               </SelectRedux>
 
             </div>
@@ -200,14 +197,12 @@ class NewEvent extends React.Component {
               />
             </div>
             <div>
+              <Button type='button'>
+                Cancel
+              </Button>
               <Button type='submit' disabled={pristine || submitting}>
                 Submit
               </Button>
-
-              {/* This button is used for testing. Eventually delete.
-               <Button type='submit' >
-                Submit
-              </Button> */}
               <Button type='button' disabled={pristine || submitting} onClick={reset}>
                 Clear Values
               </Button>
@@ -220,31 +215,30 @@ class NewEvent extends React.Component {
   }
 }
 
-const initData = {
-  imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
-  category: 'Octocopter',
-  title: 'Event Title',
-  combinedDateTime: {
-    startDate: new Date(), // needs nesting
-    endDate: new Date(), // needs nesting
-  },
-  free: true,
-  linkToUrl: 'link-to-url',
-  organization: 'some org',
-  price: 25, // absent if free=true
-  tag01: 't1', // un-nest
-  tag02: 't2', // un-nest
-  tag03: 't3', // un-nest
-  venue: 'A place near me',
-}
+// hard coded data for dev
+// const initData = {
+//   imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
+//   category: 'Octocopter',
+//   title: 'Event Title',
+//   combinedDateTime: {
+//     startDate: new Date(), // needs nesting
+//     endDate: new Date(), // needs nesting
+//   },
+//   free: true,
+//   linkToUrl: 'link-to-url',
+//   organization: 'some org',
+//   price: 25, // absent if free=true
+//   tag01: 't1', // un-nest
+//   tag02: 't2', // un-nest
+//   tag03: 't3', // un-nest
+//   venue: 'A place near me',
+// }
 
-const shapeData = (data) => {
-  green('EventForm.shapeData: data', data)
+const shapeDataIn = (data) => {
   
-  const r1 = omit(['tags', 'startDateTime', 'endDateTime'], clone(data))
   
-  green('EventForm.shapeData: r1', r1)
-  
+  // is it a past event
+  const r1 = omit(['tags', 'startDateTime', 'endDateTime'], data)
   const r2 = mergeAll ([
     r1,
     zipObj(
@@ -253,19 +247,33 @@ const shapeData = (data) => {
       ), 
     zipObj(['tag01', 'tag02', 'tag03'], data.tags)
   ])
-  green('r2', r2)
-  green('EventForm.shapeData: r2', r2)
+  // green('shapeData: r2', r2)
   return r2
-  
 }
 
 const mapStateToProps = (state) => {
+  
   const _id = eventSelectors.getEventEdit_id(state)
-  const data = eventSelectors.getOneEvent(state, _id)
-  green('EventForm.mapStateToProps: data', data)
-  const shapedData = shapeData(data)
-  return {
-    initialValues: shapedData
+  // if there is an _id then form is in edit mode
+  const mode = _id ? EDIT_MODE : CREATE_MODE
+  green('mapStateToProps: mode', mode)
+  if (_id) {
+    const data = eventSelectors.getOneEvent(state, _id)
+    const startDate = prop('startDateTime', data)
+    const pastEvent = isBefore(startDate, new Date())
+    const shapedData = shapeDataIn(data)
+    
+    return {
+      initialValues: shapedData,
+      free: prop('free', shapedData),
+      mode,
+      pastEvent,
+    }
+  } else {
+    return {
+      free: false,
+      mode,
+    }
   }
 }
 
@@ -277,4 +285,3 @@ export default compose(
     validate,
   }),
 )(NewEvent)
-

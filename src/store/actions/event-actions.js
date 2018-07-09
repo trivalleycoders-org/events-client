@@ -21,7 +21,6 @@ export const requestCreateEvent = createRequestThunk({
 
 // Read
 export const keyReadEvents = 'actionKeyReadEvents'
-export const requestKeyReadEvents = 'requestKeyReadEvents'
 
 const readEvents = (events) => {
   return ({
@@ -30,11 +29,33 @@ const readEvents = (events) => {
   })
 }
 
+export const requestKeyReadEvents = 'requestKeyReadEvents'
+
 export const requestReadEvents = createRequestThunk({
   request: api.events.read,
   key: requestKeyReadEvents,
   success: [ readEvents ],
   failure: [ error => logError(error, requestKeyReadEvents) ]
+})
+
+// Patch
+export const keyPatchOneEvent = 'requestKeyPatchOneEvent'
+
+const patchOneEvent = (event) => {
+  orange('patchOneEvent: event', event)
+  return ({
+    type: keyPatchOneEvent,
+    payload: { event },
+  })
+}
+
+export const requestKeyPatchOneEvent = 'requestKeyPatchOneEvent'
+
+export const requestPatchOneEvent = createRequestThunk({
+  request: api.events.patch,
+  key: requestKeyPatchOneEvent,
+  success: [ patchOneEvent ],
+  failure: [ error => logError(error, requestKeyPatchOneEvent) ]
 })
 
 // EventsUi
@@ -45,5 +66,14 @@ export const setEdit_id = (_id) => {
   return ({
     type: keySetEdit_id,
     payload: { _id }
+  })
+}
+
+export const keyUnsetEdit_id = 'actionKeyUnsetEdit_id'
+
+export const unsetEdit_id = () => {
+  orange('event-actions.unsetEdit_id')
+  return ({
+    type: keyUnsetEdit_id,
   })
 }
