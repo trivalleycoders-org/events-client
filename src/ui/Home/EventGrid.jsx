@@ -18,7 +18,7 @@ import { Share as ShareIcon } from '@material-ui/icons'
 /* User */
 import Tag from 'ui/ui-elements/Tag'
 import * as eventsSelectors from 'store/selectors/events-selectors'
-// import { green } from 'logger'
+import { green } from 'logger'
 
 const styles = theme => ({
   action: {
@@ -91,7 +91,7 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  venu: {
+  venue: {
     overflow: 'hidden',
     paddingTop: '7px',
     paddingBottom: '4px',
@@ -153,13 +153,11 @@ class EventGrid extends React.Component {
 
   render() {
     const { classes, events } = this.props
-    console.log('events', events)
-    // green('EventGrid3.events', events)
+    // green('events', events)
     return (
       <div className={classes.pageMock}>
         <Grid container spacing={Number(8)} className={classes.grid1111} >
           {events.map(c => {
-            // green('c', c)
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
                 <Card className={classes.card}>
@@ -178,14 +176,14 @@ class EventGrid extends React.Component {
                     <Typography variant='caption' component='p' noWrap className={classes.organization}>
                       {c.organization}
                     </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.venu}>
-                      {c.venu}
+                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                      {c.venue}
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions} disableActionSpacing>
                     <div className={classes.tags}>
-                      {c.tags.map(t => (
-                        <Tag key={t} label={t} />
+                      {c.tags.map((t, index) => (
+                        <Tag key={`t${index}`} label={t} />
                       ))}
                     </div>
                     <div className={classes.actions}>

@@ -1,7 +1,8 @@
 import { isEmpty } from 'ramda'
 
-export const getCurrentImageLocation = (state) => {
+export const getUploadedImageUrl = (state) => {
   const image = state.images
+
   if (!isEmpty(image)) {
     return state.images.Location
   } else {
@@ -9,11 +10,11 @@ export const getCurrentImageLocation = (state) => {
   }
 }
 
-export const getCurrentImageName = (state) => {
+export const getUploadedImageName = (state) => {
   const image = state.images
   if (!isEmpty(image)) {
-      return state.images.Key
+    return state.images.Key
   } else {
-      return null
+    return null
   }
 }
