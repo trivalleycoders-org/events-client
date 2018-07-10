@@ -65,13 +65,13 @@ class NewEvent extends React.Component {
     this.setState({
       values: validatedValues
     })
-    green('EventForm: validatedValues', validatedValues)
+    // green('EventForm: validatedValues', validatedValues)
     if (mode === EDIT_MODE) {
-      green('onSubmit: mode', mode)
+      // green('onSubmit: mode', mode)
       requestPatchOneEvent(validatedValues)
       // unsetEdit_id()
     } else {
-      green('onSubmit: mode', mode)
+      // green('onSubmit: mode', mode)
       requestPatchOneEvent(validatedValues)
       // requestCreateEvent(validatedValues)
     }
@@ -256,7 +256,7 @@ const mapStateToProps = (state) => {
   const _id = eventSelectors.getEventEdit_id(state)
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
-  green('mapStateToProps: mode', mode)
+  // green('mapStateToProps: mode', mode)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
     const startDate = prop('startDateTime', data)

@@ -6,7 +6,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
-import * as imageActions from 'store/actions/image-actions'
+import * as imageActions from 'store/actions/upload-actions'
 import * as imageSelectors from 'store/selectors/images-selectors'
 // import { green } from 'logger'
 import { isNil } from 'ramda'
