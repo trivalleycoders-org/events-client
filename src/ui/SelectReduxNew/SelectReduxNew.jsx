@@ -36,13 +36,13 @@ const renderSelect = (props) => {
 const styles = theme => ({
 
   formControl: {
-    // margin: theme.spacing.unit,
+    margin: theme.spacing.unit,
     minWidth: 120,
   },
 
 })
 
-class SelectRedux extends React.Component {
+class SelectReduxNew extends React.Component {
   state = {
     value: 'placeholder',
     name: 'hai',
@@ -76,4 +76,4 @@ class SelectRedux extends React.Component {
   }
 }
 
-export default withStyles(styles)(SelectRedux)
+export default withStyles(styles)(SelectReduxNew)

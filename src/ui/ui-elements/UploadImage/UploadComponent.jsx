@@ -7,10 +7,18 @@ import { withStyles } from '@material-ui/core/styles'
 /* User */
 import * as imageActions from 'store/actions/upload-actions'
 import * as uploadSelectors from 'store/selectors/upload-selectors'
+import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 /* Dev */
-import { green } from 'logger'
+// import { green } from 'logger'
 
-const styles = {}
+const styles = theme => {
+  return ({
+    fileInput: {
+      color: theme.palette.text.primary
+    },
+  }) 
+  
+}
 
 class UploadImageComponent extends React.Component {
   constructor(props) {
@@ -32,13 +40,10 @@ class UploadImageComponent extends React.Component {
     // }
 
     if (typeof initial !== 'undefined') {
-      green('initial !== undefined')
       imageUrl = initial
     } else if (!uploaded === null) {
-      green('uploaded !== null')
       imageUrl = uploaded
     } else {
-      green('neither initial or uploaded have a value')
       imageUrl = ''
     }
     // green('imageUrl', imageUrl)
@@ -58,7 +63,7 @@ class UploadImageComponent extends React.Component {
     this.setState({
       imageUrl: this.props.uploadedImageUrl
     })
-    this.props.onChange(this.state.imageUrl)
+    this.props.onChange(this.props.uploadedImageUrl)
   }
 
   render() {
@@ -67,11 +72,12 @@ class UploadImageComponent extends React.Component {
     // green('Uploadcomponent: state', this.state)
     return (
       <Paper className={classes.root} elevation={1}>
-        <img src={this.state.imageUrl} alt='uploaded' />
+        <ResponsiveImage src={this.state.imageUrl} alt='uploaded' />
         <Typography>
           Upload an image
         </Typography>
         <input
+          className={classes.fileInput}
           type="file"
           ref={input => {
             this.fileInput = input

@@ -8,6 +8,8 @@ import Home from 'ui/Home'
 import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import MyEvents from 'ui/MyEvents'
+import SelectReduxTest from 'ui/SelectReduxTest'
+import SelectReduxNewForm from 'ui/SelectReduxNewForm'
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +21,8 @@ class App extends React.Component {
       <Router>
         <Fragment>
         <AppBar />
+        <Route exact path='/select-redux-new' component={SelectReduxNewForm} />
+        <Route exact path='/select-redux-test' component={SelectReduxTest} />
         <Route exact path='/my-events' component={MyEvents} />
         <Route exact path='/new-event' component={EventForm} />
         <Route exact path='/new-event/:_id' component={EventForm} />

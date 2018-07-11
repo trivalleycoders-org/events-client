@@ -12,6 +12,7 @@ class StartEndDateRedux extends React.Component {
         {...rest}
         onChange={onChange}
         format='MMM DD YYYY hh:mm A'
+        fullWidth
         initial={props.meta.initial}
       />
     )
@@ -23,6 +24,7 @@ class StartEndDateRedux extends React.Component {
     return (
       <Field
         component={this.picker}
+        fullWidth
         name={fieldName}
         label={fieldLabel}
       />

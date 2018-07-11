@@ -122,6 +122,7 @@ class NewEvent extends React.Component {
                 disablePast
                 fieldName='combinedDateTime'
                 fieldLabel='Date & Time'
+                fullWidth
                 required
               />
             </div>
@@ -172,12 +173,11 @@ class NewEvent extends React.Component {
               <SelectRedux
                 fieldName='category'
                 fieldLabel='Category'
-              >
+                fullWidth
+              > 
+                <MenuItem value='' disabled>Placeholder</MenuItem>
                 <MenuItem value='quadcopter'>Quadcopter</MenuItem>
-                <MenuItem value='octocopter'>Octocopter</MenuItem>
-                <MenuItem value='racing'>Racing</MenuItem>
-                <MenuItem value='video'>Video</MenuItem>
-                <MenuItem value='startup'>Startup</MenuItem>
+                
               </SelectRedux>
 
             </div>

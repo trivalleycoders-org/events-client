@@ -6,27 +6,19 @@ import { InputAdornment, Typography } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
 
-/* User */
-import { green } from 'logger'
+/* Dev */
+// import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
     padding: '3px 0',
   },
   dateTimePicker: {
-    paddingRight: '20px'
+    // paddingRight: '20px'
   },
   datesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap'
-  },
-  message: {
-    color: theme.palette.error.main,
-    lineHeight: '1em',
-    minHeight: '1em',
-  },
-  messageWrapper: {
-    margin: '8px 0 0 0',
   },
   wrapper: {
     display: 'flex',
@@ -76,7 +68,7 @@ class Combined extends React.Component {
   render() {
   
     const { startDate, endDate } = this.state
-    const { classes } = this.props
+    const { classes, fullWidth } = this.props
     
     return (
       <div className={classes.wrapper}>
@@ -87,6 +79,7 @@ class Combined extends React.Component {
               disablePast
               label='Start Date / Time'
               format={this.props.format}
+              fullWidth
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end' className={classes.adornment}>
@@ -112,6 +105,7 @@ class Combined extends React.Component {
                 )
               }}
             label='End Date / Time'
+            fullWidth
             minDate={startDate}
             minDateMessage='End date must be after start date'
             onChange={(date) => this.localOnChange(date, 'endDate')}
