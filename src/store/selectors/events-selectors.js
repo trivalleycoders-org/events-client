@@ -1,7 +1,8 @@
-// import { yellow } from 'logger'
+import { yellow } from 'logger'
 
 export const getAllEvents = (state) => {
-  return state.events || {}
+  const r = state.events || []
+  return r
 }
 
 export const getEventEdit_id = (state) => {
@@ -10,7 +11,6 @@ export const getEventEdit_id = (state) => {
 
 export const getOneEvent = (state, _id) => {
   const event = state.events.filter(e => e._id === _id)
-  // yellow('event-selectors.getOneEvent: event', event[0])
   return event[0]
 }
 

@@ -1,5 +1,7 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
+import { setToast } from './toast-actions'
+/* Dev */
 import { orange } from 'logger'
 
 
@@ -16,7 +18,7 @@ export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
   key: requestKeyCreateEvent,
   success: [ createNewEvent ],
-  failure: [ error => logError(error, requestKeyCreateEvent) ]
+  failure: [ () => setToast('Couldn\'t add note', 'warn') ],
 })
 
 // Read

@@ -33,7 +33,7 @@ var dotenvFiles = [
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv-expand')(
-      require('dotenv').config({
+      require('../../../../../.cache/typescript/2.9/node_modules/@types/dotenv/index').config({
         path: dotenvFile,
       })
     );

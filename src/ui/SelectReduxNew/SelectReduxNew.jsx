@@ -12,7 +12,7 @@ import { green } from 'logger'
 
 
 const renderSelect = (props) => {
-  green('props', props)
+  // green('props', props)
   const { children, input, meta, fieldValue, fullWidth, ...rest } = props
   const { onChange } = input
   // const handleChange = (e) => {

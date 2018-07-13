@@ -1,4 +1,4 @@
-import { insert, merge, remove } from 'ramda'
+import { append, insert, merge, remove } from 'ramda'
 import { 
   keyCreateEvent, 
   keyReadEvents, 
@@ -6,15 +6,16 @@ import {
   keySetEdit_id,
   keyUnsetEdit_id,
 } from '../actions/event-actions'
-// import { blue } from 'logger'
+
+/* Dev */
+/* eslint-disable-next-line */
+import { blue } from 'logger'
 
 
 export const events = (state = [], { type, payload }) => {
-  
-  
   switch (type) {
     case keyCreateEvent:
-      return merge(state, payload.event)
+      return append(state, payload.event)
     case keyReadEvents:
     return payload.events
     case keyPatchOneEvent:

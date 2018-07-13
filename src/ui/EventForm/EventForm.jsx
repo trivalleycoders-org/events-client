@@ -2,7 +2,6 @@ import React from 'react'
 import { compose } from 'recompose'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Button,
@@ -34,6 +33,9 @@ const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues) => {
+  ///////////////////////////////////////////////////
+    return formValues
+  ///////////////////////////////////////////////////
   const dates = pick(['combinedDateTime'], formValues)
   const tags = pick(['tag01', 'tag02', 'tag03'], formValues)
 
@@ -57,6 +59,12 @@ class NewEvent extends React.Component {
     values: '',
     imageUrl: '',
     free: this.props.free,
+    goBack: this.props.history.goBack,
+  }
+
+  componentDidMount() {
+    // green('NewEvent: props', this.props)
+    // this.props.history.goBack()
   }
 
   onSubmit = (values) => {
@@ -72,8 +80,8 @@ class NewEvent extends React.Component {
       // unsetEdit_id()
     } else {
       // green('onSubmit: mode', mode)
-      requestPatchOneEvent(validatedValues)
-      // requestCreateEvent(validatedValues)
+      requestCreateEvent(validatedValues)
+      this.state.goBack()
     }
     
 
@@ -88,12 +96,14 @@ class NewEvent extends React.Component {
   
   render() {
     const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
+    
     // green('_id', _id)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
       >
         <div className={classes.pageWrapper}>
+          
           {
             pastEvent
               ? <div>
@@ -282,6 +292,6 @@ export default compose(
   connect(mapStateToProps, eventActions),
   reduxForm({
     form: 'NewEvent',
-    validate,
-  }),
+    // validate,
+  })
 )(NewEvent)
