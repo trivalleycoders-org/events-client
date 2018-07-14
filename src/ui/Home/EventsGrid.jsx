@@ -11,6 +11,7 @@ import {
 import { Favorite as FavoriteIcon } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
 import { Share as ShareIcon } from '@material-ui/icons'
+import { has } from 'ramda'
 
 /* User */
 import Tag from '../ui-elements/Tag'
@@ -130,6 +131,8 @@ const formattedDate = (isoDateString) => {
   return `${DDD}, ${MMM} ${dd} ${hour}`
 }
 
+const hasTags = has('tags')
+
 const EventGrid = (props) => {
   // green('EventGrid: props', props)  
   const { classes, events } = props
@@ -160,9 +163,13 @@ const EventGrid = (props) => {
                   </CardContent>
                   <CardActions className={classes.actions} disableActionSpacing>
                     <div className={classes.tags}>
-                      {c.tags.map((t, index) => (
-                        <Tag key={`t${index}`} label={t} />
-                      ))}
+                      {
+                        hasTags(c)
+                          ? c.tags.map((t, index) => (
+                              <Tag key={`t${index}`} label={t} />
+                            ))
+                          : null
+                      }
                     </div>
                     <div className={classes.actions}>
                       <div className={classes.action}>

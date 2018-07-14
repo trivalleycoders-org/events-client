@@ -16,7 +16,8 @@ import isBefore from 'date-fns/isBefore'
 /* User */
 import * as eventActions from 'store/actions/event-actions'
 import * as eventSelectors from 'store/selectors/events-selectors'
-                                
+
+import ChipRedux from 'ui/ui-elements/ChipRedux'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
@@ -77,15 +78,12 @@ class NewEvent extends React.Component {
     if (mode === EDIT_MODE) {
       // green('onSubmit: mode', mode)
       requestPatchOneEvent(validatedValues)
-      // unsetEdit_id()
+      unsetEdit_id()
     } else {
       // green('onSubmit: mode', mode)
       requestCreateEvent(validatedValues)
-      this.state.goBack()
     }
-    
-
-    /* <Redirect path='/my-events' /> */
+    this.state.goBack()
   }
 
   freeClick = () => {
@@ -193,17 +191,9 @@ class NewEvent extends React.Component {
             </div>
 
             <div className={classes.tagArea}>
-              <TextFieldRedux
-                fieldLabel='tag 1'
-                fieldName='tag01'
-              />
-              <TextFieldRedux
-                fieldLabel='tag 2'
-                fieldName='tag02'
-              />
-              <TextFieldRedux
-                fieldLabel='tag 3'
-                fieldName='tag03'
+              <ChipRedux
+                fieldLabel='tags'
+                fieldName='tags'
               />
             </div>
             <div>
@@ -255,14 +245,14 @@ const shapeDataIn = (data) => {
         ['combinedDateTime'],
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
       ), 
-    zipObj(['tag01', 'tag02', 'tag03'], data.tags)
+    // * what should be done with this line? zipObj(['tag01', 'tag02', 'tag03'], data.tags)
   ])
   // green('shapeData: r2', r2)
   return r2
 }
 
 const mapStateToProps = (state) => {
-  
+
   const _id = eventSelectors.getEventEdit_id(state)
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
@@ -272,7 +262,7 @@ const mapStateToProps = (state) => {
     const startDate = prop('startDateTime', data)
     const pastEvent = isBefore(startDate, new Date())
     const shapedData = shapeDataIn(data)
-    
+
     return {
       initialValues: shapedData,
       free: prop('free', shapedData),

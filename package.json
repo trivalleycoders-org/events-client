@@ -37,6 +37,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "material-ui-chip-input": "^1.0.0-beta.5",
     "material-ui-pickers": "1.0.0-rc.10",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
