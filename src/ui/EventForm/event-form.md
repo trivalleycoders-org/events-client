@@ -1,4 +1,4 @@
-## shape neede by form to init
+## shape needed by form to init
 ```js
 const initData = {
   category: 'Octocopter',

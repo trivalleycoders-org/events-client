@@ -34,22 +34,16 @@ const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues) => {
-  ///////////////////////////////////////////////////
-    return formValues
-  ///////////////////////////////////////////////////
+  
   const dates = pick(['combinedDateTime'], formValues)
-  const tags = pick(['tag01', 'tag02', 'tag03'], formValues)
-
-  const fieldsToOmit = ['combinedDateTime', 'tag01', 'tag02', 'tag03']
-  const fv0 = omit(fieldsToOmit, formValues)
+  const fv0 = omit(['combinedDateTime'], formValues)
   // If free=true, remove field 'price' if present
-  var freeTrue =  formValues.free
+  const freeTrue =  formValues.free
   const fv1 = freeTrue ? omit(['price'], fv0) : fv0
-
   const mergedData = mergeAll([
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    {tags: values(tags)},
+    {tags: formValues.tags},
     fv1
   ])
   // green('mergedData', mergedData)
@@ -63,25 +57,22 @@ class NewEvent extends React.Component {
     goBack: this.props.history.goBack,
   }
 
-  componentDidMount() {
-    // green('NewEvent: props', this.props)
-    // this.props.history.goBack()
-  }
-
   onSubmit = (values) => {
+
+    green('onSubmit: values', values)
+
     const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
-    const validatedValues = shapeDataOut(values)
+    const reshapedData = shapeDataOut(values)
+
     this.setState({
-      values: validatedValues
+      values: reshapedData
     })
-    // green('EventForm: validatedValues', validatedValues)
+    
     if (mode === EDIT_MODE) {
-      // green('onSubmit: mode', mode)
-      requestPatchOneEvent(validatedValues)
+      requestPatchOneEvent(reshapedData)
       unsetEdit_id()
     } else {
-      // green('onSubmit: mode', mode)
-      requestCreateEvent(validatedValues)
+      requestCreateEvent(reshapedData)
     }
     this.state.goBack()
   }
@@ -95,13 +86,11 @@ class NewEvent extends React.Component {
   render() {
     const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
     
-    // green('_id', _id)
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
       >
         <div className={classes.pageWrapper}>
-          
           {
             pastEvent
               ? <div>
@@ -122,9 +111,6 @@ class NewEvent extends React.Component {
               // required
               />
             </div>
-            <div>
-
-            </div>
             <div className={classes.dateArea}>
               <StartEndDateRedux
                 disablePast
@@ -134,7 +120,6 @@ class NewEvent extends React.Component {
                 required
               />
             </div>
-
             <div className={classes.organizationArea}>
               <TextFieldRedux
                 fullWidth
@@ -142,7 +127,6 @@ class NewEvent extends React.Component {
                 fieldName='organization'
               />
             </div>
-
             <div className={classes.venueArea}>
               <TextFieldRedux
                 fullWidth
@@ -168,15 +152,12 @@ class NewEvent extends React.Component {
                     />
                   : null
               }
-              
               <CheckboxRedux
                 fieldLabel='Free'
                 fieldName='free'
                 onChange={() => this.freeClick()}
               />
             </div>
-            
-            
             <div className={classes.categoryArea}>
               <SelectRedux
                 fieldName='category'
@@ -185,11 +166,8 @@ class NewEvent extends React.Component {
               > 
                 <MenuItem value='' disabled>Placeholder</MenuItem>
                 <MenuItem value='quadcopter'>Quadcopter</MenuItem>
-                
               </SelectRedux>
-
             </div>
-
             <div className={classes.tagArea}>
               <ChipRedux
                 fieldLabel='tags'
@@ -215,48 +193,24 @@ class NewEvent extends React.Component {
   }
 }
 
-// hard coded data for dev
-// const initData = {
-//   imageUrl: 'https://s3-us-west-2.amazonaws.com/photo-app-tvc/briia.jpg',
-//   category: 'Octocopter',
-//   title: 'Event Title',
-//   combinedDateTime: {
-//     startDate: new Date(), // needs nesting
-//     endDate: new Date(), // needs nesting
-//   },
-//   free: true,
-//   linkToUrl: 'link-to-url',
-//   organization: 'some org',
-//   price: 25, // absent if free=true
-//   tag01: 't1', // un-nest
-//   tag02: 't2', // un-nest
-//   tag03: 't3', // un-nest
-//   venue: 'A place near me',
-// }
-
 const shapeDataIn = (data) => {
   
-  
-  // is it a past event
-  const r1 = omit(['tags', 'startDateTime', 'endDateTime'], data)
+  const r1 = omit(['startDateTime', 'endDateTime'], data)
   const r2 = mergeAll ([
     r1,
     zipObj(
         ['combinedDateTime'],
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
       ), 
-    // * what should be done with this line? zipObj(['tag01', 'tag02', 'tag03'], data.tags)
   ])
-  // green('shapeData: r2', r2)
+  green('shapeDataIn: r2', r2)
   return r2
 }
 
 const mapStateToProps = (state) => {
-
   const _id = eventSelectors.getEventEdit_id(state)
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
-  // green('mapStateToProps: mode', mode)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
     const startDate = prop('startDateTime', data)
