@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import {
   Checkbox,
@@ -29,3 +30,9 @@ const CheckboxRedux = props => {
 }
 
 export default CheckboxRedux
+
+CheckboxRedux.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  fieldLabel: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+}

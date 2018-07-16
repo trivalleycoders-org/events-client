@@ -77,3 +77,14 @@ class SelectRedux extends React.Component {
 }
 
 export default withStyles(styles)(SelectRedux)
+
+SelectRedux.propTypes = {
+  fieldValue: PropTypes.string,
+  fullWidth:  PropTypes.bool,
+  input: PropTypes.object, 
+  meta: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
+  fieldLabel: PropTypes.string,
+  fieldName: PropTypes.string.isRequired,
+}

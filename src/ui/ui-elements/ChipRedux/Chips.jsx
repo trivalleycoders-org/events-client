@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ChipInput from 'material-ui-chip-input'
 import { append, without } from 'ramda'
 
@@ -34,7 +35,7 @@ class Chips extends React.Component {
   }
 
   onLocalChange = (chipVal, action) => {
-    green('onLocalChagne', `${chipVal}, ${action}`)
+    // green('onLocalChagne', `${chipVal}, ${action}`)
     const { chips } = this.state
     let newState = undefined
     if (action === 'add') {
@@ -72,3 +73,8 @@ class Chips extends React.Component {
 }
 
 export default Chips
+
+Chips.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  addOnBlue: PropTypes.func,
+}

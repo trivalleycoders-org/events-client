@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { Paper, Typography } from '@material-ui/core'
@@ -26,27 +27,15 @@ class UploadImageComponent extends React.Component {
     
     let imageUrl = ''
     const initial = this.props.initial
-    const uploaded = this.props.uploadedImageUrl
-    // test code
-    // if (typeof initial !== 'undefined') {
-    //   green('initial !== undefined')
-    // } else {
-    //   green('initial === undefined')
-    // }
-    // if (!uploaded === null) {
-    //   green('uploaded !== null')
-    // } else {
-    //   green('uploaded === null')
-    // }
+    const uploadedImageUrl = this.props.uploadedImageUrl
 
     if (typeof initial !== 'undefined') {
       imageUrl = initial
-    } else if (!uploaded === null) {
-      imageUrl = uploaded
+    } else if (!uploadedImageUrl === null) {
+      imageUrl = uploadedImageUrl
     } else {
       imageUrl = ''
     }
-    // green('imageUrl', imageUrl)
 
     this.state = {
       imageUrl: imageUrl,
@@ -68,8 +57,6 @@ class UploadImageComponent extends React.Component {
 
   render() {
     const { classes } = this.props
-    // green('Uploadcomponent: props', this.props)
-    // green('Uploadcomponent: state', this.state)
     return (
       <Paper className={classes.root} elevation={1}>
         <ResponsiveImage src={this.state.imageUrl} alt='uploaded' />
@@ -101,3 +88,10 @@ export default compose(
   withStyles(styles),
   connect(mapStateToProps, imageActions)
 )(UploadImageComponent)
+
+UploadImageComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+  initial: PropTypes.string,
+  uploadedImageUrl: PropTypes.string,
+
+}

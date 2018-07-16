@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
@@ -49,7 +50,7 @@ const shapeDataOut = (formValues) => {
   // green('mergedData', mergedData)
   return mergedData
 }
-class NewEvent extends React.Component {
+class EventForm extends React.Component {
   state = {
     values: '',
     imageUrl: '',
@@ -218,15 +219,17 @@ const mapStateToProps = (state) => {
     const shapedData = shapeDataIn(data)
 
     return {
-      initialValues: shapedData,
       free: prop('free', shapedData),
+      initialValues: shapedData,
       mode,
       pastEvent,
     }
   } else {
     return {
       free: false,
+      initialValues: {},
       mode,
+      pastEvent: false,
     }
   }
 }
@@ -238,4 +241,17 @@ export default compose(
     form: 'NewEvent',
     // validate,
   })
-)(NewEvent)
+)(EventForm)
+
+EventForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  free: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  pastEvent: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
+}
+
+

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { DateTimePicker } from 'material-ui-pickers'
 import { Field } from 'redux-form'
 import { green } from 'logger'
@@ -54,3 +55,11 @@ class DateTimeField extends React.Component {
 }
 
 export default DateTimeField
+
+DateTimeField.propTypes = {
+  disablePast: PropTypes.bool,
+  fieldLabel: PropTypes.string,
+  fieldName: PropTypes.string.isRequired,
+  minDate: PropTypes.date.isRequired,
+  required: PropTypes.bool
+}

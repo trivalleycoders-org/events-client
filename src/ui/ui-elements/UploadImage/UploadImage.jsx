@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import UploadComponent from './UploadComponent'
 import { Field } from 'redux-form'
 // import { green } from 'logger'
@@ -28,3 +29,8 @@ class UploadImage extends React.Component {
 }
 
 export default UploadImage
+
+UploadImage.propTypes = {
+  fieldLabel: PropTypes.string.isRequired,
+  fieldName: PropTypes.string.isRequired,
+}

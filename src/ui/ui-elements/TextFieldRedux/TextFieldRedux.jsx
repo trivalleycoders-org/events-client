@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import { TextField } from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl'
@@ -62,3 +63,13 @@ const TextFieldRedux = props => {
 }
 
 export default TextFieldRedux
+
+// fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0
+TextFieldRedux.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  fieldLabel: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  rows: PropTypes.number,
+}

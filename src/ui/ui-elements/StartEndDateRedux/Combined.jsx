@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { DateTimePicker } from 'material-ui-pickers'
 import isBefore from 'date-fns/isBefore'
 import { withStyles } from '@material-ui/core/styles'
@@ -118,3 +119,9 @@ class Combined extends React.Component {
 }
 
 export default withStyles(styles)(Combined)
+
+Combined.propTypes = {
+  initial: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
+  format: PropTypes.string.isRequired,
+}

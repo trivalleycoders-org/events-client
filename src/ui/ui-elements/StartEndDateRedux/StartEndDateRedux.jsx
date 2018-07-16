@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Combined from './Combined'
 import { Field } from 'redux-form'
 // import { green } from 'logger'
@@ -34,3 +35,8 @@ class StartEndDateRedux extends React.Component {
 }
 
 export default StartEndDateRedux
+
+StartEndDateRedux.propTypes = {
+  fieldLabel: PropTypes.string.isRequired,
+  fieldName: PropTypes.string.isRequired,
+}
