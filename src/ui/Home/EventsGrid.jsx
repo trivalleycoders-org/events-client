@@ -14,7 +14,7 @@ import { Share as ShareIcon } from '@material-ui/icons'
 import { has } from 'ramda'
 
 /* User */
-import Tag from '../ui-elements/Tag'
+import Tag from './Tag'
 
 /* Dev */
 import { green } from 'logger'

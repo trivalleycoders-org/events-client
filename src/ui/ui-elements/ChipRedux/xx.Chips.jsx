@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ChipInput from 'material-ui-chip-input'
 import { append, without } from 'ramda'
 
@@ -12,51 +13,49 @@ class Chips extends React.Component {
     }
   }
 
-  onBeforeAdd(chip) {
+  onBeforeAdd (chip) {
     return chip.length >= 3
   }
 
-  handleAdd(chip) {
+  handleAdd (chip) {
     green('handleAdd: chip', chip)
     this.setState({
       chips: [...this.state.chips, chip]
     })
   }
 
-  handleDelete(deletedChip) {
+  handleDelete (deletedChip) {
     green('handleDelete: chip', deletedChip)
     const { chips } = this.state
     green('handleDelete: chips', chips)
     this.setState({
       chips: this.state.chips.filter((c) => c !== deletedChip)
     })
-
+    
   }
 
   onLocalChange = (chipVal, action) => {
-    green('onLocalChagne', `${chipVal}, ${action}`)
+    // green('onLocalChagne', `${chipVal}, ${action}`)
     const { chips } = this.state
     let newState = undefined
     if (action === 'add') {
       newState = append(chipVal, chips)
       this.setState((prevState) => {
-        return { chips: newState }
+        return {chips: newState}
       })
     } else {
       newState = without([chipVal], chips)
       this.setState((prevState) => {
-        return { chips: newState }
-      })
+        return {chips: newState}
+      }) 
     }
     this.props.onChange(newState)
   }
-  render() {
+  render () {
     green('state', this.state.chips)
-    const keyCodes = [9, 32]
     return (
       <ChipInput
         value={this.state.chips}
-        newChipKeyCodes={keyCodes}
         onBeforeAdd={(chip) => this.onBeforeAdd(chip)}
         onAdd={(chip) => this.onLocalChange(chip, 'add')}
         onDelete={(chip) => this.onLocalChange(chip, 'delete')}
@@ -69,8 +68,13 @@ class Chips extends React.Component {
       />
     )
 
-
-  }
+    
+  }  
 }
 
 export default Chips
+
+Chips.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  addOnBlue: PropTypes.func,
+}

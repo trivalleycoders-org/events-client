@@ -35,19 +35,23 @@ const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues) => {
-  
+  // for non-required fields, empty fields should not be written to db
+  // includes tags, free||price
+  green('shapeDataOut IN:', formValues)
   const dates = pick(['combinedDateTime'], formValues)
   const fv0 = omit(['combinedDateTime'], formValues)
   // If free=true, remove field 'price' if present
   const freeTrue =  formValues.free
   const fv1 = freeTrue ? omit(['price'], fv0) : fv0
+  const fv2 = fv1.tags.length === 0 ? omit(['tags']) : fv1
   const mergedData = mergeAll([
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    {tags: formValues.tags},
-    fv1
+    // {tags: formValues.tags},
+    fv2
   ])
   // green('mergedData', mergedData)
+  green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
 class EventForm extends React.Component {
@@ -60,7 +64,7 @@ class EventForm extends React.Component {
 
   onSubmit = (values) => {
 
-    green('onSubmit: values', values)
+    
 
     const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
     const reshapedData = shapeDataOut(values)
@@ -171,7 +175,7 @@ class EventForm extends React.Component {
             </div>
             <div className={classes.tagArea}>
               <ChipRedux
-                fieldLabel='tags'
+                fieldLabel='Tags'
                 fieldName='tags'
               />
             </div>
@@ -204,7 +208,7 @@ const shapeDataIn = (data) => {
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
       ), 
   ])
-  green('shapeDataIn: r2', r2)
+  // green('shapeDataIn: r2', r2)
   return r2
 }
 
@@ -245,7 +249,7 @@ export default compose(
 
 EventForm.propTypes = {
   classes: PropTypes.object.isRequired,
-  free: PropTypes.bool.isRequired,
+  free: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
   pastEvent: PropTypes.bool.isRequired,
