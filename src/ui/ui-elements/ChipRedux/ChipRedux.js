@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ChipInput from 'material-ui-chip-input'
 import { Field } from 'redux-form'
 import Chips from './Chips'
 
 /* Dev */
 import { green } from 'logger'
-
 
 class ChipRedux extends React.Component {
 
@@ -29,8 +27,6 @@ class ChipRedux extends React.Component {
         name={fieldName}
       />
     )
-
-    
   }  
 }
 

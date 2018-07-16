@@ -13,9 +13,12 @@ import { blue } from 'logger'
 
 
 export const events = (state = [], { type, payload }) => {
+
   switch (type) {
     case keyCreateEvent:
-      return append(state, payload.event)
+      // blue('keyCreateEvent', payload.event)
+      // blue('createEvent state', state)
+      return append(payload.event, state)
     case keyReadEvents:
     return payload.events
     case keyPatchOneEvent:

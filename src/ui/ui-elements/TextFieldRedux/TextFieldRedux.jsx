@@ -64,7 +64,6 @@ const TextFieldRedux = props => {
 
 export default TextFieldRedux
 
-// fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0
 TextFieldRedux.propTypes = {
   fieldName: PropTypes.string.isRequired,
   fieldLabel: PropTypes.string.isRequired,

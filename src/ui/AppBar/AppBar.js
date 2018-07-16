@@ -37,8 +37,6 @@ function MainAppBar(props) {
           {/* <Link to='/upload-wrapped'><Button colro='inherit'>Upload Wrapped</Button></Link> */}
           <Link to='/'><Button colro='inherit'>Home</Button></Link>
           <Link to='/new-event'><Button colro='inherit'>New Event</Button></Link>
-          <Link to='/upload'><Button colro='inherit'>Upload</Button></Link>
-          <Link to='/tags'><Button colro='inherit'>Tags</Button></Link>
           <Link to='/my-events'><Button colro='inherit'>My Events</Button></Link>
           <Button color="inherit">Login</Button>
         </Toolbar>

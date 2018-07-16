@@ -20,6 +20,18 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconArea: {
+    padding: '20px 0 20px 0'
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: 'red[800]',
+    },
+  },
   imageArea: {
     border: '1px solid white'
   },

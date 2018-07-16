@@ -239,7 +239,7 @@ export default compose(
   connect(mapStateToProps, eventActions),
   reduxForm({
     form: 'NewEvent',
-    // validate,
+    validate,
   })
 )(EventForm)
 

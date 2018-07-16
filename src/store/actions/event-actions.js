@@ -9,10 +9,14 @@ import { orange } from 'logger'
 export const keyCreateEvent = 'actionKeyCreateEvent'
 export const requestKeyCreateEvent = 'requestKeyCreateEvent'
 
-const createNewEvent = (event) => ({
-  type: keyCreateEvent,
-  payload: { event },
-})
+
+const createNewEvent = (event) => {
+  orange('action.createNewEvent: event', event)
+  return ({
+    type: keyCreateEvent,
+    payload: { event },
+  })
+}
 
 export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
