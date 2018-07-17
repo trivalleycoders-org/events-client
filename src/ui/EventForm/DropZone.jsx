@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {compose} from 'recompose'
 import UploadImage2 from './UploadImage2'
-import UploadImage from './UploadImage'
+import UploadImage from './zz.UploadImage'
 
 const styles = {}
 
@@ -14,7 +14,7 @@ class Admin extends Component {
   handleSubmit = (event, values) => {
     event.preventDefault()
     console.log('handleSubmit')
-    console.log('values', values)
+    // console.log('values', values)
 
   }
   renderTextField = ({
@@ -33,7 +33,7 @@ class Admin extends Component {
 
   render() {
 
-    // console.log('props', this.props);
+    // console.log('props', this.props)
     // const {handleSubmit} = this.props
     return (
       <div>

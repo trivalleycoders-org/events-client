@@ -2,14 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
-import { AppBar } from '@material-ui/core'
+import { AppBar }from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-
-import SearchEvent from './SearchEvent'
 
 const styles = {
   root: {
@@ -36,12 +34,9 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
-
-          <SearchEvent />
           <Link to='/'><Button colro='inherit'>Home</Button></Link>
           <Link to='/new-event'><Button colro='inherit'>New Event</Button></Link>
-          <Link to='/upload'><Button colro='inherit'>Upload</Button></Link>
-          <Link to='/tags'><Button colro='inherit'>Tags</Button></Link>
+          <Link to='/my-events'><Button colro='inherit'>My Events</Button></Link>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

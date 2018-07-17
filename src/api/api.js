@@ -1,10 +1,10 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
-import { pink, red } from 'logger'
+import { red } from 'logger'
+import { pink } from 'logger'
 
 export default {
   events: {
     async create(event) {
-
       const data = await fetchJson(
         '/events',
         {
@@ -24,20 +24,22 @@ export default {
       pink('api.event.read: data', data)
       return data
     },
-    async search(event) {
-      const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
+    async patch(event) {
+      pink('api.patch: event', event)
+      const _id = event._id
       const data = await fetchJson(
-        searchUrl,
+        `/events/${_id}`,
         {
-          method: 'GET',
+          method: 'PATCH',
+          body: JSON.stringify(event)
         }
       )
       return data
-    },
+    }
   },
   images: {
     create(formData) {
-      pink('api.images: formData', formData)
+      // pink('api.images: formData', formData)
       return fetchUploadImage(
         '/images',
         {
@@ -45,7 +47,7 @@ export default {
           body: formData
         }
       ).then(data => {
-        pink('/images/create', data)
+        // pink('/images/create', data)
         return data
       }).catch(e => {
         red('api.images.create: ERROR: ', e)
@@ -56,7 +58,7 @@ export default {
         '/images/test',
         { method: 'GET' }
       ).then(data => {
-        pink('api.images.getTest: data', data)
+        // pink('api.images.getTest: data', data)
         return data
       }).catch(e => {
         red('api.images.getTest ERROR: ', e)
@@ -65,7 +67,7 @@ export default {
   },
   tags: {
     async create(tag) {
-      pink('tag', tag)
+      // pink('tag', tag)
       const data = await fetchJson(
         '/tags',
         {

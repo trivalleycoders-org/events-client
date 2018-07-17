@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import { RadioGroup, FormControl, FormLabel } from '@material-ui/core'
 
@@ -31,3 +32,9 @@ const RadioGroupRedux = props => {
 }
 
 export default RadioGroupRedux
+
+RadioGroupRedux.propTypes = {
+  formLabel: PropTypes.string.isRequired,
+  fieldName: PropTypes.string.isRequired,
+  children:  PropTypes.array.isRequired,
+}

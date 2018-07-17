@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import {
   Checkbox,
@@ -13,13 +14,14 @@ const renderCheckbox = ({ input }) => (
 )
 
 const CheckboxRedux = props => {
-  const { fieldName, fieldLabel } = props
+  const { fieldName, fieldLabel, onChange } = props
   return (
     <FormControlLabel
       control={
         <Field 
-        name={fieldName}
-        component={renderCheckbox} 
+          name={fieldName}
+          component={renderCheckbox} 
+          onChange={onChange}
         />
       }
       label={fieldLabel}
@@ -28,3 +30,9 @@ const CheckboxRedux = props => {
 }
 
 export default CheckboxRedux
+
+CheckboxRedux.propTypes = {
+  fieldName: PropTypes.string.isRequired,
+  fieldLabel: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+}

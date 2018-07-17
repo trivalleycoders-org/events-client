@@ -5,9 +5,10 @@ import { connect } from 'react-redux'
 import * as eventActions from 'store/actions/event-actions'
 import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
-import NewEvent from 'ui/NewEvent'
+import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
-import UploadImage from './NewEvent/UploadImage'
+import MyEvents from 'ui/MyEvents'
+import Toasts from 'ui/Toasts'
 
 class App extends React.Component {
   componentDidMount() {
@@ -18,10 +19,12 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-          <AppBar />
-          <Route path='/new-event' component={NewEvent} />
-          <Route exact path='/upload' component={UploadImage} />
-          <Route exact path='/' component={Home} />
+        <AppBar />
+        <Toasts />
+        <Route exact path='/my-events' component={MyEvents} />
+        <Route exact path='/new-event' component={EventForm} />
+        <Route exact path='/new-event/:_id' component={EventForm} />
+        <Route exact path='/' component={Home} />
         </Fragment>
       </Router>
     )

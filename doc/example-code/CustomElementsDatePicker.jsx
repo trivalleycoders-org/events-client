@@ -1,18 +1,18 @@
 /* eslint-disable no-param-reassign */
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import moment from 'moment';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import moment from 'moment'
 
-import { DatePicker } from 'material-ui-pickers';
-import { IconButton, withStyles } from '@material-ui/core';
+import { DatePicker } from 'material-ui-pickers'
+import { IconButton, withStyles } from '@material-ui/core'
 
-import isValid from 'date-fns/isValid';
-import format from 'date-fns/format';
-import isSameDay from 'date-fns/isSameDay';
-import startOfWeek from 'date-fns/startOfWeek';
-import endOfWeek from 'date-fns/endOfWeek';
-import isWithinInterval from 'date-fns/isWithinInterval';
+import isValid from 'date-fns/isValid'
+import format from 'date-fns/format'
+import isSameDay from 'date-fns/isSameDay'
+import startOfWeek from 'date-fns/startOfWeek'
+import endOfWeek from 'date-fns/endOfWeek'
+import isWithinInterval from 'date-fns/isWithinInterval'
 
 class CustomElements extends PureComponent {
   static propTypes = {
@@ -24,47 +24,47 @@ class CustomElements extends PureComponent {
   }
 
   handleWeekChange = (date) => {
-    this.setState({ selectedDate: startOfWeek(date) });
+    this.setState({ selectedDate: startOfWeek(date) })
   }
 
   formatWeekSelectLabel = (date, invalidLabel) => {
     if (date === null) {
-      return '';
+      return ''
     }
 
     if (date instanceof moment) {
-      date = date.toDate();
+      date = date.toDate()
     }
 
     return date && isValid(date)
       ? `Week of ${format(startOfWeek(date), 'MMM Do')}`
-      : invalidLabel;
+      : invalidLabel
   }
 
   renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     if (date instanceof moment) {
-      date = date.toDate();
+      date = date.toDate()
     }
 
-    const start = startOfWeek(selectedDate);
-    const end = endOfWeek(selectedDate);
+    const start = startOfWeek(selectedDate)
+    const end = endOfWeek(selectedDate)
 
-    const dayIsBetween = isWithinInterval(date, { start, end });
-    const isFirstDay = isSameDay(date, start);
-    const isLastDay = isSameDay(date, end);
+    const dayIsBetween = isWithinInterval(date, { start, end })
+    const isFirstDay = isSameDay(date, start)
+    const isLastDay = isSameDay(date, end)
 
     const wrapperClassName = classNames({
       [classes.highlight]: dayIsBetween,
       [classes.firstHighlight]: isFirstDay,
       [classes.endHighlight]: isLastDay,
-    });
+    })
 
     const dayClassName = classNames(classes.day, {
       [classes.nonCurrentMonthDay]: !dayInCurrentMonth,
       [classes.highlightNonCurrentMonthDay]: !dayInCurrentMonth && dayIsBetween,
-    });
+    })
 
     return (
       <div className={wrapperClassName}>
@@ -72,11 +72,11 @@ class CustomElements extends PureComponent {
           <span> { format(date, 'D')} </span>
         </IconButton>
       </div>
-    );
+    )
   }
 
   render() {
-    const { selectedDate } = this.state;
+    const { selectedDate } = this.state
 
     return (
       <div className="picker">
@@ -88,7 +88,7 @@ class CustomElements extends PureComponent {
           labelFunc={this.formatWeekSelectLabel}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -132,6 +132,6 @@ const styles = theme => ({
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
   },
-});
+})
 
-export default withStyles(styles)(CustomElements);
+export default withStyles(styles)(CustomElements)
