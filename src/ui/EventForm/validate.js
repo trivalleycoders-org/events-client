@@ -2,6 +2,9 @@ import compareAsc from 'date-fns/compareAsc'
 import isEqual from 'date-fns/isEqual'
 import { has } from 'ramda'
 /* User */
+
+/* Dev */
+// eslint-disable-next-line
 // import { green } from 'logger'
 
 const hasCombinedDateTime = has('combinedDateTime')
