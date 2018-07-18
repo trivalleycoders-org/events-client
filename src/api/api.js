@@ -5,36 +5,53 @@ import { pink } from 'logger'
 export default {
   events: {
     async create(event) {
-      const data = await fetchJson(
-        '/events',
-        {
-          method: 'POST',
-          body: JSON.stringify(event)
-        }
-      )
-      return data
+      try {
+        const data = await fetchJson(
+          '/events',
+          {
+            method: 'POST',
+            body: JSON.stringify(event)
+          }
+        )
+        return data
+      }
+      catch (e) {
+        red('api.events.create', e)
+      }
+      
     },
     async read() {
-      const data = await fetchJson(
-        '/events',
-        {
-          method: 'GET',
-        }
-      )
-      pink('api.event.read: data', data)
-      return data
+      try {
+        const data = await fetchJson(
+          '/events',
+          {
+            method: 'GET',
+          }
+        )
+        return data
+      }
+      catch (e) {
+        red('api.events.read', e)
+      }
     },
     async patch(event) {
-      pink('api.patch: event', event)
-      const _id = event._id
-      const data = await fetchJson(
-        `/events/${_id}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify(event)
-        }
-      )
-      return data
+      try {
+        // pink('api.patch: event', event)
+        const _id = event._id
+        const data = await fetchJson(
+          `/events/${_id}`,
+          {
+            method: 'PATCH',
+            body: JSON.stringify(event)
+          }
+        )
+        // pink('api.patch: event', event)
+        return data
+      }
+      catch (e) {
+        red('api.events.patch', e)
+      }
+      
     }
   },
   images: {
@@ -65,17 +82,23 @@ export default {
       })
     }
   },
-  tags: {
-    async create(tag) {
-      // pink('tag', tag)
-      const data = await fetchJson(
-        '/tags',
-        {
-          method: 'POST',
-          body: JSON.stringify(tag)
-        }
-      )
-      return data
-    }
-  }
+  // for possible future use
+  // tags: {
+  //   async create(tag) {
+  //     try {
+  //       // pink('tag', tag)
+  //       const data = await fetchJson(
+  //         '/tags',
+  //         {
+  //           method: 'POST',
+  //           body: JSON.stringify(tag)
+  //         }
+  //       )
+  //       return data
+  //     }
+  //     catch (e) {
+  //       red('api.images.getTest ERROR: ', e)
+  //     }
+  //   }
+  // }
 }

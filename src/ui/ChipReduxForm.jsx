@@ -16,6 +16,7 @@ import * as eventSelectors from 'store/selectors/events-selectors'
 import ChipRedux from 'ui/ui-elements/ChipRedux'
 
 /* Dev */
+// eslint-disable-next-line
 import { green } from 'logger'
 
 
@@ -24,7 +25,7 @@ const styles = {}
 
 class ChipReduxForm extends React.Component {
   onSubmit = (values) => {
-    green('values submitted:  ', values)
+    // green('values submitted:  ', values)
     
     this.setState({
       values: values

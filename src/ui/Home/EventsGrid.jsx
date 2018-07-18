@@ -17,6 +17,7 @@ import { has } from 'ramda'
 import Tag from './Tag'
 
 /* Dev */
+// eslint-disable-next-line
 import { green } from 'logger'
 
 const styles = {

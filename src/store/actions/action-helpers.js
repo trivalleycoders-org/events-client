@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { orange, red } from 'logger'
 
 export const logError = (err, key) => {
@@ -5,7 +6,7 @@ export const logError = (err, key) => {
   red(`actions.logError(key:${key})`, err)
 }
 export const logReturnValue = (value) => {
-  orange('actions.logReturnValue', value)
+  // orange('actions.logReturnValue', value)
   return ({
     type: 'app/noAction'
   })
