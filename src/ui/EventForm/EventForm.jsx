@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { mergeAll, omit, pick, prop, values, zipObj } from 'ramda'
+import { mergeAll, omit, pick, prop, zipObj } from 'ramda'
 import isBefore from 'date-fns/isBefore'
 
 /* User */
