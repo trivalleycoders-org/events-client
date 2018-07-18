@@ -38,7 +38,7 @@ class SelectRedux extends React.Component {
 
   render() {
     const { classes, children, fieldLabel, fieldName, fullWidth } = this.props
-    green('SelectRedux: props', this.props)
+    // green('SelectRedux: props', this.props)
 
     return (
       
