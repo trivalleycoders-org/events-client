@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import * as eventActions from 'store/actions/event-actions'
 import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
-import NewEvent from 'ui/NewEvent'
+import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
-import SelectTest from './SelectTest/SelectTest';
-import SelectTry from './SelectTry'
+import MyEvents from 'ui/MyEvents'
+import Toasts from 'ui/Toasts'
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,9 +20,10 @@ class App extends React.Component {
       <Router>
         <Fragment>
         <AppBar />
-        <Route path='/select' component={SelectTest} />
-        <Route path='/select-try' component={SelectTry} />
-        <Route path='/new-event' component={NewEvent} />
+        <Toasts />
+        <Route exact path='/my-events' component={MyEvents} />
+        <Route exact path='/new-event' component={EventForm} />
+        <Route exact path='/new-event/:_id' component={EventForm} />
         <Route exact path='/' component={Home} />
         </Fragment>
       </Router>
@@ -31,7 +32,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { }
+  return {}
 }
 
 export default connect(mapStateToProps, eventActions)(withRoot(App))

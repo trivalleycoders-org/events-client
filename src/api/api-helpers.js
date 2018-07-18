@@ -1,4 +1,5 @@
-import { pink } from 'logger'
+/* Dev */
+// import { pink } from 'logger'
 
 const rejectErrors = (res) => {
   const { status } = res
