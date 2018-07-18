@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { DateTimePicker } from 'material-ui-pickers'
 import isBefore from 'date-fns/isBefore'
 import { withStyles } from '@material-ui/core/styles'
-import { InputAdornment, Typography } from '@material-ui/core'
+import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
 
 /* Dev */
-// import { green } from 'logger'
+// eslint-disable-next-line
+import { green } from 'logger'
 
 const styles = theme => ({
   adornment: {
@@ -69,7 +70,7 @@ class Combined extends React.Component {
   render() {
   
     const { startDate, endDate } = this.state
-    const { classes, fullWidth } = this.props
+    const { classes } = this.props
     
     return (
       <div className={classes.wrapper}>

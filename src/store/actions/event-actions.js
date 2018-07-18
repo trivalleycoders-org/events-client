@@ -11,7 +11,7 @@ export const requestKeyCreateEvent = 'requestKeyCreateEvent'
 
 
 const createNewEvent = (event) => {
-  orange('action.createNewEvent: event', event)
+  // orange('action.createNewEvent: event', event)
   return ({
     type: keyCreateEvent,
     payload: { event },
@@ -45,10 +45,10 @@ export const requestReadEvents = createRequestThunk({
 })
 
 // Patch
-export const keyPatchOneEvent = 'requestKeyPatchOneEvent'
+export const keyPatchOneEvent = 'keyPatchOneEvent'
 
 const patchOneEvent = (event) => {
-  orange('patchOneEvent: event', event)
+  orange('event-actions.patchOneEvent: event', event)
   return ({
     type: keyPatchOneEvent,
     payload: { event },
@@ -68,7 +68,7 @@ export const requestPatchOneEvent = createRequestThunk({
 export const keySetEdit_id = 'actionKeySetEdit_id'
 
 export const setEdit_id = (_id) => {
-  orange('event-actions.setEdit_id: _id', _id)
+  // orange('event-actions.setEdit_id: _id', _id)
   return ({
     type: keySetEdit_id,
     payload: { _id }
@@ -78,7 +78,7 @@ export const setEdit_id = (_id) => {
 export const keyUnsetEdit_id = 'actionKeyUnsetEdit_id'
 
 export const unsetEdit_id = () => {
-  orange('event-actions.unsetEdit_id')
+  // orange('event-actions.unsetEdit_id')
   return ({
     type: keyUnsetEdit_id,
   })
