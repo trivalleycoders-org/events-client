@@ -24,16 +24,23 @@ export default {
       return data
     },
     async patch(event) {
-      pink('api.patch: event', event)
-      const _id = event._id
-      const data = await fetchJson(
-        `/events/${_id}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify(event)
-        }
-      )
-      return data
+      try {
+        // pink('api.patch: event', event)
+        const _id = event._id
+        const data = await fetchJson(
+          `/events/${_id}`,
+          {
+            method: 'PATCH',
+            body: JSON.stringify(event)
+          }
+        )
+        // pink('api.patch: event', event)
+        return data
+      }
+      catch (e) {
+        red('api.events.patch', e)
+      }
+      
     }
   },
   images: {
