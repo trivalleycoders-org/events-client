@@ -4,6 +4,7 @@ import { Field } from 'redux-form'
 import Chips from './Chips'
 
 /* Dev */
+// eslint-disable-next-line
 import { green } from 'logger'
 
 class ChipRedux extends React.Component {
@@ -12,7 +13,6 @@ class ChipRedux extends React.Component {
     const { onChange, ...rest } = props.input 
     const { initial } = props.meta
     const { label } = props
-    green('ChipsRedux.picker: props', props)
     return (
       <Chips
         {...rest}
@@ -25,7 +25,6 @@ class ChipRedux extends React.Component {
 
   render () {
     const { fieldName, fieldLabel } = this.props
-    green('ChipsRedux: props', this.props)
     return (
       <Field
         component={this.picker}

@@ -1,7 +1,7 @@
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { append, without } from 'ramda'
-
+// eslint-disable-next-line
 import { green } from 'logger'
 
 const keyCodes = [9, 32]
@@ -19,24 +19,20 @@ class Chips extends React.Component {
   }
 
   handleAdd(chip) {
-    green('handleAdd: chip', chip)
     this.setState({
       chips: [...this.state.chips, chip]
     })
   }
 
   handleDelete(deletedChip) {
-    green('handleDelete: chip', deletedChip)
     const { chips } = this.state
-    green('handleDelete: chips', chips)
     this.setState({
-      chips: this.state.chips.filter((c) => c !== deletedChip)
+      chips: chips.filter((c) => c !== deletedChip)
     })
 
   }
 
   onLocalChange = (chipVal, action) => {
-    green('onLocalChagne', `${chipVal}, ${action}`)
     const { chips } = this.state
     let newState = undefined
     if (action === 'add') {
@@ -53,8 +49,6 @@ class Chips extends React.Component {
     this.props.onChange(newState)
   }
   render() {
-    green('chips state.chips', this.state.chips)
-    green('chips props', this.props)
     const { label } = this.props
     return (
       <ChipInput

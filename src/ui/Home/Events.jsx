@@ -12,6 +12,9 @@ import * as eventsSelectors from '../../store/selectors/events-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
 import { requestKeyReadEvents } from 'store/actions/event-actions'
 import EventsGrid from './EventsGrid'
+
+/* Dev */
+// eslint-disable-next-line
 import { green } from 'logger'
 
 const styles = theme => ({
@@ -35,11 +38,6 @@ class EventGrid extends React.Component {
     const { classes, events } = this.props
     // green('EventGrid.render: typeof events', typeof events)
     // green('EventGrid.render: events', events)
-    if (Array.isArray(events)) {
-      green('** events is an array')
-    } else {
-      green('** events is NOT an array')
-    }
     if (this.props.requestReadAllEvents.status === 'success') {
       return (
         <div className={classes.pageMock}>

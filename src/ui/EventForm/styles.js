@@ -16,12 +16,6 @@ const styles = theme => ({
   dateArea: {
     padding: '20px 0 20px 0'
   },
-  fileInput: {
-    display: 'none'
-  },
-  folderIcon: {
-    verticalAlign: 'middle'
-  },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,

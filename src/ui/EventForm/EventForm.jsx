@@ -29,6 +29,7 @@ import UploadImage from 'ui/ui-elements/UploadImage'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
+// eslint-disable-next-line
 import { green } from 'logger'
 
 const EDIT_MODE = 'edit-mode'
@@ -37,20 +38,20 @@ const CREATE_MODE = 'create-mode'
 const shapeDataOut = (formValues) => {
   // for non-required fields, empty fields should not be written to db
   // includes tags, free||price
-  green('shapeDataOut IN:', formValues)
+  // green('shapeDataOut IN:', formValues)
   const dates = pick(['combinedDateTime'], formValues)
   const fv0 = omit(['combinedDateTime'], formValues)
   // If free=true, remove field 'price' if present
   const freeTrue =  formValues.free
   const fv1 = freeTrue ? omit(['price'], fv0) : fv0
-  const fv2 = fv1.tags.length === 0 ? omit(['tags']) : fv1
+  green('shapeDataOut: fv1', fv1)
+  // const fv2 = fv1.tags.length === 0 ? omit(['tags'], formValues) : fv1
   const mergedData = mergeAll([
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
     // {tags: formValues.tags},
-    fv2
+    fv1
   ])
-  // green('mergedData', mergedData)
   green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
@@ -63,16 +64,11 @@ class EventForm extends React.Component {
   }
 
   onSubmit = (values) => {
-
-    
-
     const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
     const reshapedData = shapeDataOut(values)
-
     this.setState({
       values: reshapedData
     })
-    
     if (mode === EDIT_MODE) {
       requestPatchOneEvent(reshapedData)
       unsetEdit_id()
@@ -113,6 +109,8 @@ class EventForm extends React.Component {
               <TextFieldRedux
                 fieldName='title'
                 fieldLabel='Event title'
+                fullWidth
+                rows={2}
               // required
               />
             </div>
@@ -123,6 +121,7 @@ class EventForm extends React.Component {
                 fieldLabel='Date & Time'
                 fullWidth
                 required
+                
               />
             </div>
             <div className={classes.organizationArea}>
@@ -169,8 +168,10 @@ class EventForm extends React.Component {
                 fieldLabel='Category'
                 fullWidth
               > 
-                <MenuItem value='' disabled>Placeholder</MenuItem>
+                <MenuItem value='select' disabled>Select a category</MenuItem>
                 <MenuItem value='quadcopter'>Quadcopter</MenuItem>
+                <MenuItem value='octocopter'>Octocopter</MenuItem>
+                <MenuItem value='battleDrone'>Battle Drone</MenuItem>
               </SelectRedux>
             </div>
             <div className={classes.tagArea}>

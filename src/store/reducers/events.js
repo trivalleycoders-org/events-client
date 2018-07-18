@@ -8,7 +8,7 @@ import {
 } from '../actions/event-actions'
 
 /* Dev */
-/* eslint-disable-next-line */
+// eslint-disable-next-line
 import { blue } from 'logger'
 
 
