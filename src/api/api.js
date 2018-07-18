@@ -1,5 +1,7 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
+
+/* Dev */constructor// eslint-disable-next-line
 import { pink } from 'logger'
 
 export default {
