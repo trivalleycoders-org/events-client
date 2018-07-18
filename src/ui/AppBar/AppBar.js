@@ -9,6 +9,8 @@ import { Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import SearchEvent from './SearchEvent'
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -34,6 +36,8 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
+
+          <SearchEvent />
           <Link to='/'><Button colro='inherit'>Home</Button></Link>
           <Link to='/new-event'><Button colro='inherit'>New Event</Button></Link>
           <Link to='/my-events'><Button colro='inherit'>My Events</Button></Link>

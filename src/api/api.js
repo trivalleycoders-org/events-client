@@ -52,7 +52,17 @@ export default {
         red('api.events.patch', e)
       }
       
-    }
+    },
+    async search(event) {
+      const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
+      const data = await fetchJson(
+        searchUrl,
+        {
+          method: 'GET',
+        }
+      )
+      return data
+    },
   },
   images: {
     create(formData) {
