@@ -64,6 +64,27 @@ export const requestPatchOneEvent = createRequestThunk({
   failure: [ error => logError(error, requestKeyPatchOneEvent) ]
 })
 
+// Delete
+
+export const keyDeleteOneEvent = 'keyDeletehOneEvent'
+
+const deleteOneEvent = (event) => {
+  orange('event-actions.deleteOneEvent: event', event)
+  return ({
+    type: keyDeleteOneEvent,
+    payload: event,
+  })
+}
+
+export const requestKeyDeleteOneEvent = 'requestKeyDeleteOneEvent'
+
+export const requestDeleteOneEvent = createRequestThunk({
+  request: api.events.delete,
+  key: requestKeyDeleteOneEvent,
+  success: [ deleteOneEvent ],
+  failure: [ error => logError(error, requestKeyDeleteOneEvent) ]
+})
+
 // EventsUi
 export const keySetEdit_id = 'actionKeySetEdit_id'
 

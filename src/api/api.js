@@ -54,8 +54,22 @@ export default {
       catch (e) {
         red('api.events.patch', e)
       }
-      
-    }
+    },
+    async delete(id) {
+      pink('api.delete: id', id)
+      try {
+        const data = await fetchJson(
+          `/events/${id}`,
+          {
+            method: 'DELETE'
+          }
+        )
+        return data
+      }
+      catch (e) {
+        red('api.events.delete', e)
+      }
+    },
   },
   images: {
     create(formData) {
