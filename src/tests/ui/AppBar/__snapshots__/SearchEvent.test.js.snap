@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render search correctly 1`] = `
+<Connect(SearchEvent)
+  classes={
+    Object {
+      "cancelIcon": "Connect-SearchEvent--cancelIcon-2",
+      "searchIcon": "Connect-SearchEvent--searchIcon-1",
+    }
+  }
+/>
+`;

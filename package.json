@@ -25,6 +25,9 @@
     "date-fns": "2.0.0-alpha.7",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.4",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
@@ -36,7 +39,7 @@
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
+    "jest": "23.4.1",
     "material-ui-chip-input": "^1.0.0-beta.5",
     "material-ui-pickers": "1.0.0-rc.10",
     "object-assign": "4.1.1",
@@ -50,6 +53,7 @@
     "react-dom": "16.4.1",
     "react-redux": "5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-test-renderer": "16.4.1",
     "recompose": "^0.27.1",
     "redux": "4.0.0",
     "redux-form": "7.4.2",
@@ -69,14 +73,19 @@
   "scripts": {
     "start": "SET \"NODE_PATH=src\" && node scripts/start.js || export NODE_PATH=src && node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "jest"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "raf/polyfill",
+      "<rootDir>/src/tests/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
@@ -91,6 +100,11 @@
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "test"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"

@@ -24,8 +24,8 @@ const createNewEvent = (event) => {
 export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
   key: requestKeyCreateEvent,
-  success: [ createNewEvent ],
-  failure: [ () => setToast('Couldn\'t add note', 'warn') ],
+  success: [createNewEvent],
+  failure: [() => setToast('Couldn\'t add note', 'warn')],
 })
 
 // Read
@@ -43,8 +43,8 @@ export const requestKeyReadEvents = 'requestKeyReadEvents'
 export const requestReadEvents = createRequestThunk({
   request: api.events.read,
   key: requestKeyReadEvents,
-  success: [ readEvents ],
-  failure: [ error => logError(error, requestKeyReadEvents) ]
+  success: [readEvents],
+  failure: [error => logError(error, requestKeyReadEvents)]
 })
 
 // Patch
@@ -63,8 +63,8 @@ export const requestKeyPatchOneEvent = 'requestKeyPatchOneEvent'
 export const requestPatchOneEvent = createRequestThunk({
   request: api.events.patch,
   key: requestKeyPatchOneEvent,
-  success: [ patchOneEvent ],
-  failure: [ error => logError(error, requestKeyPatchOneEvent) ]
+  success: [patchOneEvent],
+  failure: [error => logError(error, requestKeyPatchOneEvent)]
 })
 
 // EventsUi
@@ -87,7 +87,7 @@ export const unsetEdit_id = () => {
   })
 }
 
-const setEvents = (events) => {
+export const setEvents = (events) => {
   orange('readEvents', events)
   return ({
     type: keySetEvents,
@@ -95,16 +95,9 @@ const setEvents = (events) => {
   })
 }
 
-const searchEvents = (searchTerm) => ({
-  type: keySearchEvent,
-  payload: { searchTerm },
-  success: [ setEvents ],
-  failure: [ error => logError(error, searchEvents) ]
-})
-
 export const requestSearchEvents = createRequestThunk({
   request: api.events.search,
   key: requestKeySearchEvents,
-  success: [ setEvents ],
-  failure: [ error => logError(error, requestKeySearchEvents) ]
+  success: [setEvents],
+  failure: [error => logError(error, requestKeySearchEvents)]
 })
