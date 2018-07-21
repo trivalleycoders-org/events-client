@@ -17,7 +17,7 @@ import { append, without, contains } from 'ramda'
 /* User */
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
-import * as eventsSelectors from 'store/selectors/events-selectors'
+import * as eventsSelectors from '../../store/selectors/events-selectors'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'

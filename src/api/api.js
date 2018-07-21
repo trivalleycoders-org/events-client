@@ -6,6 +6,24 @@ import { red } from 'logger'
 import { pink } from 'logger'
 
 export default {
+  cities: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/cities/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        pink('api.cities.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.cities.read', e)
+      }
+    }
+  },
   events: {
     async create(event) {
       try {
