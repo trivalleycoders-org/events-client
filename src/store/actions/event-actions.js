@@ -13,7 +13,7 @@ export const requestKeySearchEvents = 'requestKeySearchEvents'
 export const keySetEvents = 'actionKeySetEvents'
 
 
-const createNewEvent = (event) => {
+export const createNewEvent = (event) => {
   // orange('action.createNewEvent: event', event)
   return ({
     type: keyCreateEvent,
@@ -88,7 +88,7 @@ export const unsetEdit_id = () => {
 }
 
 export const setEvents = (events) => {
-  orange('readEvents', events)
+  // orange('readEvents', events)
   return ({
     type: keySetEvents,
     payload: events, // events is already an object?

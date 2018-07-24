@@ -44,7 +44,7 @@ export const createRequestThunk = ({ request, key, start = [], success = [], fai
       dispatch(actionCreator())
     })
     dispatch(markRequestPending(requestKey))
-    return request(...args)
+    return Promise.resolve(request(...args))
       .then((data) => {
         success.forEach((actionCreator) => {
           dispatch(actionCreator(data))

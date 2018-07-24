@@ -20,6 +20,7 @@ export const events = (state = [], { type, payload }) => {
       // blue('keyCreateEvent', payload.event)
       // blue('createEvent state', state)
       return append(payload.event, state)
+    case keySetEvents:
     case keyReadEvents:
       return payload.events
     case keyPatchOneEvent:
@@ -31,8 +32,6 @@ export const events = (state = [], { type, payload }) => {
       const stateRemoved = remove(idx, 1, oldState)
       const newState = insert(idx, updatedEvent, stateRemoved)
       return newState
-    case keySetEvents:
-      return payload.events
     default:
       return state
   }
