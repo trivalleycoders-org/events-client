@@ -16,7 +16,7 @@ export default {
             body: JSON.strinify
           }
         )
-        pink('api.cities.read: data', data)
+        // pink('api.cities.read: data', data)
         return data
       }
       catch (e) {
