@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import styles from './styles'
 import * as eventActions from 'store/actions/event-actions'
 
-class SearchEvent extends Component {
+export class SearchEvent extends Component {
 
   constructor(props) {
     super(props)
