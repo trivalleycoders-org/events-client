@@ -10,9 +10,10 @@ import { orange } from 'logger'
 export const keyReadCities = 'actionKeyReadCities'
 
 const readCities = (cities) => {
+  orange('** readCities')
   return ({
     type: keyReadCities,
-    payload: cities, 
+    payload: { cities }, 
   })
 }
 

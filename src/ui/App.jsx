@@ -12,7 +12,9 @@ import Toasts from 'ui/Toasts'
 // import Location from './Location'
 // import LocContainer from './LocContainer'
 // import LocAutoSug from './LocAutoSug'
-// import AutoSuggestComponent from './AutoSuggestComponent'
+// import AutoSuggestComponent from './autosuggest/AutoSuggestComponent'
+// import ReactAutoSuggest from './autosuggest/ReactAutoSuggest'
+import SlowTyping from './autosuggest/SlowTyping'
 
 class App extends React.Component {
   componentDidMount() {
@@ -25,9 +27,8 @@ class App extends React.Component {
         <Fragment>
         <AppBar />
         <Toasts />
-        {/* <LocContainer /> */}
-        {/* <LocAutoSug/> */}
         {/* <AutoSuggestComponent /> */}
+        <SlowTyping />
         <Route exact path='/my-events' component={MyEvents} />
         <Route exact path='/new-event' component={EventForm} />
         <Route exact path='/new-event/:_id' component={EventForm} />

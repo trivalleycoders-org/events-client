@@ -19,12 +19,11 @@ import { green, blue } from 'logger'
 // let suggestions = [
 
 function renderInput(inputProps) {
-  // green('01 renderInput')
   const { classes, ref, ...other } = inputProps
 
   return (
     <TextField
-      fullWidth
+      // fullWidth
       InputProps={{
         inputRef: ref,
         classes: {
@@ -37,7 +36,6 @@ function renderInput(inputProps) {
 }
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
-  // green('06 renderSuggestion')
   const matches = match(suggestion.searchString, query)
   const parts = parse(suggestion.searchString, matches)
   return (
@@ -60,7 +58,6 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
 }
 
 function renderSuggestionsContainer(options) {
-  // green('02 renderSuggestionsContainer')
   const { containerProps, children } = options
 
   return (
@@ -71,39 +68,25 @@ function renderSuggestionsContainer(options) {
 }
 
 function getSuggestionValue(suggestion) {
-  // green('** getSuggestionValue')
   return suggestion.searchString
 }
 
 function getSuggestions(value, suggestions) {
-  // blue('05 getSuggestions')
   const inputValue = value.trim().toLowerCase()
-  // blue('inputValue', inputValue)
   const inputLength = inputValue.length
-  // blue('inputLength', inputLength)
   let count = 0
 
   if (inputLength === 0) {
     return []
   } else {
-    return suggestions.filter() // it is filtering suggestions and then setting state to that filtered amount - so no ramping back up on backspace :(
+    return suggestions.filter(s => {
+      const keep = s.searchString.toLowerCase().slice(0, inputLength) === inputValue
+      if (keep) {
+        count += 1
+      }
+      return keep
+    }) 
   }
-
-  return inputLength === 0
-    ? []
-    : suggestions.filter(s => {
-        
-        // blue('count', count)
-        const keep = count < 25 && s.searchString.toLowerCase().slice(0, inputLength) === inputValue
-        // const keep = s.searchString.toLowerCase().slice(0, inputLength) === inputValue
-
-        if (keep) {
-          // blue('keep', keep)
-          count += 1
-        }
-
-        return keep
-      })
 }
 
 const styles = theme => ({
@@ -127,54 +110,49 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none',
   },
+  testCount: {
+    color: 'white',
+  },
 })
 
 class IntegrationAutosuggest extends React.Component {
   state = {
     value: '',
     suggestions: [],
-    shouldGetSuggestions: true,
+    allSuggestions: [], // suggestions before filtering
+    shouldFetchData: true,
   }
   
   handleSuggestionsFetchRequested = ({ value }) => {
-    // green('04 handleSuggestionsFetchRequested')
-    // green('04 handleSuggestionsFetchRequested: value', value)
     this.setState({
-      suggestions: getSuggestions(value, this.state.suggestions),
+      suggestions: getSuggestions(value, this.props.suggestions),
     })
   }
 
   handleSuggestionsClearRequested = () => {
-    // green('** handleSuggestionsClearRequested')
     this.setState({
       suggestions: [],
     })
   }
 
   handleChange = async (event, { newValue }) => {
-    // green('03 handleChange')
     const limit = 2
-    const { shouldGetSuggestions } = this.state
-    // green('handleChange', newValue)
+    const { shouldFetchData } = this.state
     this.setState({
       value: newValue,
     })
-    green('shouldGetSuggestions', shouldGetSuggestions)
-    green('newValue.length === limit', newValue.length === limit)
-    if (shouldGetSuggestions && newValue.length === limit) {
+    if (shouldFetchData && newValue.length === limit) {
       green('** go get data')
       await this.props.requestReadCities(newValue)
-      // suggestions = this.props.suggestions
-      // green('** setting state')
       this.setState({
         suggestions: this.props.suggestions,
-        shouldGetSuggestions: false,
+        allSuggestions: this.props.suggestions,
+        shouldFetchData: false,
       })
     }
     if (newValue.length < limit) {
-      green('** set suggestions true')
       this.setState({
-        shouldGetSuggestions: true,
+        shouldFetchData: true,
       })
     }
     
@@ -182,31 +160,34 @@ class IntegrationAutosuggest extends React.Component {
 
   render() {
     const { classes } = this.props
-    green('state.suggestions.length', this.state.suggestions.length)
+    console.log(this.state.allSuggestions)
     
-    // green('** render')
     return (
-      <Autosuggest
-        theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion,
-        }}
-        renderInputComponent={renderInput}
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        renderSuggestionsContainer={renderSuggestionsContainer}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={{
-          classes,
-          placeholder: 'Search a country (start with a)',
-          value: this.state.value,
-          onChange: this.handleChange,
-        }}
-      />
+      <div>
+        <span className={classes.testCount}>(all: {this.state.allSuggestions.length}, filtered: {this.state.suggestions.length})</span>
+        <Autosuggest
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+          }}
+          renderInputComponent={renderInput}
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+          renderSuggestionsContainer={renderSuggestionsContainer}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={{
+            classes,
+            placeholder: 'Search a country (start with a)',
+            value: this.state.value,
+            onChange: this.handleChange,
+          }}
+        />
+        
+      </div>
     )
   }
 }
@@ -216,17 +197,17 @@ IntegrationAutosuggest.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const cities = locationSelectors.getCities(state)
-  const suggestions = cities.map(c => {
-    return (
-      {
-        _id: c._id,
-        searchString: `${c.cityName}, ${c.stateName} ${c.postalCode}`
-      }
-    )
-  })
+  // const cities = locationSelectors.getCities(state)
+  // const suggestions = cities.map(c => {
+  //   return (
+  //     {
+  //       _id: c._id,
+  //       searchString: `${c.cityName}, ${c.stateName} ${c.postalCode}`
+  //     }
+  //   )
+  // })
   return {
-    suggestions,
+    suggestions: locationSelectors.getCities(state)
   }
 }
 
