@@ -88,33 +88,6 @@ function getSuggestions(value, suggestions) {
     }) 
   }
 }
-
-const styles = theme => ({
-  container: {
-    flexGrow: 1,
-    position: 'relative',
-    height: 250,
-  },
-  suggestionsContainerOpen: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-  },
-  suggestion: {
-    display: 'block',
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: 'none',
-  },
-  testCount: {
-    color: 'white',
-  },
-})
-
 class IntegrationAutosuggest extends React.Component {
   state = {
     value: '',
@@ -196,16 +169,33 @@ IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
+const styles = theme => ({
+  container: {
+    flexGrow: 1,
+    position: 'relative',
+    height: 250,
+  },
+  suggestionsContainerOpen: {
+    position: 'absolute',
+    zIndex: 1,
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0,
+  },
+  suggestion: {
+    display: 'block',
+  },
+  suggestionsList: {
+    margin: 0,
+    padding: 0,
+    listStyleType: 'none',
+  },
+  testCount: {
+    color: 'white',
+  },
+})
+
 const mapStateToProps = (state) => {
-  // const cities = locationSelectors.getCities(state)
-  // const suggestions = cities.map(c => {
-  //   return (
-  //     {
-  //       _id: c._id,
-  //       searchString: `${c.cityName}, ${c.stateName} ${c.postalCode}`
-  //     }
-  //   )
-  // })
   return {
     suggestions: locationSelectors.getCities(state)
   }
