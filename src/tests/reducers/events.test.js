@@ -2,12 +2,12 @@ import {events} from '../../store/reducers/events'
 import * as actionConstants from '../../store/actions/constants'
 import eventsData from '../fixtures/events'
 
-test('should set default state', () => {
+it('should set default state', () => {
   const state = events(undefined, { type: '@@INIT' })
   expect(state).toEqual([])
 })
 
-test('should add an event', () => {
+it('should add an event', () => {
   const newEvent = {
     event: {
     'title':'A Holistic Approach to Hormonal Imbalances',

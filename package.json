@@ -78,7 +78,7 @@
   "scripts": {
     "start": "SET \"NODE_PATH=src\" && node scripts/start.js || export NODE_PATH=src && node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "jest"
+    "test": "jest --watch --verbose"
   },
   "jest": {
     "collectCoverageFrom": [
