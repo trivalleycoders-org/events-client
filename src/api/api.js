@@ -24,6 +24,24 @@ export default {
       }
     }
   },
+  postalCodes: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/postal-codes/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        // pink('api.postalCodes.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.postalCodes.read', e)
+      }
+    }
+  },
   events: {
     async create(event) {
       try {

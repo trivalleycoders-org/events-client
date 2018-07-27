@@ -6,7 +6,7 @@ import { setToast } from './toast-actions'
 import { orange } from 'logger'
 
 
-// Read
+// Read Cities
 export const keyReadCities = 'actionKeyReadCities'
 
 const readCities = (cities) => {
@@ -26,3 +26,19 @@ export const requestReadCities = createRequestThunk({
   failure: [ error => logError(error, requestKeyReadCities) ]
 })
 
+// Read postalCode
+export const keyReadPostalCodes = 'actionKeyReadPostalCodes'
+const readPostalCodes = (postalCodes) => {
+  // orange('** readPostalCodes')
+  return ({
+    type: keyReadPostalCodes,
+    payload: { postalCodes }, 
+  })
+}
+export const requestKeyReadPostalCodes = 'requestKeyReadPostalCodes'
+export const requestReadPostalCodes = createRequestThunk({
+  request: api.postalCodes.read,
+  key: requestKeyReadPostalCodes,
+  success: [ readPostalCodes ],
+  failure: [ error => logError(error, requestKeyReadPostalCodes) ]
+})

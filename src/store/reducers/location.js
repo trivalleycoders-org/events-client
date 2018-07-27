@@ -1,5 +1,6 @@
 import { 
-  keyReadCities
+  keyReadCities,
+  keyReadPostalCodes
 } from '../actions/location-actions'
 
 /* Dev */
@@ -17,4 +18,15 @@ export const cities = (state = [], { type, payload }) => {
   }
 }
 
-export default { cities }
+export const postalCodes = (state = [], { type, payload }) => {
+  switch (type) {
+    case keyReadPostalCodes:
+      // blue(keyReadPostalCodes, payload)
+      /// blue('postalCodes state', state)
+      return payload.postalCodes
+    default:
+      return state
+  }
+}
+
+export default { cities, postalCodes }
