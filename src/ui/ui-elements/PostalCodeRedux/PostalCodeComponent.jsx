@@ -1,11 +1,13 @@
 import React from 'react'
 import { debounce } from 'lodash'
 import Autosuggest from 'react-autosuggest'
+import match from 'autosuggest-highlight/match'
+import parse from 'autosuggest-highlight/parse'
 // 
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-import { TextField } from '@material-ui/core'
+import { TextField, MenuItem, Paper } from '@material-ui/core'
 /* User */
 import * as locationActions from 'store/actions/location-actions'
 import * as locationSelectors from 'store/selectors/location-selectors'
@@ -14,7 +16,6 @@ import * as locationSelectors from 'store/selectors/location-selectors'
 import { green, blue } from 'logger'
 
 function filterSuggestions(value, suggestions) {
-  // green('** filterSuggestions')
   const inputValue = value.trim().toLowerCase()
   const inputLength = inputValue.length
 
@@ -24,35 +25,70 @@ function filterSuggestions(value, suggestions) {
     return suggestions.filter(s => {
       const str1 = s.searchString.toLowerCase().slice(0, inputLength)
       const str2 = inputValue
-      green('compare', `${str1} = ${str2}`)
       return str1 === str2
     }) 
   }
 }
 
 function getSuggestionValue(suggestion) {
-  // green('** getSuggestionValue')
   const ret = suggestion.searchString
-  // green('ret', ret)
   return ret
 }
 
-function renderSuggestion(suggestion) {
-  // green('** renderSuggestion')
+function renderSuggestion(suggestion, { query, isHighlighted }) {
+  // blue('suggestion', suggestion)
+  // blue('query', query)
+  // blue('isHighlighted', isHighlighted)
+  green('typeof suggestion', typeof suggestion)
+  const matches = match(suggestion.searchString, query)
+  // green('matches', matches)
+
+  const parts = parse(suggestion.searchString, matches)
+  // green('parts', parts)
   return (
-    <span>{suggestion.searchString}</span>
+    <MenuItem selected={isHighlighted} component="div" id={suggestion._id}>
+      <div>
+        {parts.map((part, index) => {
+          // green('part', part)
+          return part.highlight ? (
+            <span key={String(index)} style={{ fontWeight: 500 }}>
+              {part.text}
+            </span>
+          ) : (
+            <strong key={String(index)} style={{ fontWeight: 300 }}>
+              {part.text}
+            </strong>
+          )
+        })}
+      </div>
+    </MenuItem>
   )
 }
+
 const renderInput = inputProps => {
   const { classes, ref, ...other } = inputProps
   return (
     <TextField
       fullWidth
-      InputProps={{
-        inputRef: ref,
+      inputRef={ref}
+      inputProps={{
+        
+        classes: {
+          input: classes.input,
+        },
         ...other,
-      }}
+      }}      
     />
+  )
+}
+
+function renderSuggestionsContainer(options) {
+  const { containerProps, children } = options
+
+  return (
+    <Paper {...containerProps} square>
+      {children}
+    </Paper>
   )
 }
 
@@ -63,7 +99,6 @@ class PostalCodeLookup extends React.Component {
     this.state = {
       value: '',
       suggestions: [],
-      isLoading: false,
       allSuggestions: [],
       queryLength: 0,
     }
@@ -72,7 +107,6 @@ class PostalCodeLookup extends React.Component {
   }
   
   loadSuggestions = async (value) => {
-    // green('** loadSuggestions')
     const limit = 2
     this.setState({
       isLoading: true,
@@ -80,9 +114,6 @@ class PostalCodeLookup extends React.Component {
     })
     const { queryLength } = this.state
     const valueLength = value.length
-    // green(`valueLength(${valueLength}) < queryLength(${queryLength})`, valueLength < queryLength)
-    // green(`valueLength(${valueLength}) >= limit()${limit}`, valueLength >= limit)
-    // green(`queryLength(${queryLength}) === 0`, queryLength === 0)
     if (valueLength < queryLength) {
       this.setState({
         queryLength: 0,
@@ -100,7 +131,6 @@ class PostalCodeLookup extends React.Component {
       }
     }
     if (getData) {
-      // blue('** Get Data')
       await this.props.requestReadPostalCodes(value)
       const suggestions = filterSuggestions(value, this.props.suggestions)
       this.setState({
@@ -116,20 +146,19 @@ class PostalCodeLookup extends React.Component {
     
   }
   
-  onChange = (event, { newValue }) => {
-    // green('** onChange')
+  localOnChange = (event, { newValue }) => {
+    green('event', event.target.children[0])
     this.setState({
       value: newValue
     })
+    this.props.onChange(newValue)
   }
   
   onSuggestionsFetchRequested = ({ value }) => {
-    // green('** onSuggestionsFetchRequested')
     this.debouncedLoadSuggestions(value)
   }
 
   onSuggestionsClearRequested = () => {
-    // green('** onSuggestionsClearRequested')
     this.setState({
       suggestions: []
     })
@@ -137,13 +166,13 @@ class PostalCodeLookup extends React.Component {
 
   render() {
     const { value, suggestions } = this.state
+    const { classes } = this.props
     const inputProps = {
       placeholder: 'type a postal/zip code',
+      classes: classes,
       value,
-      onChange: this.onChange,
+      onChange: this.localOnChange,
     }
-    // green('suggestions.length', this.state.suggestions.length)
-    // green('render: queryLength', this.state.queryLength)
 
     return (
       <div>
@@ -151,10 +180,17 @@ class PostalCodeLookup extends React.Component {
           all: {this.state.allSuggestions.length}, current: {this.state.suggestions.length}
         </div> */}
         <Autosuggest 
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+          }}
           renderInputComponent={renderInput}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          renderSuggestionsContainer={renderSuggestionsContainer}
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps} />
@@ -163,9 +199,28 @@ class PostalCodeLookup extends React.Component {
   }
 }
 
-const styles = {
-  input: {}
-}
+const styles = theme => ({
+  container: {
+    flexGrow: 1,
+    position: 'relative',
+    height: 250,
+  },
+  suggestionsContainerOpen: {
+    position: 'absolute',
+    zIndex: 1,
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0,
+  },
+  suggestion: {
+    display: 'block',
+  },
+  suggestionsList: {
+    margin: 0,
+    padding: 0,
+    listStyleType: 'none',
+  },
+})
 
 const mapStateToProps = (state) => {
   return {

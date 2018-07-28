@@ -9,7 +9,7 @@ import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import MyEvents from 'ui/MyEvents'
 import Toasts from 'ui/Toasts'
-import PostalCodeLookup from 'ui/ui-elements/PostalCodeLookup'
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,7 +22,6 @@ class App extends React.Component {
         <Fragment>
         <AppBar />
         <Toasts />
-        <PostalCodeLookup />
         <Route exact path='/my-events' component={MyEvents} />
         <Route exact path='/new-event' component={EventForm} />
         <Route exact path='/new-event/:_id' component={EventForm} />

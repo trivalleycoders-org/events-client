@@ -26,6 +26,7 @@ import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import validate from './validate'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
+import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
@@ -101,6 +102,11 @@ class EventForm extends React.Component {
               : null
           } 
           <form onSubmit={handleSubmit(this.onSubmit)}>
+          
+            <PostalCodeRedux
+              fieldName='postalCode'
+              fieldLabel='Postal Code'
+            />
             <UploadImage
               fieldName='imageUrl'
               fieldLabel='Upload Image'
