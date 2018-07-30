@@ -3,17 +3,29 @@ import { mount } from 'enzyme'
 import { TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import { Provider } from 'react-redux'
 
-import { SearchEvent } from '../../../ui/AppBar/SearchEvent'
+import configureStore from '../../../store'
+
+import ConnectedSearchEvent, { SearchEvent } from '../../../ui/AppBar/SearchEvent'
 import styles from '../../../ui/AppBar/styles'
 
 
 describe('SearchEvent', () => {
+
+  const store = configureStore()
   let mountedSearchEvent
   const onChangeMock = jest.fn()
   const onChange = jest.fn(() => {
     onChangeMock()
   })
+
+  const onClickMock = jest.fn()
+  const onClick = jest.fn(() => {
+    onClickMock()
+  })
+  // const onClick = jest.fn()
+
 
   const searchEvent = () => {
     if (!mountedSearchEvent) {
@@ -21,7 +33,9 @@ describe('SearchEvent', () => {
         classes,
         onChange
       }) => (
-          <SearchEvent onChange={onChange} classes={classes} />
+          <Provider store={store}>
+            <ConnectedSearchEvent onChange={onChange} classes={classes} />
+          </Provider>
         )
 
       Composer.propTypes = {
@@ -40,30 +54,21 @@ describe('SearchEvent', () => {
 
   it('always renders SearchEvent', () => {
     const wrapper = searchEvent()
-    expect(wrapper.find(SearchEvent)).toHaveLength(1)
-  })
-
-  describe('the rendered SearchEvent component', () => {
-    it('contains everything else that gets rendered', () => {
-
-    })
+    expect(wrapper).toMatchSnapshot()
+    // expect(wrapper.find(SearchEvent)).toHaveLength(1)
   })
 
   it('always renders search button', () => {
-
+    const wrapper = searchEvent()
+    expect(wrapper.find(SearchEvent).find('Search')).toHaveLength(1)
   })
 
   describe('when search button is clicked', () => {
-    beforeEach(() => {
-
-    })
-
-    it('renders cancel button', () => {
-
-    })
-
-    it('triggers a call to the api to fetch events based on the search term', () => {
-
+    it('it renders cancel button', () => {
+      const wrapper = searchEvent()
+      wrapper.find(SearchEvent).find('Search').simulate('click')
+      const newWrapper = searchEvent()
+      expect(newWrapper.find(SearchEvent).find('Cancel')).toHaveLength(1)
     })
   })
 
@@ -94,17 +99,6 @@ describe('SearchEvent', () => {
       target: { value: term }
     })
     expect(wrapper.find(TextField).prop('value')).toEqual(term)
-
-    const params = { persist: () => { }, target: { value: term } }
-    wrapper
-      .find(SearchEvent)
-      .at(0)
-      .props()
-      .onChange(params)
-
-    expect(onChange).toHaveBeenCalledWith(params)
   })
-
-
 
 })
