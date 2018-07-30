@@ -15,26 +15,14 @@ describe('SearchEvent', () => {
 
   const store = configureStore()
   let mountedSearchEvent
-  const onChangeMock = jest.fn()
-  const onChange = jest.fn(() => {
-    onChangeMock()
-  })
-
-  const onClickMock = jest.fn()
-  const onClick = jest.fn(() => {
-    onClickMock()
-  })
-  // const onClick = jest.fn()
-
 
   const searchEvent = () => {
     if (!mountedSearchEvent) {
       const Composer = ({
-        classes,
-        onChange
+        classes
       }) => (
           <Provider store={store}>
-            <ConnectedSearchEvent onChange={onChange} classes={classes} />
+            <ConnectedSearchEvent classes={classes} />
           </Provider>
         )
 
@@ -43,7 +31,7 @@ describe('SearchEvent', () => {
       }
 
       const Composition = withStyles(styles)(Composer)
-      mountedSearchEvent = mount(<Composition onChange={onChange} />)
+      mountedSearchEvent = mount(<Composition />)
     }
     return mountedSearchEvent
   }
@@ -55,39 +43,27 @@ describe('SearchEvent', () => {
   it('always renders SearchEvent', () => {
     const wrapper = searchEvent()
     expect(wrapper).toMatchSnapshot()
-    // expect(wrapper.find(SearchEvent)).toHaveLength(1)
-  })
-
-  it('always renders search button', () => {
-    const wrapper = searchEvent()
-    expect(wrapper.find(SearchEvent).find('Search')).toHaveLength(1)
+    expect(wrapper.find(SearchEvent)).toHaveLength(1)
   })
 
   describe('when search button is clicked', () => {
     it('it renders cancel button', () => {
       const wrapper = searchEvent()
       wrapper.find(SearchEvent).find('Search').simulate('click')
-      const newWrapper = searchEvent()
-      expect(newWrapper.find(SearchEvent).find('Cancel')).toHaveLength(1)
+      expect(wrapper.find(SearchEvent).find('Cancel')).toHaveLength(1)
     })
   })
 
   describe('when cancel button is clicked', () => {
-    beforeEach(() => {
-
-    })
-
     it('renders the search button', () => {
-
+      const wrapper = searchEvent()
+      wrapper.find(SearchEvent).find('Search').simulate('click')
+      wrapper.find(SearchEvent).find('Cancel').simulate('click')
+      expect(wrapper.find(SearchEvent).find('Search')).toHaveLength(1)
     })
-
-    it('triggers a call to the api to fetch all events', () => {
-
-    })
-
   })
 
-  it('should change search term', async () => {
+  it('should change search term input', async () => {
     const wrapper = searchEvent()
     const term = 'briia'
     const termInput = wrapper.find(TextField).find('input')
