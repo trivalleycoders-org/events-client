@@ -9,6 +9,7 @@ import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import MyEvents from 'ui/MyEvents'
 import Toasts from 'ui/Toasts'
+// import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
 class App extends React.Component {

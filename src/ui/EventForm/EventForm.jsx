@@ -102,11 +102,6 @@ class EventForm extends React.Component {
               : null
           } 
           <form onSubmit={handleSubmit(this.onSubmit)}>
-          
-            <PostalCodeRedux
-              fieldName='postalCode'
-              fieldLabel='Postal Code'
-            />
             <UploadImage
               fieldName='imageUrl'
               fieldLabel='Upload Image'
@@ -138,11 +133,18 @@ class EventForm extends React.Component {
               />
             </div>
             <div className={classes.venueArea}>
+              <Typography variant='title'>
+                Venu
+              </Typography>
               <TextFieldRedux
                 fullWidth
-                fieldLabel='Venue'
-                fieldName='venue'
+                fieldLabel='Venue Name'
+                fieldName='venueName'
               />
+              <PostalCodeRedux
+                fieldName='postalCode'
+                fieldLabel='Postal Code'
+            />
             </div>
             <div className={classes.venueArea}>
               <TextFieldRedux

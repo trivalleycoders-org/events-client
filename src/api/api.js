@@ -34,7 +34,7 @@ export default {
             body: JSON.strinify
           }
         )
-        // pink('api.postalCodes.read: data', data)
+        pink('api.postalCodes.read: data', data)
         return data
       }
       catch (e) {

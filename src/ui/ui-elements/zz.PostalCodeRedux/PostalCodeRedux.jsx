@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import Component from './Component'
+import PostalCodeComponent from './PostalCodeComponent'
 /* Dev */
 // eslint-disable-next-line
 import { green, blue } from 'logger'
@@ -10,7 +11,7 @@ class PostalCodeRedux extends React.Component {
     // green('PostalCodeRedux: props', props)
     const { onChange, ...rest } = props.input
     return (
-      <Component
+      <PostalCodeComponent
         onChange={onChange}
         { ...rest }
       />
