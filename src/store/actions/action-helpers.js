@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import { orange, red } from 'logger'
+import { Promise } from 'core-js';
 
 export const logError = (err, key) => {
 
@@ -44,7 +45,7 @@ export const createRequestThunk = ({ request, key, start = [], success = [], fai
       dispatch(actionCreator())
     })
     dispatch(markRequestPending(requestKey))
-    return Promise.resolve(request(...args))
+    return request(...args)
       .then((data) => {
         success.forEach((actionCreator) => {
           dispatch(actionCreator(data))

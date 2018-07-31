@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import SearchIcon from '@material-ui/icons/Search'
 import CancelIcon from '@material-ui/icons/Cancel'
@@ -36,10 +36,10 @@ export class SearchEvent extends Component {
       showSearchIcon: !prevState.showSearchIcon
     }))
     this.props.requestSearchEvents(this.state.searchText)
-   }
+  }
 
-   //clearSearch
-   clearSearchResults = () => {
+  //clearSearch
+  clearSearchResults = () => {
     this.setState((prevState, props) => ({
       searchText: ''
     }))
@@ -47,7 +47,7 @@ export class SearchEvent extends Component {
       showSearchIcon: !prevState.showSearchIcon
     }))
     this.props.requestReadEvents()
-   }
+  }
 
   render() {
     const { classes } = this.props
@@ -55,11 +55,11 @@ export class SearchEvent extends Component {
 
     return (
       <Fragment>
-        <TextField onChange={this.handleChange} value={this.state.searchText}/>
+        <TextField onChange={this.handleChange} value={this.state.searchText} />
         <IconButton aria-label='Add to favorites'>
           {showSearch
-            ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents}/>
-            : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults}/>
+            ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents} />
+            : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults} />
           }
         </IconButton>
       </Fragment>
