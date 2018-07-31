@@ -16,6 +16,11 @@ import { green, blue, red } from 'logger'
 const INPUT_NAME = 'postalCode'
 const REQUEST_LIMIT = 2
 
+const wrapperProps = {
+  width: '100%',
+
+}
+
 const renderMenu = (items, value) => {
   // green('** renderMenu')
   let ret = null
@@ -26,12 +31,12 @@ const renderMenu = (items, value) => {
         <MenuItem className="item">
           Enter a postal code
         </MenuItem>
-      )  
+      )
     } else if (valueLength > 0 && valueLength < REQUEST_LIMIT) {
       ret = (
         <MenuItem className="item">
           minimum of 2 characters to search
-        </MenuItem>  
+        </MenuItem>
       )
     } else {
       ret = (
@@ -43,7 +48,7 @@ const renderMenu = (items, value) => {
   } else {
     ret = items
   }
-  
+
   return (
     <Paper className="menu">
       {ret}
@@ -75,9 +80,11 @@ const renderInput = (props) => {
   const { ref, ...rest } = props
   return (
     <Input
+      fullWidth
       inputRef={ref}
       inputProps={{
-        placeholder: 'enter a postal code'
+        placeholder: 'enter a postal code',
+
         // label: props.label
       }}
       {...rest}
@@ -100,7 +107,7 @@ class AutosuggestRedux extends React.Component {
 
   requestSuggestions = async value => {
     // green('** requestSuggestions')
-    
+
     const { queryLength } = this.state
     const valueLength = value.length
     if (valueLength < queryLength) {
@@ -123,37 +130,39 @@ class AutosuggestRedux extends React.Component {
       blue('** get the data')
       await this.props.requestReadPostalCodes(value)
       this.setState({
-        value, 
-        suggestions: this.props.suggestions 
-      })  
-    } 
-    
-    
+        value,
+        suggestions: this.props.suggestions
+      })
+    }
+
+
   }
-  
+
   localOnChange = async (event, value) => {
     // green('** handleOnChange')
     this.setState({ value, suggestions: [] })
     this.debouncedRequestSuggestions(value)
-    
+
   }
 
   handleOnSelect = (value, suggestion) => {
     // green('** handleOnSelect')
     // green('value', value)
-    // green('state', state)
+    green('suggestion', suggestion)
     this.setState({ value, suggestions: [suggestion] })
-    this.props.onChange(suggestion._id)
+
+    this.props.onChange(suggestion.postalCode)
   }
 
   render() {
-    const { suggestions } = this.state
+    // const { suggestions,  } = this.state
+    const { classes } = this.props
     // green('render.suggestions', suggestions)
     return (
       <div>
         <Autocomplete
           getItemValue={(item) => item.searchString}
-          inputProps={{ id: INPUT_NAME }}
+          inputProps={{ id: INPUT_NAME, className: 'width: 100%' }}
           items={this.state.suggestions}
           isItemSelectable={(item) => !item.header}
           onChange={(event, value) => this.localOnChange(event, value)}
@@ -162,13 +171,15 @@ class AutosuggestRedux extends React.Component {
           renderMenu={(items, value) => renderMenu(items, value)}
           renderInput={(props) => renderInput(props)}
           value={this.state.value}
+          wrapperProps={ {style: wrapperProps} }
         />
       </div>
     )
   }
 }
 
-const styles = {}
+const styles = {
+}
 
 const mapStateToProps = (state) => {
   return {

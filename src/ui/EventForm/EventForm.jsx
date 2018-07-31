@@ -46,11 +46,9 @@ const shapeDataOut = (formValues) => {
   const freeTrue =  formValues.free
   const fv1 = freeTrue ? omit(['price'], fv0) : fv0
   green('shapeDataOut: fv1', fv1)
-  // const fv2 = fv1.tags.length === 0 ? omit(['tags'], formValues) : fv1
   const mergedData = mergeAll([
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    // {tags: formValues.tags},
     fv1
   ])
   green('shapeDataOut OUT:', mergedData)
@@ -84,10 +82,10 @@ class EventForm extends React.Component {
       return {free: !prevState.free}
     })
   }
-  
+
   render() {
     const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
-    
+
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -100,7 +98,7 @@ class EventForm extends React.Component {
                     This event is in the past
                   </Typography></div>
               : null
-          } 
+          }
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <UploadImage
               fieldName='imageUrl'
@@ -122,7 +120,7 @@ class EventForm extends React.Component {
                 fieldLabel='Date & Time'
                 fullWidth
                 required
-                
+
               />
             </div>
             <div className={classes.organizationArea}>
@@ -175,7 +173,7 @@ class EventForm extends React.Component {
                 fieldName='category'
                 fieldLabel='Category'
                 fullWidth
-              > 
+              >
                 <MenuItem value='select' disabled>Select a category</MenuItem>
                 <MenuItem value='quadcopter'>Quadcopter</MenuItem>
                 <MenuItem value='octocopter'>Octocopter</MenuItem>
@@ -208,14 +206,14 @@ class EventForm extends React.Component {
 }
 
 const shapeDataIn = (data) => {
-  
+
   const r1 = omit(['startDateTime', 'endDateTime'], data)
   const r2 = mergeAll ([
     r1,
     zipObj(
         ['combinedDateTime'],
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
-      ), 
+      ),
   ])
   // green('shapeDataIn: r2', r2)
   return r2

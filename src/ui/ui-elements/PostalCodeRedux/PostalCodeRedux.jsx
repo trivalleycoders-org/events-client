@@ -5,6 +5,11 @@ import Component from './Component'
 // eslint-disable-next-line
 import { green, blue } from 'logger'
 
+const styles = {
+  field: {
+    width: '100%',
+  }
+}
 class PostalCodeRedux extends React.Component {
   picker = (props) => {
     // green('PostalCodeRedux: props', props)
@@ -20,7 +25,7 @@ class PostalCodeRedux extends React.Component {
   render() {
     const { fieldLabel, fieldName } = this.props
     return (
-      <Field
+      <Field style={styles.field}
         component={this.picker}
         name={fieldName}
         label={fieldLabel}

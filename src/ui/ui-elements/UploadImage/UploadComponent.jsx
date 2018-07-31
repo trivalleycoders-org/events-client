@@ -4,6 +4,8 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { Paper, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import AddAPhotoAlternate from '@material-ui/icons/AddAPhotoAlternate'
+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
 
 /* User */
 import * as imageActions from 'store/actions/upload-actions'
@@ -12,19 +14,10 @@ import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 /* Dev */
 // import { green } from 'logger'
 
-const styles = theme => {
-  return ({
-    fileInput: {
-      color: theme.palette.text.primary
-    },
-  }) 
-  
-}
-
 class UploadImageComponent extends React.Component {
   constructor(props) {
     super(props)
-    
+
     let imageUrl = ''
     const initial = this.props.initial
     const uploadedImageUrl = this.props.uploadedImageUrl
@@ -75,6 +68,19 @@ class UploadImageComponent extends React.Component {
       </Paper>
     )
   }
+}
+
+const styles = theme => {
+  return ({
+    fileInput: {
+      color: theme.palette.text.primary,
+    },
+    root: {
+      border: '1px solid green',
+
+    }
+  })
+
 }
 
 const mapStateToProps = (state) => {
