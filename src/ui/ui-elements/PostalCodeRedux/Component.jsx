@@ -102,7 +102,7 @@ class AutosuggestRedux extends React.Component {
       allSuggestions: [],
       queryLength: 0,
     }
-    this.debouncedRequestSuggestions = debounce(this.requestSuggestions, 1000)
+    this.debouncedRequestSuggestions = debounce(this.requestSuggestions, 250)
   }
 
   requestSuggestions = async value => {

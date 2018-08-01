@@ -4,8 +4,7 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { Paper, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import AddAPhotoAlternate from '@material-ui/icons/AddAPhotoAlternate'
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
+import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 
 /* User */
 import * as imageActions from 'store/actions/upload-actions'
@@ -47,12 +46,24 @@ class UploadImageComponent extends React.Component {
     })
     this.props.onChange(this.props.uploadedImageUrl)
   }
+  // <AddPhotoAlternate className={classes.addPhotoAlternate} />
+  renderImage = (classes) => {
+    return this.state.imageUrl
+      ?  <ResponsiveImage src={this.state.imageUrl} alt='uploaded' />
+      :  <div style={{ border: '1px solid red' }}>
+
+         </div>
+
+  }
+
 
   render() {
     const { classes } = this.props
     return (
       <Paper className={classes.root} elevation={1}>
-        <ResponsiveImage src={this.state.imageUrl} alt='uploaded' />
+        <Paper className={classes.root}>
+          {this.renderImage(classes)}
+        </Paper>
         <Typography>
           Upload an image
         </Typography>
@@ -72,6 +83,17 @@ class UploadImageComponent extends React.Component {
 
 const styles = theme => {
   return ({
+    addPhotoAlternate: {
+      color: 'white',
+    },
+    addPhotoWrapper: {
+      margin: '20px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignContent: 'center',
+      minHeight: 100,
+
+    },
     fileInput: {
       color: theme.palette.text.primary,
     },
@@ -79,6 +101,7 @@ const styles = theme => {
       border: '1px solid green',
 
     }
+
   })
 
 }
