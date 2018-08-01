@@ -8,9 +8,12 @@ import { orange } from 'logger'
 // Create
 export const keyCreateEvent = 'actionKeyCreateEvent'
 export const requestKeyCreateEvent = 'requestKeyCreateEvent'
+export const keySearchEvent = 'actionKeySearchEvent'
+export const requestKeySearchEvents = 'requestKeySearchEvents'
+export const keySetEvents = 'actionKeySetEvents'
 
 
-const createNewEvent = (event) => {
+export const createNewEvent = (event) => {
   // orange('action.createNewEvent: event', event)
   return ({
     type: keyCreateEvent,
@@ -21,8 +24,8 @@ const createNewEvent = (event) => {
 export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
   key: requestKeyCreateEvent,
-  success: [ createNewEvent ],
-  failure: [ () => setToast('Couldn\'t add note', 'warn') ],
+  success: [createNewEvent],
+  failure: [() => setToast('Couldn\'t add note', 'warn')],
 })
 
 // Read
@@ -40,8 +43,8 @@ export const requestKeyReadEvents = 'requestKeyReadEvents'
 export const requestReadEvents = createRequestThunk({
   request: api.events.read,
   key: requestKeyReadEvents,
-  success: [ readEvents ],
-  failure: [ error => logError(error, requestKeyReadEvents) ]
+  success: [readEvents],
+  failure: [error => logError(error, requestKeyReadEvents)]
 })
 
 // Patch
@@ -60,8 +63,8 @@ export const requestKeyPatchOneEvent = 'requestKeyPatchOneEvent'
 export const requestPatchOneEvent = createRequestThunk({
   request: api.events.patch,
   key: requestKeyPatchOneEvent,
-  success: [ patchOneEvent ],
-  failure: [ error => logError(error, requestKeyPatchOneEvent) ]
+  success: [patchOneEvent],
+  failure: [error => logError(error, requestKeyPatchOneEvent)]
 })
 
 // Delete
@@ -104,3 +107,18 @@ export const unsetEdit_id = () => {
     type: keyUnsetEdit_id,
   })
 }
+
+export const setEvents = (events) => {
+  // orange('readEvents', events)
+  return ({
+    type: keySetEvents,
+    payload: events, // events is already an object?
+  })
+}
+
+export const requestSearchEvents = createRequestThunk({
+  request: api.events.search,
+  key: requestKeySearchEvents,
+  success: [setEvents],
+  failure: [error => logError(error, requestKeySearchEvents)]
+})

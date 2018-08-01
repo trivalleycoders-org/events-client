@@ -57,7 +57,7 @@ export default {
       catch (e) {
         red('api.events.create', e)
       }
-      
+
     },
     async read() {
       try {
@@ -105,6 +105,16 @@ export default {
       catch (e) {
         red('api.events.delete', e)
       }
+    },
+    async search(event) {
+      const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
+      const data = await fetchJson(
+        searchUrl,
+        {
+          method: 'GET',
+        }
+      )
+      return data
     },
   },
   images: {

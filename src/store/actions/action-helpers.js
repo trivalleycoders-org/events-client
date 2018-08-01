@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import { orange, red } from 'logger'
+import { Promise } from 'core-js';
 
 export const logError = (err, key) => {
 

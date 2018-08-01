@@ -1,0 +1,5 @@
+export const keyCreateEvent = 'actionKeyCreateEvent'
+export const requestKeyCreateEvent = 'requestKeyCreateEvent'
+export const keySearchEvent = 'actionKeySearchEvent'
+export const requestKeySearchEvents = 'requestKeySearchEvents'
+export const keySetEvents = 'actionKeySetEvents'
