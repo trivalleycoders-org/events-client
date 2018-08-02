@@ -11,7 +11,8 @@ import * as imageActions from 'store/actions/upload-actions'
 import * as uploadSelectors from 'store/selectors/upload-selectors'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 /* Dev */
-// import { green } from 'logger'
+// eslint-disable-next-line
+import { green } from 'logger'
 
 class UploadImageComponent extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class UploadImageComponent extends React.Component {
     })
     this.props.onChange(this.props.uploadedImageUrl)
   }
+
   // <AddPhotoAlternate className={classes.addPhotoAlternate} />
   renderImage = (classes) => {
     return this.state.imageUrl

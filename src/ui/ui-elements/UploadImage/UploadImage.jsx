@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import UploadComponent from './UploadComponent'
+import Component from './Component'
 import { Field } from 'redux-form'
 // import { green } from 'logger'
 
 class UploadImage extends React.Component {
-  
+
   picker = (props) => {
     const { onChange, ...rest } = props.input
     return (
-      <UploadComponent
+      <Component
         {...rest}
         onChange={onChange}
         initial={props.meta.initial}
