@@ -34,24 +34,8 @@ const rejectStyle = {
 }
 
 const styles = theme => ({
-  wrapper: {
-    margin: 0,
-    minHeight: 500,
-    // border: '1px solid red'
-  },
-  p1: {
-    // border: '1px solid green',
-    padding: 10,
-
-  },
-  p2: {
-    maxWidth: '100%',
-    height: 'auto',
-    // border: '1px solid blue',
-    // minHeight: 200,
-    // display: 'flex',
-    alignItems: 'stretch',
-    justifyContent: 'stretch'
+  card: {
+    maxWidth: 345,
   },
   dropZoneMessage: {
     color: 'lightgray',
@@ -69,10 +53,6 @@ const styles = theme => ({
   dropZoneControls: {
     flexBasis: '30%',
   },
-  imageDiv: {
-    position: 'relative',
-    zIndex: '0',
-  },
   fab: {
     position: 'absolute',
     bottom: theme.spacing.unit * 2,
@@ -80,23 +60,51 @@ const styles = theme => ({
     zIndex: '1',
 
   },
-  card: {
-    maxWidth: 345,
+  imageDiv: {
+    position: 'relative',
+    zIndex: '0',
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  p1: {
+    // border: '1px solid green',
+    padding: 10,
+
+  },
+  p2: {
+    maxWidth: '100%',
+    height: 'auto',
+    // border: '1px solid blue',
+    alignItems: 'stretch',
+    justifyContent: 'stretch'
+  },
+  wrapper: {
+    margin: 0,
+    // border: '1px solid red'
   },
 })
 
 class UploadImage extends React.Component {
   constructor(props) {
     super(props)
+    const initial = this.props.initial
+    const uploadedImageUrl = this.props.uploadedImageUrl
+    let imageUrl = ''
+    if (typeof initial !== 'undefined') {
+      imageUrl = initial
+    } else if (!uploadedImageUrl === null) {
+      imageUrl = uploadedImageUrl
+    } else {
+      imageUrl = ''
+    }
+    green('constructor: initial', initial)
     this.state = {
       accepted: [],
       rejected: [],
       // previewBlob: '',
-      imageUrl: '',
+      imageUrl: imageUrl,
     }
   }
   // onDropAccepted = (files) => {
@@ -123,7 +131,6 @@ class UploadImage extends React.Component {
       accepted,
       rejected,
     })
-    // const fileName = accepted[0].name
     let formData = new FormData()
     formData.append('upload', accepted[0])
     await this.props.requestUploadOneImage(formData)
@@ -135,7 +142,6 @@ class UploadImage extends React.Component {
   }
   render() {
     const { classes } = this.props
-    // console.log('file', this.state.accepted[0])
     green('render.state', this.state)
 
     return (
@@ -168,7 +174,6 @@ class UploadImage extends React.Component {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
