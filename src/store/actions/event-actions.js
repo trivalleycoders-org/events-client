@@ -32,9 +32,11 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 
 const readEvents = (events) => {
+  orange('readEvents', events.result)
+  const data = events.result
   return ({
     type: keyReadEvents,
-    payload: events, // events is already an object?
+    payload: { data },
   })
 }
 
@@ -51,7 +53,7 @@ export const requestReadEvents = createRequestThunk({
 export const keyPatchOneEvent = 'keyPatchOneEvent'
 
 const patchOneEvent = (event) => {
-  orange('event-actions.patchOneEvent: event', event)
+  // orange('event-actions.patchOneEvent: event', event)
   return ({
     type: keyPatchOneEvent,
     payload: { event },
@@ -72,7 +74,7 @@ export const requestPatchOneEvent = createRequestThunk({
 export const keyDeleteOneEvent = 'keyDeletehOneEvent'
 
 const deleteOneEvent = (event) => {
-  orange('event-actions.deleteOneEvent: event', event)
+  // orange('event-actions.deleteOneEvent: event', event)
   return ({
     type: keyDeleteOneEvent,
     payload: event,

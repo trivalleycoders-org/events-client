@@ -36,6 +36,7 @@ const deleteEvent = (state, _id) => {
 }
 
 export const events = (state = [], { type, payload }) => {
+  blue('events reducer.payload', payload)
   switch (type) {
     case keyCreateEvent:
       // blue('keyCreateEvent', payload.event)
@@ -43,7 +44,7 @@ export const events = (state = [], { type, payload }) => {
       return append(payload.event, state)
     case keySetEvents:
     case keyReadEvents:
-      return payload.events
+      return payload.data
     case keyPatchOneEvent:
       return updateEvent(state, payload.event)
     case keyDeleteOneEvent:
