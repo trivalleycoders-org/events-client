@@ -151,7 +151,7 @@ class AutosuggestRedux extends React.Component {
     green('suggestion', suggestion)
     this.setState({ value, suggestions: [suggestion] })
 
-    this.props.onChange(suggestion.postalCode)
+    this.props.onChange(suggestion)
   }
 
   render() {
