@@ -2,6 +2,7 @@ import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
 import { setToast } from './toast-actions'
 /* Dev */
+// eslint-disable-next-line
 import { orange } from 'logger'
 
 
@@ -32,8 +33,8 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 
 const readEvents = (events) => {
-  orange('readEvents', events.result)
-  const data = events.result
+  // orange('readEvents', events.data)
+  const data = events.data
   return ({
     type: keyReadEvents,
     payload: { data },

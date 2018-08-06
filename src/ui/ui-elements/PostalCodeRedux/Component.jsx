@@ -22,7 +22,6 @@ const wrapperProps = {
 }
 
 const renderMenu = (items, value) => {
-  // green('** renderMenu')
   let ret = null
   const valueLength = value.length
   if (items.length === 0) {
@@ -57,7 +56,6 @@ const renderMenu = (items, value) => {
 }
 
 const renderItem = (item, isHighlighted) => {
-  // green('** renderItem')
   return (
     item.header
     ? <MenuItem
@@ -76,7 +74,6 @@ const renderItem = (item, isHighlighted) => {
 }
 
 const renderInput = (props) => {
-  // green('** renderInput')
   const { ref, ...rest } = props
   return (
     <Input
@@ -84,8 +81,6 @@ const renderInput = (props) => {
       inputRef={ref}
       inputProps={{
         placeholder: 'enter a postal code',
-
-        // label: props.label
       }}
       {...rest}
     />
@@ -106,8 +101,6 @@ class AutosuggestRedux extends React.Component {
   }
 
   requestSuggestions = async value => {
-    // green('** requestSuggestions')
-
     const { queryLength } = this.state
     const valueLength = value.length
     if (valueLength < queryLength) {
@@ -139,25 +132,18 @@ class AutosuggestRedux extends React.Component {
   }
 
   localOnChange = async (event, value) => {
-    // green('** handleOnChange')
     this.setState({ value, suggestions: [] })
     this.debouncedRequestSuggestions(value)
 
   }
 
   handleOnSelect = (value, suggestion) => {
-    // green('** handleOnSelect')
-    // green('value', value)
     green('suggestion', suggestion)
     this.setState({ value, suggestions: [suggestion] })
-
     this.props.onChange(suggestion)
   }
 
   render() {
-    // const { suggestions,  } = this.state
-    const { classes } = this.props
-    // green('render.suggestions', suggestions)
     return (
       <div>
         <Autocomplete
@@ -178,8 +164,7 @@ class AutosuggestRedux extends React.Component {
   }
 }
 
-const styles = {
-}
+const styles = {}
 
 const mapStateToProps = (state) => {
   return {

@@ -57,10 +57,10 @@ class TableToolbar extends React.Component {
   state = {
     editClicked: false,
   }
-  
+
   handleEditClick = (event) => {
     const { selected } = this.props
-    
+
     if (selected.length === 1) {
       this.props.setEdit_id(selected[0])
       this.setState({
@@ -78,12 +78,12 @@ class TableToolbar extends React.Component {
     this.props.requestDeleteOneEvent(_id)
     this.props.clearSelected()
   }
-  
+
   render() {
     const { selected, classes } = this.props
     const numSelected = selected.length
     const { editClicked, deleteClicked } = this.state
-    
+
     if (numSelected > 0 && editClicked) {
       return <Redirect to={'/new-event'}/>
     }
@@ -131,7 +131,7 @@ class TableToolbar extends React.Component {
       </Toolbar>
     )
   }
-  
+
 }
 
 TableToolbar.propTypes = {

@@ -67,6 +67,7 @@ export default {
             method: 'GET',
           }
         )
+        // pink('api.events.read: data', data)
         return data
       }
       catch (e) {

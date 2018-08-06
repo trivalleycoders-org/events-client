@@ -36,7 +36,7 @@ const deleteEvent = (state, _id) => {
 }
 
 export const events = (state = [], { type, payload }) => {
-  blue('events reducer.payload', payload)
+  // blue('events reducer.payload', payload)
   switch (type) {
     case keyCreateEvent:
       // blue('keyCreateEvent', payload.event)
@@ -48,7 +48,7 @@ export const events = (state = [], { type, payload }) => {
     case keyPatchOneEvent:
       return updateEvent(state, payload.event)
     case keyDeleteOneEvent:
-      blue('reducers.keyDeletehOneEvent: payload', payload)
+      // blue('reducers.keyDeletehOneEvent: payload', payload)
       // blue('reducers keyDeletehOneEvent state', state)
       return deleteEvent(state, payload.event._id)
     default:

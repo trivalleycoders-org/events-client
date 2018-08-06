@@ -1,6 +1,6 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-import { setToast } from './toast-actions'
+// import { setToast } from './toast-actions'
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'
@@ -13,7 +13,7 @@ const readCities = (cities) => {
   orange('** readCities')
   return ({
     type: keyReadCities,
-    payload: { cities }, 
+    payload: { cities },
   })
 }
 
@@ -32,7 +32,7 @@ const readPostalCodes = (postalCodes) => {
   // orange('** readPostalCodes')
   return ({
     type: keyReadPostalCodes,
-    payload: { postalCodes }, 
+    payload: { postalCodes },
   })
 }
 export const requestKeyReadPostalCodes = 'requestKeyReadPostalCodes'

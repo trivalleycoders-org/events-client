@@ -140,7 +140,7 @@ const EventGrid = (props) => {
   return (
     <Grid container spacing={Number(8)} className={classes.grid1111} >
           {events.map(c => {
-            green('c', c)
+            // green('c', c)
             const location = `${c.postalCode.cityName}, ${c.postalCode.stateCode} ${c.postalCode.postalCode}`
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
