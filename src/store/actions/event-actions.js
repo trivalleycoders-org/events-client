@@ -2,6 +2,7 @@ import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
 import { setToast } from './toast-actions'
 /* Dev */
+// eslint-disable-next-line
 import { orange } from 'logger'
 
 
@@ -32,9 +33,11 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 
 const readEvents = (events) => {
+  // orange('readEvents', events.data)
+  const data = events.data
   return ({
     type: keyReadEvents,
-    payload: events, // events is already an object?
+    payload: { data },
   })
 }
 
@@ -51,7 +54,7 @@ export const requestReadEvents = createRequestThunk({
 export const keyPatchOneEvent = 'keyPatchOneEvent'
 
 const patchOneEvent = (event) => {
-  orange('event-actions.patchOneEvent: event', event)
+  // orange('event-actions.patchOneEvent: event', event)
   return ({
     type: keyPatchOneEvent,
     payload: { event },
@@ -65,6 +68,27 @@ export const requestPatchOneEvent = createRequestThunk({
   key: requestKeyPatchOneEvent,
   success: [patchOneEvent],
   failure: [error => logError(error, requestKeyPatchOneEvent)]
+})
+
+// Delete
+
+export const keyDeleteOneEvent = 'keyDeletehOneEvent'
+
+const deleteOneEvent = (event) => {
+  // orange('event-actions.deleteOneEvent: event', event)
+  return ({
+    type: keyDeleteOneEvent,
+    payload: event,
+  })
+}
+
+export const requestKeyDeleteOneEvent = 'requestKeyDeleteOneEvent'
+
+export const requestDeleteOneEvent = createRequestThunk({
+  request: api.events.delete,
+  key: requestKeyDeleteOneEvent,
+  success: [ deleteOneEvent ],
+  failure: [ error => logError(error, requestKeyDeleteOneEvent) ]
 })
 
 // EventsUi

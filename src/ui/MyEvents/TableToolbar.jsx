@@ -21,7 +21,8 @@ import { lighten } from '@material-ui/core/styles/colorManipulator'
 // import { setEdit_id } from 'store/actions/event-actions'
 import * as eventActions from 'store/actions/event-actions'
 /* Dev */
-// import { green } from 'logger'
+// eslint-disable-next-line
+import { green } from 'logger'
 
 const styles = theme => ({
   actions: {
@@ -56,24 +57,33 @@ class TableToolbar extends React.Component {
   state = {
     editClicked: false,
   }
-  
+
   handleEditClick = (event) => {
     const { selected } = this.props
-    
+
     if (selected.length === 1) {
       this.props.setEdit_id(selected[0])
       this.setState({
         editClicked: true,
       })
     }
-    
   }
-  
+
+  handleDeleteClick = (event) => {
+    const { selected } = this.props
+    // green('TableToolbar.handleDeleteClick: selected', selected[0])
+    const _id = selected[0]
+    // green('TableToolbar.handleDeleteClick', `_id: ${_id}`)
+    // are you sure?
+    this.props.requestDeleteOneEvent(_id)
+    this.props.clearSelected()
+  }
+
   render() {
     const { selected, classes } = this.props
     const numSelected = selected.length
-    const { editClicked } = this.state
-    
+    const { editClicked, deleteClicked } = this.state
+
     if (numSelected > 0 && editClicked) {
       return <Redirect to={'/new-event'}/>
     }
@@ -105,7 +115,7 @@ class TableToolbar extends React.Component {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Delete">
-                <IconButton aria-label="Delete">
+                <IconButton aria-label="Delete" disabled={numSelected > 1} onClick={e => this.handleDeleteClick(e)}>
                   <DeleteIcon />
                 </IconButton>
               </Tooltip>
@@ -121,7 +131,7 @@ class TableToolbar extends React.Component {
       </Toolbar>
     )
   }
-  
+
 }
 
 TableToolbar.propTypes = {

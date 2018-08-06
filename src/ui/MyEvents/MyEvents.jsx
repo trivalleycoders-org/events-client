@@ -13,12 +13,15 @@ import {
   Checkbox,
 } from '@material-ui/core'
 import format from 'date-fns/format'
+import { append, without, contains } from 'ramda'
 /* User */
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
-import * as eventsSelectors from 'store/selectors/events-selectors'
+import * as eventsSelectors from '../../store/selectors/events-selectors'
 /* Dev */
-// import { green } from 'logger'
+// eslint-disable-next-line
+import { green } from 'logger'
+
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -74,24 +77,21 @@ class MyEvents extends React.Component {
 
   handleClick = (event, _id) => {
     const { selected } = this.state
-    const selectedIndex = selected.indexOf(_id)
     let newSelected = []
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, _id)
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1))
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1))
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      )
+    if (contains(_id, selected)) {
+      newSelected = without(_id, selected)
+    } else {
+      newSelected = append(_id, selected)
     }
     this.setState({
       selected: newSelected,
     })
-    
+  }
+
+  clearSelected = () => {
+    this.setState({
+      selected: [],
+    })
   }
 
   handleChangePage = (event, page) => {
@@ -115,6 +115,7 @@ class MyEvents extends React.Component {
       <Paper className={classes.root}>
         <TableToolbar 
           selected={selected}
+          clearSelected={this.clearSelected}
         />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">

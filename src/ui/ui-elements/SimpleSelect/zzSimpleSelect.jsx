@@ -1,21 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Component from './Component'
 import { Field } from 'redux-form'
-// import { green } from 'logger'
+import PostalCodeComponent from './PostalCodeComponent'
+/* Dev */
+// eslint-disable-next-line
+import { green, blue } from 'logger'
 
-class UploadImage extends React.Component {
-
+class PostalCodeRedux extends React.Component {
   picker = (props) => {
+    // green('PostalCodeRedux: props', props)
     const { onChange, ...rest } = props.input
     return (
-      <Component
-        {...rest}
+      <PostalCodeComponent
         onChange={onChange}
-        initial={props.meta.initial}
+        { ...rest }
       />
     )
   }
+
   render() {
     const { fieldLabel, fieldName } = this.props
     return (
@@ -28,9 +30,4 @@ class UploadImage extends React.Component {
   }
 }
 
-export default UploadImage
-
-UploadImage.propTypes = {
-  fieldLabel: PropTypes.string.isRequired,
-  fieldName: PropTypes.string.isRequired,
-}
+export default PostalCodeRedux

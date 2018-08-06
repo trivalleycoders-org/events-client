@@ -1,6 +1,7 @@
 import { append, insert, merge, remove } from 'ramda'
 import {
   keyCreateEvent,
+  keyDeleteOneEvent,
   keyReadEvents,
   keyPatchOneEvent,
   keySetEvents,
@@ -11,10 +12,31 @@ import {
 /* Dev */
 // eslint-disable-next-line
 import { blue } from 'logger'
+import { green } from '../../logger/index'
 
+const indexOfObjectInArray = (arr, _id) => {
+  return arr.findIndex(i => i._id === _id)
+}
+
+
+const updateEvent = (state, newEvent) => {
+  const idx = indexOfObjectInArray(state, newEvent._id)
+  const oldEvent = state[idx]
+  const updatedEvent = merge(oldEvent, newEvent)
+  const stateRemoved = remove(idx, 1, state)
+  const newState = insert(idx, updatedEvent, stateRemoved)
+  return newState
+}
+
+const deleteEvent = (state, _id) => {
+  const idx = indexOfObjectInArray(state, _id)
+  const newState = remove(idx, 1, state)
+  green('events.deleteEvent: newState', newState)
+  return newState
+}
 
 export const events = (state = [], { type, payload }) => {
-
+  // blue('events reducer.payload', payload)
   switch (type) {
     case keyCreateEvent:
       // blue('keyCreateEvent', payload.event)
@@ -22,16 +44,13 @@ export const events = (state = [], { type, payload }) => {
       return append(payload.event, state)
     case keySetEvents:
     case keyReadEvents:
-      return payload.events
+      return payload.data
     case keyPatchOneEvent:
-      const oldState = state
-      const newEvent = payload.event
-      const idx = oldState.findIndex(e => e._id === newEvent._id)
-      const oldEvent = state[idx]
-      const updatedEvent = merge(oldEvent, newEvent)
-      const stateRemoved = remove(idx, 1, oldState)
-      const newState = insert(idx, updatedEvent, stateRemoved)
-      return newState
+      return updateEvent(state, payload.event)
+    case keyDeleteOneEvent:
+      // blue('reducers.keyDeletehOneEvent: payload', payload)
+      // blue('reducers keyDeletehOneEvent state', state)
+      return deleteEvent(state, payload.event._id)
     default:
       return state
   }

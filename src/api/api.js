@@ -1,10 +1,50 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
+
+/* Dev */
+// eslint-disable-next-line
 import { pink } from 'logger'
 
 export default {
+  cities: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/cities/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        pink('api.cities.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.cities.read', e)
+      }
+    }
+  },
+  postalCodes: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/postal-codes/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        pink('api.postalCodes.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.postalCodes.read', e)
+      }
+    }
+  },
   events: {
     async create(event) {
+      pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
           '/events',
@@ -18,7 +58,7 @@ export default {
       catch (e) {
         red('api.events.create', e)
       }
-      
+
     },
     async read() {
       try {
@@ -28,6 +68,7 @@ export default {
             method: 'GET',
           }
         )
+        // pink('api.events.read: data', data)
         return data
       }
       catch (e) {
@@ -51,7 +92,21 @@ export default {
       catch (e) {
         red('api.events.patch', e)
       }
-      
+    },
+    async delete(id) {
+      pink('api.delete: id', id)
+      try {
+        const data = await fetchJson(
+          `/events/${id}`,
+          {
+            method: 'DELETE'
+          }
+        )
+        return data
+      }
+      catch (e) {
+        red('api.events.delete', e)
+      }
     },
     async search(event) {
       const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
