@@ -44,6 +44,7 @@ export default {
   },
   events: {
     async create(event) {
+      pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
           '/events',

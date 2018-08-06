@@ -32,24 +32,74 @@ import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
 import ShowValues from 'ui/ui-elements/ShowValues'
 // eslint-disable-next-line
 import { green } from 'logger'
+import { yellow } from '../../logger/index';
 
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
+/* shapeOut
+    - for non-required fields, empty fields should not be written to db
+    - includes tags, free||price
+*/
+/* EG with price
+{
+  "title": "e",
+  "combinedDateTime": {
+    "startDate": "2018-08-06T18:40:19.162Z",
+    "endDate": "2018-08-06T18:40:19.189Z"
+  },
+  "organization": "o",
+  "venueName": "v",
+  "postalCode": {
+    "_id": "5b5f6f52222be42bb919c008",
+    "postalCode": "94582",
+    "searchString": "94582 San Ramon California"
+  },
+  "linkToUrl": "l",
+  "price": "01",
+  "category": "quadcopter",
+  "tags": [
+    "one"
+  ]
+}
+*/
+
+/* EG with free
+{
+  "title": "e",
+  "combinedDateTime": {
+    "startDate": "2018-08-06T18:45:09.673Z",
+    "endDate": "2018-08-06T18:45:09.703Z"
+  },
+  "organization": "o",
+  "venueName": "v",
+  "postalCode": {
+    "_id": "5b5f6f52222be42bb919c008",
+    "postalCode": "94582",
+    "searchString": "94582 San Ramon California"
+  },
+  "linkToUrl": "l",
+  "free": true,
+  "category": "quadcopter",
+  "tags": [
+    "one"
+  ]
+}
+*/
 const shapeDataOut = (formValues) => {
-  // for non-required fields, empty fields should not be written to db
-  // includes tags, free||price
-  // green('shapeDataOut IN:', formValues)
+  yellow('formValues', formValues)
+  // dates
   const dates = pick(['combinedDateTime'], formValues)
-  const fv0 = omit(['combinedDateTime'], formValues)
-  // If free=true, remove field 'price' if present
-  const freeTrue =  formValues.free
-  const fv1 = freeTrue ? omit(['price'], fv0) : fv0
-  green('shapeDataOut: fv1', fv1)
+  // postalCode
+  const postalCode_id = formValues.postalCode._id
+  // remove props not needed
+  const formValues0 = omit(['combinedDateTime', 'postalCode'], formValues)
+  // merge it
   const mergedData = mergeAll([
+    formValues0,
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    fv1
+    {postalCode_id: postalCode_id},
   ])
   green('shapeDataOut OUT:', mergedData)
   return mergedData
