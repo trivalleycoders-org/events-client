@@ -7,15 +7,28 @@ describe('Event Form', () => {
 
   })
 
-  it('should render Event Form correctly', () => {
+  it('should render correctly', () => {
 
   })
 
-  it('should render all the children correctly', () => {
+  it('should not allow the start date to be in the past', () => {
+
+  })
+
+  it('should not allow the end date to be before the start date', () => {
+
+  })
+
+  it('should not render price when Free is checked', () => {
+
+  })
+
+  it('should render price when Free is unchecked', () => {
 
   })
 
   describe('when the submit button is clicked', () => {
+
     it('the form should submit if all the required fields are input', () => {
 
     })
