@@ -27,12 +27,12 @@ import validate from './validate'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
+import { shapeCheck } from './shapeCheck'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
 // eslint-disable-next-line
 import { green } from 'logger'
-import { yellow } from '../../logger/index';
 
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
@@ -87,7 +87,6 @@ const CREATE_MODE = 'create-mode'
 }
 */
 const shapeDataOut = (formValues) => {
-  yellow('formValues', formValues)
   // dates
   const dates = pick(['combinedDateTime'], formValues)
   // postalCode
@@ -113,6 +112,7 @@ class EventForm extends React.Component {
   }
 
   onSubmit = (values) => {
+    // shapeCheck(values)
     const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
     const reshapedData = shapeDataOut(values)
     this.setState({
@@ -300,7 +300,7 @@ export default compose(
   connect(mapStateToProps, eventActions),
   reduxForm({
     form: 'NewEvent',
-    validate,
+    // validate,
   })
 )(EventForm)
 
