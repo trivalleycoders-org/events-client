@@ -1,4 +1,4 @@
-import { 
+import {
   keyReadCities,
   keyReadPostalCodes
 } from '../actions/location-actions'
@@ -7,6 +7,8 @@ import {
 // eslint-disable-next-line
 import { blue } from 'logger'
 
+/* Cities
+    - not in use but may be in future
 export const cities = (state = [], { type, payload }) => {
   switch (type) {
     case keyReadCities:
@@ -17,6 +19,7 @@ export const cities = (state = [], { type, payload }) => {
       return state
   }
 }
+*/
 
 export const postalCodes = (state = [], { type, payload }) => {
   switch (type) {
@@ -29,4 +32,4 @@ export const postalCodes = (state = [], { type, payload }) => {
   }
 }
 
-export default { cities, postalCodes }
+export default { /*cities,*/ postalCodes }

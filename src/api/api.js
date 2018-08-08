@@ -6,6 +6,8 @@ import { red } from 'logger'
 import { pink } from 'logger'
 
 export default {
+  /* Cities
+    - not in use but may be in future
   cities: {
     async read(searchString) {
       try {
@@ -24,6 +26,7 @@ export default {
       }
     }
   },
+  */
   postalCodes: {
     async read(searchString) {
       try {
@@ -35,7 +38,7 @@ export default {
           }
         )
         // pink('api.postalCodes.read: data', data)
-        return data
+        return data.data
       }
       catch (e) {
         red('api.postalCodes.read', e)

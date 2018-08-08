@@ -6,6 +6,8 @@ import api from 'api'
 import { orange } from 'logger'
 
 
+/* Cities
+    - not in use but may be in future
 // Read Cities
 export const keyReadCities = 'actionKeyReadCities'
 
@@ -25,6 +27,7 @@ export const requestReadCities = createRequestThunk({
   success: [ readCities ],
   failure: [ error => logError(error, requestKeyReadCities) ]
 })
+*/
 
 // Read postalCode
 export const keyReadPostalCodes = 'actionKeyReadPostalCodes'
