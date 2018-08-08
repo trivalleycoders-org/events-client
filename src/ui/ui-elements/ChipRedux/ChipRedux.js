@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import Chips from './Chips'
+import ChipsComponent from './ChipsComponent'
 
 /* Dev */
 // eslint-disable-next-line
@@ -14,7 +14,7 @@ class ChipRedux extends React.Component {
     const { initial } = props.meta
     const { label } = props
     return (
-      <Chips
+      <ChipsComponent
         {...rest}
         onChange={onChange}
         initial={initial}

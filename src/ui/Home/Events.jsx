@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { 
+import {
   Typography,
 } from '@material-ui/core'
 
@@ -23,7 +23,7 @@ const styles = theme => ({
   },
 })
 
-class EventGrid extends React.Component {
+class Events extends React.Component {
   state = {
     spacing: '16'
   }
@@ -54,7 +54,7 @@ class EventGrid extends React.Component {
   }
 }
 
-EventGrid.propTypes = {
+Events.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
@@ -68,4 +68,4 @@ const mapStateToProps = (state) => {
 export default compose(
   withStyles(styles),
   connect(mapStateToProps)
-)(EventGrid)
+)(Events)

@@ -1,10 +1,50 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
+
+/* Dev */
+// eslint-disable-next-line
 import { pink } from 'logger'
 
 export default {
+  cities: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/cities/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        // pink('api.cities.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.cities.read', e)
+      }
+    }
+  },
+  postalCodes: {
+    async read(searchString) {
+      try {
+        const data = await fetchJson(
+          `/location/postal-codes/${searchString}`,
+          {
+            method: 'GET',
+            body: JSON.strinify
+          }
+        )
+        // pink('api.postalCodes.read: data', data)
+        return data
+      }
+      catch (e) {
+        red('api.postalCodes.read', e)
+      }
+    }
+  },
   events: {
     async create(event) {
+      // pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
           '/events',
@@ -13,14 +53,16 @@ export default {
             body: JSON.stringify(event)
           }
         )
-        return data
+        // pink('api.events.create: data', data)
+        return data.data
       }
       catch (e) {
         red('api.events.create', e)
       }
-      
+
     },
     async read() {
+
       try {
         const data = await fetchJson(
           '/events',
@@ -28,7 +70,8 @@ export default {
             method: 'GET',
           }
         )
-        return data
+        // pink('api.events.read: data', data)
+        return data.data
       }
       catch (e) {
         red('api.events.read', e)
@@ -45,13 +88,28 @@ export default {
             body: JSON.stringify(event)
           }
         )
-        // pink('api.patch: event', event)
-        return data
+        // pink('api.patch: data', data)
+        return data.data
       }
       catch (e) {
         red('api.events.patch', e)
       }
-      
+    },
+    async delete(id) {
+      // pink('api.delete: id', id)
+      try {
+        const data = await fetchJson(
+          `/events/${id}`,
+          {
+            method: 'DELETE'
+          }
+        )
+        // pink('api.delete: data', data)
+        return data.data
+      }
+      catch (e) {
+        red('api.events.delete', e)
+      }
     },
     async search(event) {
       const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
@@ -61,7 +119,8 @@ export default {
           method: 'GET',
         }
       )
-      return data
+      // pink('api.search: data', data)
+      return data.data
     },
   },
   images: {
@@ -80,17 +139,17 @@ export default {
         red('api.images.create: ERROR: ', e)
       })
     },
-    getTest() {
-      return fetchJson(
-        '/images/test',
-        { method: 'GET' }
-      ).then(data => {
-        // pink('api.images.getTest: data', data)
-        return data
-      }).catch(e => {
-        red('api.images.getTest ERROR: ', e)
-      })
-    }
+    // getTest() {
+    //   return fetchJson(
+    //     '/images/test',
+    //     { method: 'GET' }
+    //   ).then(data => {
+    //     // pink('api.images.getTest: data', data)
+    //     return data
+    //   }).catch(e => {
+    //     red('api.images.getTest ERROR: ', e)
+    //   })
+    // }
   },
   // for possible future use
   // tags: {

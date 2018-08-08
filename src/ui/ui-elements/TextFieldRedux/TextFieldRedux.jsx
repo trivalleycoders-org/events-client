@@ -13,8 +13,8 @@ import { green } from 'logger'
     error: in redux-form, error is a text field. In mui it is a boolean
 */
 const renderTextField = (props) => {
-  green('TextFieldRedux.renderTextField: props', props)
-  green('** rows', props.meta.rows)
+  // green('TextFieldRedux.renderTextField: props', props)
+  // green('** rows', props.meta.rows)
   const { input, label, meta, ...custom } = props
   const { error, touched } = meta
   const { disabled, rows, ...customRest } = custom
@@ -38,7 +38,7 @@ const renderTextField = (props) => {
 const TextFieldRedux = props => {
   const { fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0 } = props
   const multilineField = rows > 1
-  green('TextFieldRedux', multilineField)
+  // green('TextFieldRedux', multilineField)
 
   return (
 

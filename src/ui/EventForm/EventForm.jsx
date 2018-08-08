@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { mergeAll, omit, pick, prop, values, zipObj } from 'ramda'
+import { mergeAll, omit, pick, prop, zipObj } from 'ramda'
 import isBefore from 'date-fns/isBefore'
 
 /* User */
@@ -26,31 +26,80 @@ import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import validate from './validate'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
+import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
 // eslint-disable-next-line
 import { green } from 'logger'
+import { yellow } from '../../logger/index';
 
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
+/* shapeOut
+    - for non-required fields, empty fields should not be written to db
+    - includes tags, free||price
+*/
+/* EG with price
+{
+  "title": "e",
+  "combinedDateTime": {
+    "startDate": "2018-08-06T18:40:19.162Z",
+    "endDate": "2018-08-06T18:40:19.189Z"
+  },
+  "organization": "o",
+  "venueName": "v",
+  "postalCode": {
+    "_id": "5b5f6f52222be42bb919c008",
+    "postalCode": "94582",
+    "searchString": "94582 San Ramon California"
+  },
+  "linkToUrl": "l",
+  "price": "01",
+  "category": "quadcopter",
+  "tags": [
+    "one"
+  ]
+}
+*/
+
+/* EG with free
+{
+  "title": "e",
+  "combinedDateTime": {
+    "startDate": "2018-08-06T18:45:09.673Z",
+    "endDate": "2018-08-06T18:45:09.703Z"
+  },
+  "organization": "o",
+  "venueName": "v",
+  "postalCode": {
+    "_id": "5b5f6f52222be42bb919c008",
+    "postalCode": "94582",
+    "searchString": "94582 San Ramon California"
+  },
+  "linkToUrl": "l",
+  "free": true,
+  "category": "quadcopter",
+  "tags": [
+    "one"
+  ]
+}
+*/
 const shapeDataOut = (formValues) => {
-  // for non-required fields, empty fields should not be written to db
-  // includes tags, free||price
-  // green('shapeDataOut IN:', formValues)
+  yellow('formValues', formValues)
+  // dates
   const dates = pick(['combinedDateTime'], formValues)
-  const fv0 = omit(['combinedDateTime'], formValues)
-  // If free=true, remove field 'price' if present
-  const freeTrue =  formValues.free
-  const fv1 = freeTrue ? omit(['price'], fv0) : fv0
-  green('shapeDataOut: fv1', fv1)
-  // const fv2 = fv1.tags.length === 0 ? omit(['tags'], formValues) : fv1
+  // postalCode
+  const postalCode_id = formValues.postalCode._id
+  // remove props not needed
+  const formValues0 = omit(['combinedDateTime', 'postalCode'], formValues)
+  // merge it
   const mergedData = mergeAll([
+    formValues0,
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    // {tags: formValues.tags},
-    fv1
+    {postalCode_id: postalCode_id},
   ])
   green('shapeDataOut OUT:', mergedData)
   return mergedData
@@ -83,10 +132,10 @@ class EventForm extends React.Component {
       return {free: !prevState.free}
     })
   }
-  
+
   render() {
     const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
-    
+
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -99,7 +148,7 @@ class EventForm extends React.Component {
                     This event is in the past
                   </Typography></div>
               : null
-          } 
+          }
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <UploadImage
               fieldName='imageUrl'
@@ -121,7 +170,7 @@ class EventForm extends React.Component {
                 fieldLabel='Date & Time'
                 fullWidth
                 required
-                
+
               />
             </div>
             <div className={classes.organizationArea}>
@@ -132,11 +181,18 @@ class EventForm extends React.Component {
               />
             </div>
             <div className={classes.venueArea}>
+              <Typography variant='title'>
+                Venu
+              </Typography>
               <TextFieldRedux
                 fullWidth
-                fieldLabel='Venue'
-                fieldName='venue'
+                fieldLabel='Venue Name'
+                fieldName='venueName'
               />
+              <PostalCodeRedux
+                fieldName='postalCode'
+                fieldLabel='Postal Code'
+            />
             </div>
             <div className={classes.venueArea}>
               <TextFieldRedux
@@ -167,7 +223,7 @@ class EventForm extends React.Component {
                 fieldName='category'
                 fieldLabel='Category'
                 fullWidth
-              > 
+              >
                 <MenuItem value='select' disabled>Select a category</MenuItem>
                 <MenuItem value='quadcopter'>Quadcopter</MenuItem>
                 <MenuItem value='octocopter'>Octocopter</MenuItem>
@@ -200,14 +256,14 @@ class EventForm extends React.Component {
 }
 
 const shapeDataIn = (data) => {
-  
+
   const r1 = omit(['startDateTime', 'endDateTime'], data)
   const r2 = mergeAll ([
     r1,
     zipObj(
         ['combinedDateTime'],
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
-      ), 
+      ),
   ])
   // green('shapeDataIn: r2', r2)
   return r2

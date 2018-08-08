@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { 
+import {
   Grid,
   Typography,
   Card,
@@ -87,7 +87,7 @@ const styles = {
   root: {
     flexGrow: 1,
   },
-  
+
   time: {
     overflow: 'hidden',
     paddingTop: '.4rem',
@@ -135,11 +135,13 @@ const formattedDate = (isoDateString) => {
 const hasTags = has('tags')
 
 const EventGrid = (props) => {
-  // green('EventGrid: props', props)  
+  // green('EventGrid: props', props)
   const { classes, events } = props
   return (
     <Grid container spacing={Number(8)} className={classes.grid1111} >
           {events.map(c => {
+            // green('c', c)
+            const location = `${c.cityName}, ${c.stateCode} ${c.postalCode}`
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
                 <Card className={classes.card}>
@@ -156,10 +158,13 @@ const EventGrid = (props) => {
                       {c.title}
                     </Typography>
                     <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                      {c.organization}
+                      {`by: ${c.organization}`}
                     </Typography>
                     <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                      {c.venue}
+                      {c.venueName}
+                    </Typography>
+                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                      {location}
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions} disableActionSpacing>
