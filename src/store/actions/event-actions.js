@@ -13,7 +13,6 @@ export const keySearchEvent = 'actionKeySearchEvent'
 export const requestKeySearchEvents = 'requestKeySearchEvents'
 export const keySetEvents = 'actionKeySetEvents'
 
-
 export const createNewEvent = (event) => {
   // orange('action.createNewEvent: event', event)
   return ({
@@ -33,8 +32,7 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 
 const readEvents = (events) => {
-  // orange('readEvents', events.data)
-  const data = events.data
+  const data = events
   return ({
     type: keyReadEvents,
     payload: { data },
