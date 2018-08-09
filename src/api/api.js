@@ -119,7 +119,7 @@ export default {
           method: 'GET',
         }
       )
-      // pink('api.search: data', data)
+      // pink('api.search: data', data.data)
       return data.data
     },
   },
