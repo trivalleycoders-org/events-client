@@ -59,7 +59,7 @@ describe('SearchEvent', () => {
       const term = 'briia'
       const termInput = wrapper.find(TextField).find('input')
       const searchUrl = '/search?searchTerm=' + JSON.stringify(term)
-      fetchMock.get(searchUrl, { data: { data: eventsData.event } }, 200)
+      fetchMock.get(searchUrl, { data: eventsData.event }, 200)
 
       termInput.simulate('change', {
         persist: () => { },
