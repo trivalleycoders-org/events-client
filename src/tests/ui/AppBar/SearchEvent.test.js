@@ -49,38 +49,38 @@ describe('SearchEvent', () => {
   })
 
   describe('when search button is clicked', () => {
-    it('it renders cancel button', async () => {
-      const wrapper = searchEvent()
-      wrapper.find(SearchEvent).find('Search').simulate('click')
-      expect(wrapper.find(SearchEvent).find('Cancel')).toHaveLength(1)
+
+    beforeEach(() => {
+      fetchMock.restore()
     })
 
-    it.only('it fetches the events that match search criteria', async () => {
-      const wrapper = searchEvent()
+    const wrapper = searchEvent()
+    it('it fetches the events that match search criteria', async () => {
       const term = 'briia'
       const termInput = wrapper.find(TextField).find('input')
       const searchUrl = '/search?searchTerm=' + JSON.stringify(term)
-      fetchMock.get(searchUrl, { events: eventsData.event }, 200)
+      fetchMock.get(searchUrl, { data: { data: eventsData.event } }, 200)
 
       termInput.simulate('change', {
         persist: () => { },
         target: { value: term }
       })
 
-      wrapper.find(SearchEvent).find('Search').simulate('click')
+      await wrapper.find(SearchEvent).find('Search').simulate('click')
       return flushAllPromises().then(() => {
         expect(store.getState().events).toEqual(eventsData.event)
       })
     })
-  })
 
-  describe('when cancel button is clicked', () => {
-    it('renders the search button', () => {
-      const wrapper = searchEvent()
-      wrapper.find(SearchEvent).find('Search').simulate('click')
-      wrapper.find(SearchEvent).find('Cancel').simulate('click')
+    it('it renders cancel button', async () => {
+      expect(wrapper.find(SearchEvent).find('Cancel')).toHaveLength(1)
+    })
+
+    it('when cancel button is clicked, renders search button', async () => {
+      await wrapper.find(SearchEvent).find('Cancel').simulate('click')
       expect(wrapper.find(SearchEvent).find('Search')).toHaveLength(1)
     })
+
   })
 
   it('should change search term input', async () => {
@@ -88,8 +88,8 @@ describe('SearchEvent', () => {
     const term = 'briia'
     const termInput = wrapper.find(TextField).find('input')
 
-    // Simulates a call to onChnage passing in the term
-    // but the state is not updated as it is async
+    // Simulates a call to onChange passing in the term
+    // checking for state here doesn't work as it is async
     termInput.simulate('change', {
       persist: () => { },
       target: { value: term }
