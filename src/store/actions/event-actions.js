@@ -85,8 +85,8 @@ export const requestKeyDeleteOneEvent = 'requestKeyDeleteOneEvent'
 export const requestDeleteOneEvent = createRequestThunk({
   request: api.events.delete,
   key: requestKeyDeleteOneEvent,
-  success: [ deleteOneEvent ],
-  failure: [ error => logError(error, requestKeyDeleteOneEvent) ]
+  success: [deleteOneEvent],
+  failure: [error => logError(error, requestKeyDeleteOneEvent)]
 })
 
 // EventsUi
@@ -109,11 +109,17 @@ export const unsetEdit_id = () => {
   })
 }
 
+// const data = events
+// return ({
+//   type: keyReadEvents,
+//   payload: { data },
+// })
+
 export const setEvents = (events) => {
   // orange('readEvents', events)
   return ({
     type: keySetEvents,
-    payload: events, // events is already an object?
+    payload: { events }, // events is already an object?
   })
 }
 
