@@ -23,11 +23,12 @@ import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
-import validate from './validate'
+import validate from './validate' // redux-form
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
-import { shapeCheck } from './shapeCheck'
+import { Event, validateModel } from 'models'
+
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
@@ -37,56 +38,10 @@ import { green } from 'logger'
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
-/* shapeOut
-    - for non-required fields, empty fields should not be written to db
-    - includes tags, free||price
-*/
-/* EG with price
-{
-  "title": "e",
-  "combinedDateTime": {
-    "startDate": "2018-08-06T18:40:19.162Z",
-    "endDate": "2018-08-06T18:40:19.189Z"
-  },
-  "organization": "o",
-  "venueName": "v",
-  "postalCode": {
-    "_id": "5b5f6f52222be42bb919c008",
-    "postalCode": "94582",
-    "searchString": "94582 San Ramon California"
-  },
-  "linkToUrl": "l",
-  "price": "01",
-  "category": "quadcopter",
-  "tags": [
-    "one"
-  ]
-}
-*/
 
-/* EG with free
-{
-  "title": "e",
-  "combinedDateTime": {
-    "startDate": "2018-08-06T18:45:09.673Z",
-    "endDate": "2018-08-06T18:45:09.703Z"
-  },
-  "organization": "o",
-  "venueName": "v",
-  "postalCode": {
-    "_id": "5b5f6f52222be42bb919c008",
-    "postalCode": "94582",
-    "searchString": "94582 San Ramon California"
-  },
-  "linkToUrl": "l",
-  "free": true,
-  "category": "quadcopter",
-  "tags": [
-    "one"
-  ]
-}
-*/
 const shapeDataOut = (formValues) => {
+
+
   // dates
   const dates = pick(['combinedDateTime'], formValues)
   // postalCode
@@ -100,6 +55,7 @@ const shapeDataOut = (formValues) => {
     {startDateTime: dates.combinedDateTime.startDate},
     {postalCode_id: postalCode_id},
   ])
+  green('validate', validateModel(Event, mergedData))
   green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
@@ -149,7 +105,7 @@ class EventForm extends React.Component {
                   </Typography></div>
               : null
           }
-          <form onSubmit={handleSubmit(this.onSubmit)}>
+          <form>
             <UploadImage
               fieldName='imageUrl'
               fieldLabel='Upload Image'
@@ -240,7 +196,11 @@ class EventForm extends React.Component {
               <Button type='button'>
                 Cancel
               </Button>
-              <Button type='submit' disabled={pristine || submitting}>
+              {/* <Button type='submit' disabled={pristine || submitting}>
+                Submit
+              </Button> */}
+
+              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
                 Submit
               </Button>
               <Button type='button' disabled={pristine || submitting} onClick={reset}>
