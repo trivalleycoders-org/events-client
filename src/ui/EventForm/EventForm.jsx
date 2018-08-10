@@ -41,7 +41,6 @@ const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues) => {
 
-
   // dates
   const dates = pick(['combinedDateTime'], formValues)
   // postalCode
