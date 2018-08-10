@@ -43,6 +43,7 @@ export const events = (state = [], { type, payload }) => {
       // blue('createEvent state', state)
       return append(payload.event, state)
     case keySetEvents:
+      return payload
     case keyReadEvents:
       return payload.data
     case keyPatchOneEvent:
