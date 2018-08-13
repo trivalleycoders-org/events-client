@@ -145,28 +145,30 @@ const EventGrid = (props) => {
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
                 <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.media}
-                    image={c.imageUrl}
-                    >
-                  </CardMedia>
-                  <CardContent className={classes.cardContent}>
-                    <Typography variant='caption' component='p' noWrap className={classes.time}>
-                      {formattedDate(c.startDateTime)}
-                    </Typography>
-                    <Typography variant='subheading' component='p' className={classes.title}>
-                      {c.title}
-                    </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                      {`by: ${c.organization}`}
-                    </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                      {c.venueName}
-                    </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                      {location}
-                    </Typography>
-                  </CardContent>
+                  <a href={c.linkToUrl}>
+                    <CardMedia
+                      className={classes.media}
+                      image={c.imageUrl}
+                      >
+                    </CardMedia>
+                    <CardContent className={classes.cardContent}>
+                      <Typography variant='caption' component='p' noWrap className={classes.time}>
+                        {formattedDate(c.startDateTime)}
+                      </Typography>
+                      <Typography variant='subheading' component='p' className={classes.title}>
+                        {c.title}
+                      </Typography>
+                      <Typography variant='caption' component='p' noWrap className={classes.organization}>
+                        {`by: ${c.organization}`}
+                      </Typography>
+                      <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                        {c.venueName}
+                      </Typography>
+                      <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                        {location}
+                      </Typography>
+                    </CardContent>
+                  </a>
                   <CardActions className={classes.actions} disableActionSpacing>
                     <div className={classes.tags}>
                       {

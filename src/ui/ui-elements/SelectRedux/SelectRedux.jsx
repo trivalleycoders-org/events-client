@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import { Field } from 'redux-form'
-import SelectComponent from './SelectComponent'
+import SelectReduxComponent from './SelectReduxComponent'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -20,7 +20,7 @@ const styles = theme => ({
 
 const picker = (props) => {
   return (
-    <SelectComponent
+    <SelectReduxComponent
       {...props}
     />
   )
@@ -41,7 +41,7 @@ class SelectRedux extends React.Component {
     // green('SelectRedux: props', this.props)
 
     return (
-      
+
         <FormControl className={classes.formControl} fullWidth>
           <InputLabel>{fieldLabel}</InputLabel>
           <Field
@@ -55,8 +55,8 @@ class SelectRedux extends React.Component {
           </Field>
           {/* <FormHelperText>Placeholder</FormHelperText> */}
         </FormControl>
-        
-      
+
+
     )
   }
 }
@@ -66,7 +66,7 @@ export default withStyles(styles)(SelectRedux)
 SelectRedux.propTypes = {
   fieldValue: PropTypes.string,
   fullWidth:  PropTypes.bool,
-  input: PropTypes.object, 
+  input: PropTypes.object,
   meta: PropTypes.object,
   classes: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,

@@ -38,7 +38,6 @@ import { green } from 'logger'
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
-
 const shapeDataOut = (formValues) => {
 
   // dates

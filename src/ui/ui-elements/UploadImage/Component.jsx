@@ -86,6 +86,14 @@ const styles = theme => ({
   },
 })
 
+const dropZoneDefault = <ResponsiveImage
+  src='https://s3-us-west-2.amazonaws.com/photo-app-tvc/drag-or-browse.png' alt='drag and drop of click to browse'
+  />
+
+const dropZoneReject = <ResponsiveImage
+  src='https://s3-us-west-2.amazonaws.com/tvc-events/media/drag-reject.png' alt='image rejected'
+  />
+
 class UploadImage extends React.Component {
   constructor(props) {
     super(props)
@@ -99,7 +107,6 @@ class UploadImage extends React.Component {
     } else {
       imageUrl = ''
     }
-    green('constructor: initial', initial)
     this.state = {
       accepted: [],
       rejected: [],
@@ -142,7 +149,6 @@ class UploadImage extends React.Component {
   }
   render() {
     const { classes } = this.props
-    green('render.state', this.state)
 
     return (
       <div className={classes.wrapper}>
@@ -165,7 +171,15 @@ class UploadImage extends React.Component {
                     // onDropAccepted={this.onDropAccepted}
                     // onDropRejected={this.onDropRejected}
                   >
-                    <ResponsiveImage src='https://s3-us-west-2.amazonaws.com/photo-app-tvc/drag-or-browse.png' alt='drag and drop of click to browse' />
+
+                    {/* {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => { */}
+                    {(props) => {
+                      if (props.isDragActive) {
+                        return props.isDragAccept ? dropZoneDefault : dropZoneReject
+                      } else {
+                        return dropZoneDefault
+                      }
+                  }}
                   </Dropzone>
             }
           </Paper>

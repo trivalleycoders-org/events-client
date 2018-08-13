@@ -14,7 +14,7 @@ import * as locationSelectors from 'store/selectors/location-selectors'
 import { green, blue, red } from 'logger'
 
 const INPUT_NAME = 'postalCode'
-const REQUEST_LIMIT = 2
+const REQUEST_LIMIT = 3
 
 const wrapperProps = {
   width: '100%',
