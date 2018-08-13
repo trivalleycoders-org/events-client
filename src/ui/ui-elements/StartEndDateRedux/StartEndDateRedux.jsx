@@ -18,7 +18,7 @@ class StartEndDateRedux extends React.Component {
       />
     )
   }
-  
+
   render() {
     const { fieldLabel, fieldName } = this.props
 
@@ -28,10 +28,11 @@ class StartEndDateRedux extends React.Component {
         fullWidth
         name={fieldName}
         label={fieldLabel}
+        required={true}
       />
     )
   }
-  
+
 }
 
 export default StartEndDateRedux
