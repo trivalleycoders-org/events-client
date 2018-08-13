@@ -20,97 +20,6 @@ import Tag from './Tag'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = {
-  action: {
-    border: 'none',
-  },
-  actions: {
-    // alignItems: 'center',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    height: 41.5,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '0px 15px 0px 15px',
-  },
-  card: {
-    // borderRight: 'solid 1px white',
-    minHeight: 0,
-    minWidth: 0,
-    // maxHeight: 800,
-    // maxWidth: 300,
-    padding: '15px 5px 0 5px',
-  },
-  cardContent: {
-    padding: '5px 15px 5px 15px',
-    borderBottom: 'solid 0.5px gray',
-  },
-  image: {
-    margin: 'auto',
-    width: '100%',
-  },
-  grid1111: {
-    // backgroundColor: 'green',
-    paddingBottom: '40px'
-  },
-  grid22222: {
-    // backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    // backgroundColor: 'blue',
-    // margin: '30px',
-    // margin: 'auto',
-    // color: 'orange',
-    margin: '30px',
-    padding: '30px',
-    // border: 'solid 3px orange'
-  },
-  tags: {
-    // color: theme.palette.primary.contrastText,
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    overflow: 'hidden',
-    // textOverflow: 'ellipsis',
-    // whiteSpace: 'nowrap',
-  },
-  media: {
-    height: 0,
-    paddingTop: '50%',
-  },
-  organization: {
-    height: '33px',
-    lineHeight: '16.5px',
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-  root: {
-    flexGrow: 1,
-  },
-
-  time: {
-    overflow: 'hidden',
-    paddingTop: '.4rem',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-  title: {
-    height: '40px',
-    letterSpacing: '0px',
-    lineHeight: '19px',
-    margin: 0,
-    overflow: 'hidden',
-    paddingTop: '5px',
-  },
-  venue: {
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-}
-
 const hourAmPm = (date) => {
   const h = date.getHours()
   const m = date.getMinutes()
@@ -145,7 +54,7 @@ const EventGrid = (props) => {
             return (
               <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2} className={classes.grid2222}>
                 <Card className={classes.card}>
-                  <a href={c.linkToUrl}>
+                  <a href={c.linkToUrl} className={classes.link}>
                     <CardMedia
                       className={classes.media}
                       image={c.imageUrl}
@@ -198,6 +107,100 @@ const EventGrid = (props) => {
           })}
         </Grid>
   )
+}
+
+const styles = {
+  action: {
+    border: 'none',
+  },
+  actions: {
+    // alignItems: 'center',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    height: 41.5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0px 15px 0px 15px',
+  },
+  card: {
+    // borderRight: 'solid 1px white',
+    minHeight: 0,
+    minWidth: 0,
+    // maxHeight: 800,
+    // maxWidth: 300,
+    padding: '15px 5px 0 5px',
+  },
+  cardContent: {
+    padding: '5px 15px 5px 15px',
+    borderBottom: 'solid 0.5px gray',
+  },
+  image: {
+    margin: 'auto',
+    width: '100%',
+  },
+  grid1111: {
+    // backgroundColor: 'green',
+    paddingBottom: '40px'
+  },
+  grid22222: {
+    // backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    // backgroundColor: 'blue',
+    // margin: '30px',
+    // margin: 'auto',
+    // color: 'orange',
+    margin: '30px',
+    padding: '30px',
+    // border: 'solid 3px orange'
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  tags: {
+    // color: theme.palette.primary.contrastText,
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    overflow: 'hidden',
+    // textOverflow: 'ellipsis',
+    // whiteSpace: 'nowrap',
+  },
+  media: {
+    height: 0,
+    paddingTop: '50%',
+  },
+  organization: {
+    height: '33px',
+    lineHeight: '16.5px',
+    overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
+  root: {
+    flexGrow: 1,
+  },
+
+  time: {
+    overflow: 'hidden',
+    paddingTop: '.4rem',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
+  title: {
+    height: '40px',
+    letterSpacing: '0px',
+    lineHeight: '19px',
+    margin: 0,
+    overflow: 'hidden',
+    paddingTop: '5px',
+  },
+  venue: {
+    overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
 }
 
 export default withStyles(styles)(EventGrid)
