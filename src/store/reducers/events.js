@@ -4,7 +4,6 @@ import {
   keyDeleteOneEvent,
   keyReadEvents,
   keyPatchOneEvent,
-  keySetEvents,
   keySetEdit_id,
   keyUnsetEdit_id,
 } from '../actions/event-actions'
@@ -41,11 +40,9 @@ export const events = (state = [], { type, payload }) => {
     case keyCreateEvent:
       // blue('keyCreateEvent', payload.event)
       // blue('createEvent state', state)
-      return append(payload.event, state)
-    case keySetEvents:
-      return payload.events
+      return append(payload.event[0], state)
     case keyReadEvents:
-      return payload.data
+      return payload.events
     case keyPatchOneEvent:
       return updateEvent(state, payload.event)
     case keyDeleteOneEvent:
