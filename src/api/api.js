@@ -17,7 +17,7 @@ export default {
           }
         )
         // pink('api.cities.read: data', data)
-        return data
+        return data.data
       }
       catch (e) {
         red('api.cities.read', e)
@@ -34,8 +34,7 @@ export default {
             body: JSON.strinify
           }
         )
-        // pink('api.postalCodes.read: data', data)
-        return data
+        return data.data
       }
       catch (e) {
         red('api.postalCodes.read', e)
@@ -62,7 +61,6 @@ export default {
 
     },
     async read() {
-
       try {
         const data = await fetchJson(
           '/events',
@@ -139,18 +137,11 @@ export default {
         red('api.images.create: ERROR: ', e)
       })
     },
-    // getTest() {
-    //   return fetchJson(
-    //     '/images/test',
-    //     { method: 'GET' }
-    //   ).then(data => {
-    //     // pink('api.images.getTest: data', data)
-    //     return data
-    //   }).catch(e => {
-    //     red('api.images.getTest ERROR: ', e)
-    //   })
-    // }
   },
+
+
+
+
   // for possible future use
   // tags: {
   //   async create(tag) {
