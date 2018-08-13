@@ -28,16 +28,8 @@ class Events extends React.Component {
     spacing: '16'
   }
 
-  // handleChange = key => (event, value) => {
-  //   this.setState({
-  //     [key]: value
-  //   })
-  // }
-
   render() {
     const { classes, events } = this.props
-    // green('EventGrid.render: typeof events', typeof events)
-    // green('EventGrid.render: events', events)
     if (this.props.requestReadAllEvents.status === 'success') {
       return (
         <div className={classes.pageMock}>
