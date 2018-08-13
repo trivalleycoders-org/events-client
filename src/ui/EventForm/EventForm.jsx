@@ -37,55 +37,6 @@ import { yellow } from '../../logger/index';
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
-/* shapeOut
-    - for non-required fields, empty fields should not be written to db
-    - includes tags, free||price
-*/
-/* EG with price
-{
-  "title": "e",
-  "combinedDateTime": {
-    "startDate": "2018-08-06T18:40:19.162Z",
-    "endDate": "2018-08-06T18:40:19.189Z"
-  },
-  "organization": "o",
-  "venueName": "v",
-  "postalCode": {
-    "_id": "5b5f6f52222be42bb919c008",
-    "postalCode": "94582",
-    "searchString": "94582 San Ramon California"
-  },
-  "linkToUrl": "l",
-  "price": "01",
-  "category": "quadcopter",
-  "tags": [
-    "one"
-  ]
-}
-*/
-
-/* EG with free
-{
-  "title": "e",
-  "combinedDateTime": {
-    "startDate": "2018-08-06T18:45:09.673Z",
-    "endDate": "2018-08-06T18:45:09.703Z"
-  },
-  "organization": "o",
-  "venueName": "v",
-  "postalCode": {
-    "_id": "5b5f6f52222be42bb919c008",
-    "postalCode": "94582",
-    "searchString": "94582 San Ramon California"
-  },
-  "linkToUrl": "l",
-  "free": true,
-  "category": "quadcopter",
-  "tags": [
-    "one"
-  ]
-}
-*/
 const shapeDataOut = (formValues) => {
   yellow('formValues', formValues)
   // dates
