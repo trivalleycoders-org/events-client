@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Combined from './Combined'
 import { Field } from 'redux-form'
+import { green } from '../../../logger/index'
 // import { green } from 'logger'
 
 class StartEndDateRedux extends React.Component {
 
   picker = (props) => {
+    green('props', props)
     const { onChange, ...rest } = props.input
     return (
       <Combined
@@ -18,7 +20,9 @@ class StartEndDateRedux extends React.Component {
       />
     )
   }
-
+  fieldOnBlur = (a) => {
+    green('a', a.target.type)
+  }
   render() {
     const { fieldLabel, fieldName } = this.props
 

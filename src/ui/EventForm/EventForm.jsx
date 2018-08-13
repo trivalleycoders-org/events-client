@@ -23,7 +23,7 @@ import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
-import validate from './validate' // redux-form
+// import validate from './validate' // redux-form
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'

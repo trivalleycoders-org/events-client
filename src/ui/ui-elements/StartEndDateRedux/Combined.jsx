@@ -18,14 +18,15 @@ class Combined extends React.Component {
     this.state = {
       startDate: props.initial ? props.initial.startDate : null,
       endDate: props.initial ? props.initial.startDate : null,
-      errorStartDate: false,
-      errorEndDate: false,
+      // errorStartDate: false,
+      // errorEndDate: false,
     }
   }
 
   localOnChange = (date, control) => {
     let sd
     let ed
+    green('localOnChange: date', date)
     if (control === 'startDate') {
       sd = date
       if (isBefore(ed, sd)) {
@@ -50,31 +51,31 @@ class Combined extends React.Component {
     })
   }
 
-  onClose = (picker) => {
-    const { startDate, endDate } = this.state
-    if (picker === 'startDate') {
-      if (startDate === null) {
-        this.setState({
-          errorStartDate: true,
-      })
-    }}
-    if (picker === 'endDate') {
-      if (endDate === null) {
-        this.setState({
-          errorEndDate: true,
-      })
-    }}
-  }
+  // onClose = (picker) => {
+  //   const { startDate, endDate } = this.state
+
+  //   if (picker === 'startDate') {
+  //     green('startDate is null', startDate === null)
+  //     this.setState({
+  //       errorStartDate: startDate === null,
+  //     })
+  //   }
+  //   if (picker === 'endDate') {
+  //     this.setState({
+  //       errorEndDate: endDate === null,
+  //     })
+  //   }
+  // }
 
   render() {
-    const { startDate, endDate, errorEndDate, errorStartDate } = this.state
+    const { startDate, endDate, /*errorEndDate, errorStartDate*/ } = this.state
     const { classes } = this.props
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>
           <DateTimePicker
             disablePast
-            error={errorStartDate}
+            // error={errorStartDate}
             label='Start Date / Time'
             format={this.props.format}
             fullWidth
@@ -88,12 +89,12 @@ class Combined extends React.Component {
             }}
             minDate={startMinDate}
             onChange={(date) => this.localOnChange(date, 'startDate')}
-            onClose={() => this.onClose('startDate')}
+            // onClose={() => this.onClose('startDate')}
             value={startDate}
           />
           <DateTimePicker
             disablePast
-            error={errorEndDate}
+            // error={errorEndDate}
             format={this.props.format}
             InputProps={{
                 endAdornment: (
@@ -108,7 +109,7 @@ class Combined extends React.Component {
             minDate={startDate || new Date()}
             minDateMessage='End date must be after start date'
             onChange={(date) => this.localOnChange(date, 'endDate')}
-            onClose={() => this.onClose('endDate')}
+            // onClose={() => this.onClose('endDate')}
             value={endDate}
           />
         </div>

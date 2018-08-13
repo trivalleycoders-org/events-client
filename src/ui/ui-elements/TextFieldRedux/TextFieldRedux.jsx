@@ -43,15 +43,16 @@ const TextFieldRedux = props => {
   return (
 
     <FormControl fullWidth={fullWidth}>
-      <Field 
+      <Field
         component={renderTextField}
         disabled={disabled}
         fullWidth={fullWidth}
         label={fieldLabel}
         multiline={multilineField}
-        name={fieldName} 
+        name={fieldName}
         required={required}
         rows={rows}
+
       />
     </FormControl>
   )

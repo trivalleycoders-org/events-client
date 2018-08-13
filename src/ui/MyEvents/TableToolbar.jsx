@@ -82,7 +82,7 @@ class TableToolbar extends React.Component {
   render() {
     const { selected, classes } = this.props
     const numSelected = selected.length
-    const { editClicked, deleteClicked } = this.state
+    const { editClicked /*, deleteClicked*/ } = this.state
 
     if (numSelected > 0 && editClicked) {
       return <Redirect to={'/new-event'}/>
