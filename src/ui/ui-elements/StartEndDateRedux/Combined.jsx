@@ -6,21 +6,20 @@ import { withStyles } from '@material-ui/core/styles'
 import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
-
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
 let startMinDate
 
-// color: '#f44336'
-//
 class Combined extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       startDate: props.initial ? props.initial.startDate : null,
       endDate: props.initial ? props.initial.startDate : null,
+      errorStartDate: false,
+      errorEndDate: false,
     }
   }
 
@@ -50,35 +49,51 @@ class Combined extends React.Component {
       endDate: ed,
     })
   }
-  render() {
 
+  onClose = (picker) => {
     const { startDate, endDate } = this.state
-    const { classes } = this.props
+    if (picker === 'startDate') {
+      if (startDate === null) {
+        this.setState({
+          errorStartDate: true,
+      })
+    }}
+    if (picker === 'endDate') {
+      if (endDate === null) {
+        this.setState({
+          errorEndDate: true,
+      })
+    }}
+  }
 
+  render() {
+    const { startDate, endDate, errorEndDate, errorStartDate } = this.state
+    const { classes } = this.props
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>
           <DateTimePicker
-              //{...rest}
-              className={classes.dateTimePicker}
-              disablePast
-              label='Start Date / Time'
-              format={this.props.format}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end' className={classes.adornment}>
-                    <EventIcon />
-                    <AlarmIcon />
-                  </InputAdornment>
-                )
-              }}
-              minDate={startMinDate}
-              onChange={(date) => this.localOnChange(date, 'startDate')}
-              value={startDate}
-            />
+            disablePast
+            error={errorStartDate}
+            label='Start Date / Time'
+            format={this.props.format}
+            fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end' className={classes.adornment}>
+                  <EventIcon />
+                  <AlarmIcon />
+                </InputAdornment>
+              )
+            }}
+            minDate={startMinDate}
+            onChange={(date) => this.localOnChange(date, 'startDate')}
+            onClose={() => this.onClose('startDate')}
+            value={startDate}
+          />
           <DateTimePicker
             disablePast
+            error={errorEndDate}
             format={this.props.format}
             InputProps={{
                 endAdornment: (
@@ -90,9 +105,10 @@ class Combined extends React.Component {
               }}
             label='End Date / Time'
             fullWidth
-            minDate={startDate}
+            minDate={startDate || new Date()}
             minDateMessage='End date must be after start date'
             onChange={(date) => this.localOnChange(date, 'endDate')}
+            onClose={() => this.onClose('endDate')}
             value={endDate}
           />
         </div>
@@ -104,8 +120,6 @@ class Combined extends React.Component {
 const styles = theme => ({
   adornment: {
     padding: '3px 0',
-  },
-  dateTimePicker: {
   },
   datesWrapper: {
     display: 'flex',
