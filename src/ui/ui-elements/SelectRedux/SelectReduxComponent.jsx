@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-class SelectComponent extends React.Component {
+class SelectReduxComponent extends React.Component {
   constructor(props) {
     super(props)
     const initialValue = props.meta.initial
@@ -14,15 +14,21 @@ class SelectComponent extends React.Component {
       currentValue: initialValue ? initialValue : 'select',
     }
   }
-  
+
+  onLocalChange = (value) => {
+    this.setState({
+      currentValue: value
+    })
+    this.props.input.onChange(value)
+  }
+
   render() {
     const { children, input, meta, fullWidth, ...rest } = this.props
-    const { onChange } = input
 
     return (
       <Select
         value={this.state.currentValue}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => this.onLocalChange(e.target.value)}
         displayEmpty
         fullWidth
         {...rest}
@@ -33,9 +39,9 @@ class SelectComponent extends React.Component {
   }
 }
 
-export default SelectComponent
+export default SelectReduxComponent
 
-SelectComponent.propTypes = {
+SelectReduxComponent.propTypes = {
   children: PropTypes.array.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
