@@ -11,27 +11,10 @@ import EventIcon from '@material-ui/icons/Event'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = theme => ({
-  adornment: {
-    padding: '3px 0',
-  },
-  dateTimePicker: {
-    // paddingRight: '20px'
-  },
-  datesWrapper: {
-    display: 'flex',
-    flexFlow: 'row wrap'
-  },
-  wrapper: {
-    display: 'flex',
-    flexFlow: 'column nowrap'
-  },
-})
-
 let startMinDate
 
 // color: '#f44336'
-// 
+//
 class Combined extends React.Component {
   constructor(props) {
     super(props)
@@ -55,7 +38,7 @@ class Combined extends React.Component {
       sd = this.state.startDate
       ed = date
     }
-    
+
     this.setState({
       startDate: sd,
       endDate: ed,
@@ -68,10 +51,10 @@ class Combined extends React.Component {
     })
   }
   render() {
-  
+
     const { startDate, endDate } = this.state
     const { classes } = this.props
-    
+
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>
@@ -95,7 +78,6 @@ class Combined extends React.Component {
               value={startDate}
             />
           <DateTimePicker
-            // {...rest}
             disablePast
             format={this.props.format}
             InputProps={{
@@ -118,6 +100,22 @@ class Combined extends React.Component {
     )
   }
 }
+
+const styles = theme => ({
+  adornment: {
+    padding: '3px 0',
+  },
+  dateTimePicker: {
+  },
+  datesWrapper: {
+    display: 'flex',
+    flexFlow: 'row wrap'
+  },
+  wrapper: {
+    display: 'flex',
+    flexFlow: 'column nowrap'
+  },
+})
 
 export default withStyles(styles)(Combined)
 
