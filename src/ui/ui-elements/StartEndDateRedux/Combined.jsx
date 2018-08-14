@@ -18,15 +18,12 @@ class Combined extends React.Component {
     this.state = {
       startDate: props.initial ? props.initial.startDate : null,
       endDate: props.initial ? props.initial.startDate : null,
-      // errorStartDate: false,
-      // errorEndDate: false,
     }
   }
 
   localOnChange = (date, control) => {
     let sd
     let ed
-    green('localOnChange: date', date)
     if (control === 'startDate') {
       sd = date
       if (isBefore(ed, sd)) {
@@ -50,23 +47,6 @@ class Combined extends React.Component {
       endDate: ed,
     })
   }
-
-  // onClose = (picker) => {
-  //   const { startDate, endDate } = this.state
-
-  //   if (picker === 'startDate') {
-  //     green('startDate is null', startDate === null)
-  //     this.setState({
-  //       errorStartDate: startDate === null,
-  //     })
-  //   }
-  //   if (picker === 'endDate') {
-  //     this.setState({
-  //       errorEndDate: endDate === null,
-  //     })
-  //   }
-  // }
-
   render() {
     const { startDate, endDate, /*errorEndDate, errorStartDate*/ } = this.state
     const { classes } = this.props
@@ -75,7 +55,6 @@ class Combined extends React.Component {
         <div className={classes.datesWrapper}>
           <DateTimePicker
             disablePast
-            // error={errorStartDate}
             label='Start Date / Time'
             format={this.props.format}
             fullWidth
@@ -89,12 +68,15 @@ class Combined extends React.Component {
             }}
             minDate={startMinDate}
             onChange={(date) => this.localOnChange(date, 'startDate')}
-            // onClose={() => this.onClose('startDate')}
+            required={true}
             value={startDate}
+
+            // onClose={() => console.log('onCloase')}
+            // onError={() => console.log('onError')}
+            // onOpen={() => console.log('onOpen')}
           />
           <DateTimePicker
             disablePast
-            // error={errorEndDate}
             format={this.props.format}
             InputProps={{
                 endAdornment: (
@@ -109,7 +91,7 @@ class Combined extends React.Component {
             minDate={startDate || new Date()}
             minDateMessage='End date must be after start date'
             onChange={(date) => this.localOnChange(date, 'endDate')}
-            // onClose={() => this.onClose('endDate')}
+            required={true}
             value={endDate}
           />
         </div>

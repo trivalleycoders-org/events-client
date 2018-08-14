@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Combined from './Combined'
 import { Field } from 'redux-form'
+/* Dev */
+// eslint-disable-next-line
 import { green } from '../../../logger/index'
 // import { green } from 'logger'
 
 class StartEndDateRedux extends React.Component {
 
   picker = (props) => {
-    green('props', props)
     const { onChange, ...rest } = props.input
     return (
       <Combined
@@ -17,11 +18,9 @@ class StartEndDateRedux extends React.Component {
         format='MMM DD YYYY hh:mm A'
         fullWidth
         initial={props.meta.initial}
+        // required={true}
       />
     )
-  }
-  fieldOnBlur = (a) => {
-    green('a', a.target.type)
   }
   render() {
     const { fieldLabel, fieldName } = this.props
@@ -32,11 +31,12 @@ class StartEndDateRedux extends React.Component {
         fullWidth
         name={fieldName}
         label={fieldLabel}
-        required={true}
+        // required={true}
+
+        // validate={() => console.log('validate')}
       />
     )
   }
-
 }
 
 export default StartEndDateRedux

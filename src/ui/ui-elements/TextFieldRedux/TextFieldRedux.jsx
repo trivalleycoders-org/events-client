@@ -1,61 +1,79 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import { TextField } from '@material-ui/core'
-import FormControl from '@material-ui/core/FormControl'
-
+import { FormControl, InputLabel, Input } from '@material-ui/core'
 
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
+class TextFieldRedux extends React.Component {
+  state = {
+    isError: false
+  }
 
-/*
-    error: in redux-form, error is a text field. In mui it is a boolean
-*/
-const renderTextField = (props) => {
-  // green('TextFieldRedux.renderTextField: props', props)
-  // green('** rows', props.meta.rows)
-  const { input, label, meta, ...custom } = props
-  const { error, touched } = meta
-  const { disabled, rows, ...customRest } = custom
-  const hasErrorSet = typeof error === 'undefined' ? false : true
-  const isError = hasErrorSet && touched
-
-  return (
-    <TextField
-      disabled={disabled}
-      error={isError}
-      helperText={touched && error}
-      label={label}
-      placeholder={label}
-      rows={rows}
-      {...input}
-      {...customRest}
-    />
-  )
-}
-
-const TextFieldRedux = props => {
-  const { fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0 } = props
-  const multilineField = rows > 1
-  // green('TextFieldRedux', multilineField)
-
-  return (
-
-    <FormControl fullWidth={fullWidth}>
+  component = (props) => {
+    /*
+      error: in redux-form, error is a string. In mui it is a boolean
+    */
+    const {
+      disabled,
+      input,
+      label,
+      meta,
+      fullWidth,
+      multiline,
+      required,
+      rows,
+      ...rest,
+    } = props
+    // const { error, touched } = meta
+    const { name, onChange, onBlur, ...inputRest } = input
+    const handleOnBlur = (e) => {
+      green('handleBlur')
+      if (required) {
+        const len = e.target.value.length
+        green('handleBlur: len', `${len}(${typeof len})`)
+        this.setState({
+          isError: len === 0  // && touched
+        })
+      }
+    }
+    return (
+      <FormControl
+        fullWidth={fullWidth}
+      >
+        <InputLabel htmlFor={name}>{label}</InputLabel>
+        <Input
+          onBlur={(e) => handleOnBlur(e)}
+          id={name}
+          onChange={onChange}
+          fullWidth={fullWidth}
+          disabled={disabled}
+          error={this.state.isError}
+          multiline={multiline}
+          rows={rows}
+          {...rest}
+          {...inputRest}
+        />
+      </FormControl>
+    )
+  }
+  render() {
+    const { fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0 } = this.props
+    green(`state for ${fieldName}`, this.state)
+    return (
       <Field
-        component={renderTextField}
+        component={this.component}
         disabled={disabled}
         fullWidth={fullWidth}
         label={fieldLabel}
-        multiline={multilineField}
+        multiline={rows > 1}
         name={fieldName}
         required={required}
         rows={rows}
-
       />
-    </FormControl>
-  )
+    )
+  }
 }
 
 export default TextFieldRedux

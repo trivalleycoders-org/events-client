@@ -79,8 +79,9 @@ const renderInput = (props) => {
     <Input
       fullWidth
       inputRef={ref}
+      error={true}
       inputProps={{
-        placeholder: 'enter a postal code',
+        placeholder: 'enter a postal code *',
       }}
       {...rest}
     />
@@ -144,8 +145,9 @@ class AutosuggestRedux extends React.Component {
   }
 
   render() {
+    const { classes } = this.props
     return (
-      <div>
+      <div className={classes.wrapper}>
         <Autocomplete
           getItemValue={(item) => item.searchString}
           inputProps={{ id: INPUT_NAME, className: 'width: 100%' }}
@@ -158,13 +160,18 @@ class AutosuggestRedux extends React.Component {
           renderInput={(props) => renderInput(props)}
           value={this.state.value}
           wrapperProps={ {style: wrapperProps} }
+          // required={true}
         />
       </div>
     )
   }
 }
 
-const styles = {}
+const styles = {
+  wrapper: {
+    marginTop: 40
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

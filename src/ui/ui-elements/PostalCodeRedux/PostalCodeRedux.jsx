@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field } from 'redux-form'
+import { FormControl } from '@material-ui/core'
 import Component from './Component'
 /* Dev */
 // eslint-disable-next-line
@@ -15,10 +16,14 @@ class PostalCodeRedux extends React.Component {
     // green('PostalCodeRedux: props', props)
     const { onChange, ...rest } = props.input
     return (
-      <Component
-        onChange={onChange}
-        { ...rest }
-      />
+      <FormControl
+        fullWidth={true}
+      >
+        <Component
+          onChange={onChange}
+          { ...rest }
+        />
+      </FormControl>
     )
   }
 

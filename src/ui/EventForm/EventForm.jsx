@@ -69,6 +69,7 @@ class EventForm extends React.Component {
     // shapeCheck(values)
     const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
     const reshapedData = shapeDataOut(values)
+
     this.setState({
       values: reshapedData
     })
@@ -108,88 +109,75 @@ class EventForm extends React.Component {
               fieldName='imageUrl'
               fieldLabel='Upload Image'
             />
-            <div className={classes.titleArea}>
-              <TextFieldRedux
-                fieldName='title'
-                fieldLabel='Event title'
-                fullWidth
-                rows={2}
-              // required
-              />
-            </div>
-            <div className={classes.dateArea}>
-              <StartEndDateRedux
-                disablePast
-                fieldName='combinedDateTime'
-                fieldLabel='Date & Time'
-                fullWidth
-                required
-
-              />
-            </div>
-            <div className={classes.organizationArea}>
-              <TextFieldRedux
-                fullWidth
-                fieldLabel='Organization'
-                fieldName='organization'
-              />
-            </div>
-            <div className={classes.venueArea}>
-              <Typography variant='title'>
-                Venu
-              </Typography>
-              <TextFieldRedux
-                fullWidth
-                fieldLabel='Venue Name'
-                fieldName='venueName'
-              />
-              <PostalCodeRedux
-                fieldName='postalCode'
-                fieldLabel='Postal Code'
+            <TextFieldRedux
+              fieldName='title'
+              fieldLabel='Event title'
+              fullWidth
+              required={true}
+              rows={2}
+              error={true}
+            // required
             />
-            </div>
-            <div className={classes.venueArea}>
-              <TextFieldRedux
-                fullWidth
-                fieldLabel='Link to Url'
-                fieldName='linkToUrl'
-              />
-            </div>
-            <div className={classes.priceArea}>
-              {
-                !this.state.free
-                  ? <TextFieldRedux
-                      fullWidth
-                      fieldLabel='Price'
-                      fieldName='price'
-                      disabled={this.state.free}
-                    />
-                  : null
-              }
-              <CheckboxRedux
-                fieldLabel='Free'
-                fieldName='free'
-                onChange={() => this.freeClick()}
-              />
-            </div>
-            <div className={classes.categoryArea}>
-              <SelectRedux
-                fieldName='category'
-                fieldLabel='Category'
-                fullWidth
-              >
-                <MenuItem value='select' disabled>Select a category</MenuItem>
-                <MenuItem value='quadcopter'>Quadcopter</MenuItem>
-                <MenuItem value='octocopter'>Octocopter</MenuItem>
-                <MenuItem value='battleDrone'>Battle Drone</MenuItem>
-              </SelectRedux>
-            </div>
-            <div className={classes.tagArea}>
-              <ChipRedux
-                fieldLabel='Tags'
-                fieldName='tags'
-              />
-            </div>
+            <TextFieldRedux
+              fullWidth
+              fieldLabel='Organization'
+              fieldName='organization'
+            />
+            <StartEndDateRedux
+              disablePast
+              fieldName='combinedDateTime'
+              fieldLabel='Date & Time'
+              fullWidth
+              required={true}
+
+            />
+            <TextFieldRedux
+              fullWidth
+              fieldLabel='Venue Name'
+              fieldName='venueName'
+              required={true}
+            />
+            <TextFieldRedux
+              fullWidth
+              fieldLabel='Link to Url'
+              fieldName='linkToUrl'
+              required={true}
+            />
+            <PostalCodeRedux
+              fieldName='postalCode'
+              fieldLabel='Postal Code'
+              required={false}
+            />
+            {
+              !this.state.free
+                ? <TextFieldRedux
+                    fullWidth
+                    fieldLabel='Price'
+                    fieldName='price'
+                    disabled={this.state.free}
+                  />
+                : null
+            }
+            <CheckboxRedux
+              fieldLabel='Free'
+              fieldName='free'
+              onChange={() => this.freeClick()}
+            />
+            <SelectRedux
+              fieldName='category'
+              fieldLabel='Category'
+              fullWidth
+              required={true}
+            >
+              <MenuItem value='select' disabled>Select a category *</MenuItem>
+              <MenuItem value='quadcopter'>Quadcopter</MenuItem>
+              <MenuItem value='octocopter'>Octocopter</MenuItem>
+              <MenuItem value='battleDrone'>Battle Drone</MenuItem>
+            </SelectRedux>
+            <ChipRedux
+              fieldLabel='Tags'
+              fieldName='tags'
+            />
             <div>
               <Button type='button'>
                 Cancel
@@ -259,6 +247,7 @@ export default compose(
   reduxForm({
     form: 'NewEvent',
     // validate,
+    // asyncBlurFields: ['combinedDateTime']
   })
 )(EventForm)
 

@@ -9,12 +9,17 @@ import { green } from 'logger'
 
 const hasCombinedDateTime = has('combinedDateTime')
 
-const validate = values => {
+const validate = (values, props) => {
   green('values', values)
+  green('props', props)
   const errors = {}
-  const { category, linkToUrl, organization, /*price, tags,*/ title, venue } = values
-  let endDateTime
-  let startDateTime
+  if (!values.title) {
+    errors.title = 'Required'
+  }
+
+  // const { category, linkToUrl, organization, /*price, tags,*/ title, venue } = values
+  // let endDateTime
+  //let startDateTime
 
   // if (hasCombinedDateTime(values)) {
   //   endDateTime = values.combinedDateTime.endDateTime
@@ -23,32 +28,30 @@ const validate = values => {
   //   errors.hasCombinedDateTime = 'Must select a date and time'
   // }
 
-  if (!category) {
-    errors.category = 'Required'
-  }
+  // if (!category) {
+  //   errors.category = 'Required'
+  // }
   // if (!endDateTime) {
   //   errors.endDateTime = 'Required'
   // } else if (compareAsc(new Date(startDateTime), new Date(endDateTime)) === 1) {
   //   errors.endDateTime = 'End date cannot be before start date'
   // }
-  if (!linkToUrl) {
-    errors.linkToUrl = 'Required'
-  }
-  if (!organization) {
-    errors.organization = 'Required'
-  }
-  if (!startDateTime) {
-    errors.startDateTime = 'Required'
-  }
+  // if (!linkToUrl) {
+  //   errors.linkToUrl = 'Required'
+  // }
+  // if (!organization) {
+  //   errors.organization = 'Required'
+  // }
+  // if (!startDateTime) {
+  //   errors.startDateTime = 'Required'
+  // }
   // if (isEqual(startDateTime, endDateTime)) {
   //   errors.combinedDateTime = 'Start date/time and end date/time are the same'
   // }
-  if (!title) {
-    errors.title = 'Required'
-  }
-  if (!venue) {
-    errors.venue = 'Required'
-  }
+
+  // if (!venue) {
+  //   errors.venue = 'Required'
+  // }
   return errors
 }
 
