@@ -1,15 +1,19 @@
 import React, { Fragment } from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 // User
 import * as eventActions from 'store/actions/event-actions'
+import * as authActions from '../store/actions/auth-actions.js'
 import AppBar from 'ui/AppBar'
 import Home from 'ui/Home'
 import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import MyEvents from 'ui/MyEvents'
+import RegisterForm from './Auth/RegisterForm'
+import LoginForm from './Auth/LoginForm'
+import SettingsForm from './Auth/SettingsForm'
 import Toasts from 'ui/Toasts'
-import PlayFields from './PlayFields'
 // import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
@@ -22,13 +26,15 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-        <PlayFields />
-        <AppBar />
-        <Toasts />
-        <Route exact path='/my-events' component={MyEvents} />
-        <Route exact path='/new-event' component={EventForm} />
-        <Route exact path='/new-event/:_id' component={EventForm} />
-        <Route exact path='/' component={Home} />
+          <AppBar />
+          <Toasts />
+          <Route exact path='/my-events' component={MyEvents} />
+          <Route exact path='/new-event' component={EventForm} />
+          <Route exact path='/new-event/:_id' component={EventForm} />
+          <Route exact path='/register' component={RegisterForm} />
+          <Route exact path='/login' component={LoginForm} />
+          <Route exact path='/settings' component={SettingsForm} />
+          <Route exact path='/' component={Home} />
         </Fragment>
       </Router>
     )
@@ -36,7 +42,14 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    currentUser: state.common.currentUser,
+    redirectTo: state.common.redirectTo
+  }
 }
 
-export default connect(mapStateToProps, eventActions)(withRoot(App))
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Object.assign({}, eventActions, authActions), dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRoot(App))

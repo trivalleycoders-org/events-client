@@ -10,17 +10,18 @@ const rejectErrors = (res) => {
 }
 
 export const fetchJson = (url, options = {}) => (
-
   fetch(url, {
     ...options,
+    credentials: 'include',
     headers: {
       ...options.headers,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': window.localStorage.getItem('jwt')
     },
   })
-  .then(rejectErrors)
-  .then((res) => res.json())
+    .then(rejectErrors)
+    .then((res) => res.json())
 )
 
 export const fetchUploadImage = (url, options = {}) => (
@@ -31,8 +32,8 @@ export const fetchUploadImage = (url, options = {}) => (
       'Accept': 'application/json',
     },
   })
-  .then(rejectErrors)
-  .then(res => res.json())
+    .then(rejectErrors)
+    .then(res => res.json())
 )
 
 export default { fetchJson, fetchUploadImage }

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import requests from './requests'
 import imageUpload from './upload-image'
+import auth from './auth'
+import common from './common'
 import { events, eventsUi } from './events'
 import { /*cities,*/ postalCodes } from './location'
 import { reducer as formReducer } from 'redux-form'
@@ -15,4 +17,6 @@ export default combineReducers({
   requests,
   toasts,
   form: formReducer,
+  auth,
+  common
 })

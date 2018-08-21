@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
+
+import { localStorageMiddleware } from '../middleware'
 import rootReducer from './reducers'
 
 const logger = createLogger({ collapsed: true })
@@ -11,10 +13,10 @@ const reduxLogging = false
 export default function configureStore() {
   let store
   if (reduxLogging) {
-    store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, logger)))
+    store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, logger, localStorageMiddleware)))
   } else {
-    store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+    store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, localStorageMiddleware)))
   }
-  
+
   return store
 }

@@ -27,6 +27,42 @@ export default {
     }
   },
   */
+  users: {
+    async register(user) {
+      pink('api.users.register: ', user)
+      try {
+        const data = await fetchJson(
+          '/users',
+          {
+            method: 'POST',
+            body: JSON.stringify(user)
+          }
+        )
+        pink('data returned from api.users.register: ', data)
+        return data.data
+      }
+      catch (e) {
+        red('error in api.users.register', e)
+      }
+    },
+    async login(user) {
+      pink('api.users.login: ', user)
+      try {
+        const data = await fetchJson(
+          '/users/login',
+          {
+            method: 'POST',
+            body: JSON.stringify(user)
+          }
+        )
+        pink('data returned from api.users.login: ', data)
+        return data.data
+      }
+      catch (e) {
+        red('error in api.users.login', e)
+      }
+    }
+  },
   postalCodes: {
     async read(searchString) {
       try {

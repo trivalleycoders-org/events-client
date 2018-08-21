@@ -39,6 +39,8 @@ const markRequestFailed = (reason, key) => {
 
 export const createRequestThunk = ({ request, key, start = [], success = [], failure = [] }) => {
   return (...args) => (dispatch) => {
+    // console.log('args: ', ...args)
+    // console.log('request: ', request)
     const requestKey = (typeof key === 'function') ? key(...args) : key
     start.forEach((actionCreator) => {
       dispatch(actionCreator())
@@ -46,6 +48,7 @@ export const createRequestThunk = ({ request, key, start = [], success = [], fai
     dispatch(markRequestPending(requestKey))
     return request(...args)
       .then((data) => {
+        // console.log('data in success: ', data)
         success.forEach((actionCreator) => {
           dispatch(actionCreator(data))
         })
