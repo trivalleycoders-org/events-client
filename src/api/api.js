@@ -61,6 +61,24 @@ export default {
       catch (e) {
         red('error in api.users.login', e)
       }
+    },
+    async update(password) {
+      pink('api.users.update: ', password)
+      red('localstorage token: ', window.localStorage.getItem('jwt'))
+      try {
+        const data = await fetchJson(
+          '/user',
+          {
+            method: 'PUT',
+            body: JSON.stringify(password)
+          }
+        )
+        pink('data returned from api.users.update: ', data)
+        return data.data
+      }
+      catch (e) {
+        red('error in api.users.update', e)
+      }
     }
   },
   postalCodes: {

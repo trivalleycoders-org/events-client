@@ -17,7 +17,7 @@ export const fetchJson = (url, options = {}) => (
       ...options.headers,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': window.localStorage.getItem('jwt')
+      'authorization': `Token ${window.localStorage.getItem('jwt')}`
     },
   })
     .then(rejectErrors)

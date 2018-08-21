@@ -40,6 +40,7 @@ class RegisterForm extends React.Component {
 
     return (
       <div className={classes.pageWrapper}>
+        <div className={classes.display1} >Register Form</div>
         <form>
           <TextFieldRedux
             fieldName='email'

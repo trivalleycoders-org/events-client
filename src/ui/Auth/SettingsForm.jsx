@@ -13,7 +13,7 @@ import * as authActions from '../../store/actions/auth-actions'
 const mapStateToProps = (state) => ({ ...state.auth })
 
 const mapDispatchToProps = dispatch => ({
-  onClickLogout: () => dispatch({ type: authActions.keyLogoutUser })
+
 })
 
 class SettingsForm extends React.Component {
@@ -29,11 +29,15 @@ class SettingsForm extends React.Component {
   //   }
   // }
 
+  onClickLogout = () => {
+    const { logoutUser } = this.props
+    logoutUser()
+  }
 
   onSubmit = (values) => {
     console.log('values: ', values)
-    const { requestLoginUser } = this.props
-    requestLoginUser(values)
+    const { requestUpdatePassword } = this.props
+    requestUpdatePassword(values)
     this.state.goBack()
   }
 
@@ -43,7 +47,7 @@ class SettingsForm extends React.Component {
 
     return (
       <div className={classes.pageWrapper}>
-        <h1>Change Password</h1>
+        <div className={classes.display1} >Change Password</div>
         <form>
           <TextFieldRedux
             fieldName='password'
@@ -56,7 +60,7 @@ class SettingsForm extends React.Component {
           <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
             Change Password
         </Button>
-          <Button type='button' disabled={pristine || submitting} onClick={this.props.onClickLogout}>
+          <Button type='button' disabled={pristine || submitting} onClick={this.onClickLogout}>
             Logout
         </Button>
         </form>
@@ -67,7 +71,7 @@ class SettingsForm extends React.Component {
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, authActions),
   reduxForm({
     form: 'LoginForm',
   })

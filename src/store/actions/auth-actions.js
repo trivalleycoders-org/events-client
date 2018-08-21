@@ -5,6 +5,13 @@ export const keyRegisterUser = 'actionKeyRegisterUser'
 export const requestKeyRegisterUser = 'requestKeyRegisterUser'
 export const keyLogoutUser = 'actionKeyLogoutUser'
 
+export const logoutUser = (user) => {
+  console.log('in logout User: ')
+  return ({
+    type: keyLogoutUser
+  })
+}
+
 const registerUser = (user) => {
   console.log('in registerUser: ')
   return ({
@@ -39,10 +46,18 @@ export const requestLoginUser = createRequestThunk({
 })
 
 export const keyUpdatePassword = 'actionKeyUpdatePassword'
+export const requestKeyUpdatePassword = 'requestKeyUpdatePassword'
 
-export const updatePassword = (password) => {
+const updatePassword = (password) => {
   return ({
     type: keyUpdatePassword,
     payload: password
   })
 }
+
+export const requestUpdatePassword = createRequestThunk({
+  request: api.users.update,
+  key: requestKeyUpdatePassword,
+  success: [updatePassword],
+  failure: [error => logError(error, requestKeyUpdatePassword)]
+})

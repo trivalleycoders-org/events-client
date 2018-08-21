@@ -38,6 +38,7 @@ class LoginForm extends React.Component {
 
     return (
       <div className={classes.pageWrapper}>
+        <div className={classes.display1} >Login</div>
         <form>
           <TextFieldRedux
             fieldName='email'
