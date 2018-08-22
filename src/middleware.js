@@ -5,9 +5,9 @@ const localStorageMiddleware = store => next => action => {
   console.log('next: ', next)
   console.log('action in middleware: ', action)
   if (action.type === keyRegisterUser || action.type === keyLoginUser) {
-    console.log('action.type: ', action.type)
+    console.log('action.type in middleware: ', action.type)
     if (!action.error) {
-      console.log('action.error: ', action.error)
+      console.log('action.error in middleware: ', action.error)
       window.localStorage.setItem('jwt', action.payload.user.token)
       console.log('action.payload.user.token: ', action.payload.user.token)
       // setToken(action.payload.user.token)
