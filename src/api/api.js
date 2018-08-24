@@ -60,6 +60,7 @@ export default {
       }
       catch (e) {
         red('error in api.users.login', e)
+        throw e
       }
     },
     async update(password) {

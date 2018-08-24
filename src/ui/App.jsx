@@ -13,11 +13,12 @@ import MyEvents from 'ui/MyEvents'
 import RegisterForm from './Auth/RegisterForm'
 import LoginForm from './Auth/LoginForm'
 import SettingsForm from './Auth/SettingsForm'
-import Toasts from 'ui/Toasts'
+import Snackbars from 'ui/Snackbars'
 // import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
 class App extends React.Component {
+
   componentDidMount() {
     this.props.requestReadEvents()
   }
@@ -27,7 +28,7 @@ class App extends React.Component {
       <Router>
         <Fragment>
           <AppBar />
-          <Toasts />
+          <Snackbars />
           <Route exact path='/my-events' component={MyEvents} />
           <Route exact path='/new-event' component={EventForm} />
           <Route exact path='/new-event/:_id' component={EventForm} />
@@ -43,8 +44,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.common.currentUser,
-    redirectTo: state.common.redirectTo
+    currentUser: state.auth.currentUser,
+    redirectTo: state.auth.redirectTo
   }
 }
 

@@ -5,8 +5,10 @@ const rejectErrors = (res) => {
   const { status } = res
   if (status >= 200 && status < 300) {
     return res
+  } else if (status === 422) {
+    return Promise.reject({ error: 'Email or Password is Invalid' })
   }
-  return Promise.reject({ message: res.statusText })
+  return Promise.reject(res)
 }
 
 export const fetchJson = (url, options = {}) => (
@@ -19,8 +21,7 @@ export const fetchJson = (url, options = {}) => (
       'Content-Type': 'application/json',
       'authorization': `Token ${window.localStorage.getItem('jwt')}`
     },
-  })
-    .then(rejectErrors)
+  }).then(rejectErrors)
     .then((res) => res.json())
 )
 

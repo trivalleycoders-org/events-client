@@ -12,9 +12,6 @@ import * as authActions from '../../store/actions/auth-actions'
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
-const mapDispatchToProps = dispatch => ({
-
-})
 
 class SettingsForm extends React.Component {
 

@@ -1,22 +1,32 @@
-import { keyRegisterUser, keyLoginUser, keyUpdatePassword } from '../actions/auth-actions'
-import { blue } from 'logger'
+import { keyRegisterUser, keyLoginUser, keyLogoutUser, keyLoginFailed, keyUpdatePassword } from '../actions/auth-actions'
 
-export default (state = {}, { type, payload, error }) => {
-  console.log('auth reducer.type', type)
-  console.log('auth reducer.payload', payload)
-  console.log('auth reducer.error', error)
+export default (state = {}, { type, payload, error, subtype }) => {
   switch (type) {
     case keyLoginUser:
     case keyRegisterUser:
       return {
         ...state,
-        inProgress: false,
-        errors: error ? payload.errors : null
+        errors: error ? payload.error : null,
+        redirectTo: error ? null : '/',
+        token: error ? null : payload.user.token,
+        currentUser: error ? null : payload.user
       }
     case keyUpdatePassword:
       return {
         ...state,
         password: payload
+      }
+    case keyLoginFailed:
+      return {
+        ...state,
+        error: payload.error ? payload.error : null
+      }
+    case keyLogoutUser:
+      return {
+        ...state,
+        redirectTo: '/',
+        token: null,
+        currentUser: null
       }
     default:
       return state

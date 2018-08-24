@@ -1,19 +1,18 @@
-import { createRequestThunk, logError } from './action-helpers'
+import { createRequestThunk } from './action-helpers'
 import api from 'api'
+import { setSnackbar } from './snackbar-actions'
 
 export const keyRegisterUser = 'actionKeyRegisterUser'
 export const requestKeyRegisterUser = 'requestKeyRegisterUser'
 export const keyLogoutUser = 'actionKeyLogoutUser'
 
 export const logoutUser = (user) => {
-  console.log('in logout User: ')
   return ({
     type: keyLogoutUser
   })
 }
 
 const registerUser = (user) => {
-  console.log('in registerUser: ')
   return ({
     type: keyRegisterUser,
     payload: user
@@ -24,17 +23,24 @@ export const requestRegisterUser = createRequestThunk({
   request: api.users.register,
   key: requestKeyRegisterUser,
   success: [registerUser],
-  failure: [error => logError(error, requestKeyRegisterUser)]
+  failure: [(error) => setSnackbar(error)]
 })
 
 export const keyLoginUser = 'actionKeyLoginUser'
+export const keyLoginFailed = 'actionKeyLoginFailed'
 export const requestKeyLoginUser = 'requestKeyLoginUser'
 
 const loginUser = (user) => {
-  console.log('in login User: ')
   return ({
     type: keyLoginUser,
     payload: user
+  })
+}
+
+const loginFailed = (error) => {
+  return ({
+    type: keyLoginFailed,
+    payload: error
   })
 }
 
@@ -42,7 +48,7 @@ export const requestLoginUser = createRequestThunk({
   request: api.users.login,
   key: requestKeyLoginUser,
   success: [loginUser],
-  failure: [error => logError(error, requestKeyLoginUser)]
+  failure: [loginFailed, (error) => setSnackbar(error)]
 })
 
 export const keyUpdatePassword = 'actionKeyUpdatePassword'
@@ -59,5 +65,5 @@ export const requestUpdatePassword = createRequestThunk({
   request: api.users.update,
   key: requestKeyUpdatePassword,
   success: [updatePassword],
-  failure: [error => logError(error, requestKeyUpdatePassword)]
+  failure: [(error) => setSnackbar(error)]
 })
