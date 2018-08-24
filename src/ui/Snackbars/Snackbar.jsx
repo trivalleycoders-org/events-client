@@ -94,7 +94,7 @@ class Snackbars extends React.Component {
         >
           <MySnackbarContentWrapper
             onClose={this.handleClose}
-            variant="success"
+            variant={this.props.snackbar.variant}
             message={this.props.snackbar.message}
           />
         </Snackbar>

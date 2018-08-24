@@ -8,7 +8,7 @@ import { orange } from 'logger'
     - error
     - info
 */
-export const keySetSnackbar = 'actionSetToast'
+export const keySetSnackbar = 'actionSetSnackbar'
 export const setSnackbar = (message, variant = 'info', id=shortid.generate() ) => {
   orange('action setSnackbar: message', message)
   return (
