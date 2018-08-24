@@ -8,8 +8,8 @@ import Home from 'ui/Home'
 import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import MyEvents from 'ui/MyEvents'
-import Toasts from 'ui/Toasts'
-import PlayFields from './PlayFields'
+import Snackbars from 'ui/Snackbars'
+// import PlayFields from './PlayFields'
 // import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
@@ -22,9 +22,9 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-        <PlayFields />
+
         <AppBar />
-        <Toasts />
+        <Snackbars />
         <Route exact path='/my-events' component={MyEvents} />
         <Route exact path='/new-event' component={EventForm} />
         <Route exact path='/new-event/:_id' component={EventForm} />

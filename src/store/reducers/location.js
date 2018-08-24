@@ -24,8 +24,6 @@ export const cities = (state = [], { type, payload }) => {
 export const postalCodes = (state = [], { type, payload }) => {
   switch (type) {
     case keyReadPostalCodes:
-      // blue(keyReadPostalCodes, payload)
-      /// blue('postalCodes state', state)
       return payload.postalCodes
     default:
       return state

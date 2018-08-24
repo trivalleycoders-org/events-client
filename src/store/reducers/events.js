@@ -11,12 +11,10 @@ import {
 /* Dev */
 // eslint-disable-next-line
 import { blue } from 'logger'
-import { green } from '../../logger/index'
 
 const indexOfObjectInArray = (arr, _id) => {
   return arr.findIndex(i => i._id === _id)
 }
-
 
 const updateEvent = (state, newEvent) => {
   const idx = indexOfObjectInArray(state, newEvent._id)
@@ -30,24 +28,18 @@ const updateEvent = (state, newEvent) => {
 const deleteEvent = (state, _id) => {
   const idx = indexOfObjectInArray(state, _id)
   const newState = remove(idx, 1, state)
-  green('events.deleteEvent: newState', newState)
   return newState
 }
 
 export const events = (state = [], { type, payload }) => {
-  // blue('events reducer.payload', payload)
   switch (type) {
     case keyCreateEvent:
-      // blue('keyCreateEvent', payload.event)
-      // blue('createEvent state', state)
       return append(payload.event[0], state)
     case keyReadEvents:
       return payload.events
     case keyPatchOneEvent:
       return updateEvent(state, payload.event)
     case keyDeleteOneEvent:
-      // blue('reducers.keyDeletehOneEvent: payload', payload)
-      // blue('reducers keyDeletehOneEvent state', state)
       return deleteEvent(state, payload.event._id)
     default:
       return state
@@ -55,8 +47,6 @@ export const events = (state = [], { type, payload }) => {
 }
 
 export const eventsUi = (state = {}, { type, payload }) => {
-  // blue('reducers.eventsUi: type', type)
-  // blue('reducers.eventsUi: payload', payload)
   switch (type) {
     case keySetEdit_id:
       return merge(state, { edit_id: payload._id })

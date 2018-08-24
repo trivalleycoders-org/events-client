@@ -7,7 +7,6 @@ import { CssBaseline } from '@material-ui/core'
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
-  // ...darkBaseTheme,
   breakpoints: {
     values: {
       xs: 0,
@@ -18,7 +17,7 @@ const theme = createMuiTheme({
     }
   },
   palette: {
-    type: 'dark',
+    // type: 'dark',
     common: {
       black: '#000',
       white: '#fff',
