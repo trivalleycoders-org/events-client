@@ -1,10 +1,10 @@
 import { merge } from 'ramda'
 import { keyCreateNewTag } from '../actions/tag-actions'
+
+// eslint-disable-next-line
 import { blue } from 'logger'
 
-
 const tags = (state = [], { type, payload }) => {
-  // blue('tags: payload', payload)
   switch (type) {
     case keyCreateNewTag:
       return merge(state, payload.tag)

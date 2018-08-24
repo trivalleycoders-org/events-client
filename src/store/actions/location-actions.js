@@ -1,6 +1,6 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-// import { setToast } from './toast-actions'
+
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'

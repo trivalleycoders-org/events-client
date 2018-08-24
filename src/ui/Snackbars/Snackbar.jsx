@@ -17,7 +17,7 @@ import WarningIcon from '@material-ui/icons/Warning'
 import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import * as snackbarActions from '../../store/actions/snackbar-actions'
-import * as snackbarSelectors from '../../store/selectors/snackbar-selectors'
+import * as toastSelectors from '../../store/selectors/snackbar-selectors'
 
 
 // eslint-disable-next-line
@@ -150,3 +150,4 @@ export default compose(
   withStyles(styles2),
   connect(mapStateToProps, snackbarActions),
 )(Snackbars)
+

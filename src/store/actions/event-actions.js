@@ -1,6 +1,6 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-import { setToast } from './toast-actions'
+import { setSnackbar } from './snackbar-actions'
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'
@@ -23,8 +23,8 @@ export const createNewEvent = (event) => {
 export const requestCreateEvent = createRequestThunk({
   request: api.events.create,
   key: requestKeyCreateEvent,
-  success: [createNewEvent],
-  failure: [() => setToast('Couldn\'t add note', 'warn')],
+  success: [createNewEvent, () => setSnackbar('Event added', 'success')],
+  failure: [() => setSnackbar('Couldn\'t add note', 'warn')],
 })
 
 // Read
@@ -41,28 +41,19 @@ const readEvents = (events) => {
 export const requestReadEvents = createRequestThunk({
   request: api.events.read,
   key: requestKeyReadEvents,
-  success: [readEvents],
-  failure: [error => logError(error, requestKeyReadEvents)]
+  success: [readEvents, () => setSnackbar('Events loaded', 'success')],
+  failure: [(error) => setSnackbar('Could not get events', 'error')]
 })
 
 // Search Results
 
-// export const keySetEvents = 'actionKeySetEvents'
 export const requestKeySearchEvents = 'requestKeySearchEvents'
-
-// export const setEvents = (data) => {
-//   // orange('readEvents', events)
-//   return ({
-//     type: keySetEvents,
-//     payload: { data }, // events is already an object?
-//   })
-// }
 
 export const requestSearchEvents = createRequestThunk({
   request: api.events.search,
   key: requestKeySearchEvents,
   success: [readEvents],
-  failure: [error => logError(error, requestKeySearchEvents)]
+  failure: [error => setSnackbar(`Search events failed: ${error}`, 'error')]
 })
 
 // Patch
@@ -80,8 +71,8 @@ const patchOneEvent = (data) => {
 export const requestPatchOneEvent = createRequestThunk({
   request: api.events.patch,
   key: requestKeyPatchOneEvent,
-  success: [patchOneEvent],
-  failure: [error => logError(error, requestKeyPatchOneEvent)]
+  success: [patchOneEvent, () => setSnackbar('Event updated', 'success')],
+  failure: [error => logError(`Could not update event: ${error}`, 'error')]
 })
 
 // Delete
@@ -99,8 +90,8 @@ const deleteOneEvent = (data) => {
 export const requestDeleteOneEvent = createRequestThunk({
   request: api.events.delete,
   key: requestKeyDeleteOneEvent,
-  success: [deleteOneEvent],
-  failure: [error => logError(error, requestKeyDeleteOneEvent)]
+  success: [deleteOneEvent, () => setSnackbar('Event deleted', 'success')],
+  failure: [error => setSnackbar(`Could not delete event: ${error}`)]
 })
 
 // EventsUi

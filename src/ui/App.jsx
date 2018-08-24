@@ -18,7 +18,6 @@ import Snackbars from 'ui/Snackbars'
 
 
 class App extends React.Component {
-
   componentDidMount() {
     this.props.requestReadEvents()
   }

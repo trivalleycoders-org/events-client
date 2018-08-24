@@ -9,7 +9,7 @@ import { orange } from 'logger'
     - info
 */
 export const keySetSnackbar = 'actionSetSnackbar'
-export const setSnackbar = (message, variant = 'info', id = shortid.generate()) => {
+export const setSnackbar = (message, variant = 'info', id=shortid.generate() ) => {
   orange('action setSnackbar: message', message)
   return (
     {
