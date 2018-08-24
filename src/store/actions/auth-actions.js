@@ -48,7 +48,7 @@ export const requestLoginUser = createRequestThunk({
   request: api.users.login,
   key: requestKeyLoginUser,
   success: [loginUser],
-  failure: [loginFailed, (error) => setSnackbar(error)]
+  failure: [loginFailed, (error) => setSnackbar(error.error, 'error')]
 })
 
 export const keyUpdatePassword = 'actionKeyUpdatePassword'

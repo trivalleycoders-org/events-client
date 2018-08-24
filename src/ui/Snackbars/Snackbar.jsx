@@ -41,6 +41,7 @@ function Content(props) {
   const { classes, className, message, onClose, variant, ...other } = props
   const Icon = variantIcon[variant || 'info']
 
+  console.log('props: ', props)
   return (
     <SnackbarContent
       className={classNames(classes[variant], className)}
@@ -80,7 +81,8 @@ class Snackbars extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { snackbar } = this.props
+    console.log('snackbar: ', snackbar)
 
     return (
       <div>
@@ -89,14 +91,14 @@ class Snackbars extends React.Component {
             vertical: 'bottom',
             horizontal: 'left',
           }}
-          open={this.props.snackbar.open}
+          open={snackbar.open}
           autoHideDuration={6000}
           onClose={this.handleClose}
         >
           <MySnackbarContentWrapper
             onClose={this.handleClose}
-            variant={this.props.snackbar.variant}
-            message={this.props.snackbar.message}
+            variant={snackbar.variant}
+            message={snackbar.message}
           />
         </Snackbar>
       </div>
