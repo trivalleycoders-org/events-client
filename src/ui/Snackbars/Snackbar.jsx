@@ -17,7 +17,7 @@ import WarningIcon from '@material-ui/icons/Warning'
 import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import * as snackbarActions from '../../store/actions/snackbar-actions'
-import * as toastSelectors from '../../store/selectors/snackbar-selectors'
+import * as snackbarSelectors from '../../store/selectors/snackbar-selectors'
 
 
 // eslint-disable-next-line
@@ -39,7 +39,7 @@ const variantIcon = {
 
 function Content(props) {
   const { classes, className, message, onClose, variant, ...other } = props
-  const Icon = variantIcon[variant]
+  const Icon = variantIcon[variant || 'info']
 
   return (
     <SnackbarContent
@@ -70,11 +70,12 @@ function Content(props) {
 class Snackbars extends React.Component {
 
   handleClose = (event, reason) => {
+    console.log('reason:, ', reason)
     if (reason === 'clickaway') {
       return
     }
 
-
+    //console.log('props', this.props)
     this.props.clearSnackbar()
   }
 

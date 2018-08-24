@@ -3,7 +3,7 @@ import { merge } from 'ramda'
 // eslint-disable-next-line
 import { blue } from 'logger'
 
-export const snackbar = (state = {}, { type, payload }) => {
+const snackbar = (state = {}, { type, payload }) => {
   blue('reducer: snackbar: state', state)
   blue('reducer: snackbar: payload', payload)
   switch (type) {
