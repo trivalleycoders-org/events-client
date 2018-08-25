@@ -10,7 +10,7 @@ import {
 
 /* Dev */
 // eslint-disable-next-line
-import { blue } from 'logger'
+import { blue, red } from 'logger'
 
 const indexOfObjectInArray = (arr, _id) => {
   return arr.findIndex(i => i._id === _id)
@@ -25,24 +25,30 @@ const updateEvent = (state, newEvent) => {
   return newState
 }
 
-const deleteEvent = (state, _id) => {
+const deleteEvent = (state, payload) => {
+  const _id = payload[0]._id
   const idx = indexOfObjectInArray(state, _id)
   const newState = remove(idx, 1, state)
   return newState
 }
 
 export const events = (state = [], { type, payload }) => {
-  switch (type) {
-    case keyCreateEvent:
-      return append(payload.event[0], state)
-    case keyReadEvents:
-      return payload.events
-    case keyPatchOneEvent:
-      return updateEvent(state, payload.event)
-    case keyDeleteOneEvent:
-      return deleteEvent(state, payload.event._id)
-    default:
-      return state
+  try {
+    switch (type) {
+      case keyCreateEvent:
+        return append(payload.event[0], state)
+      case keyReadEvents:
+        return payload.events
+      case keyPatchOneEvent:
+        return updateEvent(state, payload.event)
+      case keyDeleteOneEvent:
+        return deleteEvent(state, payload)
+      default:
+        return state
+    }
+  }
+  catch (e) {
+    red(`reducers.events ${type}`, e)
   }
 }
 

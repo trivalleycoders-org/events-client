@@ -80,7 +80,7 @@ export const keyDeleteOneEvent = 'keyDeletehOneEvent'
 export const requestKeyDeleteOneEvent = 'requestKeyDeleteOneEvent'
 
 const deleteOneEvent = (data) => {
-  // orange('event-actions.deleteOneEvent: event', event)
+  // orange('event-actions.deleteOneEvent: data', data)
   return ({
     type: keyDeleteOneEvent,
     payload: data,
