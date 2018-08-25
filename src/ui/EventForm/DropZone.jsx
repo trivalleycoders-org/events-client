@@ -13,9 +13,6 @@ const styles = {}
 class Admin extends Component {
   handleSubmit = (event, values) => {
     event.preventDefault()
-    console.log('handleSubmit')
-    // console.log('values', values)
-
   }
   renderTextField = ({
     input,
@@ -30,11 +27,8 @@ class Admin extends Component {
     />
   )
 
-
   render() {
 
-    // console.log('props', this.props)
-    // const {handleSubmit} = this.props
     return (
       <div>
         {/* <UploadImage /> */}
@@ -79,9 +73,5 @@ class Admin extends Component {
     )
   }
 }
-
-// export default withStyles(styles)(Admin)
-
-// Admin = reduxForm({form: 'admin'})(Admin)
 
 export default compose(withStyles(styles), reduxForm({form: 'admin'}))(Admin)

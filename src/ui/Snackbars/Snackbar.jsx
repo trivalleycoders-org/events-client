@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import ErrorIcon from '@material-ui/icons/Error'
 import InfoIcon from '@material-ui/icons/Info'
@@ -41,7 +40,6 @@ function Content(props) {
   const { classes, className, message, onClose, variant, ...other } = props
   const Icon = variantIcon[variant || 'info']
 
-  console.log('props: ', props)
   return (
     <SnackbarContent
       className={classNames(classes[variant], className)}
@@ -71,18 +69,15 @@ function Content(props) {
 class Snackbars extends React.Component {
 
   handleClose = (event, reason) => {
-    console.log('reason:, ', reason)
     if (reason === 'clickaway') {
       return
     }
 
-    //console.log('props', this.props)
     this.props.clearSnackbar()
   }
 
   render() {
     const { snackbar } = this.props
-    console.log('snackbar: ', snackbar)
 
     return (
       <div>

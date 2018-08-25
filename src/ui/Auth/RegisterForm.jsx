@@ -28,7 +28,7 @@ class RegisterForm extends React.Component {
   onChangePassword
 
   onSubmit = (values) => {
-    console.log('values: ', values)
+    // console.log('values: ', values)
     const { requestRegisterUser } = this.props
     requestRegisterUser(values)
     this.state.goBack()

@@ -4,8 +4,6 @@ import { Field } from 'redux-form'
 import { RadioGroup, FormControl, FormLabel } from '@material-ui/core'
 
 const renderRadioGroup = ({ input, ...rest }) => {
-  console.log('input', input)
-  console.log('rest', rest)
   return (
     <RadioGroup
       {...input}
@@ -27,7 +25,7 @@ const RadioGroupRedux = props => {
         {children}
       </Field>
     </div>
-      
+
   )
 }
 

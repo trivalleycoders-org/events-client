@@ -32,7 +32,7 @@ class SettingsForm extends React.Component {
   }
 
   onSubmit = (values) => {
-    console.log('values: ', values)
+    // console.log('values: ', values)
     const { requestUpdatePassword } = this.props
     requestUpdatePassword(values)
     this.state.goBack()

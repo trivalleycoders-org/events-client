@@ -4,13 +4,9 @@ import { merge } from 'ramda'
 import { blue } from 'logger'
 
 const snackbar = (state = {}, { type, payload }) => {
-  blue('reducer: snackbar: state', state)
-  blue('reducer: snackbar: payload', payload)
   switch (type) {
     case keySetSnackbar:
-      const o = merge(payload, { open: true })
-      blue('set o', o)
-      return o
+      return merge(payload, { open: true })
     case keyClearSnackbar:
       return {
         id: '',

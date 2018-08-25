@@ -52,7 +52,6 @@ export const createRequestThunk = ({ request, key, start = [], success = [], fai
         dispatch(markRequestSuccess(requestKey))
       })
       .catch((reason) => {
-        console.log('reason: ', reason)
         failure.forEach((actionCreator) => dispatch(actionCreator(reason)))
         dispatch(markRequestFailed(reason, requestKey))
       })

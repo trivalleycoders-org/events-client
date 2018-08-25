@@ -1,6 +1,8 @@
 import shortid from 'shortid'
-import { orange } from 'logger'
 
+/* Dev */
+// eslint-disable-next-line
+import { orange } from 'logger'
 
 /* Snackbar variants
     - success
@@ -10,7 +12,6 @@ import { orange } from 'logger'
 */
 export const keySetSnackbar = 'actionSetSnackbar'
 export const setSnackbar = (message, variant = 'info', id = shortid.generate()) => {
-  orange('action setSnackbar: message', message)
   return (
     {
       type: keySetSnackbar,
@@ -25,7 +26,6 @@ export const setSnackbar = (message, variant = 'info', id = shortid.generate()) 
 
 export const keyClearSnackbar = 'actionKeyClearSnackbar'
 export const clearSnackbar = () => {
-  console.log('clearing...')
   return {
     type: keyClearSnackbar,
   }
