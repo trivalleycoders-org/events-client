@@ -28,6 +28,7 @@ import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
 import { Event, validateModel } from 'models'
+import AreYouSure from './AreYouSure'
 
 
 /* Dev */
@@ -63,6 +64,11 @@ class EventForm extends React.Component {
     imageUrl: '',
     free: this.props.free,
     goBack: this.props.history.goBack,
+    areYouSure: false,
+  }
+
+  goBack = () => {
+    this.state.goBack()
   }
 
   onSubmit = (values) => {
@@ -79,7 +85,25 @@ class EventForm extends React.Component {
     } else {
       requestCreateEvent(reshapedData)
     }
-    this.state.goBack()
+    this.goBack()
+  }
+
+  onCancel = (pristine) => {
+    if (pristine) {
+      this.goBack()
+    } else {
+      this.setState({ areYouSure: true })
+    }
+  }
+
+  closeModal = (close) => {
+    // the modal always closes when button yes
+    // or no is clicked
+    this.setState({ areYouSure: false })
+    // but the form only closes on yes click
+    if (close) {
+      this.goBack()
+    }
   }
 
   freeClick = () => {
@@ -90,11 +114,12 @@ class EventForm extends React.Component {
 
   render() {
     const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
-
+    const { areYouSure } = this.state
     return (
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
       >
+        <AreYouSure open={areYouSure} close={this.closeModal} />
         <div className={classes.pageWrapper}>
           {
             pastEvent
@@ -179,7 +204,7 @@ class EventForm extends React.Component {
               fieldName='tags'
             />
             <div>
-              <Button type='button'>
+              <Button type='button' onClick={() => this.onCancel(pristine)} disabled={submitting}>
                 Cancel
               </Button>
               {/* <Button type='submit' disabled={pristine || submitting}>
