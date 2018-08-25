@@ -24,35 +24,6 @@ import * as eventActions from 'store/actions/event-actions'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = theme => ({
-  actions: {
-    color: theme.palette.text.secondary,
-  },
-  editDeleteGroup: {
-    display: 'flex',
-    flexflow: 'row nowrap'
-  },
-  highlight:
-    theme.palette.type === 'light'
-    ? {
-      color: theme.palette.secondary.main,
-      backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-    }
-    : {
-      color: theme.palette.text.primary,
-      backgroundColor: theme.palette.secondary.dark,
-    },
-  root: {
-    paddingRight: theme.spacing.unit,
-  },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-})
-
 class TableToolbar extends React.Component {
   state = {
     editClicked: false,
@@ -138,6 +109,35 @@ TableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   selected: PropTypes.array.isRequired,
 }
+
+const styles = theme => ({
+  actions: {
+    color: theme.palette.text.secondary,
+  },
+  editDeleteGroup: {
+    display: 'flex',
+    flexflow: 'row nowrap'
+  },
+  highlight:
+    theme.palette.type === 'light'
+    ? {
+      color: theme.palette.secondary.main,
+      backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+    }
+    : {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.secondary.dark,
+    },
+  root: {
+    paddingRight: theme.spacing.unit,
+  },
+  spacer: {
+    flex: '1 1 100%',
+  },
+  title: {
+    flex: '0 0 auto',
+  },
+})
 
 const mapStateToProps = (state) => {
   return {}
