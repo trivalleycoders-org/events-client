@@ -9,15 +9,15 @@ import {
   isString,
   isValidObjectId
 } from './model-types'
-
+import { hasProp } from 'lib'
 /* Dev */
 // eslint-disable-next-line
 import { green, blue, red } from 'logger'
 
-const hasProp = (prop, obj) => {
-  const ret = obj.hasOwnProperty(prop)
-  return ret
-}
+// const hasProp = (prop, obj) => {
+//   const ret = obj.hasOwnProperty(prop)
+//   return ret
+// }
 
 const checkType = (key, type, val ) => {
   switch (type) {

@@ -6,6 +6,7 @@ import { events, eventsUi } from './events'
 import { postalCodes } from './location'
 import { reducer as formReducer } from 'redux-form'
 import snackbar from './snackbar'
+import appMenu from './app-menu'
 
 export default combineReducers({
   events,
@@ -14,6 +15,7 @@ export default combineReducers({
   postalCodes,
   requests,
   snackbar,
+  appMenu,
   form: formReducer,
   auth
 })

@@ -14,6 +14,7 @@ import RegisterForm from './Auth/RegisterForm'
 import LoginForm from './Auth/LoginForm'
 import SettingsForm from './Auth/SettingsForm'
 import Snackbars from 'ui/Snackbars'
+import AppMenu from 'ui/AppMenu'
 // import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
@@ -28,6 +29,7 @@ class App extends React.Component {
         <Fragment>
           <AppBar />
           <Snackbars />
+          <AppMenu />
           <Route exact path='/my-events' component={MyEvents} />
           <Route exact path='/new-event' component={EventForm} />
           <Route exact path='/new-event/:_id' component={EventForm} />

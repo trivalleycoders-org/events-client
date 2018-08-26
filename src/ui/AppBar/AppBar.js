@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { compose } from 'recompose'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar } from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
@@ -8,9 +10,11 @@ import { Typography } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-// import SearchEvent from './SearchEvent'
-
 import SearchEvent from './SearchEvent'
+import * as appMenuActions from 'store/actions/app-menu-actions'
+/* Dev */
+// eslint-disable-next-line
+import { green } from 'logger'
 
 const styles = {
   root: {
@@ -25,13 +29,19 @@ const styles = {
   },
 }
 
+
+
 function MainAppBar(props) {
-  const { classes } = props
+  const { classes, toggleAppMenu } = props
+  const toggleDraw = () => {
+    // green('toggleDraw', props)
+    toggleAppMenu()
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDraw}>
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
@@ -54,4 +64,11 @@ MainAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(MainAppBar)
+const mapStateToProps = (state) => ({
+
+})
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, appMenuActions),
+)(MainAppBar)
