@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import SearchIcon from '@material-ui/icons/Search'
@@ -17,27 +17,32 @@ export class SearchEvent extends Component {
     super(props)
     this.state = {
       searchText: '',
-      showSearchIcon: true
+      showSearchIcon: true,
+      search: false,
     }
 
-    this.setSearchInputRef = element => {
-      this.searchInput = element
-    }
-    this.handleChange = this.handleChange.bind(this)
+    // this.setSearchInputRef = element => {
+    //   this.searchInput = element
+    // }
+    // this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange = (e) => {
-    e.persist()
+  handleChange = (value) => {
+    // e.persist()
+    green('handleChange', value)
     this.setState((prevState, props) => ({
-      searchText: e.target.value
+      searchText: value
     }))
   }
 
   searchEvents = () => {
+    green('searchEvent', 'hello')
     this.setState((prevState, props) => ({
       showSearchIcon: !prevState.showSearchIcon
     }))
-    this.props.requestSearchEvents(this.state.searchText)
+    // this.props.requestSearchEvents(this.state.searchText)
+    this.setState({ search: true })
+
   }
 
   //clearSearch
@@ -53,21 +58,26 @@ export class SearchEvent extends Component {
 
   render() {
     const { classes } = this.props
+    const { searchText, search } = this.state
     const showSearch = this.state.showSearchIcon
 
 
+
+    if (search) {
+      return <Redirect to={`/events/search/${searchText}`} />
+    }
     return (
       <Fragment>
-        <TextField onChange={this.handleChange} value={this.state.searchText} />
+        <TextField onChange={e => this.handleChange(e.target.value)} value={this.state.searchText} />
 
-        <Link to={`/search/${this.state.searchText}`}>
-          <IconButton aria-label='Add to favorites'>
-            {showSearch
-              ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents} />
-              : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults} />
-            }
-          </IconButton>
-        </Link>
+
+        <IconButton aria-label='Add to favorites'>
+          {showSearch
+            ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents} />
+            : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults} />
+          }
+        </IconButton>
+
       </Fragment>
     )
   }

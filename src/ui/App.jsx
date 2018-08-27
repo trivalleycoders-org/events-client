@@ -24,6 +24,7 @@ import RouteNotfound from 'ui/RouteNotFound'
 class App extends React.Component {
 
   render() {
+    const { currentUser } = this.props
     return (
       <Router>
         <Fragment>
@@ -37,7 +38,7 @@ class App extends React.Component {
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/settings' component={SettingsForm} />
             <Route exact path='/search/:searchValue' component={Events} />
-            <Route exact path='/my-events/:user' component={Events} />
+            <Route exact path='/my-events' component={Events} />
             <Route exact path='/events' component={Events} />
             <Route component={RouteNotfound} />
           </Switch>

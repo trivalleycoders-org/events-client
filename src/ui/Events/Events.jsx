@@ -11,6 +11,7 @@ import {
 import * as eventActions from 'store/actions/event-actions'
 import * as eventsSelectors from '../../store/selectors/events-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
+import * as authSelectors from 'store/selectors/auth-selectors'
 import { requestKeyReadEvents } from 'store/actions/event-actions'
 import EventsGrid from './EventsGrid'
 import MyEvents from 'ui/MyEvents'
@@ -26,29 +27,30 @@ const styles = theme => ({
 class Events extends React.Component {
   state = {
     spacing: '16',
-    myEvents: false,
   }
 
   componentDidMount() {
-    this.props.requestReadEvents()
+
     const params = this.props.match.params
-    green('params', params)
-    green('eventActions', this.props)
-    if (hasProp('searchValue', params)) {
+    // green('params', params)
+    green('match', this.props.match)
+    green('Events: currentUser', this.props.currentUserId)
+    const path = this.props.match.path
+    if (path === '/search') {
+      green('Events: going to SEARCH')
       this.props.requestSearchEvents(params.searchValue)
-    } else if (hasProp('user', params)) {
-      this.setState({
-        myEvents: true,
-      })
+    } else if (path === '/my-events') {
+      green('Events: going to MyEvents')
       this.props.requestReadEvents(params.user)
     } else {
+      green('Events: going to Events')
       this.props.requestReadEvents()
     }
 
   }
 
   render() {
-    const { classes, events } = this.props
+    const { classes, events, match } = this.props
     // green('** Events props', this.props)
     if (this.props.requestReadAllEvents.status !== 'success') {
       return (
@@ -57,16 +59,16 @@ class Events extends React.Component {
         </Typography>
       )
     }
-    if (!this.state.myEvents) {
+    if (match.path === '/my-events') {
       return (
         <div className={classes.pageMock}>
-          <EventsGrid events={events}/>
+          <MyEvents events={events} />
         </div>
       )
     } else {
       return (
         <div className={classes.pageMock}>
-          <MyEvents events={events} />
+          <EventsGrid events={events}/>
         </div>
       )
     }
@@ -80,7 +82,8 @@ Events.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: eventsSelectors.getAllEvents(state),
-    requestReadAllEvents: requestSelectors.getRequest(state, requestKeyReadEvents)
+    requestReadAllEvents: requestSelectors.getRequest(state, requestKeyReadEvents),
+    currentUserId: authSelectors.getUserId(state),
   }
 }
 
