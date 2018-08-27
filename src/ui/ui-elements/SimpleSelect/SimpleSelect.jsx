@@ -1,6 +1,6 @@
 import React from 'react'
 import { debounce } from 'lodash'
-// 
+//
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
@@ -30,9 +30,9 @@ import { green, blue, red } from 'logger'
 //       inputProps={{
 //         classes: {
 //            input: classes.input,
-//         },        
+//         },
 //         ...other,
-//       }}      
+//       }}
 //     />
 //   )
 // }
@@ -68,7 +68,7 @@ const renderMenuItems = (suggestions) => {
       </MenuItem>
     )
   })
-  green('test', test)
+  // green('test', test)
   return test
   // const test2 = [
   //   <MenuItem key='a'>One</MenuItem>,
@@ -77,7 +77,7 @@ const renderMenuItems = (suggestions) => {
   // green('test2', test2)
   // return test2
 
-  
+
 }
 
 class PostalCodeLookup extends React.Component {
@@ -93,11 +93,11 @@ class PostalCodeLookup extends React.Component {
 
     // this.debouncedLoadSuggestions = debounce(this.loadSuggestions, 1000) // 1000ms is chosen for demo purposes only.
   }
-  
+
   async componentWillMount() {
     await this.props.requestReadPostalCodes('945')
     // green('componentDidMount: suggestions', this.props.suggestions)
-  
+
   }
 
   // loadSuggestions = async (value) => {
@@ -107,11 +107,11 @@ class PostalCodeLookup extends React.Component {
   //     suggestions: this.props.suggestions,
   //   })
   // }
-  
+
   localOnChange = (event) => {
-    green('event.target.value', event.target.value)
+    // green('event.target.value', event.target.value)
     // green('event.target.name', event.target.name)
-    
+
     // this.setState({
     //   value: newValue
     // })
@@ -124,7 +124,7 @@ class PostalCodeLookup extends React.Component {
 
 
     // green('render.suggestions', suggestions)
-    if (suggestions.length === 0) { 
+    if (suggestions.length === 0) {
       red('suggestions is null')
       return null
     } else {
@@ -137,13 +137,13 @@ class PostalCodeLookup extends React.Component {
     return (
       <div>
         <FormControl className={classes.formControl} fullWidth>
-          
+
           <Select
-            
+
             value={value}
             onChange={e => this.localOnChange(e)}
             input={renderInput(inputProps)}
-            
+
           >
           {/* <MenuItem key='a'>One</MenuItem>
           <MenuItem key='b'>Two</MenuItem> */}

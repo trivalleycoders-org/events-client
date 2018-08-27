@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import SearchIcon from '@material-ui/icons/Search'
@@ -8,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
 import * as eventActions from 'store/actions/event-actions'
+import { green } from '../../logger/index';
 
 export class SearchEvent extends Component {
 
@@ -53,21 +55,26 @@ export class SearchEvent extends Component {
     const { classes } = this.props
     const showSearch = this.state.showSearchIcon
 
+
     return (
       <Fragment>
         <TextField onChange={this.handleChange} value={this.state.searchText} />
-        <IconButton aria-label='Add to favorites'>
-          {showSearch
-            ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents} />
-            : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults} />
-          }
-        </IconButton>
+
+        <Link to={`/search/${this.state.searchText}`}>
+          <IconButton aria-label='Add to favorites'>
+            {showSearch
+              ? <SearchIcon className={classes.searchIcon} onClick={this.searchEvents} />
+              : <CancelIcon className={classes.cancelIcon} onClick={this.clearSearchResults} />
+            }
+          </IconButton>
+        </Link>
       </Fragment>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
+  // events: eventsSelectors.getAllEvents(state),
   requestSearchEvents: eventActions.requestSearchEvents,
   requestReadEvents: eventActions.requestReadEvents
 })
@@ -76,3 +83,4 @@ export default compose(
   withStyles(styles),
   connect(mapStateToProps, eventActions)
 )(SearchEvent)
+

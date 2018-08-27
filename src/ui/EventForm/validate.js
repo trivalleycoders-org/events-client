@@ -10,8 +10,8 @@ import { green } from 'logger'
 const hasCombinedDateTime = has('combinedDateTime')
 
 const validate = (values, props) => {
-  green('values', values)
-  green('props', props)
+  // green('values', values)
+  // green('props', props)
   const errors = {}
   if (!values.title) {
     errors.title = 'Required'

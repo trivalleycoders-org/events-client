@@ -33,6 +33,7 @@ const deleteEvent = (state, payload) => {
 }
 
 export const events = (state = [], { type, payload }) => {
+  blue('events reducer')
   try {
     switch (type) {
       case keyCreateEvent:

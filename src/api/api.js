@@ -118,10 +118,10 @@ export default {
       }
 
     },
-    async read() {
+    async read(user) {
       try {
         const data = await fetchJson(
-          '/events',
+          `/events/${user}`,
           {
             method: 'GET',
           }

@@ -54,8 +54,8 @@ const shapeDataOut = (formValues) => {
     {startDateTime: dates.combinedDateTime.startDate},
     {postalCode_id: postalCode_id},
   ])
-  green('validate', validateModel(Event, mergedData))
-  green('shapeDataOut OUT:', mergedData)
+  // green('validate', validateModel(Event, mergedData))
+  // green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
 class EventForm extends React.Component {

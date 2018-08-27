@@ -11,7 +11,7 @@ import { mailFolderListItems, otherMailFolderListItems } from './tileData'
 import { menuItems } from './tileData'
 import * as appMenuActions from 'store/actions/app-menu-actions'
 import * as appMenuSelectors from 'store/selectors/app-menu-selectors'
-import SearchEvent from '../AppBar/SearchEvent'
+// import SearchEvent from '../AppBar/SearchEvent'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -34,7 +34,6 @@ class AppMenu extends React.Component {
 
   render() {
     const { classes } = this.props
-    green('AppMenu: props', this.props)
 
     // const sideList = (
     //   <div className={classes.list}>
@@ -61,7 +60,7 @@ class AppMenu extends React.Component {
     return (
       <div>
         <Drawer open={this.props.appMenuState} onClose= {this.toggleDrawer('left', false)}>
-          <SearchEvent/>
+
           <div
             tabIndex={0}
             role="button"

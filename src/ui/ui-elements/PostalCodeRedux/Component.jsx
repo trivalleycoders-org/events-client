@@ -139,7 +139,7 @@ class AutosuggestRedux extends React.Component {
   }
 
   handleOnSelect = (value, suggestion) => {
-    green('suggestion', suggestion)
+    // green('suggestion', suggestion)
     this.setState({ value, suggestions: [suggestion] })
     this.props.onChange(suggestion)
   }

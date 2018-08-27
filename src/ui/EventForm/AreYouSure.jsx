@@ -29,7 +29,7 @@ class AreYouSure extends React.Component {
 
   render() {
     const { classes, open, close } = this.props
-    green('props', this.props)
+    // green('props', this.props)
     return (
       <div>
         <Modal

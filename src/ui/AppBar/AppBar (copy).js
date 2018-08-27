@@ -10,8 +10,8 @@ import { Typography } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
+import SearchEvent from './SearchEvent'
 import * as appMenuActions from 'store/actions/app-menu-actions'
-// import { menuItems } from './tileData'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -29,6 +29,8 @@ const styles = {
   },
 }
 
+
+
 function MainAppBar(props) {
   const { classes, toggleAppMenu } = props
   const toggleDraw = () => {
@@ -45,13 +47,13 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
+          <SearchEvent />
           <Link to='/'><Button colro='inherit'>Home</Button></Link>
-          <Link to='/new-event'><Button color='inherit'>Create Event</Button></Link>
-          <Link to='/events/my-events'><Button color='inherit'>My Events</Button></Link>
+          <Link to='/new-event'><Button color='inherit'>New Event</Button></Link>
+          <Link to='/my-events'><Button color='inherit'>My Events</Button></Link>
           <Link to='/register'><Button color='inherit'>Register</Button></Link>
           <Link to='/login'><Button color='inherit'>Login</Button></Link>
           <Link to='/settings'><Button color='inherit'>Settings</Button></Link>
-
         </Toolbar>
       </AppBar>
     </div>
