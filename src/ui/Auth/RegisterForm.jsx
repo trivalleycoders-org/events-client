@@ -6,7 +6,6 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
-import { User, validateModel } from '../../models'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 
