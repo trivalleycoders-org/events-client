@@ -1,3 +1,5 @@
+/* Dev */
+// eslint-disable-next-line
 import { green, red } from 'logger'
 
 export const array = 'array'

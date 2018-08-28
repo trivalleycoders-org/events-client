@@ -15,7 +15,6 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 import { requestKeyReadEvents } from 'store/actions/event-actions'
 import EventsGrid from './EventsGrid'
 import MyEvents from 'ui/MyEvents'
-import { hasProp } from 'lib/hasProp'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -30,22 +29,26 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-
+    // green('EVENTS didMount')
     const params = this.props.match.params
     // green('params', params)
-    green('match', this.props.match)
-    green('Events: currentUser', this.props.currentUserId)
+    // green('match', this.props.match)
+    // green('Events: currentUser', this.props.currentUserId)
     const path = this.props.match.path
     if (path === '/search') {
-      green('Events: going to SEARCH')
+      // green('Events: going to SEARCH')
       this.props.requestSearchEvents(params.searchValue)
     } else if (path === '/my-events') {
-      green('Events: going to MyEvents')
+      // green('Events: going to MyEvents')
       this.props.requestReadEvents(params.user)
     } else {
-      green('Events: going to Events')
+      // green('Events: going to Events')
       this.props.requestReadEvents()
     }
+
+  }
+
+  componentWillReceiveProps() {
 
   }
 

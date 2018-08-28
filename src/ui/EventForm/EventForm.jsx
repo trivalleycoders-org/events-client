@@ -27,7 +27,6 @@ import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
-import { Event, validateModel } from 'models'
 import AreYouSure from './AreYouSure'
 
 
@@ -211,7 +210,11 @@ class EventForm extends React.Component {
                 Submit
               </Button> */}
 
-              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+              <Button
+                type='button'
+                onClick={handleSubmit(this.onSubmit)}
+                disabled={pristine || submitting}
+              >
                 Submit
               </Button>
               <Button type='button' disabled={pristine || submitting} onClick={reset}>

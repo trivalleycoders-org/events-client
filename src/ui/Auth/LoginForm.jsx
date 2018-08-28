@@ -7,7 +7,7 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
-import { User, validateModel } from '../../models'
+// import { User, validateModel } from '../../models'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
@@ -27,10 +27,9 @@ class LoginForm extends React.Component {
   // }
 
   onSubmit = (values) => {
-    // console.log('values: ', values)
     const { requestLoginUser } = this.props
     requestLoginUser(values)
-    this.state.goBack()
+    // this.state.goBack()
   }
 
   render() {
@@ -50,7 +49,7 @@ class LoginForm extends React.Component {
               fieldLabel='Email'
               fullWidth
               required={true}
-              rows={2}
+              // rows={2} one row should be enough
               error={true}
             />
             <TextFieldRedux
@@ -58,12 +57,16 @@ class LoginForm extends React.Component {
               fieldLabel='Password'
               fullWidth
               required={true}
-              rows={2}
+              // rows={2} one row should be enough
               error={true}
             />
-            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+            <Button
+              type='button'
+              onClick={handleSubmit(this.onSubmit)}
+              disabled={pristine || submitting}
+            >
               Submit
-          </Button>
+            </Button>
             <Button type='button' disabled={pristine || submitting} onClick={reset}>
               Clear Values
           </Button>

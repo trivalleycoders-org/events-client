@@ -12,7 +12,7 @@ import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
 // import { menuItems } from './tileData'
-import SearchEvent from 'ui/SearchEvent'
+// import SearchEvent from 'ui/SearchEvent'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -46,7 +46,6 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
-          <SearchEvent />
           <Link to='/events'><Button colro='inherit'>Home</Button></Link>
           <Link to='/new-event'><Button color='inherit'>Create Event</Button></Link>
           <Link to='/my-events'><Button color='inherit'>My Events</Button></Link>

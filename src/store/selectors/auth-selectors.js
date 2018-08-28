@@ -1,3 +1,5 @@
+/* Dev */
+// eslint-disable-next-line
 import { yellow } from 'logger'
 export const getUserId = (state) => {
 
@@ -9,7 +11,7 @@ export const getUserId = (state) => {
   } else {
     // yellow('getUserId', 'user id NOT found')
   }
-  yellow('auth-selectors: getUserId', userId)
+  // yellow('auth-selectors: getUserId', userId)
   return userId
 
 }
