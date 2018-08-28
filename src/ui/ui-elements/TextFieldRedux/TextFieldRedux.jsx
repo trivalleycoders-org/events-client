@@ -29,10 +29,10 @@ class TextFieldRedux extends React.Component {
     // const { error, touched } = meta
     const { name, onChange, onBlur, ...inputRest } = input
     const handleOnBlur = (e) => {
-      green('handleBlur')
+      // green('handleBlur')
       if (required) {
         const len = e.target.value.length
-        green('handleBlur: len', `${len}(${typeof len})`)
+        // green('handleBlur: len', `${len}(${typeof len})`)
         this.setState({
           isError: len === 0  // && touched
         })
@@ -60,7 +60,7 @@ class TextFieldRedux extends React.Component {
   }
   render() {
     const { fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0 } = this.props
-    green(`state for ${fieldName}`, this.state)
+    // green(`state for ${fieldName}`, this.state)
     return (
       <Field
         component={this.component}

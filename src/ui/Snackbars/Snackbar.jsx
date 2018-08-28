@@ -44,12 +44,7 @@ function Content(props) {
     <SnackbarContent
       className={classNames(classes[variant], className)}
       aria-describedby="client-snackbar"
-      message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={classNames(classes.icon, classes.iconVariant)} />
-          {message}
-        </span>
-      }
+      message='hi'
       action={[
         <IconButton
           key="close"
@@ -65,6 +60,14 @@ function Content(props) {
     />
   )
 }
+
+/*
+<span id="client-snackbar" className={classes.message}>
+          <Icon className={classNames(classes.icon, classes.iconVariant)} />
+          {message}
+        </span>
+*/
+
 
 class Snackbars extends React.Component {
 
@@ -83,8 +86,8 @@ class Snackbars extends React.Component {
       <div>
         <Snackbar
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: 'top',
+            horizontal: 'right',
           }}
           open={snackbar.open}
           autoHideDuration={6000}

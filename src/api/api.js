@@ -118,7 +118,13 @@ export default {
       }
 
     },
-    async read() {
+    async read(user) {
+      // let url
+      // if (user) {
+      //   url = `/events/${user}`
+      // } else {
+      //   url = '/events'
+      // }
       try {
         const data = await fetchJson(
           '/events',
