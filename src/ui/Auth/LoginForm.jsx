@@ -11,25 +11,13 @@ import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { requestKeyLoginUser } from 'store/actions/auth-actions'
+import validate from './validate'
 
 class LoginForm extends React.Component {
 
-  state = {
-    goBack: this.props.history.goBack,
-  }
-  // constructor() {
-  //   super()
-  //   this.changePassword = ev => {
-  //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.updatePassword(ev.target.value)
-  //   }
-  // }
-
   onSubmit = (values) => {
-    // console.log('values: ', values)
     const { requestLoginUser } = this.props
     requestLoginUser(values)
-    this.state.goBack()
   }
 
   render() {
@@ -40,6 +28,7 @@ class LoginForm extends React.Component {
         <Redirect to='/events' />
       )
     } else {
+      console.log('inside else, pristine: ', pristine)
       return (
         <div className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>
@@ -49,7 +38,6 @@ class LoginForm extends React.Component {
               fieldLabel='Email'
               fullWidth
               required={true}
-              rows={2}
               error={true}
             />
             <TextFieldRedux
@@ -57,7 +45,6 @@ class LoginForm extends React.Component {
               fieldLabel='Password'
               fullWidth
               required={true}
-              rows={2}
               error={true}
             />
             <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
@@ -70,7 +57,6 @@ class LoginForm extends React.Component {
         </div>
       )
     }
-
   }
 }
 
@@ -84,5 +70,7 @@ export default compose(
   connect(mapStateToProps, authActions),
   reduxForm({
     form: 'LoginForm',
+    validate,
+    destroyOnUnmount: true
   })
 )(LoginForm)
