@@ -1,5 +1,5 @@
-import { keyOpenAppMenu, keyCloseAppMenu, appMenuToggleKey } from 'store/actions/app-menu-actions'
-import { merge, isEmpty } from 'ramda'
+import { appMenuToggleKey } from 'store/actions/app-menu-actions'
+import { isEmpty } from 'ramda'
 // eslint-disable-next-line
 import { blue } from 'logger'
 

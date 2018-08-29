@@ -2,7 +2,7 @@ import { createRequestThunk } from './action-helpers'
 import api from 'api'
 import { snackbarSet } from './snackbar-actions'
 import { orange } from 'logger'
-import { setCachedData } from 'lib/cacheData'
+// import { setCachedData } from 'lib/cacheData'
 
 export const userRegisterKey = 'actionKeyRegisterUser'
 export const userRegisterRequestKey = 'userRegisterRequestKey'
@@ -47,15 +47,15 @@ const loginFailed = (error) => {
   })
 }
 
-const userLoginCache = (user) => {
-  orange('userLoginCache: user', user)
-  setCachedData('eventsUser', user)
-}
+// const userLoginCache = (user) => {
+//   orange('userLoginCache: user', user)
+//   setCachedData('eventsUser', user)
+// }
 
 export const userLoginRequest = createRequestThunk({
   request: api.users.login,
   key: userLoginRequestKey,
-  success: [userLogin, userLoginCache],
+  success: [userLogin /*, userLoginCache*/],
   failure: [loginFailed, (error) => snackbarSet(error.error, 'error')]
 })
 

@@ -1,7 +1,7 @@
 import {
   searchTextClearKey,
   searchTextSetKey,
-  eventsSearchReadKey,
+  eventsSearchReadRequestKey,
 } from 'store/actions/search-actions'
 // import { merge } from 'ramda'
 // eslint-disable-next-line
@@ -20,7 +20,7 @@ export const searchText = (state = '', { type, payload }) => {
 
 export const search = (state = [], { type, payload }) => {
   switch (type) {
-    case eventsSearchReadKey:
+    case eventsSearchReadRequestKey:
       return payload.events
     default:
       return state

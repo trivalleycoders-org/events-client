@@ -119,12 +119,6 @@ export default {
 
     },
     async read(user) {
-      // let url
-      // if (user) {
-      //   url = `/events/${user}`
-      // } else {
-      //   url = '/events'
-      // }
       try {
         const data = await fetchJson(
           '/events',
@@ -173,8 +167,9 @@ export default {
         red('api.events.delete', e)
       }
     },
-    async search(event) {
-      const searchUrl = '/search?searchTerm=' + JSON.stringify(event)
+    async search(searchText) {
+      // pink('api.events.search: event', event)
+      const searchUrl = '/search?searchTerm=' + JSON.stringify(searchText)
       const data = await fetchJson(
         searchUrl,
         {

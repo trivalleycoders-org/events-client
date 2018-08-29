@@ -24,6 +24,7 @@ export class SearchEvent extends Component {
   }
 
   searchEvents = () => {
+    green('searchEvents()')
     this.props.eventsSearchReadRequest(this.props.searchText)
   }
 

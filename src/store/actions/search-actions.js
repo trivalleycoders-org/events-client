@@ -7,7 +7,7 @@ import { eventsRead } from 'store/actions/event-actions'
 // eslint-disable-next-line
 import { orange } from 'logger'
 
-export const searchTextSetKey = 'actionSetSearchText'
+export const searchTextSetKey = 'searchTextSetKey'
 export const searchTextSet = (text) => {
   return (
     {
@@ -17,7 +17,7 @@ export const searchTextSet = (text) => {
   )
 }
 
-export const searchTextClearKey = 'actionKeyClearSearchText'
+export const searchTextClearKey = 'searchTextClearKey'
 export const searchTextClear = () => {
   return {
     type: searchTextClearKey,
@@ -25,8 +25,8 @@ export const searchTextClear = () => {
 }
 
 // Read
-export const eventsSearchReadKey = 'actionKeyReadSearchEvents'
-export const eventsSearchReadRequestKey = 'eventsSearchReadRequestKey'
+// export const eventsSearchReadKey = 'eventsSearchReadKey'
+
 
 // const eventsSearchRead = (events) => {
 //   return ({
@@ -35,11 +35,12 @@ export const eventsSearchReadRequestKey = 'eventsSearchReadRequestKey'
 //   })
 // }
 
-export const eventsSearchRequestKey = 'eventsSearchRequestKey'
 
-export const eventsSearchReadRequest = () => createRequestThunk({
+export const eventsSearchReadRequestKey = 'eventsSearchReadRequestKey'
+
+export const eventsSearchReadRequest = createRequestThunk({
   request: api.events.search,
-  key: eventsSearchRequestKey,
+  key: eventsSearchReadRequestKey,
   success: [eventsRead],
   failure: [error => snackbarSet(`Search events failed: ${error}`, 'error')]
 })
