@@ -18,7 +18,7 @@ import * as requestSelectors from '../../store/selectors/request-selectors'
 
 import { eventsSearchReadRequestKey } from 'store/actions/search-actions'
 import EventsGrid from 'ui/EventsGrid'
-import SearchBox from './SearchBox'
+import SearchBox from 'ui/SearchBox'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
