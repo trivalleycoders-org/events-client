@@ -10,11 +10,11 @@ import { orange } from 'logger'
     - error
     - info
 */
-export const keySetSnackbar = 'actionSetSnackbar'
-export const setSnackbar = (message, variant = 'info', id = shortid.generate()) => {
+export const snackbarSetKey = 'actionSetSnackbar'
+export const snackbarSet = (message, variant = 'info', id = shortid.generate()) => {
   return (
     {
-      type: keySetSnackbar,
+      type: snackbarSetKey,
       payload: {
         id,
         message,
@@ -24,9 +24,9 @@ export const setSnackbar = (message, variant = 'info', id = shortid.generate()) 
   )
 }
 
-export const keyClearSnackbar = 'actionKeyClearSnackbar'
-export const clearSnackbar = () => {
+export const snackbarUnsetKey = 'actionKeyClearSnackbar'
+export const snackbarUnset = () => {
   return {
-    type: keyClearSnackbar,
+    type: snackbarUnsetKey,
   }
 }

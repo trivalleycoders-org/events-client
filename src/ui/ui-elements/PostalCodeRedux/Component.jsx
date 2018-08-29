@@ -122,7 +122,7 @@ class AutosuggestRedux extends React.Component {
     }
     if (getData) {
       blue('** get the data')
-      await this.props.requestReadPostalCodes(value)
+      await this.props.postalCodesReadRequest(value)
       this.setState({
         value,
         suggestions: this.props.suggestions

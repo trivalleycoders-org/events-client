@@ -20,11 +20,11 @@ export class SearchEvent extends Component {
   }
 
   handleChange = (value) => {
-    this.props.setSearchText(value)
+    this.props.searchTextSet(value)
   }
 
   searchEvents = () => {
-    this.props.requestReadSearchEvents(this.props.searchText)
+    this.props.eventsSearchReadRequest(this.props.searchText)
   }
 
   render() {

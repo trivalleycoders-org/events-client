@@ -30,18 +30,18 @@ export const requestReadCities = createRequestThunk({
 */
 
 // Read postalCode
-export const keyReadPostalCodes = 'actionKeyReadPostalCodes'
-const readPostalCodes = (postalCodes) => {
-  // orange('** readPostalCodes')
+export const postalCodesReadKey = 'actionKeyReadPostalCodes'
+const postalCodesRead = (postalCodes) => {
+  // orange('** postalCodesRead')
   return ({
-    type: keyReadPostalCodes,
+    type: postalCodesReadKey,
     payload: { postalCodes },
   })
 }
-export const requestKeyReadPostalCodes = 'requestKeyReadPostalCodes'
-export const requestReadPostalCodes = createRequestThunk({
+export const postalCodesReadRequestKey = 'postalCodesReadRequestKey'
+export const postalCodesReadRequest = createRequestThunk({
   request: api.postalCodes.read,
-  key: requestKeyReadPostalCodes,
-  success: [ readPostalCodes ],
-  failure: [ error => logError(error, requestKeyReadPostalCodes) ]
+  key: postalCodesReadRequestKey,
+  success: [ postalCodesRead ],
+  failure: [ error => logError(error, postalCodesReadRequestKey) ]
 })

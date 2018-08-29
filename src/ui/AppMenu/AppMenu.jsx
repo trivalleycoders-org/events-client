@@ -26,7 +26,7 @@ class AppMenu extends React.Component {
     //   [side]: open,
     // })
     // green('toggleDraw: props', this.props)
-    this.props.toggleAppMenu()
+    this.props.appMenuToggle()
   }
 
   render() {

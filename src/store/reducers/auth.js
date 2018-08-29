@@ -1,9 +1,9 @@
-import { keyRegisterUser, keyLoginUser, keyLogoutUser, keyLoginFailed, keyUpdatePassword } from '../actions/auth-actions'
+import { userRegisterKey, userLoginKey, userLogoutKey, keyLoginFailed, passwordUpdateKey } from '../actions/auth-actions'
 
 export default (state = {}, { type, payload, error, subtype }) => {
   switch (type) {
-    case keyLoginUser:
-    case keyRegisterUser:
+    case userLoginKey:
+    case userRegisterKey:
       return {
         ...state,
         errors: error ? payload.error : null,
@@ -11,7 +11,7 @@ export default (state = {}, { type, payload, error, subtype }) => {
         token: error ? null : payload.user.token,
         currentUser: error ? null : payload.user
       }
-    case keyUpdatePassword:
+    case passwordUpdateKey:
       return {
         ...state,
         password: payload
@@ -22,7 +22,7 @@ export default (state = {}, { type, payload, error, subtype }) => {
         redirectTo: '/login',
         error: payload.error ? payload.error : null
       }
-    case keyLogoutUser:
+    case userLogoutKey:
       return {
         ...state,
         redirectTo: '/',

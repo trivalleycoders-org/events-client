@@ -1,112 +1,112 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
-import { setSnackbar } from './snackbar-actions'
+import { snackbarSet } from './snackbar-actions'
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'
 
 // Create
-export const keyCreateEvent = 'actionKeyCreateEvent'
-export const requestKeyCreateEvent = 'requestKeyCreateEvent'
+export const eventCreateKey = 'actionKeyCreateEvent'
+export const eventCreateRequestKey = 'eventCreateRequestKey'
 
-export const createNewEvent = (event) => {
-  // orange('action.createNewEvent: event', event)
+export const eventCreate = (event) => {
+  // orange('action.eventCreate: event', event)
   return ({
-    type: keyCreateEvent,
+    type: eventCreateKey,
     payload: { event },
   })
 }
 
-export const requestCreateEvent = createRequestThunk({
+export const eventCreateRequest = createRequestThunk({
   request: api.events.create,
-  key: requestKeyCreateEvent,
-  success: [createNewEvent, () => setSnackbar('Event added', 'success')],
-  failure: [() => setSnackbar('Couldn\'t add note', 'warn')],
+  key: eventCreateRequestKey,
+  success: [eventCreate, () => snackbarSet('Event added', 'success')],
+  failure: [() => snackbarSet('Couldn\'t add note', 'warn')],
 })
 
 // Read
-export const keyReadEvents = 'actionKeyReadEvents'
-export const requestKeyReadEvents = 'requestKeyReadEvents'
+export const eventsReadKey = 'actionKeyReadEvents'
+export const eventsReadRequestKey = 'eventsReadRequestKey'
 
-export const readEvents = (events) => {
+export const eventsRead = (events) => {
   return ({
-    type: keyReadEvents,
+    type: eventsReadKey,
     payload: { events },
   })
 }
 
-export const requestReadEvents = createRequestThunk({
+export const eventsReadRequest = createRequestThunk({
   request: api.events.read,
-  key: requestKeyReadEvents,
-  success: [readEvents, () => setSnackbar('Events loaded', 'success')],
-  failure: [(error) => setSnackbar('Could not get events', 'error')]
+  key: eventsReadRequestKey,
+  success: [eventsRead, () => snackbarSet('Events loaded', 'success')],
+  failure: [(error) => snackbarSet('Could not get events', 'error')]
 })
 
-// export const requestReadEvents = (caller, ...rest) => {
-//   orange('requestReadEvents: caller', caller)
+// export const eventsReadRequest = (caller, ...rest) => {
+//   orange('eventsReadRequest: caller', caller)
 //   orange('rest', rest)
 //   orange('arguments', arguments)
 //   return createRequestThunk({
 //     request: api.events.read,
-//     key: requestKeyReadEvents,
-//     success: [readEvents, () => setSnackbar('Events loaded', 'success')],
-//     failure: [(error) => setSnackbar('Could not get events', 'error')]
+//     key: eventsReadRequestKey,
+//     success: [eventsRead, () => snackbarSet('Events loaded', 'success')],
+//     failure: [(error) => snackbarSet('Could not get events', 'error')]
 //   })
 // }
 
 // Patch
-export const keyPatchOneEvent = 'keyPatchOneEvent'
-export const requestKeyPatchOneEvent = 'requestKeyPatchOneEvent'
+export const eventUpdateOneKey = 'eventUpdateOneKey'
+export const eventUpdateOneRequestKey = 'eventUpdateOneRequestKey'
 
-const patchOneEvent = (data) => {
-  // orange('event-actions.patchOneEvent: event', event)
+const eventUpdateOne = (data) => {
+  // orange('event-actions.eventUpdateOne: event', event)
   return ({
-    type: keyPatchOneEvent,
+    type: eventUpdateOneKey,
     payload: { data },
   })
 }
 
-export const requestPatchOneEvent = createRequestThunk({
+export const eventUpdateOneRequest = createRequestThunk({
   request: api.events.patch,
-  key: requestKeyPatchOneEvent,
-  success: [patchOneEvent, () => setSnackbar('Event updated', 'success')],
+  key: eventUpdateOneRequestKey,
+  success: [eventUpdateOne, () => snackbarSet('Event updated', 'success')],
   failure: [error => logError(`Could not update event: ${error}`, 'error')]
 })
 
 // Delete
-export const keyDeleteOneEvent = 'keyDeletehOneEvent'
-export const requestKeyDeleteOneEvent = 'requestKeyDeleteOneEvent'
+export const eventDeleteOneKey = 'keyDeletehOneEvent'
+export const eventDeleteOneRequestKey = 'eventDeleteOneRequestKey'
 
-const deleteOneEvent = (data) => {
-  // orange('event-actions.deleteOneEvent: data', data)
+const eventDeleteOne = (data) => {
+  // orange('event-actions.eventDeleteOne: data', data)
   return ({
-    type: keyDeleteOneEvent,
+    type: eventDeleteOneKey,
     payload: data,
   })
 }
 
-export const requestDeleteOneEvent = createRequestThunk({
+export const eventDeleteOneRequest = createRequestThunk({
   request: api.events.delete,
-  key: requestKeyDeleteOneEvent,
-  success: [deleteOneEvent, () => setSnackbar('Event deleted', 'success')],
-  failure: [error => setSnackbar(`Could not delete event: ${error}`)]
+  key: eventDeleteOneRequestKey,
+  success: [eventDeleteOne, () => snackbarSet('Event deleted', 'success')],
+  failure: [error => snackbarSet(`Could not delete event: ${error}`)]
 })
 
 // EventsUi
-export const keySetEdit_id = 'actionKeySetEdit_id'
-export const keyUnsetEdit_id = 'actionKeyUnsetEdit_id'
+export const setEditIdKey = 'actionKeySetEdit_id'
+export const editIdUnsetKey = 'actionKeyUnsetEdit_id'
 
-export const setEdit_id = (_id) => {
-  // orange('event-actions.setEdit_id: _id', _id)
+export const editIdSet = (_id) => {
+  // orange('event-actions.editIdSet: _id', _id)
   return ({
-    type: keySetEdit_id,
+    type: setEditIdKey,
     payload: { _id }
   })
 }
 
-export const unsetEdit_id = () => {
-  // orange('event-actions.unsetEdit_id')
+export const editIdUnset = () => {
+  // orange('event-actions.editIdUnset')
   return ({
-    type: keyUnsetEdit_id,
+    type: editIdUnsetKey,
   })
 }

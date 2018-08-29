@@ -32,10 +32,10 @@ const styles = {
 
 
 function MainAppBar(props) {
-  const { classes, toggleAppMenu } = props
+  const { classes, appMenuToggle } = props
   const toggleDraw = () => {
     // green('toggleDraw', props)
-    toggleAppMenu()
+    appMenuToggle()
   }
   return (
     <div className={classes.root}>

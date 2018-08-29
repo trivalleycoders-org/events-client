@@ -1,45 +1,45 @@
 import { createRequestThunk } from './action-helpers'
 import api from 'api'
-import { setSnackbar } from './snackbar-actions'
-import { readEvents } from 'store/actions/event-actions'
+import { snackbarSet } from './snackbar-actions'
+import { eventsRead } from 'store/actions/event-actions'
 
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'
 
-export const keySetSearchText = 'actionSetSearchText'
-export const setSearchText = (text) => {
+export const searchTextSetKey = 'actionSetSearchText'
+export const searchTextSet = (text) => {
   return (
     {
-      type: keySetSearchText,
+      type: searchTextSetKey,
       payload: { text },
     }
   )
 }
 
-export const keyClearSearchText = 'actionKeyClearSearchText'
-export const clearSearchText = () => {
+export const searchTextClearKey = 'actionKeyClearSearchText'
+export const searchTextClear = () => {
   return {
-    type: keyClearSearchText,
+    type: searchTextClearKey,
   }
 }
 
 // Read
-export const keyReadSearchEvents = 'actionKeyReadSearchEvents'
-export const requestKeyReadSearchEvents = 'requestKeyReadSearchEvents'
+export const eventsSearchReadKey = 'actionKeyReadSearchEvents'
+export const eventsSearchReadRequestKey = 'eventsSearchReadRequestKey'
 
-// const readSearchEvents = (events) => {
+// const eventsSearchRead = (events) => {
 //   return ({
-//     type: keyReadSearchEvents,
+//     type: eventsSearchReadKey,
 //     payload: { events },
 //   })
 // }
 
-export const requestKeySearchEvents = 'requestKeySearchEvents'
+export const eventsSearchRequestKey = 'eventsSearchRequestKey'
 
-export const requestReadSearchEvents = () => createRequestThunk({
+export const eventsSearchReadRequest = () => createRequestThunk({
   request: api.events.search,
-  key: requestKeySearchEvents,
-  success: [readEvents],
-  failure: [error => setSnackbar(`Search events failed: ${error}`, 'error')]
+  key: eventsSearchRequestKey,
+  success: [eventsRead],
+  failure: [error => snackbarSet(`Search events failed: ${error}`, 'error')]
 })

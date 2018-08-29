@@ -1,5 +1,5 @@
 import { events } from '../../store/reducers/events'
-import { keyCreateEvent } from '../../store/actions/event-actions'
+import { eventCreateKey } from '../../store/actions/event-actions'
 import eventsData from '../fixtures/events'
 
 it('should set default state', () => {
@@ -24,7 +24,7 @@ it('should add an event', () => {
   }
 
   const action = {
-    type: keyCreateEvent,
+    type: eventCreateKey,
     payload: newEvent
   }
   const state = events([eventsData.event], action)

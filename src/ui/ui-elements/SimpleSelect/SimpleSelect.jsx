@@ -95,14 +95,14 @@ class PostalCodeLookup extends React.Component {
   }
 
   async componentWillMount() {
-    await this.props.requestReadPostalCodes('945')
+    await this.props.postalCodesReadRequest('945')
     // green('componentDidMount: suggestions', this.props.suggestions)
 
   }
 
   // loadSuggestions = async (value) => {
   //   const limit = 2
-  //   await this.props.requestReadPostalCodes('9458')
+  //   await this.props.postalCodesReadRequest('9458')
   //   this.setState({
   //     suggestions: this.props.suggestions,
   //   })

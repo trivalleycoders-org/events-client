@@ -12,7 +12,7 @@ import * as eventActions from 'store/actions/event-actions'
 import * as eventsSelectors from '../../store/selectors/events-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
-import { requestKeyReadEvents } from 'store/actions/event-actions'
+import { eventsReadRequestKey } from 'store/actions/event-actions'
 import EventsGrid from './EventsGrid'
 import MyEvents from 'ui/MyEvents'
 /* Dev */
@@ -28,7 +28,7 @@ class Events extends React.Component {
 
   componentDidMount() {
     green('EVENTS didMount()')
-    this.props.requestReadEvents('Events')
+    this.props.eventsReadRequest('Events')
     const params = this.props.match.params
     // green('params', params)
     // green('match', this.props.match)
@@ -39,7 +39,7 @@ class Events extends React.Component {
       // this.props.requestSearchEvents(params.searchValue)
     } else if (path === '/my-events') {
       // green('Events: going to MyEvents')
-      this.props.requestReadEvents(params.user)
+      this.props.eventsReadRequest(params.user)
     } else {
       // green('Events: going to Events')
       //
@@ -90,7 +90,7 @@ Events.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: eventsSelectors.getAllEvents(state),
-    requestReadAllEvents: requestSelectors.getRequest(state, requestKeyReadEvents),
+    requestReadAllEvents: requestSelectors.getRequest(state, eventsReadRequestKey),
     currentUserId: authSelectors.getUserId(state),
   }
 }

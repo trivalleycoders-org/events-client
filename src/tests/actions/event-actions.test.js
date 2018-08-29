@@ -1,11 +1,11 @@
-import { createNewEvent } from '../../store/actions/event-actions'
+import { eventCreate } from '../../store/actions/event-actions'
 import events from '../fixtures/events'
-import { keyCreateEvent } from '../../store/actions/event-actions'
+import { eventCreateKey } from '../../store/actions/event-actions'
 
 it('should setup new event action object with provided values', () => {
-  const action = createNewEvent(events.event)
+  const action = eventCreate(events.event)
   expect(action).toEqual({
-    type: keyCreateEvent,
+    type: eventCreateKey,
     payload: { ...events }
   })
 })

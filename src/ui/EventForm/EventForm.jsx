@@ -72,17 +72,17 @@ class EventForm extends React.Component {
 
   onSubmit = (values) => {
     // shapeCheck(values)
-    const { mode, requestCreateEvent, requestPatchOneEvent, unsetEdit_id } = this.props
+    const { mode, eventCreateRequest, eventUpdateOneRequest, editIdUnset } = this.props
     const reshapedData = shapeDataOut(values)
 
     this.setState({
       values: reshapedData
     })
     if (mode === EDIT_MODE) {
-      requestPatchOneEvent(reshapedData)
-      unsetEdit_id()
+      eventUpdateOneRequest(reshapedData)
+      editIdUnset()
     } else {
-      requestCreateEvent(reshapedData)
+      eventCreateRequest(reshapedData)
     }
     this.goBack()
   }

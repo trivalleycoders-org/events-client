@@ -1,38 +1,38 @@
 import { createRequestThunk } from './action-helpers'
 import api from 'api'
-import { setSnackbar } from './snackbar-actions'
+import { snackbarSet } from './snackbar-actions'
 
-export const keyRegisterUser = 'actionKeyRegisterUser'
-export const requestKeyRegisterUser = 'requestKeyRegisterUser'
-export const keyLogoutUser = 'actionKeyLogoutUser'
+export const userRegisterKey = 'actionKeyRegisterUser'
+export const userRegisterRequestKey = 'userRegisterRequestKey'
+export const userLogoutKey = 'actionKeyLogoutUser'
 
-export const logoutUser = (user) => {
+export const userLogout = (user) => {
   return ({
-    type: keyLogoutUser
+    type: userLogoutKey
   })
 }
 
-const registerUser = (user) => {
+const userRegister = (user) => {
   return ({
-    type: keyRegisterUser,
+    type: userRegisterKey,
     payload: user
   })
 }
 
-export const requestRegisterUser = createRequestThunk({
+export const userRegisterRequest = createRequestThunk({
   request: api.users.register,
-  key: requestKeyRegisterUser,
-  success: [registerUser],
-  failure: [(error) => setSnackbar(error)]
+  key: userRegisterRequestKey,
+  success: [userRegister],
+  failure: [(error) => snackbarSet(error)]
 })
 
-export const keyLoginUser = 'actionKeyLoginUser'
+export const userLoginKey = 'actionKeyLoginUser'
 export const keyLoginFailed = 'actionKeyLoginFailed'
-export const requestKeyLoginUser = 'requestKeyLoginUser'
+export const userLoginRequestKey = 'userLoginRequestKey'
 
-const loginUser = (user) => {
+const userLogin = (user) => {
   return ({
-    type: keyLoginUser,
+    type: userLoginKey,
     payload: user
   })
 }
@@ -44,26 +44,26 @@ const loginFailed = (error) => {
   })
 }
 
-export const requestLoginUser = createRequestThunk({
+export const userLoginRequest = createRequestThunk({
   request: api.users.login,
-  key: requestKeyLoginUser,
-  success: [loginUser],
-  failure: [loginFailed, (error) => setSnackbar(error.error, 'error')]
+  key: userLoginRequestKey,
+  success: [userLogin],
+  failure: [loginFailed, (error) => snackbarSet(error.error, 'error')]
 })
 
-export const keyUpdatePassword = 'actionKeyUpdatePassword'
-export const requestKeyUpdatePassword = 'requestKeyUpdatePassword'
+export const passwordUpdateKey = 'actionKeyUpdatePassword'
+export const passwordUpdateRequestKey = 'passwordUpdateRequestKey'
 
-const updatePassword = (password) => {
+const passwordUpdate = (password) => {
   return ({
-    type: keyUpdatePassword,
+    type: passwordUpdateKey,
     payload: password
   })
 }
 
-export const requestUpdatePassword = createRequestThunk({
+export const passwordUpdateRequest = createRequestThunk({
   request: api.users.update,
-  key: requestKeyUpdatePassword,
-  success: [updatePassword],
-  failure: [(error) => setSnackbar(error)]
+  key: passwordUpdateRequestKey,
+  success: [passwordUpdate],
+  failure: [(error) => snackbarSet(error)]
 })

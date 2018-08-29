@@ -140,7 +140,7 @@ class UploadImage extends React.Component {
     })
     let formData = new FormData()
     formData.append('upload', accepted[0])
-    await this.props.requestUploadOneImage(formData)
+    await this.props.imageUploadOneRequest(formData)
     // green('onDrop: uploadedImageUrl', this.props.uploadedImageUrl)
     this.setState({
       imageUrl: this.props.uploadedImageUrl
@@ -191,7 +191,7 @@ class UploadImage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    requestUploadOneImage: imageActions.requestKeyUploadOneImage,
+    imageUploadOneRequest: imageActions.imageUploadOneRequestKey,
     uploadedImageUrl: uploadSelectors.getUploadedImageUrl(state),
   }
 }

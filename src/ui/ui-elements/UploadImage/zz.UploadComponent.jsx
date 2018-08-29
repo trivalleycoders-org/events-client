@@ -40,7 +40,7 @@ class UploadImageComponent extends React.Component {
   localOnChange = async (event) => {
     let formData = new FormData()
     formData.append('upload', this.fileInput.files[0])
-    await this.props.requestUploadOneImage(formData)
+    await this.props.imageUploadOneRequest(formData)
     // Calling redux-form's .onChange()
     this.setState({
       imageUrl: this.props.uploadedImageUrl
@@ -110,7 +110,7 @@ const styles = theme => {
 
 const mapStateToProps = (state) => {
   return {
-    requestUploadOneImage: imageActions.requestKeyUploadOneImage,
+    imageUploadOneRequest: imageActions.imageUploadOneRequestKey,
     uploadedImageUrl: uploadSelectors.getUploadedImageUrl(state),
   }
 }

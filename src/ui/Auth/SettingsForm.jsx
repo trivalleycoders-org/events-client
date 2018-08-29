@@ -21,19 +21,19 @@ class SettingsForm extends React.Component {
   //   super()
   //   this.changePassword = ev => {
   //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.updatePassword(ev.target.value)
+  //     this.props.passwordUpdate(ev.target.value)
   //   }
   // }
 
   onClickLogout = () => {
-    const { logoutUser } = this.props
-    logoutUser()
+    const { userLogout } = this.props
+    userLogout()
   }
 
   onSubmit = (values) => {
     // console.log('values: ', values)
-    const { requestUpdatePassword } = this.props
-    requestUpdatePassword(values)
+    const { passwordUpdateRequest } = this.props
+    passwordUpdateRequest(values)
     this.state.goBack()
   }
 

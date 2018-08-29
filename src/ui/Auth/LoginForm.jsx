@@ -11,7 +11,7 @@ import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
-import { requestKeyLoginUser } from 'store/actions/auth-actions'
+import { userLoginRequestKey } from 'store/actions/auth-actions'
 
 class LoginForm extends React.Component {
 
@@ -22,13 +22,13 @@ class LoginForm extends React.Component {
   //   super()
   //   this.changePassword = ev => {
   //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.updatePassword(ev.target.value)
+  //     this.props.passwordUpdate(ev.target.value)
   //   }
   // }
 
   onSubmit = (values) => {
-    const { requestLoginUser } = this.props
-    requestLoginUser(values)
+    const { userLoginRequestKey } = this.props
+    userLoginRequestKey(values)
     // this.state.goBack()
   }
 
@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  readRequestLogInUser: requestSelectors.getRequest(state, requestKeyLoginUser)
+  readRequestLogInUser: requestSelectors.getRequest(state, userLoginRequestKey)
 })
 
 export default compose(

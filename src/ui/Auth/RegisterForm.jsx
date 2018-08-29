@@ -20,7 +20,7 @@ class RegisterForm extends React.Component {
   //   super()
   //   this.changePassword = ev => {
   //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.updatePassword(ev.target.value)
+  //     this.props.passwordUpdate(ev.target.value)
   //   }
   // }
 
@@ -28,8 +28,8 @@ class RegisterForm extends React.Component {
 
   onSubmit = (values) => {
     // console.log('values: ', values)
-    const { requestRegisterUser } = this.props
-    requestRegisterUser(values)
+    const { userRegisterRequest } = this.props
+    userRegisterRequest(values)
     this.state.goBack()
   }
 

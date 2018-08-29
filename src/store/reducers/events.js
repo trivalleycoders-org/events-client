@@ -1,11 +1,11 @@
 import { append, insert, merge, remove } from 'ramda'
 import {
-  keyCreateEvent,
-  keyDeleteOneEvent,
-  keyReadEvents,
-  keyPatchOneEvent,
-  keySetEdit_id,
-  keyUnsetEdit_id,
+  eventCreateKey,
+  eventDeleteOneKey,
+  eventsReadKey,
+  eventUpdateOneKey,
+  setEditIdKey,
+  editIdUnsetKey,
 } from '../actions/event-actions'
 
 /* Dev */
@@ -36,13 +36,13 @@ export const events = (state = [], { type, payload }) => {
   // blue('events reducer')
   try {
     switch (type) {
-      case keyCreateEvent:
+      case eventCreateKey:
         return append(payload.event[0], state)
-      case keyReadEvents:
+      case eventsReadKey:
         return payload.events
-      case keyPatchOneEvent:
+      case eventUpdateOneKey:
         return updateEvent(state, payload.event)
-      case keyDeleteOneEvent:
+      case eventDeleteOneKey:
         return deleteEvent(state, payload)
       default:
         return state
@@ -55,9 +55,9 @@ export const events = (state = [], { type, payload }) => {
 
 export const eventsUi = (state = {}, { type, payload }) => {
   switch (type) {
-    case keySetEdit_id:
+    case setEditIdKey:
       return merge(state, { edit_id: payload._id })
-    case keyUnsetEdit_id:
+    case editIdUnsetKey:
       return ''
     default:
       return state

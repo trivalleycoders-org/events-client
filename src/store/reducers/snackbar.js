@@ -1,13 +1,13 @@
-import { keyClearSnackbar, keySetSnackbar } from '../actions/snackbar-actions'
+import { snackbarUnsetKey, snackbarSetKey } from '../actions/snackbar-actions'
 import { merge } from 'ramda'
 // eslint-disable-next-line
 import { blue } from 'logger'
 
 const snackbar = (state = {}, { type, payload }) => {
   switch (type) {
-    case keySetSnackbar:
+    case snackbarSetKey:
       return merge(payload, { open: true })
-    case keyClearSnackbar:
+    case snackbarUnsetKey:
       return {
         id: '',
         message: '',

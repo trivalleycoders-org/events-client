@@ -2,28 +2,11 @@
 // eslint-disable-next-line
 import { orange } from 'logger'
 
-export const keyToggleAppMenu = 'actionToggleAppMenu'
-export const toggleAppMenu = () => {
+export const appMenuToggleKey = 'actionToggleAppMenu'
+export const appMenuToggle = () => {
   return (
     {
-      type: keyToggleAppMenu,
+      type: appMenuToggleKey,
     }
   )
-}
-
-export const keyOpenAppMenu = 'actionOpenAppMenu'
-export const openAppMenu = (side) => {
-  return (
-    {
-      type: keyOpenAppMenu,
-      payload: { side },
-    }
-  )
-}
-
-export const keyCloseAppMenu = 'actionKeyCloseAppMenu'
-export const closeAppMenu = () => {
-  return {
-    type: keyCloseAppMenu,
-  }
 }

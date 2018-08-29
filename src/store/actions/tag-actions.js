@@ -2,20 +2,20 @@ import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
 // import { orange } from 'logger'
 
-export const keyCreateNewTag = 'actionKeyCreateTag'
+export const tagCreateKey = 'actionKeyCreateTag'
 
-export const requestKeyCreateNewTag = 'requestKeyCreateTag'
+export const tagCreateRequestKey = 'requestKeyCreateTag'
 
 
-const createNewTag = (tag) => ({
-  type: keyCreateNewTag,
+const tagCreate = (tag) => ({
+  type: tagCreateKey,
   payload: { tag },
 })
 
-export const requestCreateNewTag = createRequestThunk({
+export const tagCreateRequest = createRequestThunk({
   request: api.tags.create,
-  key: requestKeyCreateNewTag,
-  success: [ createNewTag ],
-  failure: [ (error) => logError(error, requestKeyCreateNewTag) ]
+  key: tagCreateRequestKey,
+  success: [ tagCreate ],
+  failure: [ (error) => logError(error, tagCreateRequestKey) ]
 })
 

@@ -76,7 +76,7 @@ class Snackbars extends React.Component {
       return
     }
 
-    this.props.clearSnackbar()
+    this.props.snackbarUnset()
   }
 
   render() {

@@ -18,7 +18,7 @@ import {
 } from '@material-ui/icons'
 import { lighten } from '@material-ui/core/styles/colorManipulator'
 /* User */
-// import { setEdit_id } from 'store/actions/event-actions'
+// import { editIdSet } from 'store/actions/event-actions'
 import * as eventActions from 'store/actions/event-actions'
 /* Dev */
 // eslint-disable-next-line
@@ -33,7 +33,7 @@ class TableToolbar extends React.Component {
     const { selected } = this.props
 
     if (selected.length === 1) {
-      this.props.setEdit_id(selected[0])
+      this.props.editIdSet(selected[0])
       this.setState({
         editClicked: true,
       })
@@ -46,7 +46,7 @@ class TableToolbar extends React.Component {
     const _id = selected[0]
     // green('TableToolbar.handleDeleteClick', `_id: ${_id}`)
     // are you sure?
-    this.props.requestDeleteOneEvent(_id)
+    this.props.eventDeleteOneRequest(_id)
     this.props.clearSelected()
   }
 

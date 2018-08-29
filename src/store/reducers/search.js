@@ -1,7 +1,7 @@
 import {
-  keyClearSearchText,
-  keySetSearchText,
-  keyReadSearchEvents,
+  searchTextClearKey,
+  searchTextSetKey,
+  eventsSearchReadKey,
 } from 'store/actions/search-actions'
 // import { merge } from 'ramda'
 // eslint-disable-next-line
@@ -9,9 +9,9 @@ import { blue } from 'logger'
 
 export const searchText = (state = '', { type, payload }) => {
   switch (type) {
-    case keySetSearchText:
+    case searchTextSetKey:
       return payload.text
-    case keyClearSearchText:
+    case searchTextClearKey:
       return ''
     default:
       return state
@@ -20,7 +20,7 @@ export const searchText = (state = '', { type, payload }) => {
 
 export const search = (state = [], { type, payload }) => {
   switch (type) {
-    case keyReadSearchEvents:
+    case eventsSearchReadKey:
       return payload.events
     default:
       return state
