@@ -168,7 +168,7 @@ export default {
       }
     },
     async search(searchText) {
-      // pink('api.events.search: event', event)
+      pink('api.events.search: searchText', searchText)
       const searchUrl = '/search?searchTerm=' + JSON.stringify(searchText)
       const data = await fetchJson(
         searchUrl,

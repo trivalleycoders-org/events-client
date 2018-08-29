@@ -1,5 +1,5 @@
 import {
-  searchTextClearKey,
+  searchTextUnsetKey,
   searchTextSetKey,
   eventsSearchReadRequestKey,
 } from 'store/actions/search-actions'
@@ -11,7 +11,7 @@ export const searchText = (state = '', { type, payload }) => {
   switch (type) {
     case searchTextSetKey:
       return payload.text
-    case searchTextClearKey:
+    case searchTextUnsetKey:
       return ''
     default:
       return state

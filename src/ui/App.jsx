@@ -7,6 +7,7 @@ import * as authActions from '../store/actions/auth-actions.js'
 import AppBar from 'ui/AppBar'
 // import Home from 'ui/Home'
 import Events from 'ui/Events'
+import SearchEvents from 'ui/SearchEvents'
 import EventForm from 'ui/EventForm'
 import withRoot from './withRoot'
 import RegisterForm from './Auth/RegisterForm'
@@ -14,7 +15,6 @@ import LoginForm from './Auth/LoginForm'
 import SettingsForm from './Auth/SettingsForm'
 import Snackbars from 'ui/Snackbars'
 import AppMenu from 'ui/AppMenu'
-import SearchEvent from 'ui/SearchEvent'
 import RouteNotfound from 'ui/RouteNotFound'
 // import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
@@ -27,7 +27,6 @@ class App extends React.Component {
         <Fragment>
           <AppBar />
           <Snackbars />
-          <SearchEvent />
           <AppMenu />
           <Switch>
             <Route exact path='/new-event' component={EventForm} />
@@ -35,7 +34,7 @@ class App extends React.Component {
             <Route exact path='/register' component={RegisterForm} />
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/settings' component={SettingsForm} />
-            <Route exact path='/events/search/:searchValue' component={Events} />
+            <Route exact path='/search-events/:searchValue' component={SearchEvents} />
             <Route exact path='/my-events' component={Events} />
             <Route exact path='/events' component={Events} />
             <Route component={RouteNotfound} />

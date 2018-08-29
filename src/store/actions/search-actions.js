@@ -17,10 +17,10 @@ export const searchTextSet = (text) => {
   )
 }
 
-export const searchTextClearKey = 'searchTextClearKey'
-export const searchTextClear = () => {
+export const searchTextUnsetKey = 'searchTextClearKey'
+export const searchTextUnset = () => {
   return {
-    type: searchTextClearKey,
+    type: searchTextUnsetKey,
   }
 }
 

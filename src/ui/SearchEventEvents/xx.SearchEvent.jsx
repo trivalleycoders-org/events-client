@@ -6,6 +6,7 @@ import * as searchSelectors from 'store/selectors/search-selectors'
 import { TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
+import { Redirect } from 'react-router-dom'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -16,6 +17,7 @@ export class SearchEvent extends Component {
   super(props)
     this.state = {
       showSearchIcon: true,
+      executeSearch: false,
     }
   }
 
@@ -25,26 +27,31 @@ export class SearchEvent extends Component {
 
   searchEvents = () => {
     green('searchEvents()')
-    this.props.eventsSearchReadRequest(this.props.searchText)
+    this.setState({ executeSearch: true })
+    // this.props.eventsSearchReadRequest(this.props.searchText)
   }
 
   render() {
-    const { classes } = this.props
-    const { searchText } = this.props
-
-    return (
-      <Fragment>
-        <TextField onChange={e => this.handleChange(e.target.value)} value={searchText} />
-
-        <Button
-            className={classes.searchIcon}
-            onClick={this.searchEvents}
-        >
-          Search
-        </Button>
-
-      </Fragment>
-    )
+    const { executeSearch } = this.state
+    const { classes, searchText, searchEvents } = this.props
+    // if (executeSearch) {
+    //   green('execute search')
+    //   return <Redirect to='/events/search/:searchValue' />
+    // } else {
+      // green('do not execute search')
+      return (
+        <Fragment>
+          <TextField onChange={e => this.handleChange(e.target.value)} value={searchText} />
+            <Button
+              className={classes.searchIcon}
+              onClick={searchEvents}
+              disabled={searchText.length < 3}
+            >
+              Search
+            </Button>
+        </Fragment>
+      )
+    // }
   }
 }
 
