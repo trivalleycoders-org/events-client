@@ -6,12 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { AppBar } from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-
-
-// import { ButtonNavLink } from 'ui/ui-elements/ButtonNavLink'
-import { ButtonNavLink } from '../ui-elements/ButtonNavLink'
-
-
+import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
@@ -55,8 +50,8 @@ function MainAppBar(props) {
           <ButtonNavLink to='/search-events/health'>
             Health
           </ButtonNavLink>
-          <ButtonNavLink to='/search-events/age'>
-            Age
+          <ButtonNavLink to='/search-events/briia'>
+            Briia
           </ButtonNavLink>
 
 

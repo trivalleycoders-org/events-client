@@ -44,8 +44,15 @@ const formattedDate = (isoDateString) => {
 const hasTags = has('tags')
 
 const EventGrid = (props) => {
+  // shouldComponentUpdate() {
+  //   return true
+  // }
   // green('EventGrid: props', props)
-  const { classes, events } = props
+  const { classes, events, location, match } = props
+  // green('EventGrid: location', location)
+  // green('EventGrid: match', match)
+
+
   return (
     <Grid container spacing={Number(8)} className={classes.grid1111} >
           {events.map(c => {
