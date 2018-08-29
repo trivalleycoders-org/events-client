@@ -24,18 +24,6 @@ export const searchTextUnset = () => {
   }
 }
 
-// Read
-// export const eventsSearchReadKey = 'eventsSearchReadKey'
-
-
-// const eventsSearchRead = (events) => {
-//   return ({
-//     type: eventsSearchReadKey,
-//     payload: { events },
-//   })
-// }
-
-
 export const eventsSearchReadRequestKey = 'eventsSearchReadRequestKey'
 
 export const eventsSearchReadRequest = createRequestThunk({

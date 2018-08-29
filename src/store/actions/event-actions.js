@@ -10,7 +10,6 @@ export const eventCreateKey = 'actionKeyCreateEvent'
 export const eventCreateRequestKey = 'eventCreateRequestKey'
 
 export const eventCreate = (event) => {
-  // orange('action.eventCreate: event', event)
   return ({
     type: eventCreateKey,
     payload: { event },
@@ -41,18 +40,6 @@ export const eventsReadRequest = createRequestThunk({
   success: [eventsRead, () => snackbarSet('Events loaded', 'success')],
   failure: [(error) => snackbarSet('Could not get events', 'error')]
 })
-
-// export const eventsReadRequest = (caller, ...rest) => {
-//   orange('eventsReadRequest: caller', caller)
-//   orange('rest', rest)
-//   orange('arguments', arguments)
-//   return createRequestThunk({
-//     request: api.events.read,
-//     key: eventsReadRequestKey,
-//     success: [eventsRead, () => snackbarSet('Events loaded', 'success')],
-//     failure: [(error) => snackbarSet('Could not get events', 'error')]
-//   })
-// }
 
 // Patch
 export const eventUpdateOneKey = 'eventUpdateOneKey'

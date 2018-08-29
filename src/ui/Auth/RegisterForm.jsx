@@ -46,7 +46,6 @@ class RegisterForm extends React.Component {
             fieldLabel='Email'
             fullWidth
             required={true}
-            rows={2}
             error={true}
           />
           <TextFieldRedux
@@ -54,7 +53,6 @@ class RegisterForm extends React.Component {
             fieldLabel='Password'
             fullWidth
             required={true}
-            rows={2}
             error={true}
           />
           <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>

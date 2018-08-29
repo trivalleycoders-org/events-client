@@ -49,7 +49,6 @@ class LoginForm extends React.Component {
               fieldLabel='Email'
               fullWidth
               required={true}
-              // rows={2} one row should be enough
               error={true}
             />
             <TextFieldRedux
@@ -57,7 +56,6 @@ class LoginForm extends React.Component {
               fieldLabel='Password'
               fullWidth
               required={true}
-              // rows={2} one row should be enough
               error={true}
             />
             <Button

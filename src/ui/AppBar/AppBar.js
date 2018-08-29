@@ -10,8 +10,6 @@ import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
-// import { menuItems } from './tileData'
-// import SearchEvent from 'ui/SearchEvent'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -32,7 +30,6 @@ const styles = {
 function MainAppBar(props) {
   const { classes, appMenuToggle } = props
   const toggleDraw = () => {
-    // green('toggleDraw', props)
     appMenuToggle()
   }
   return (
@@ -45,16 +42,6 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
-
-
-          <ButtonNavLink to='/search-events/health'>
-            Health
-          </ButtonNavLink>
-          <ButtonNavLink to='/search-events/briia'>
-            Briia
-          </ButtonNavLink>
-
-
           <ButtonNavLink to='/events'>
             Home
           </ButtonNavLink>
