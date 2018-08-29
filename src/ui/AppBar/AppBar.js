@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar } from '@material-ui/core'
 import { Toolbar } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-import { Button } from '@material-ui/core'
+
+
+// import { ButtonNavLink } from 'ui/ui-elements/ButtonNavLink'
+import { ButtonNavLink } from '../ui-elements/ButtonNavLink'
+
+
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
@@ -46,12 +50,34 @@ function MainAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Drone Events
           </Typography>
-          <Link to='/events'><Button colro='inherit'>Home</Button></Link>
-          <Link to='/new-event'><Button color='inherit'>Create Event</Button></Link>
-          <Link to='/my-events'><Button color='inherit'>My Events</Button></Link>
-          <Link to='/register'><Button color='inherit'>Register</Button></Link>
-          <Link to='/login'><Button color='inherit'>Login</Button></Link>
-          <Link to='/settings'><Button color='inherit'>Settings</Button></Link>
+
+
+          <ButtonNavLink to='/search-events/health'>
+            Health
+          </ButtonNavLink>
+          <ButtonNavLink to='/search-events/age'>
+            Age
+          </ButtonNavLink>
+
+
+          <ButtonNavLink to='/events'>
+            Home
+          </ButtonNavLink>
+          <ButtonNavLink to='/new-event'>
+            Create Events
+          </ButtonNavLink>
+          <ButtonNavLink to='/my-events'>
+            My Events
+          </ButtonNavLink>
+          <ButtonNavLink to='/register'>
+            Register
+          </ButtonNavLink>
+          <ButtonNavLink to='/login'>
+            Login
+          </ButtonNavLink>
+          <ButtonNavLink to='/settings'>
+            Settings
+          </ButtonNavLink>
 
         </Toolbar>
       </AppBar>

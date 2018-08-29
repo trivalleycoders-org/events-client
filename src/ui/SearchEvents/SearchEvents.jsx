@@ -6,45 +6,53 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Typography,
 } from '@material-ui/core'
-
+import { merge } from 'ramda'
 /* User */
+import * as searchActions from 'store/actions/search-actions'
 import * as eventActions from 'store/actions/event-actions'
-import * as eventsSelectors from '../../store/selectors/events-selectors'
-import * as requestSelectors from '../../store/selectors/request-selectors'
+
+import * as eventsSelectors from 'store/selectors/events-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
+import * as searchSelectors from 'store/selectors/search-selectors'
+import * as requestSelectors from '../../store/selectors/request-selectors'
+
 import { eventsReadRequestKey } from 'store/actions/event-actions'
 import EventsGrid from 'ui/EventsGrid'
-import MyEvents from 'ui/MyEvents'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
 const styles = theme => ({})
 
-class Events extends React.Component {
-
+class SearchEvents extends React.Component {
   componentDidMount() {
+    green('componentDidMount: params', this.props.match.params)
     this.props.eventsReadRequest('Events')
+  }
+
+  searchEvents = () => {
+    const { searchText } = this.props
+    const text = searchText
+    green('Events.searchEvents: searchText', text)
+    this.props.eventsSearchReadRequest(text)
+    this.props.searchTextUnset()
+  }
+
+  componentShouldUpdate(nextProps, nextState) {
+    return this.props.requestReadAllEvents.status !== 'success'
   }
 
   render() {
     const { classes, events, match } = this.props
+    green('** SearchEvents: props', this.props)
     if (this.props.requestReadAllEvents.status !== 'success') {
-      return (
-        <Typography variant='display1'>
-          Loading
-        </Typography>
-      )
-    }
-    if (match.path === '/my-events') {
-      return (
-        <div className={classes.pageMock}>
-          <MyEvents events={events} />
-        </div>
-      )
+      return null
     } else {
       return (
         <div className={classes.pageMock}>
+          <EventsGrid
+            events={events}
+          />
           <EventsGrid events={events}/>
         </div>
       )
@@ -52,7 +60,7 @@ class Events extends React.Component {
   }
 }
 
-Events.propTypes = {
+SearchEvents.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
@@ -61,10 +69,19 @@ const mapStateToProps = (state) => {
     events: eventsSelectors.getAllEvents(state),
     requestReadAllEvents: requestSelectors.getRequest(state, eventsReadRequestKey),
     currentUserId: authSelectors.getUserId(state),
+    searchText: searchSelectors.getSearchText(state)
   }
 }
 
+const actions = merge(eventActions, searchActions)
+
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, eventActions)
-)(Events)
+  connect(mapStateToProps, actions)
+)(SearchEvents)
+
+// (
+//   <Typography variant='display1'>
+//     Loading
+//   </Typography>
+// )
