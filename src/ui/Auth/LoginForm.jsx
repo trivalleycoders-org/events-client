@@ -27,8 +27,8 @@ class LoginForm extends React.Component {
   // }
 
   onSubmit = (values) => {
-    const { userLoginRequestKey } = this.props
-    userLoginRequestKey(values)
+    const { userLoginRequest } = this.props
+    userLoginRequest(values)
     // this.state.goBack()
   }
 
