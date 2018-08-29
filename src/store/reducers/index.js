@@ -7,7 +7,7 @@ import { postalCodes } from './location'
 import { reducer as formReducer } from 'redux-form'
 import snackbar from './snackbar'
 import appMenu from './app-menu'
-import searchText from './search'
+import { searchText, search } from './search'
 
 export default combineReducers({
   events,
@@ -18,6 +18,7 @@ export default combineReducers({
   snackbar,
   appMenu,
   searchText,
+  search,
   form: formReducer,
   auth
 })

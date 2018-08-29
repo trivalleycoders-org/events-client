@@ -5,9 +5,6 @@ import { setSnackbar } from './snackbar-actions'
 // eslint-disable-next-line
 import { orange } from 'logger'
 
-
-// export const keySearchEvent = 'actionKeySearchEvent'
-
 // Create
 export const keyCreateEvent = 'actionKeyCreateEvent'
 export const requestKeyCreateEvent = 'requestKeyCreateEvent'
@@ -31,7 +28,7 @@ export const requestCreateEvent = createRequestThunk({
 export const keyReadEvents = 'actionKeyReadEvents'
 export const requestKeyReadEvents = 'requestKeyReadEvents'
 
-const readEvents = (events) => {
+export const readEvents = (events) => {
   return ({
     type: keyReadEvents,
     payload: { events },
@@ -45,16 +42,17 @@ export const requestReadEvents = createRequestThunk({
   failure: [(error) => setSnackbar('Could not get events', 'error')]
 })
 
-// Search Results
-
-export const requestKeySearchEvents = 'requestKeySearchEvents'
-
-export const requestSearchEvents = createRequestThunk({
-  request: api.events.search,
-  key: requestKeySearchEvents,
-  success: [readEvents],
-  failure: [error => setSnackbar(`Search events failed: ${error}`, 'error')]
-})
+// export const requestReadEvents = (caller, ...rest) => {
+//   orange('requestReadEvents: caller', caller)
+//   orange('rest', rest)
+//   orange('arguments', arguments)
+//   return createRequestThunk({
+//     request: api.events.read,
+//     key: requestKeyReadEvents,
+//     success: [readEvents, () => setSnackbar('Events loaded', 'success')],
+//     failure: [(error) => setSnackbar('Could not get events', 'error')]
+//   })
+// }
 
 // Patch
 export const keyPatchOneEvent = 'keyPatchOneEvent'

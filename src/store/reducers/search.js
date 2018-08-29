@@ -1,9 +1,13 @@
-import { keyClearSearchText, keySetSearchText } from 'store/actions/search-actions'
+import {
+  keyClearSearchText,
+  keySetSearchText,
+  keyReadSearchEvents,
+} from 'store/actions/search-actions'
 // import { merge } from 'ramda'
 // eslint-disable-next-line
 import { blue } from 'logger'
 
-const searchText = (state = '', { type, payload }) => {
+export const searchText = (state = '', { type, payload }) => {
   switch (type) {
     case keySetSearchText:
       return payload.text
@@ -14,4 +18,12 @@ const searchText = (state = '', { type, payload }) => {
   }
 }
 
-export default searchText
+export const search = (state = [], { type, payload }) => {
+  switch (type) {
+    case keyReadSearchEvents:
+      return payload.events
+    default:
+      return state
+  }
+}
+

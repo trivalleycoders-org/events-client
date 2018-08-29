@@ -19,9 +19,7 @@ import MyEvents from 'ui/MyEvents'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = theme => ({
-
-})
+const styles = theme => ({})
 
 class Events extends React.Component {
   state = {
@@ -29,7 +27,8 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    // green('EVENTS didMount')
+    green('EVENTS didMount()')
+    this.props.requestReadEvents('Events')
     const params = this.props.match.params
     // green('params', params)
     // green('match', this.props.match)
@@ -37,24 +36,30 @@ class Events extends React.Component {
     const path = this.props.match.path
     if (path === '/search') {
       // green('Events: going to SEARCH')
-      this.props.requestSearchEvents(params.searchValue)
+      // this.props.requestSearchEvents(params.searchValue)
     } else if (path === '/my-events') {
       // green('Events: going to MyEvents')
       this.props.requestReadEvents(params.user)
     } else {
       // green('Events: going to Events')
-      this.props.requestReadEvents()
+      //
     }
 
   }
 
-  componentWillReceiveProps() {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    green('EVENTS getDerivedStateFromProps()')
+    return null
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    green('EVENTS didUpdate()')
+    // you can set state here
   }
 
   render() {
     const { classes, events, match } = this.props
-    // green('** Events props', this.props)
+    green('** Events: props', this.props)
     if (this.props.requestReadAllEvents.status !== 'success') {
       return (
         <Typography variant='display1'>
