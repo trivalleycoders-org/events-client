@@ -31,7 +31,7 @@ export const getCachedData = (key) => {
   const cachedDate = new Date(data.timestamp)
   const diff = differenceInMinutes(cachedDate, new Date())
   // green('diff', diff)
-  if (diff > -60) {
+  if (diff > -600) {
     // green('getCachedData: returning items', data.items)
     return data.items
   } else {
