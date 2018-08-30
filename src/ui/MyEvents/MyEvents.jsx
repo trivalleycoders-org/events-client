@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
@@ -17,7 +17,14 @@ import { append, without, contains } from 'ramda'
 /* User */
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
+import {
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetail,
+} from '@material-ui/core'
 import * as eventsSelectors from '../../store/selectors/events-selectors'
+import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
+import Body2 from 'ui/ui-elements/typography/Body2'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -29,23 +36,10 @@ function getSorting(order, orderBy) {
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1)
 }
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-  },
-  table: {
-    minWidth: 1020,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-})
-
 const dateFormat = 'MMM DD, YYYY  hh:mm A'
 
 class MyEvents extends React.Component {
-  
+
   state = {
 
     order: 'asc',
@@ -113,7 +107,7 @@ class MyEvents extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, events.length - page * rowsPerPage)
     return (
       <Paper className={classes.root}>
-        <TableToolbar 
+        <TableToolbar
           selected={selected}
           clearSelected={this.clearSelected}
         />
@@ -146,8 +140,16 @@ class MyEvents extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
+                      <TableCell>
+                        <ResponsiveImage src={n.imageUrl} alt='some' className={classes.image}/>
+                      </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.title}
+                        <Body2>
+                          {n.title}
+                        </Body2>
+                        <div className={classes.cityState}>
+                          {n.cityName}, {n.stateCode}
+                        </div>
                       </TableCell>
                       <TableCell numeric>{format(n.startDateTime, dateFormat)}</TableCell>
                       <TableCell numeric>{format(n.endDateTime, dateFormat)}</TableCell>
@@ -181,6 +183,29 @@ class MyEvents extends React.Component {
     )
   }
 }
+
+const styles = theme => ({
+  title: {
+
+  },
+  cityState: {
+    paddingTop: theme.spacing.unit
+  },
+  image: {
+    maxHeight: 100,
+    maxWidth: 200,
+  },
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+  },
+  table: {
+    minWidth: 1020,
+  },
+  tableWrapper: {
+    overflowX: 'auto',
+  },
+})
 
 MyEvents.propTypes = {
   classes: PropTypes.object.isRequired,

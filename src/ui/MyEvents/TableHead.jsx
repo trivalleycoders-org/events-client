@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 
 const columnData = [
+  { id: 'image', numeric: false, disablePadding: false, label: ''},
   { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
   { id: 'startDateTime', numeric: true, disablePadding: false, label: 'Start Date' },
   { id: 'endDateTime', numeric: true, disablePadding: false, label: 'End Date' },
