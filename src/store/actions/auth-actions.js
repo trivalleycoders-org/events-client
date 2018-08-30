@@ -44,7 +44,9 @@ export const requestLoginUser = createRequestThunk({
   failure: [loginFailed, (error) => setSnackbar(error.error, 'error')]
 })
 
+
 export const logoutUser = (user) => {
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
     type: keyLogoutUser
   })

@@ -64,13 +64,9 @@ export default {
       }
     },
     logout(user) {
-      try {
-        removeToken()
-        return 'removed token'
-      }
-      catch (e) {
-        throw e
-      }
+      return new Promise(function (resolve, reject) {
+        resolve('Will call remove token in action creator')
+      })
     },
     async update(password) {
       pink('api.users.update: ', password)

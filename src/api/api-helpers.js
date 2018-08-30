@@ -12,37 +12,8 @@ const rejectErrors = (res) => {
   return Promise.reject(res)
 }
 
-// const getCookie = () => {
-//   const cookie = document.cookie
-//   if (!cookie) return []
-
-//   var decodedCookie = decodeURIComponent(cookie)
-//   console.log('decodedCookie', decodedCookie)
-
-//   var ca = decodedCookie.split(';')
-//   console.log('ca: ', ca)
-//   let finalAry ={}
-
-//   const filteredArr = ca.filter(item => item.split('=').indexOf('token') !== -1)
-//   console.log ('filteredArr: ', filteredArr)
-
-//   const splitArr = filteredArr[0].split('=')
-//   console.log('splitArr: ', splitArr)
-
-//   finalAry.token = splitArr[1]
-//   console.log('finalAry: ', finalAry)
-
-//   return finalAry
-// }
-
-export const removeToken = () => {
-  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
-}
-
 export const fetchJson = (url, options = {}) => {
-  // const token = store.auth ? '' : `Token ${store.auth.currentUser.token}`
   let token
-  console.log('cookie parser: ', parse(document.cookie))
   const tokenObj = parse(document.cookie)
   let headers = {
     ...options.headers,
@@ -50,16 +21,11 @@ export const fetchJson = (url, options = {}) => {
     'Content-Type': 'application/json',
   }
 
-  console.log('tokenObj: ', tokenObj)
-  console.log('tokenObj.hasproperty: ', tokenObj.hasOwnProperty('token'))
-
   if (tokenObj.hasOwnProperty('token')) {
     token = `Token ${tokenObj.token}`
-    console.log('inside token available', token)
     headers.authorization = token
   }
 
-  console.log('headers: ', headers)
   return (
     fetch(url, {
       ...options,
@@ -82,4 +48,4 @@ export const fetchUploadImage = (url, options = {}) => (
     .then(res => res.json())
 )
 
-export default { fetchJson, fetchUploadImage, removeToken }
+export default { fetchJson, fetchUploadImage }
