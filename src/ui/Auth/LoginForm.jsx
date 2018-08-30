@@ -28,7 +28,6 @@ class LoginForm extends React.Component {
         <Redirect to='/events' />
       )
     } else {
-      console.log('inside else, pristine: ', pristine)
       return (
         <div className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>

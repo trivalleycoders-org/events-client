@@ -1,6 +1,6 @@
 /* Dev */
 // import { pink } from 'logger'
-import {parse } from './cookie-parser'
+import { parse } from './cookie-parser'
 
 const rejectErrors = (res) => {
   const { status } = res
@@ -10,6 +10,10 @@ const rejectErrors = (res) => {
     return Promise.reject({ error: 'Email or Password is Invalid' })
   }
   return Promise.reject(res)
+}
+
+export const removeToken = () => {
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
 }
 
 export const fetchJson = (url, options = {}) => {
@@ -49,4 +53,4 @@ export const fetchUploadImage = (url, options = {}) => (
     .then(res => res.json())
 )
 
-export default { fetchJson, fetchUploadImage }
+export default { fetchJson, fetchUploadImage, removeToken }

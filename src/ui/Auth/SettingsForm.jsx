@@ -20,12 +20,11 @@ class SettingsForm extends React.Component {
   }
 
   onClickLogout = () => {
-    const { logoutUser } = this.props
-    logoutUser()
+    const { requestLogoutUser } = this.props
+    requestLogoutUser()
   }
 
   onSubmit = (values) => {
-    // console.log('values: ', values)
     const { requestUpdatePassword } = this.props
     requestUpdatePassword(values)
     this.state.goBack()
@@ -57,6 +56,10 @@ class SettingsForm extends React.Component {
     )
   }
 }
+
+// const mapDispatchToProps = dispatch => ({
+//   onClickLogout: () => dispatch({ type: authActions.keyLogoutUser }),
+// })
 
 export default compose(
   withStyles(styles),
