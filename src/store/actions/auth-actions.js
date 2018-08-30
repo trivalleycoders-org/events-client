@@ -47,16 +47,28 @@ const loginFailed = (error) => {
   })
 }
 
-// const userLoginCache = (user) => {
-//   orange('userLoginCache: user', user)
-//   setCachedData('eventsUser', user)
-// }
-
 export const userLoginRequest = createRequestThunk({
   request: api.users.login,
   key: userLoginRequestKey,
   success: [userLogin /*, userLoginCache*/],
   failure: [loginFailed, (error) => snackbarSet(error.error, 'error')]
+})
+
+
+export const logoutUser = (user) => {
+  return ({
+    type: keyLogoutUser
+  })
+}
+
+export const keyLogoutUser = 'actionKeyLogoutUser'
+export const requestKeyLogoutUser = 'requestKeyLogoutUser'
+
+export const requestLogoutUser = createRequestThunk({
+  request: api.users.logout,
+  key: requestKeyLogoutUser,
+  success: [logoutUser],
+  failure: [(error) => setSnackbar(error.error, 'error')]
 })
 
 export const passwordUpdateKey = 'actionKeyUpdatePassword'

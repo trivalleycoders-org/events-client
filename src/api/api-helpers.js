@@ -12,12 +12,7 @@ const rejectErrors = (res) => {
   return Promise.reject(res)
 }
 
-export const removeToken = () => {
-  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
-}
-
 export const fetchJson = (url, options = {}) => {
-  // const token = store.auth ? '' : `Token ${store.auth.currentUser.token}`
   let token
   const tokenObj = parse(document.cookie)
   let headers = {
@@ -25,7 +20,6 @@ export const fetchJson = (url, options = {}) => {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   }
-
   if (tokenObj.hasOwnProperty('token')) {
     token = `Token ${tokenObj.token}`
     headers.authorization = token
@@ -53,4 +47,4 @@ export const fetchUploadImage = (url, options = {}) => (
     .then(res => res.json())
 )
 
-export default { fetchJson, fetchUploadImage, removeToken }
+export default { fetchJson, fetchUploadImage }
