@@ -14,6 +14,7 @@ import * as requestSelectors from '../../store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
 import EventsGrid from 'ui/EventsGrid'
+// import EventsGridList from 'ui/EventsGridList'
 import MyEvents from 'ui/MyEvents'
 import SearchBox from 'ui/SearchBox'
 /* Dev */
