@@ -34,12 +34,12 @@ function MainAppBar(props) {
   }
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='fixed'>
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDraw}>
+          <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={toggleDraw}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography variant='title' color='inherit' className={classes.flex}>
             Drone Events
           </Typography>
           <ButtonNavLink to='/events'>
