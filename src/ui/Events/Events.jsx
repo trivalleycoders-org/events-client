@@ -21,7 +21,11 @@ import SearchBox from 'ui/SearchBox'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = theme => ({})
+const styles = theme => ({
+  pageMock: {
+    marginTop: 100,
+  }
+})
 
 class Events extends React.Component {
 

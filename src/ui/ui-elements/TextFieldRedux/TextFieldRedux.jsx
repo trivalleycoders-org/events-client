@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import { FormControl, InputLabel, Input } from '@material-ui/core'
+import { FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, red } from 'logger'
 class TextFieldRedux extends React.Component {
   state = {
     isError: false
@@ -26,7 +26,9 @@ class TextFieldRedux extends React.Component {
       rows,
       ...rest,
     } = props
-    // const { error, touched } = meta
+    const { error, touched } = meta
+    const isError = error ? true : false
+
     const { name, onChange, onBlur, ...inputRest } = input
     const handleOnBlur = (e) => {
       // green('handleBlur')
@@ -55,12 +57,13 @@ class TextFieldRedux extends React.Component {
           {...rest}
           {...inputRest}
         />
+        <FormHelperText error={isError}>{error}</FormHelperText>
       </FormControl>
     )
   }
   render() {
-    const { fieldName, fieldLabel, disabled, required, fullWidth=false, rows=0 } = this.props
-    // green(`state for ${fieldName}`, this.state)
+    const { fieldName, fieldLabel, disabled, required, fullWidth = false, rows = 0 } = this.props
+    green(`state for ${fieldName}`, this.state)
     return (
       <Field
         component={this.component}

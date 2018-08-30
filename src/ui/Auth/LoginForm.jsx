@@ -7,29 +7,17 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
-// import { User, validateModel } from '../../models'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { userLoginRequestKey } from 'store/actions/auth-actions'
+import validate from './validate'
 
 class LoginForm extends React.Component {
-
-  state = {
-    goBack: this.props.history.goBack,
-  }
-  // constructor() {
-  //   super()
-  //   this.changePassword = ev => {
-  //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.passwordUpdate(ev.target.value)
-  //   }
-  // }
 
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
     userLoginRequest(values)
-    // this.state.goBack()
   }
 
   render() {
@@ -40,6 +28,7 @@ class LoginForm extends React.Component {
         <Redirect to='/events' />
       )
     } else {
+      console.log('inside else, pristine: ', pristine)
       return (
         <div className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>
@@ -58,13 +47,9 @@ class LoginForm extends React.Component {
               required={true}
               error={true}
             />
-            <Button
-              type='button'
-              onClick={handleSubmit(this.onSubmit)}
-              disabled={pristine || submitting}
-            >
+            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
               Submit
-            </Button>
+          </Button>
             <Button type='button' disabled={pristine || submitting} onClick={reset}>
               Clear Values
           </Button>
@@ -72,7 +57,6 @@ class LoginForm extends React.Component {
         </div>
       )
     }
-
   }
 }
 
@@ -86,5 +70,7 @@ export default compose(
   connect(mapStateToProps, authActions),
   reduxForm({
     form: 'LoginForm',
+    validate,
+    destroyOnUnmount: true
   })
 )(LoginForm)

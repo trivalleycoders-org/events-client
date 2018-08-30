@@ -1,5 +1,6 @@
 /* Dev */
 // import { pink } from 'logger'
+import {parse } from './cookie-parser'
 
 const rejectErrors = (res) => {
   const { status } = res
@@ -11,19 +12,30 @@ const rejectErrors = (res) => {
   return Promise.reject(res)
 }
 
-export const fetchJson = (url, options = {}) => (
-  fetch(url, {
-    ...options,
-    credentials: 'include',
-    headers: {
-      ...options.headers,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'authorization': `Token ${window.localStorage.getItem('jwt')}`
-    },
-  }).then(rejectErrors)
-    .then((res) => res.json())
-)
+export const fetchJson = (url, options = {}) => {
+  // const token = store.auth ? '' : `Token ${store.auth.currentUser.token}`
+  let token
+  const tokenObj = parse(document.cookie)
+  let headers = {
+    ...options.headers,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+
+  if (tokenObj.hasOwnProperty('token')) {
+    token = `Token ${tokenObj.token}`
+    headers.authorization = token
+  }
+
+  return (
+    fetch(url, {
+      ...options,
+      credentials: 'include',
+      headers,
+    }).then(rejectErrors)
+      .then((res) => res.json())
+  )
+}
 
 export const fetchUploadImage = (url, options = {}) => (
   fetch(url, {

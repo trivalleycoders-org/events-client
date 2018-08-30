@@ -22,6 +22,7 @@ import RouteNotfound from 'ui/RouteNotFound'
 class App extends React.Component {
 
   render() {
+    const { currentUser } = this.props
     return (
       <Router>
         <Fragment>

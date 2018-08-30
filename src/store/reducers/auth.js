@@ -1,4 +1,4 @@
-import { userRegisterKey, userLoginKey, userLogoutKey, keyLoginFailed, passwordUpdateKey } from '../actions/auth-actions'
+import { userRegisterKey, userLoginKey, userLogoutKey, loginFailedKey, passwordUpdateKey } from '../actions/auth-actions'
 
 export default (state = {}, { type, payload, error, subtype }) => {
   switch (type) {
@@ -16,7 +16,7 @@ export default (state = {}, { type, payload, error, subtype }) => {
         ...state,
         password: payload
       }
-    case keyLoginFailed:
+    case loginFailedKey:
       return {
         ...state,
         redirectTo: '/login',

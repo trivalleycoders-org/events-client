@@ -49,7 +49,7 @@ class SearchEvents extends React.Component {
   }
 
   render() {
-    const { classes, events, location, match } = this.props
+    const { classes, events } = this.props
 
     if (this.props.requestReadAllEvents.status !== 'success') {
       return null
@@ -59,8 +59,6 @@ class SearchEvents extends React.Component {
           <SearchBox />
           <EventsGrid
             events={events}
-            location={location}
-            match={match}
           />
         </div>
       )

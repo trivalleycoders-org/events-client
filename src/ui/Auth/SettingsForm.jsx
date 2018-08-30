@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
+import validate from './validate'
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
@@ -17,23 +18,16 @@ class SettingsForm extends React.Component {
   state = {
     goBack: this.props.history.goBack,
   }
-  // constructor() {
-  //   super()
-  //   this.changePassword = ev => {
-  //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.passwordUpdate(ev.target.value)
-  //   }
-  // }
 
   onClickLogout = () => {
-    const { userLogout } = this.props
-    userLogout()
+    const { logoutUser } = this.props
+    logoutUser()
   }
 
   onSubmit = (values) => {
     // console.log('values: ', values)
-    const { passwordUpdateRequest } = this.props
-    passwordUpdateRequest(values)
+    const { requestUpdatePassword } = this.props
+    requestUpdatePassword(values)
     this.state.goBack()
   }
 
@@ -55,7 +49,7 @@ class SettingsForm extends React.Component {
           <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
             Change Password
         </Button>
-          <Button type='button' disabled={pristine || submitting} onClick={this.onClickLogout}>
+          <Button type='button' onClick={this.onClickLogout}>
             Logout
         </Button>
         </form>
@@ -69,5 +63,7 @@ export default compose(
   connect(mapStateToProps, authActions),
   reduxForm({
     form: 'LoginForm',
+    validate,
+    destroyOnUnmount: true
   })
 )(SettingsForm)

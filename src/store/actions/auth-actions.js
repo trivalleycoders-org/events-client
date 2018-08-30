@@ -29,7 +29,7 @@ export const userRegisterRequest = createRequestThunk({
 })
 
 export const userLoginKey = 'actionKeyLoginUser'
-export const keyLoginFailed = 'actionKeyLoginFailed'
+export const loginFailedKey = 'loginFailedKey'
 export const userLoginRequestKey = 'userLoginRequestKey'
 
 const userLogin = (user) => {
@@ -42,7 +42,7 @@ const userLogin = (user) => {
 
 const loginFailed = (error) => {
   return ({
-    type: keyLoginFailed,
+    type: loginFailedKey,
     payload: error
   })
 }
