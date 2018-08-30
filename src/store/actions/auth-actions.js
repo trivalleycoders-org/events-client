@@ -4,13 +4,6 @@ import { setSnackbar } from './snackbar-actions'
 
 export const keyRegisterUser = 'actionKeyRegisterUser'
 export const requestKeyRegisterUser = 'requestKeyRegisterUser'
-export const keyLogoutUser = 'actionKeyLogoutUser'
-
-export const logoutUser = (user) => {
-  return ({
-    type: keyLogoutUser
-  })
-}
 
 const registerUser = (user) => {
   return ({
@@ -49,6 +42,22 @@ export const requestLoginUser = createRequestThunk({
   key: requestKeyLoginUser,
   success: [loginUser],
   failure: [loginFailed, (error) => setSnackbar(error.error, 'error')]
+})
+
+export const logoutUser = (user) => {
+  return ({
+    type: keyLogoutUser
+  })
+}
+
+export const keyLogoutUser = 'actionKeyLogoutUser'
+export const requestKeyLogoutUser = 'requestKeyLogoutUser'
+
+export const requestLogoutUser = createRequestThunk({
+  request: api.users.logout,
+  key: requestKeyLogoutUser,
+  success: [logoutUser],
+  failure: [(error) => setSnackbar(error.error, 'error')]
 })
 
 export const keyUpdatePassword = 'actionKeyUpdatePassword'

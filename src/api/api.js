@@ -1,4 +1,4 @@
-import { fetchJson, fetchUploadImage } from './api-helpers'
+import { fetchJson, fetchUploadImage, removeToken } from './api-helpers'
 import { red } from 'logger'
 
 /* Dev */
@@ -60,6 +60,15 @@ export default {
       }
       catch (e) {
         red('error in api.users.login', e)
+        throw e
+      }
+    },
+    logout(user) {
+      try {
+        removeToken()
+        return 'removed token'
+      }
+      catch (e) {
         throw e
       }
     },

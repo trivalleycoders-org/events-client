@@ -1,6 +1,6 @@
 /* Dev */
 // import { pink } from 'logger'
-import {parse } from './cookie-parser'
+import { parse } from './cookie-parser'
 
 const rejectErrors = (res) => {
   const { status } = res
@@ -34,6 +34,10 @@ const rejectErrors = (res) => {
 
 //   return finalAry
 // }
+
+export const removeToken = () => {
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+}
 
 export const fetchJson = (url, options = {}) => {
   // const token = store.auth ? '' : `Token ${store.auth.currentUser.token}`
@@ -78,4 +82,4 @@ export const fetchUploadImage = (url, options = {}) => (
     .then(res => res.json())
 )
 
-export default { fetchJson, fetchUploadImage }
+export default { fetchJson, fetchUploadImage, removeToken }
