@@ -36,6 +36,8 @@ import * as snackbarSelectors from '../../store/selectors/snackbar-selectors'
 //   info: InfoIcon,
 // }
 
+const variants = ['success', 'warning', 'error', 'info']
+
 function Content(props) {
   const { classes, className, message, onClose, variant, ...other } = props
   // const Icon = variantIcon[variant || 'info']
@@ -44,7 +46,7 @@ function Content(props) {
     <SnackbarContent
       className={classNames(classes[variant], className)}
       aria-describedby="client-snackbar"
-      message='hi'
+      message={message}
       action={[
         <IconButton
           key="close"
@@ -90,7 +92,7 @@ class Snackbars extends React.Component {
             horizontal: 'right',
           }}
           open={snackbar.open}
-          autoHideDuration={6000}
+          autoHideDuration={1500}
           onClose={this.handleClose}
         >
           <MySnackbarContentWrapper
