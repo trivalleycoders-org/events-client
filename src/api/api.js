@@ -65,7 +65,6 @@ export default {
     },
     async update(password) {
       pink('api.users.update: ', password)
-      red('localstorage token: ', window.localStorage.getItem('jwt'))
       try {
         const data = await fetchJson(
           '/user',

@@ -18,13 +18,6 @@ class SettingsForm extends React.Component {
   state = {
     goBack: this.props.history.goBack,
   }
-  // constructor() {
-  //   super()
-  //   this.changePassword = ev => {
-  //     console.log('In change passwd: ', ev.target.value)
-  //     this.props.updatePassword(ev.target.value)
-  //   }
-  // }
 
   onClickLogout = () => {
     const { logoutUser } = this.props
@@ -56,7 +49,7 @@ class SettingsForm extends React.Component {
           <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
             Change Password
         </Button>
-          <Button type='button' disabled={pristine || submitting} onClick={this.onClickLogout}>
+          <Button type='button' onClick={this.onClickLogout}>
             Logout
         </Button>
         </form>

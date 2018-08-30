@@ -44,7 +44,7 @@ function Content(props) {
     <SnackbarContent
       className={classNames(classes[variant], className)}
       aria-describedby="client-snackbar"
-      message='hi'
+      message={message}
       action={[
         <IconButton
           key="close"

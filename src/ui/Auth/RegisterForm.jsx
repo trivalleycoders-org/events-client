@@ -16,11 +16,16 @@ const mapStateToProps = (state) => ({ ...state.auth })
 
 class RegisterForm extends React.Component {
 
+  state = {
+    goBack: this.props.history.goBack,
+  }
+
   onSubmit = (values) => {
     // console.log('values: ', values)
     const { requestRegisterUser } = this.props
     requestRegisterUser(values)
     console.log('props: ', this.props)
+    this.state.goBack()
   }
 
   render() {
