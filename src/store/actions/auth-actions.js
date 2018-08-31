@@ -56,6 +56,7 @@ export const userLoginRequest = createRequestThunk({
 
 
 export const logoutUser = (user) => {
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
     type: keyLogoutUser
   })
@@ -68,13 +69,15 @@ export const requestLogoutUser = createRequestThunk({
   request: api.users.logout,
   key: requestKeyLogoutUser,
   success: [logoutUser],
-  failure: [(error) => setSnackbar(error.error, 'error')]
+  failure: [(error) => snackbarSet(error.error, 'error')]
 })
 
 export const passwordUpdateKey = 'actionKeyUpdatePassword'
 export const passwordUpdateRequestKey = 'passwordUpdateRequestKey'
 
 const passwordUpdate = (password) => {
+  console.log('before deleting cookie')
+  // document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
     type: passwordUpdateKey,
     payload: password

@@ -21,7 +21,6 @@ class RegisterForm extends React.Component {
   }
 
   onSubmit = (values) => {
-    // console.log('values: ', values)
     const { requestRegisterUser } = this.props
     requestRegisterUser(values)
     console.log('props: ', this.props)

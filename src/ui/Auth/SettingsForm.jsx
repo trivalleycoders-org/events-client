@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
+import { Redirect } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
@@ -25,15 +26,21 @@ class SettingsForm extends React.Component {
   }
 
   onSubmit = (values) => {
-    const { requestUpdatePassword } = this.props
-    requestUpdatePassword(values)
+    const { passwordUpdateRequest } = this.props
+    passwordUpdateRequest(values)
     this.state.goBack()
   }
 
   render() {
 
     const { classes, handleSubmit, pristine, submitting } = this.props
+    // let passwordUpdateRequestKey = undefined
+    // if (this.props.requests && this.props.requests.hasOwnProperty('passwordUpdateRequestKey')) {
+    //   passwordUpdateRequestKey = this.props.requests.passwordUpdateRequestKey
 
+    // }
+
+    // if (passwordUpdateRequestKey === undefined) {
     return (
       <div className={classes.pageWrapper}>
         <div className={classes.display1} >Change Password</div>
@@ -54,6 +61,12 @@ class SettingsForm extends React.Component {
         </form>
       </div>
     )
+    // } else if (passwordUpdateRequestKey.status === 'success') {
+    //   console.log('passwordUpdateRequestKey:  ', passwordUpdateRequestKey.status)
+    //   return (
+    //     <Redirect to='/login' />
+    //   )
+    // }
   }
 }
 

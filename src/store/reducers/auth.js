@@ -14,7 +14,8 @@ export default (state = {}, { type, payload, error, subtype }) => {
     case passwordUpdateKey:
       return {
         ...state,
-        password: payload
+        redirectTo: '/login',
+        currentUser: null
       }
     case loginFailedKey:
       return {

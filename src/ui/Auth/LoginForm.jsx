@@ -15,47 +15,53 @@ import validate from './validate'
 
 class LoginForm extends React.Component {
 
+  state = {
+    goBack: this.props.history.goBack,
+  }
+
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
-    userLoginRequest(values)
+    const result = userLoginRequest(values)
+    console.log('result: ', result)
+    // this.state.goBack()
   }
 
   render() {
 
-    const { classes, handleSubmit, pristine, reset, submitting, readRequestLogInUser } = this.props
-    if (readRequestLogInUser.status === 'success') {
-      return (
-        <Redirect to='/events' />
-      )
-    } else {
-      return (
-        <div className={classes.pageWrapper}>
-          <div className={classes.display1} >Login</div>
-          <form>
-            <TextFieldRedux
-              fieldName='email'
-              fieldLabel='Email'
-              fullWidth
-              required={true}
-              error={true}
-            />
-            <TextFieldRedux
-              fieldName='password'
-              fieldLabel='Password'
-              fullWidth
-              required={true}
-              error={true}
-            />
-            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-              Submit
+    const { classes, handleSubmit, pristine, reset, submitting, userLoginRequestKey } = this.props
+    // if (userLoginRequestKey.status === 'success') {
+    //   return (
+    //     <Redirect to='/events' />
+    //   )
+    // } else {
+    return (
+      <div className={classes.pageWrapper}>
+        <div className={classes.display1} >Login</div>
+        <form>
+          <TextFieldRedux
+            fieldName='email'
+            fieldLabel='Email'
+            fullWidth
+            required={true}
+            error={true}
+          />
+          <TextFieldRedux
+            fieldName='password'
+            fieldLabel='Password'
+            fullWidth
+            required={true}
+            error={true}
+          />
+          <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+            Submit
           </Button>
-            <Button type='button' disabled={pristine || submitting} onClick={reset}>
-              Clear Values
+          <Button type='button' disabled={pristine || submitting} onClick={reset}>
+            Clear Values
           </Button>
-          </form>
-        </div>
-      )
-    }
+        </form>
+      </div>
+    )
+    //}
   }
 }
 
