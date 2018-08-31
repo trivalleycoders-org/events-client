@@ -16,10 +16,6 @@ const mapStateToProps = (state) => ({ ...state.auth })
 
 class SettingsForm extends React.Component {
 
-  state = {
-    goBack: this.props.history.goBack,
-  }
-
   onClickLogout = () => {
     const { requestLogoutUser } = this.props
     requestLogoutUser()
@@ -28,51 +24,38 @@ class SettingsForm extends React.Component {
   onSubmit = (values) => {
     const { passwordUpdateRequest } = this.props
     passwordUpdateRequest(values)
-    this.state.goBack()
   }
 
   render() {
-
-    const { classes, handleSubmit, pristine, submitting } = this.props
-    // let passwordUpdateRequestKey = undefined
-    // if (this.props.requests && this.props.requests.hasOwnProperty('passwordUpdateRequestKey')) {
-    //   passwordUpdateRequestKey = this.props.requests.passwordUpdateRequestKey
-
-    // }
-
-    // if (passwordUpdateRequestKey === undefined) {
-    return (
-      <div className={classes.pageWrapper}>
-        <div className={classes.display1} >Change Password</div>
-        <form>
-          <TextFieldRedux
-            fieldName='password'
-            fieldLabel='Password'
-            fullWidth
-            required={true}
-            error={true}
-          />
-          <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-            Change Password
+    const { classes, handleSubmit, pristine, submitting, redirectTo } = this.props
+    if (redirectTo) {
+      return (
+        <Redirect to={redirectTo} />
+      )
+    } else {
+      return (
+        <div className={classes.pageWrapper}>
+          <div className={classes.display1} >Change Password</div>
+          <form>
+            <TextFieldRedux
+              fieldName='password'
+              fieldLabel='Password'
+              fullWidth
+              required={true}
+              error={true}
+            />
+            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+              Change Password
         </Button>
-          <Button type='button' onClick={this.onClickLogout}>
-            Logout
+            <Button type='button' onClick={this.onClickLogout}>
+              Logout
         </Button>
-        </form>
-      </div>
-    )
-    // } else if (passwordUpdateRequestKey.status === 'success') {
-    //   console.log('passwordUpdateRequestKey:  ', passwordUpdateRequestKey.status)
-    //   return (
-    //     <Redirect to='/login' />
-    //   )
-    // }
+          </form>
+        </div>
+      )
+    }
   }
 }
-
-// const mapDispatchToProps = dispatch => ({
-//   onClickLogout: () => dispatch({ type: authActions.keyLogoutUser }),
-// })
 
 export default compose(
   withStyles(styles),
