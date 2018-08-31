@@ -38,6 +38,7 @@ class App extends React.Component {
             <Route exact path='/search-events/:searchValue' component={SearchEvents} />
             <Route exact path='/my-events' component={Events} />
             <Route exact path='/events' component={Events} />
+            <Route exact path='/' component={Events} />
             <Route component={RouteNotfound} />
           </Switch>
         </Fragment>

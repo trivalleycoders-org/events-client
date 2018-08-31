@@ -22,8 +22,8 @@ class RegisterForm extends React.Component {
 
   onSubmit = (values) => {
     // console.log('values: ', values)
-    const { requestRegisterUser } = this.props
-    requestRegisterUser(values)
+    const { userRegisterRequest } = this.props
+    userRegisterRequest(values)
     console.log('props: ', this.props)
     this.state.goBack()
   }
