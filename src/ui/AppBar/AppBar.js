@@ -3,20 +3,35 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { AppBar } from '@material-ui/core'
-import { Toolbar } from '@material-ui/core'
-import { Typography } from '@material-ui/core'
+import {
+  AppBar,
+  ClickAwayListener,
+  Grow,
+  Paper,
+  Popper,
+  Toolbar,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+  MenuList,
+} from '@material-ui/core'
 import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
-import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
+import { render } from 'react-dom';
 
-const styles = {
+const styles = theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+    // flexGrow: 1,
+  },
+  paper: {
+    marginRight: theme.spacing.unit * 2
   },
   flex: {
     flex: 1,
@@ -25,46 +40,119 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+})
+
+class  LoggedIn extends React.Component {
+  state = {
+    open: false,
+  }
+  handleToggle = () => {
+    this.setState(state => ({ open: !state.open }))
+  }
+
+  handleClose = event => {
+    if (this.anchorEl.contains(event.target)) {
+      return
+    }
+
+    this.setState({ open: false });
+  }
+  render() {
+    const { open } = this.state
+    return (
+      <React.Fragment>
+        <ButtonNavLink to='/events'>
+          Home
+        </ButtonNavLink>
+        <ButtonNavLink to='/new-event'>
+          Create Event
+        </ButtonNavLink>
+        <ButtonNavLink to='/my-events'>
+          My Events
+        </ButtonNavLink>
+        <IconButton
+          buttonRef={node => {
+            this.anchorEl = node
+          }}
+          aria-owns={open ? 'menu-list-grow' : null}
+          aria-haspopup="true"
+          onClick={this.handleToggle}
+        >
+          <AccountCircle />
+        </IconButton>
+        <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              id="menu-list-grow"
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={this.handleClose}>
+                  <MenuList>
+                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </React.Fragment>
+    )
+  }
+
 }
 
-function MainAppBar(props) {
-  const { classes, appMenuToggle } = props
-  const toggleDraw = () => {
-    appMenuToggle()
-  }
+const LoggedOut = () => {
   return (
-    <div className={classes.root}>
-      <AppBar position='fixed'>
-        <Toolbar>
-          <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={toggleDraw}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='title' color='inherit' className={classes.flex}>
-            Drone Events
-          </Typography>
-          <ButtonNavLink to='/events'>
-            Home
-          </ButtonNavLink>
-          <ButtonNavLink to='/new-event'>
-            Create Events
-          </ButtonNavLink>
-          <ButtonNavLink to='/my-events'>
-            My Events
-          </ButtonNavLink>
-          <ButtonNavLink to='/register'>
-            Register
-          </ButtonNavLink>
-          <ButtonNavLink to='/login'>
-            Login
-          </ButtonNavLink>
-          <ButtonNavLink to='/settings'>
-            Settings
-          </ButtonNavLink>
-
-        </Toolbar>
-      </AppBar>
-    </div>
+    <React.Fragment>
+    <ButtonNavLink to='/login'>
+        Login
+      </ButtonNavLink>
+      <ButtonNavLink to='/register'>
+        Register
+      </ButtonNavLink>
+    </React.Fragment>
   )
+
+}
+
+class MainAppBar extends React.Component {
+
+  state = {
+
+    loggedinTmp: false,
+  }
+
+  toggleDraw = () => {
+    this.props.appMenuToggle()
+  }
+
+  render() {
+    const { classes } = this.props
+    const { open, loggedinTmp } = this.state
+    return (
+      <div className={classes.root}>
+        <AppBar position='fixed'>
+          <Toolbar>
+            <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='title' color='inherit' className={classes.flex}>
+              Drone Events
+            </Typography>
+            {
+              loggedinTmp ? <LoggedIn open={open} /> : <LoggedOut />
+            }
+
+          </Toolbar>
+        </AppBar>
+      </div>
+    )
+  }
+
 }
 
 MainAppBar.propTypes = {
