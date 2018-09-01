@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as authSelectors from 'store/selectors/auth-selectors'
+import * as appMenuActions from 'store/actions/app-menu-actions'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
@@ -74,5 +75,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps),
+  connect(mapStateToProps, appMenuActions),
 )(MainAppBar)
