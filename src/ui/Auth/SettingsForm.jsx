@@ -12,6 +12,9 @@ import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { userPasswordUpdateRequestKey } from 'store/actions/auth-actions'
 import validate from './validate'
+/* Dev */
+// eslint-disable-next-line
+import { green } from 'logger'
 
 class SettingsForm extends React.Component {
 
@@ -27,10 +30,8 @@ class SettingsForm extends React.Component {
 
   render() {
     const { classes, handleSubmit, pristine, submitting, userPasswordUpdateStatus } = this.props
-    if (userPasswordUpdateStatus.status = 'success') {
-      return (
-        <Redirect to='/events' />
-      )
+    if (userPasswordUpdateStatus.status === 'success') {
+      return <Redirect to='/events' />
     } else {
       return (
         <div className={classes.pageWrapper}>

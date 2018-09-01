@@ -1,6 +1,7 @@
 import React from 'react'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   ClickAwayListener,
@@ -26,18 +27,14 @@ class  LoggedIn extends React.Component {
     this.setState(state => ({ open: !state.open }))
   }
 
-  handleClose = (event, control) => {
-
+  handleClose = (event, action) => {
     if (this.anchorEl.contains(event.target)) {
-      green('going to return')
       return
     }
-    green('event', event.target)
-    green('control', control)
-    green('props', this.props)
     this.setState({ open: false })
-    this.props.userLogoutRequest()
-
+    if (action === 'logout') {
+      this.props.userLogoutRequest()
+    }
   }
   render() {
     const { open } = this.state
@@ -73,7 +70,7 @@ class  LoggedIn extends React.Component {
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
                     <MenuItem onClick={(event) => this.handleClose(event, 'profile')}>Profile</MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}>Settings</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings'>Settings</Link></MenuItem>
                     <MenuItem onClick={(event) => this.handleClose(event, 'logout')}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

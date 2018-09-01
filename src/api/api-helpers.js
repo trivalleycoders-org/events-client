@@ -13,7 +13,6 @@ const rejectErrors = (res) => {
 }
 
 export const fetchJson = (url, options = {}) => {
-  console.log('in fetchjson')
   let token
   const tokenObj = parse(document.cookie)
   let headers = {
