@@ -1,4 +1,4 @@
-import { fetchJson, fetchUploadImage } from './api-helpers'
+import { fetchJson, fetchUploadImage, removeToken } from './api-helpers'
 import { red } from 'logger'
 
 /* Dev */
@@ -62,6 +62,11 @@ export default {
         red('error in api.users.login', e)
         throw e
       }
+    },
+    logout(user) {
+      return new Promise(function (resolve, reject) {
+        resolve('Will call remove token in action creator')
+      })
     },
     async update(password) {
       pink('api.users.update: ', password)

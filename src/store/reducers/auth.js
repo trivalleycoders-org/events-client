@@ -3,33 +3,46 @@ import { userRegisterKey, userLoginKey, userLogoutKey, loginFailedKey, passwordU
 export default (state = {}, { type, payload, error, subtype }) => {
   switch (type) {
     case userLoginKey:
+      return {
+        ...state,
+        loggedIn: true,
+        errors: error ? payload.error : null,
+        redirectTo: error ? null : '/events',
+        currentUser: error ? null : payload.user
+      }
+
     case userRegisterKey:
       return {
         ...state,
+        loggedIn: false,
         errors: error ? payload.error : null,
         redirectTo: error ? null : '/',
-        token: error ? null : payload.user.token,
         currentUser: error ? null : payload.user
       }
     case passwordUpdateKey:
       return {
         ...state,
-        password: payload
+        redirectTo: '/login',
+        currentUser: null
       }
     case loginFailedKey:
       return {
         ...state,
+        loggedIn: false,
         redirectTo: '/login',
-        error: payload.error ? payload.error : null
+        errors: payload.error ? payload.error : null
       }
     case userLogoutKey:
       return {
         ...state,
+        loggedIn: false,
         redirectTo: '/',
-        token: null,
         currentUser: null
       }
     default:
-      return state
+      return {
+        ...state,
+        redirectTo: null,
+      }
   }
 }

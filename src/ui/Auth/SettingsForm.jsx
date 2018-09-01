@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
+import { Redirect } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
@@ -15,46 +16,44 @@ const mapStateToProps = (state) => ({ ...state.auth })
 
 class SettingsForm extends React.Component {
 
-  state = {
-    goBack: this.props.history.goBack,
-  }
-
   onClickLogout = () => {
-    const { logoutUser } = this.props
-    logoutUser()
+    const { requestLogoutUser } = this.props
+    requestLogoutUser()
   }
 
   onSubmit = (values) => {
-    // console.log('values: ', values)
-    const { requestUpdatePassword } = this.props
-    requestUpdatePassword(values)
-    this.state.goBack()
+    const { passwordUpdateRequest } = this.props
+    passwordUpdateRequest(values)
   }
 
   render() {
-
-    const { classes, handleSubmit, pristine, submitting } = this.props
-
-    return (
-      <div className={classes.pageWrapper}>
-        <div className={classes.display1} >Change Password</div>
-        <form>
-          <TextFieldRedux
-            fieldName='password'
-            fieldLabel='Password'
-            fullWidth
-            required={true}
-            error={true}
-          />
-          <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-            Change Password
+    const { classes, handleSubmit, pristine, submitting, redirectTo } = this.props
+    if (redirectTo) {
+      return (
+        <Redirect to={redirectTo} />
+      )
+    } else {
+      return (
+        <div className={classes.pageWrapper}>
+          <div className={classes.display1} >Change Password</div>
+          <form>
+            <TextFieldRedux
+              fieldName='password'
+              fieldLabel='Password'
+              fullWidth
+              required={true}
+              error={true}
+            />
+            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+              Change Password
         </Button>
-          <Button type='button' onClick={this.onClickLogout}>
-            Logout
+            <Button type='button' onClick={this.onClickLogout}>
+              Logout
         </Button>
-        </form>
-      </div>
-    )
+          </form>
+        </div>
+      )
+    }
   }
 }
 

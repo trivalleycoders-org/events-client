@@ -1,6 +1,6 @@
 /* Dev */
 // import { pink } from 'logger'
-import {parse } from './cookie-parser'
+import { parse } from './cookie-parser'
 
 const rejectErrors = (res) => {
   const { status } = res
@@ -13,7 +13,7 @@ const rejectErrors = (res) => {
 }
 
 export const fetchJson = (url, options = {}) => {
-  // const token = store.auth ? '' : `Token ${store.auth.currentUser.token}`
+  console.log('in fetchjson')
   let token
   const tokenObj = parse(document.cookie)
   let headers = {
@@ -21,7 +21,6 @@ export const fetchJson = (url, options = {}) => {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   }
-
   if (tokenObj.hasOwnProperty('token')) {
     token = `Token ${tokenObj.token}`
     headers.authorization = token

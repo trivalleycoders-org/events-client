@@ -16,27 +16,17 @@ const mapStateToProps = (state) => ({ ...state.auth })
 
 class RegisterForm extends React.Component {
 
-  state = {
-    goBack: this.props.history.goBack,
-  }
-
   onSubmit = (values) => {
-    // console.log('values: ', values)
     const { userRegisterRequest } = this.props
     userRegisterRequest(values)
-    console.log('props: ', this.props)
-    this.state.goBack()
   }
 
   render() {
 
-    const { classes, handleSubmit, pristine, reset, submitting, requestKeyRegisterUser, readRequestRegisterUser } = this.props
-    console.log('readRequestRegisterUser: ', readRequestRegisterUser)
-    console.log('requestKeyRegisterUser: ', requestKeyRegisterUser)
-
-    if (requestKeyRegisterUser && requestKeyRegisterUser.status === 'success') {
+    const { classes, handleSubmit, pristine, reset, submitting, redirectTo } = this.props
+    if (redirectTo) {
       return (
-        <Redirect to='/events' />
+        <Redirect to={redirectTo} />
       )
     } else {
       return (

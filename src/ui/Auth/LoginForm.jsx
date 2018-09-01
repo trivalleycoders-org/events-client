@@ -15,20 +15,22 @@ import validate from './validate'
 
 class LoginForm extends React.Component {
 
+  state = {
+    goBack: this.props.history.goBack,
+  }
+
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
     userLoginRequest(values)
   }
 
   render() {
-
-    const { classes, handleSubmit, pristine, reset, submitting, readRequestLogInUser } = this.props
-    if (readRequestLogInUser.status === 'success') {
+    const { classes, handleSubmit, pristine, reset, submitting, redirectTo } = this.props
+    if (redirectTo) {
       return (
-        <Redirect to='/events' />
+        <Redirect to={redirectTo} />
       )
     } else {
-      console.log('inside else, pristine: ', pristine)
       return (
         <div className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>
