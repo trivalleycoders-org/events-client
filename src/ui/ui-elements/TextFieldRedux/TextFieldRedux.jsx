@@ -63,7 +63,7 @@ class TextFieldRedux extends React.Component {
   }
   render() {
     const { fieldName, fieldLabel, disabled, required, fullWidth = false, rows = 0 } = this.props
-    green(`state for ${fieldName}`, this.state)
+    // green(`state for ${fieldName}`, this.state)
     return (
       <Field
         component={this.component}

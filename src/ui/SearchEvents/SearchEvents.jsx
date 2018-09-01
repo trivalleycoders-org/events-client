@@ -43,7 +43,7 @@ class SearchEvents extends React.Component {
   searchEvents = () => {
     const { searchText } = this.props
     const text = searchText
-    green('Events.searchEvents: searchText', text)
+    // green('Events.searchEvents: searchText', text)
     this.props.eventsSearchReadRequest(text)
     this.props.searchTextUnset()
   }
