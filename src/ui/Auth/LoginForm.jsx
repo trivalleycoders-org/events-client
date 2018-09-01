@@ -12,12 +12,14 @@ import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { userLoginRequestKey } from 'store/actions/auth-actions'
 import validate from './validate'
+// import { request } from 'https'
+import PageError from 'ui/ui-elements/PageError'
 
 class LoginForm extends React.Component {
 
-  state = {
-    goBack: this.props.history.goBack,
-  }
+  // state = {
+  //   goBack: this.props.history.goBack,
+  // }
 
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
@@ -25,10 +27,11 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { classes, handleSubmit, pristine, reset, submitting, redirectTo } = this.props
-    if (redirectTo) {
+    const { classes, handleSubmit, pristine, reset, submitting, logInUserRequest } = this.props
+    // const { goBack } = this.state
+    if (logInUserRequest.status === 'success') {
       return (
-        <Redirect to={redirectTo} />
+        <Redirect to='/events' />
       )
     } else {
       return (
@@ -56,6 +59,9 @@ class LoginForm extends React.Component {
               Clear Values
           </Button>
           </form>
+          <PageError>
+            {this.pageMessage}
+          </PageError>
         </div>
       )
     }
@@ -64,7 +70,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  readRequestLogInUser: requestSelectors.getRequest(state, userLoginRequestKey)
+  logInUserRequest: requestSelectors.getRequest(state, userLoginRequestKey)
 })
 
 export default compose(

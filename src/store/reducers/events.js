@@ -4,7 +4,7 @@ import {
   eventDeleteOneKey,
   eventsReadKey,
   eventUpdateOneKey,
-  setEditIdKey,
+  editIdSetKey,
   editIdUnsetKey,
 } from '../actions/event-actions'
 
@@ -55,7 +55,7 @@ export const events = (state = [], { type, payload }) => {
 
 export const eventsUi = (state = {}, { type, payload }) => {
   switch (type) {
-    case setEditIdKey:
+    case editIdSetKey:
       return merge(state, { edit_id: payload._id })
     case editIdUnsetKey:
       return ''

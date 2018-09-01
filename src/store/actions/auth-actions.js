@@ -4,9 +4,8 @@ import { snackbarSet } from './snackbar-actions'
 import { orange } from 'logger'
 // import { setCachedData } from 'lib/cacheData'
 
-export const userRegisterKey = 'actionKeyRegisterUser'
-export const userRegisterRequestKey = 'userRegisterRequestKey'
-export const userLogoutKey = 'actionKeyLogoutUser'
+// logout
+export const userLogoutKey = 'userLogoutKey'
 
 export const userLogout = (user) => {
   return ({
@@ -14,23 +13,18 @@ export const userLogout = (user) => {
   })
 }
 
-const userRegister = (user) => {
-  return ({
-    type: userRegisterKey,
-    payload: user
-  })
-}
+export const userLogoutRequestKey = 'userLogoutRequestKey'
 
-export const userRegisterRequest = createRequestThunk({
-  request: api.users.register,
-  key: userRegisterRequestKey,
-  success: [userRegister],
-  failure: [(error) => snackbarSet(error)]
+export const userLogoutRequest = createRequestThunk({
+  request: api.users.logout,
+  key: userLogoutRequestKey,
+  success: [userLogout],
+  failure: [(error) => snackbarSet(error.error, 'error')]
 })
 
-export const userLoginKey = 'actionKeyLoginUser'
-export const loginFailedKey = 'loginFailedKey'
-export const userLoginRequestKey = 'userLoginRequestKey'
+// login
+
+export const userLoginKey = 'userLoginKey'
 
 const userLogin = (user) => {
   orange('userLogin: user', user)
@@ -40,12 +34,16 @@ const userLogin = (user) => {
   })
 }
 
+export const loginFailedKey = 'loginFailedKey'
+
 const loginFailed = (error) => {
   return ({
     type: loginFailedKey,
     payload: error
   })
 }
+
+export const userLoginRequestKey = 'userLoginRequestKey'
 
 export const userLoginRequest = createRequestThunk({
   request: api.users.login,
@@ -54,39 +52,42 @@ export const userLoginRequest = createRequestThunk({
   failure: [loginFailed, (error) => snackbarSet(error.error, 'error')]
 })
 
+// register
+export const userRegisterKey = 'userRegisterKey'
 
-export const logoutUser = (user) => {
-  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+const userRegister = (user) => {
   return ({
-    type: keyLogoutUser
+    type: userRegisterKey,
+    payload: user
   })
 }
 
-export const keyLogoutUser = 'actionKeyLogoutUser'
-export const requestKeyLogoutUser = 'requestKeyLogoutUser'
-
-export const requestLogoutUser = createRequestThunk({
-  request: api.users.logout,
-  key: requestKeyLogoutUser,
-  success: [logoutUser],
-  failure: [(error) => snackbarSet(error.error, 'error')]
+export const userRegisterRequestKey = 'userRegisterRequestKey'
+export const userRegisterRequest = createRequestThunk({
+  request: api.users.register,
+  key: userRegisterRequestKey,
+  success: [userRegister],
+  failure: [(error) => snackbarSet(error)]
 })
 
-export const passwordUpdateKey = 'actionKeyUpdatePassword'
-export const passwordUpdateRequestKey = 'passwordUpdateRequestKey'
+
+// update password
+
+export const userPasswordUpdateKey = 'userUpdatePasswordKey'
 
 const passwordUpdate = (password) => {
   console.log('before deleting cookie')
-  // document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
-    type: passwordUpdateKey,
+    type: userPasswordUpdateKey,
     payload: password
   })
 }
 
+export const userPasswordUpdateRequestKey = 'userPasswordUpdateRequestKey'
+
 export const passwordUpdateRequest = createRequestThunk({
   request: api.users.update,
-  key: passwordUpdateRequestKey,
+  key: userPasswordUpdateRequestKey,
   success: [passwordUpdate],
   failure: [(error) => snackbarSet(error)]
 })

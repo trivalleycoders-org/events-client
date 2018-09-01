@@ -6,7 +6,7 @@ import { snackbarSet } from './snackbar-actions'
 import { orange } from 'logger'
 
 // Create
-export const eventCreateKey = 'actionKeyCreateEvent'
+export const eventCreateKey = 'reventCreateKey'
 export const eventCreateRequestKey = 'eventCreateRequestKey'
 
 export const eventCreate = (event) => {
@@ -24,7 +24,7 @@ export const eventCreateRequest = createRequestThunk({
 })
 
 // Read
-export const eventsReadKey = 'actionKeyReadEvents'
+export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 
 export const eventsRead = (events) => {
@@ -61,7 +61,7 @@ export const eventUpdateOneRequest = createRequestThunk({
 })
 
 // Delete
-export const eventDeleteOneKey = 'keyDeletehOneEvent'
+export const eventDeleteOneKey = 'eventDeleteOneKey'
 export const eventDeleteOneRequestKey = 'eventDeleteOneRequestKey'
 
 const eventDeleteOne = (data) => {
@@ -80,13 +80,13 @@ export const eventDeleteOneRequest = createRequestThunk({
 })
 
 // EventsUi
-export const setEditIdKey = 'actionKeySetEdit_id'
-export const editIdUnsetKey = 'actionKeyUnsetEdit_id'
+export const editIdSetKey = 'editIdSetKey'
+export const editIdUnsetKey = 'editIdUnsetKey'
 
 export const editIdSet = (_id) => {
   // orange('event-actions.editIdSet: _id', _id)
   return ({
-    type: setEditIdKey,
+    type: editIdSetKey,
     payload: { _id }
   })
 }

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import { compose } from 'recompose'
+import { compose } from 'recompose'
+import { withStyles } from '@material-ui/core/styles'
 // User
 import * as authActions from '../store/actions/auth-actions.js'
 import AppBar from 'ui/AppBar'
-// import Home from 'ui/Home'
 import Events from 'ui/Events'
 import SearchEvents from 'ui/SearchEvents'
 import EventForm from 'ui/EventForm'
@@ -16,31 +16,32 @@ import SettingsForm from './Auth/SettingsForm'
 import Snackbars from 'ui/Snackbars'
 import AppMenu from 'ui/AppMenu'
 import RouteNotfound from 'ui/RouteNotFound'
-// import AutosuggestRedux from 'ui/ui-elements/AutosuggestRedux'
 
 
 class App extends React.Component {
 
   render() {
-    const { currentUser } = this.props
+    const { currentUser, classes } = this.props
     return (
       <Router>
         <Fragment>
           <AppBar />
           <Snackbars />
           <AppMenu />
-          <Switch>
-            <Route exact path='/new-event' component={EventForm} />
-            <Route exact path='/new-event/:_id' component={EventForm} />
-            <Route exact path='/register' component={RegisterForm} />
-            <Route exact path='/login' component={LoginForm} />
-            <Route exact path='/settings' component={SettingsForm} />
-            <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-            <Route exact path='/my-events' component={Events} />
-            <Route exact path='/events' component={Events} />
-            <Route exact path='/' component={Events} />
-            <Route component={RouteNotfound} />
-          </Switch>
+          <div className={classes.page}>
+            <Switch>
+              <Route exact path='/new-event' component={EventForm} />
+              <Route exact path='/new-event/:_id' component={EventForm} />
+              <Route exact path='/register' component={RegisterForm} />
+              <Route exact path='/login' component={LoginForm} />
+              <Route exact path='/settings' component={SettingsForm} />
+              <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+              <Route exact path='/my-events' component={Events} />
+              <Route exact path='/events' component={Events} />
+              <Route exact path='/' component={Events} />
+              <Route component={RouteNotfound} />
+            </Switch>
+          </div>
         </Fragment>
       </Router>
     )
@@ -53,12 +54,16 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    redirectTo: state.auth.redirectTo
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(Object.assign({}, eventActions, authActions), dispatch)
-// }
+const styles = {
+  page: {
+    marginTop: 80
+  }
+}
 
-export default connect(mapStateToProps, authActions)(withRoot(App))
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, authActions)
+)(withRoot(App))
