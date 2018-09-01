@@ -19,28 +19,12 @@ import {
 import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as appMenuActions from 'store/actions/app-menu-actions'
+import * as authSelectors from 'store/selectors/auth-selectors'
+import * as requestSelectors from 'store/selectors/request-selectors'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
-import { render } from 'react-dom';
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    // flexGrow: 1,
-  },
-  paper: {
-    marginRight: theme.spacing.unit * 2
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-})
 
 class  LoggedIn extends React.Component {
   state = {
@@ -121,18 +105,13 @@ const LoggedOut = () => {
 
 class MainAppBar extends React.Component {
 
-  state = {
-
-    loggedinTmp: false,
-  }
-
   toggleDraw = () => {
     this.props.appMenuToggle()
   }
 
   render() {
-    const { classes } = this.props
-    const { open, loggedinTmp } = this.state
+    const { classes, isLoggedIn } = this.props
+    green('isLoggedIn', isLoggedIn)
     return (
       <div className={classes.root}>
         <AppBar position='fixed'>
@@ -144,7 +123,7 @@ class MainAppBar extends React.Component {
               Drone Events
             </Typography>
             {
-              loggedinTmp ? <LoggedIn open={open} /> : <LoggedOut />
+              isLoggedIn ? <LoggedIn /> : <LoggedOut />
             }
 
           </Toolbar>
@@ -159,8 +138,25 @@ MainAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    // flexGrow: 1,
+  },
+  paper: {
+    marginRight: theme.spacing.unit * 2
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+})
 
+const mapStateToProps = (state) => ({
+  isLoggedIn: authSelectors.getLoggedIn(state)
 })
 
 export default compose(

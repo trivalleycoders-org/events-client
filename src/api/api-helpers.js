@@ -6,8 +6,8 @@ const rejectErrors = (res) => {
   const { status } = res
   if (status >= 200 && status < 300) {
     return res
-  } else if (status === 422) {
-    return Promise.reject({ error: 'Email or Password is Invalid' })
+  // } else if (status === 422) {
+  //   return Promise.reject({ error: 'Email or Password is Invalid' })
   }
   return Promise.reject(res)
 }

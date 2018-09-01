@@ -5,14 +5,13 @@ import { Redirect } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-
+import { userRegisterRequestKey } from 'store/actions/auth-actions'
+import * as requestSelectors from 'store/selectors/request-selectors'
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
 import validate from './validate'
 import PropTypes from 'prop-types'
-
-const mapStateToProps = (state) => ({ ...state.auth })
 
 class RegisterForm extends React.Component {
 
@@ -23,10 +22,10 @@ class RegisterForm extends React.Component {
 
   render() {
 
-    const { classes, handleSubmit, pristine, reset, submitting, redirectTo } = this.props
-    if (redirectTo) {
+    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus } = this.props
+    if (userRegisterRequestStatus.status === 'success') {
       return (
-        <Redirect to={redirectTo} />
+        <Redirect to='/events' />
       )
     } else {
       return (
@@ -59,6 +58,11 @@ class RegisterForm extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state) => ({
+  ...state.auth,
+  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey )
+})
 
 export default compose(
   withStyles(styles),

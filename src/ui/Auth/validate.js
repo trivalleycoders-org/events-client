@@ -2,7 +2,7 @@ import { green } from 'logger'
 
 const validate = (values, props) => {
 
-  green('props', props)
+  // green('props', props)
   const errors = {}
 
   if (!values.email) {

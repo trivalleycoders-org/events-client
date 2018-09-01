@@ -9,10 +9,9 @@ import { withStyles } from '@material-ui/core/styles'
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
 import * as authActions from '../../store/actions/auth-actions'
+import * as requestSelectors from 'store/selectors/request-selectors'
+import { userPasswordUpdateRequestKey } from 'store/actions/auth-actions'
 import validate from './validate'
-
-const mapStateToProps = (state) => ({ ...state.auth })
-
 
 class SettingsForm extends React.Component {
 
@@ -27,10 +26,10 @@ class SettingsForm extends React.Component {
   }
 
   render() {
-    const { classes, handleSubmit, pristine, submitting, redirectTo } = this.props
-    if (redirectTo) {
+    const { classes, handleSubmit, pristine, submitting, userPasswordUpdateStatus } = this.props
+    if (userPasswordUpdateStatus.status = 'success') {
       return (
-        <Redirect to={redirectTo} />
+        <Redirect to='/events' />
       )
     } else {
       return (
@@ -56,6 +55,13 @@ class SettingsForm extends React.Component {
     }
   }
 }
+
+
+
+const mapStateToProps = (state) => ({
+  ...state.auth,
+  userPasswordUpdateStatus: requestSelectors.getRequest(state, userPasswordUpdateRequestKey)
+})
 
 export default compose(
   withStyles(styles),

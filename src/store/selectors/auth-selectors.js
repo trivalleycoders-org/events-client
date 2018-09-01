@@ -11,3 +11,5 @@ export const getUserId = (state) => {
   return userId
 
 }
+
+export const getLoggedIn = (state) => state.auth.loggedIn
