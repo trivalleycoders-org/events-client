@@ -16,7 +16,7 @@ import SettingsForm from './Auth/SettingsForm'
 import Snackbars from 'ui/Snackbars'
 import AppMenu from 'ui/AppMenu'
 import RouteNotfound from 'ui/RouteNotFound'
-
+import PageMessage from 'ui/ui-elements/PageMessage'
 
 class App extends React.Component {
 
@@ -29,6 +29,7 @@ class App extends React.Component {
           <Snackbars />
           <AppMenu />
           <div className={classes.page}>
+            <PageMessage></PageMessage>
             <Switch>
               <Route exact path='/new-event' component={EventForm} />
               <Route exact path='/new-event/:_id' component={EventForm} />
@@ -47,9 +48,6 @@ class App extends React.Component {
     )
   }
 }
-
-// <Route exact path='/search/:searchValue' component={Events} />
-   //        <Route exact path='/my-events/:user' component={Events} />
 
 const mapStateToProps = (state) => {
   return {

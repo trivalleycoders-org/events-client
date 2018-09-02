@@ -13,7 +13,6 @@ import * as requestSelectors from 'store/selectors/request-selectors'
 import { userLoginRequestKey } from 'store/actions/auth-actions'
 import validate from './validate'
 // import { request } from 'https'
-import PageError from 'ui/ui-elements/PageError'
 
 class LoginForm extends React.Component {
 
@@ -59,9 +58,6 @@ class LoginForm extends React.Component {
               Clear Values
           </Button>
           </form>
-          <PageError>
-            {this.pageMessage}
-          </PageError>
         </div>
       )
     }

@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core'
 /* User */
 import fontSizeFromString from 'lib/fontSizeFromString'
-import classNames from 'lib/classNames'
+import classNames from 'classnames'
 
 /* Dev */
 // eslint-disable-next-line
@@ -26,7 +26,6 @@ const Headline = ({
   gutter,
   noWrap,
 }) => {
-  // greenl('theme', theme)
   return (
     <Typography
       align={align}

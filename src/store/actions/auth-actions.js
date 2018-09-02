@@ -2,9 +2,10 @@ import { createRequestThunk } from './action-helpers'
 import api from 'api'
 import { snackbarSet } from './snackbar-actions'
 import { orange } from 'logger'
-// import { setCachedData } from 'lib/cacheData'
+import { pageMessage } from './page-message-actions'
 
 // logout
+
 export const userLogoutKey = 'userLogoutKey'
 
 export const userLogout = (user) => {
@@ -53,6 +54,7 @@ export const userLoginRequest = createRequestThunk({
 })
 
 // register
+
 export const userRegisterKey = 'userRegisterKey'
 
 const userRegister = (user) => {
@@ -62,14 +64,26 @@ const userRegister = (user) => {
   })
 }
 
+// const registerFailed = (error) => {
+//   return ({
+//     type: 'none',
+//   })
+
+// }
+
 export const userRegisterRequestKey = 'userRegisterRequestKey'
 export const userRegisterRequest = createRequestThunk({
   request: api.users.register,
   key: userRegisterRequestKey,
-  success: [userRegister],
-  failure: [(error) => snackbarSet(error)]
+  success: [
+    userRegister,
+    () => pageMessage('')
+  ],
+  failure: [
+    // (error) => registerFailed(error),
+    () => pageMessage('that email is already taken')
+  ]
 })
-
 
 // update password
 

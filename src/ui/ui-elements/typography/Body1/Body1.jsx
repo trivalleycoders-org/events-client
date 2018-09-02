@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core'
 /* User */
 import fontSizeFromString from 'lib/fontSizeFromString'
-import classNames from 'lib/classNames'
+import classNames from 'classnames'
 /* Dev */
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
@@ -25,7 +25,7 @@ const Body1 = ({
   color,
   noWrap,
 }) => {
-  // greenl('theme', theme)
+  greenl('children', children)
   return (
     <Typography
       align={align}

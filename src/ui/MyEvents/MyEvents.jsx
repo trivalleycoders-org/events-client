@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
@@ -17,11 +17,6 @@ import { append, without, contains } from 'ramda'
 /* User */
 import TableHead from './TableHead'
 import TableToolbar from './TableToolbar'
-import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetail,
-} from '@material-ui/core'
 import * as eventsSelectors from '../../store/selectors/events-selectors'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 import Body2 from 'ui/ui-elements/typography/Body2'
@@ -48,6 +43,8 @@ class MyEvents extends React.Component {
     rowsPerPage: 5,
     selected: [],
   }
+
+  // componentDidMount()
 
   handleRequestSort = (event, property) => {
     const orderBy = property

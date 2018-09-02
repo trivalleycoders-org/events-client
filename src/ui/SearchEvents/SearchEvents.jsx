@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  Typography,
-} from '@material-ui/core'
 import { merge } from 'ramda'
 /* User */
 import * as searchActions from 'store/actions/search-actions'
@@ -43,7 +40,6 @@ class SearchEvents extends React.Component {
   searchEvents = () => {
     const { searchText } = this.props
     const text = searchText
-    // green('Events.searchEvents: searchText', text)
     this.props.eventsSearchReadRequest(text)
     this.props.searchTextUnset()
   }

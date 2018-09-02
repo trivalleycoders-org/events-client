@@ -1,4 +1,4 @@
-import { fetchJson, fetchUploadImage, removeToken } from './api-helpers'
+import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
 
 /* Dev */
@@ -29,8 +29,8 @@ export default {
   */
   users: {
     async register(user) {
-      pink('api.users.register: ', user)
-      try {
+      // pink('api.users.register: ', user)
+      // try {
         const data = await fetchJson(
           '/users',
           {
@@ -40,10 +40,11 @@ export default {
         )
         pink('data returned from api.users.register: ', data)
         return data.data
-      }
-      catch (e) {
-        red('error in api.users.register', e)
-      }
+      //}
+      // catch (e) {
+      //   red('error in api.users.register', e.body)
+      //   throw e
+      // }
     },
     async login(user) {
       pink('api.users.login: ', user)

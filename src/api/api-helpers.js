@@ -1,15 +1,17 @@
 /* Dev */
-// import { pink } from 'logger'
+import { pink } from 'logger'
 import { parse } from './cookie-parser'
 
 const rejectErrors = (res) => {
+  pink('rejectErrors: res', res)
   const { status } = res
   if (status >= 200 && status < 300) {
     return res
-  // } else if (status === 422) {
-  //   return Promise.reject({ error: 'Email or Password is Invalid' })
   }
-  return Promise.reject(res)
+  return Promise.reject({
+    statusText: res.statusText,
+    status: res.status,
+  })
 }
 
 export const fetchJson = (url, options = {}) => {

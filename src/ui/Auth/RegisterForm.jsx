@@ -7,11 +7,15 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import { userRegisterRequestKey } from 'store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
-import TextFieldRedux from '../ui-elements/TextFieldRedux'
+import * as authActions from 'store/actions/auth-actions'
+import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import styles from './styles'
-import * as authActions from '../../store/actions/auth-actions'
 import validate from './validate'
 import PropTypes from 'prop-types'
+import { merge } from 'ramda'
+/* Dev */
+// eslint-disable-next-line
+import { green } from 'logger'
 
 class RegisterForm extends React.Component {
 
@@ -23,7 +27,10 @@ class RegisterForm extends React.Component {
   render() {
 
     const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus } = this.props
-    if (userRegisterRequestStatus.status === 'success') {
+    const { status } = userRegisterRequestStatus
+
+    green('status', status)
+    if (status === 'success') {
       return (
         <Redirect to='/events' />
       )

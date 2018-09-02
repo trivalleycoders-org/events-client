@@ -26,7 +26,7 @@ class TextFieldRedux extends React.Component {
       rows,
       ...rest,
     } = props
-    const { error, touched } = meta
+    const { error } = meta
     const isError = error ? true : false
 
     const { name, onChange, onBlur, ...inputRest } = input
