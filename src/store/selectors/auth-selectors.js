@@ -1,15 +1,20 @@
+import { hasProp } from 'lib/hasProp'
+
 /* Dev */
 // eslint-disable-next-line
 import { yellow } from 'logger'
 export const getUserId = (state) => {
-
-  // const a = state.auth.currentUser ? state.auth.currentUser.id : ''
-  let userId = ''
-  if (state.auth.currentUser) {
-    userId = state.auth.currentUser.id
+  if (hasProp('userId', state.auth)) {
+    return state.auth.currentUser.id
+  } else {
+    return undefined
   }
-  return userId
-
 }
 
-export const getLoggedIn = (state) => state.auth.loggedIn
+export const getLoggedIn = (state) => {
+  if (hasProp('loggedIn', state.auth)) {
+    return state.auth.loggedIn
+  } else {
+    return false
+  }
+}
