@@ -5,13 +5,18 @@ import { reduxForm } from 'redux-form'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-
 import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
+
+// actions, selectors
 import * as authActions from '../../store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { userLoginRequestKey } from 'store/actions/auth-actions'
+import * as authSelectors from 'store/selectors/auth-selectors'
+
 import validate from './validate'
+// eslint-disable-next-line
+import { green } from 'logger'
 // import { request } from 'https'
 
 class LoginForm extends React.Component {
@@ -26,9 +31,10 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { classes, handleSubmit, pristine, reset, submitting, logInUserRequest } = this.props
+    const { classes, handleSubmit, pristine, reset, submitting, logInUserRequest, loggedIn } = this.props
     // const { goBack } = this.state
-    if (logInUserRequest.status === 'success') {
+    green('LoginForm: loggedIn', loggedIn)
+    if (logInUserRequest.status === 'success' && loggedIn) {
       return (
         <Redirect to='/events' />
       )
@@ -66,7 +72,8 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  logInUserRequest: requestSelectors.getRequest(state, userLoginRequestKey)
+  logInUserRequest: requestSelectors.getRequest(state, userLoginRequestKey),
+  loggedIn: authSelectors.getLoggedIn(state),
 })
 
 export default compose(
