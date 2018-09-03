@@ -71,7 +71,7 @@ class  LoggedIn extends React.Component {
                   <MenuList>
                     <MenuItem onClick={(event) => this.handleClose(event, 'profile')}>Profile</MenuItem>
                     <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings'>Settings</Link></MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}>Logout</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/events'>Logout</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
