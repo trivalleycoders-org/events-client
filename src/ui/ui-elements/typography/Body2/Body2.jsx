@@ -7,6 +7,7 @@ import classNames from 'classnames'
 /* User */
 import fontSizeFromString from 'lib/fontSizeFromString'
 /* Dev */
+// eslint-disable-next-line
 import { green as greenl } from 'logger'
 
 /*
@@ -24,8 +25,6 @@ const Body2 = ({
   color,
   noWrap,
 }) => {
-  greenl('classNames',classNames([classes[variant], className ]))
-  greenl('className', className)
 
   return (
     <Typography
@@ -41,7 +40,6 @@ const Body2 = ({
 }
 const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
-  greenl('originalSize', originalSize)
 
   return ({
     [variant]: {
