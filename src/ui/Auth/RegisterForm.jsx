@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { userRegisterRequestKey } from 'store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authActions from 'store/actions/auth-actions'
-import * as authSelectors from 'store/selectors/auth-selectors'
 
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import styles from './styles'
@@ -21,22 +20,24 @@ import { green } from 'logger'
 
 class RegisterForm extends React.Component {
 
+  state = {
+    justMounted: true,
+  }
+
   onSubmit = (values) => {
     const { userRegisterRequest } = this.props
+    this.setState({ justMounted: false })
     userRegisterRequest(values)
   }
 
   render() {
-
-    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus, loggedIn } = this.props
+    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus } = this.props
+    const { justMounted } = this.state
     const { status } = userRegisterRequestStatus
 
-    green('status', status)
-    green('loggedIn', loggedIn)
-
-    if (status === 'success') {
+    if (status === 'success' && !justMounted) {
       return (
-        <Redirect to='/events' />
+        <Redirect to='/login' />
       )
     } else {
       return (
@@ -73,7 +74,6 @@ class RegisterForm extends React.Component {
 const mapStateToProps = (state) => ({
   ...state.auth,
   userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey ),
-  loggedIn: authSelectors.getLoggedIn(state)
 })
 
 export default compose(
