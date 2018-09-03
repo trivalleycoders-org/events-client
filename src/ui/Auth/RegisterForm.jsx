@@ -5,14 +5,16 @@ import { Redirect } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
+// actions, selectors
 import { userRegisterRequestKey } from 'store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authActions from 'store/actions/auth-actions'
+import * as authSelectors from 'store/selectors/auth-selectors'
+
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import styles from './styles'
 import validate from './validate'
 import PropTypes from 'prop-types'
-import { merge } from 'ramda'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -26,10 +28,12 @@ class RegisterForm extends React.Component {
 
   render() {
 
-    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus } = this.props
+    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus, loggedIn } = this.props
     const { status } = userRegisterRequestStatus
 
     green('status', status)
+    green('loggedIn', loggedIn)
+
     if (status === 'success') {
       return (
         <Redirect to='/events' />
@@ -68,7 +72,8 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey )
+  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey ),
+  loggedIn: authSelectors.getLoggedIn(state)
 })
 
 export default compose(

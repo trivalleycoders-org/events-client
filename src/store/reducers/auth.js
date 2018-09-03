@@ -49,6 +49,7 @@ export default (state = {}, { type, payload }) => {
     default:
       return {
         ...state,
+        loggedIn: false,
         // redirectTo: null,
       }
   }
