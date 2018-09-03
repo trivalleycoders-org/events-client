@@ -1,9 +1,9 @@
-/* Dev */
-import { pink } from 'logger'
 import { parse } from './cookie-parser'
+/* Dev */
+// eslint-disable-next-line
+import { pink } from 'logger'
 
 const rejectErrors = (res) => {
-  pink('rejectErrors: res', res)
   const { status } = res
   if (status >= 200 && status < 300) {
     return res
