@@ -31,9 +31,9 @@ class LoginForm extends React.Component {
   }
 
   render() {
+
     const { classes, handleSubmit, pristine, reset, submitting, logInUserRequest, loggedIn } = this.props
-    // const { goBack } = this.state
-    green('LoginForm: loggedIn', loggedIn)
+
     if (logInUserRequest.status === 'success' && loggedIn) {
       return (
         <Redirect to='/events' />

@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 // User
-import * as authActions from 'store/actions/auth-actions.js'
+
+import * as authActions from 'store/actions/auth-actions'
+import * as authSelectors from 'store/selectors/auth-selectors'
+
 import AppBar from 'ui/AppBar'
 import Events from 'ui/Events'
 import SearchEvents from 'ui/SearchEvents'
@@ -29,7 +32,7 @@ class App extends React.Component {
 
   render() {
     const { currentUser, classes } = this.props
-    green('App: currentUser', currentUser)
+    green('App: currentUser', currentUser.id)
     green('App: props', this.props)
     return (
       <Router>
@@ -60,7 +63,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.auth.currentUser,
+    currentUser: authSelectors.getUserId
   }
 }
 
