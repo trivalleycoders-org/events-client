@@ -39,6 +39,7 @@ class MainAppBar extends React.Component {
             </Typography>
             {
               isLoggedIn ? <LoggedIn /> : <LoggedOut />
+              // true ? <LoggedIn /> : <LoggedOut />
             }
 
           </Toolbar>
@@ -55,7 +56,6 @@ MainAppBar.propTypes = {
 const styles = theme => ({
   root: {
     display: 'flex',
-    // flexGrow: 1,
   },
   paper: {
     marginRight: theme.spacing.unit * 2
