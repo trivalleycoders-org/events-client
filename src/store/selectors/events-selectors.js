@@ -10,6 +10,10 @@ export const getEventEdit_id = (state) => {
   return state.eventsUi.edit_id || ''
 }
 
+export const getEventsForUserId = (state, id) => {
+  return state.events.filter(e => e.userId === id)
+}
+
 export const getOneEvent = (state, _id) => {
   const event = state.events.filter(e => e._id === _id)
   return event[0]
