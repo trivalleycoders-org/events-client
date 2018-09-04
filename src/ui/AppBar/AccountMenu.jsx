@@ -16,7 +16,7 @@ import {
   MenuItem,
   MenuList,
 } from '@material-ui/core'
-
+import { nameFromEmail } from 'lib/nameFromEmail'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -93,14 +93,6 @@ const styles = {
   label: {
     color: 'white',
   }
-}
-
-const nameFromEmail = (email) => {
-  if (email === undefined) {
-    return undefined
-  }
-  const idx = email.indexOf('@')
-  return email.slice(0, idx)
 }
 
 const mapStateToProps = (state) => ({
