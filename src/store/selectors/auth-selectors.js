@@ -2,9 +2,10 @@ import { hasProp } from 'lib/hasProp'
 
 /* Dev */
 // eslint-disable-next-line
-import { yellow } from 'logger'
+import { yellow, red } from 'logger'
+
 export const getUserId = (state) => {
-  if (hasProp('userId', state.auth)) {
+  if (hasProp('currentUser.id', state.auth)) {
     return state.auth.currentUser.id
   } else {
     return undefined
@@ -16,5 +17,13 @@ export const getLoggedIn = (state) => {
     return state.auth.loggedIn
   } else {
     return false
+  }
+}
+
+export const getEmailName = (state) => {
+  if (hasProp('currentUser.email', state.auth)) {
+    return state.auth.currentUser.email
+  } else {
+    return undefined
   }
 }
