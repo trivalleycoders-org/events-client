@@ -1,44 +1,70 @@
-# Events Client
-Event Listing App to list the events in the US. For now, the focus is to list Drone Events.
+# Events Client & Server
+__This readme is for both the client and server__
 
-## Parked Items
+For now, the focus is to list Drone Events, but could be forked and used for any type of event.
 
-<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg" width="300"/></a>
+Events are created in this app and linked to the ticketing and/or registration site such as EventBrite or Meetup. You could use this app to add events to your website.
 
-## Event Card
+The app uses material-ui (which is Material Design) with a full theme file so it can easily be modified in terms of colors, fonts, etc.
 
-<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/event-card.jpg" width="300"/></a>
+## Purpose of the app
+Events is a technical demo to demonstrate how we create a MERN stack app. In a few weeks there will be a technical presentation explaining the architecture of the app.
 
-## New Event
+## Client
+- This repository
 
-<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/new-event.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/new-event.jpg" width="300"/></a>
+## Server
+- https://github.com/trivalleycoders-org/events-server
 
-## Admin Registration
+## Use
+We don't have full instructions on loading test/dev data yet. However, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will will be happy to help. Other than that:
 
-<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/register-admin.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/register-admin.jpg" width="300"/></a>
+- Install MongoDB locally and run on the default port
+- The data collections are here: https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections
 
-## Features & Possible Features
-<a href="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg"><img src="https://github.com/trivalleycoders-org/events-client/blob/master/doc/initial-ui-thoughts/parked-features.jpg" width="300"/></a>
+- Clone the repositories
+```
+
+$ git clone https://github.com/trivalleycoders-org/events-server
+
+$ git clone https://github.com/trivalleycoders-org/events-client
+
+```
+
+- Start the server. It will run on port 3030
+
+```
+$ cd /events-server
+$ yarn install
+$ yarn start
+```
+
+- Start the client. It currently tries to get port 3000
+
+```
+$ cd /events-client
+$ yarn install
+$ yarn start
+```
+
+# Roadmap
+At this point, early September 2018, we are a few weeks from out first beta release.
+There is no official roadmap yet but you can browse our backlog and icebox issues to see what we are thinking about.
 
 
+# Contributing
+We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are working on styling, tweaking UI and mopping up bugs.
 
+We like helping people learn so you know JS & CSS let's chat.
 
+We aren't designers. If you are a designer who also writes CSS and wants to learn to style a React app, we are happy to teach you in exchange for your making our app look good.
 
+Contact us by opening an issue marked as 'question'
 
+# Who are we?
 
-# Technical Notes
-## Packages added
-- dontenv
-- react-redux
-- redux
-- redux-logger
-- redux-thunk
-- redux-catch
-- ramda
+A group of people who love making software and sharing our knowledge with others.
 
-## Packages __might__ add
-- normalizr
-- Partial Lenses - use for reducers
-  - [playground example](https://calmm-js.github.io/partial.lenses/playground.html#M4FwhiCmAEC80G8BQAiSAPSBbADiFAXNCAE4CukANKiQPYA2kwh0A2tALrUo4AWtAO0gtWSZCgD6ASwAmLFAFYwkAGYBOAMxgAxgHYV2tQBZIRvTO1G12jQpTc+gyABUAnjmFEUAWVoAjKUZ7VEchADkyLD9IEnkABgSAWgS45JSUJABfanFpOS8lVU0dfUMTM10LKxsANmCefiE3D3lfAKCHRsgIqJj5AEZBxMH+4ZGMzKQuVDz5QvUtPQNjU3NLaw1depUpElAwsCxPaBQAMV3QZPr6MH3D45QAGVuQK+5tWiwjgRBmL0faCRsNApDhgJFoAA6SHBSZID4CUDQHBgVz0WhgGRwRCoHaQej5E6hbqRaKxbgANzA9AoAyGIzG-XqswKygWJWW5TW1VsEyQ8MESLIOBkEBg8AAFAg8QTKNAqTSqNA8tloKAxQBKOAAPiQj0hwEgIAlrAA5MTTXL9TsBDIJQAlSEAd14MUgAFEAI5SlUajVymUyLjy6kUOXqqAa-nC0VQCUotEYmTh8CRoA)
+[TriValley Coders](http://trivalleycoders.org)
 
-  - [documentation](https://github.com/calmm-js/partial.lenses/)
+[on Meetup](https://www.meetup.com/trivalleycoders/)
