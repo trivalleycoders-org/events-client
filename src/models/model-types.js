@@ -2,13 +2,16 @@
 // eslint-disable-next-line
 import { green, red } from 'logger'
 
-export const array = 'array'
-export const boolean = 'boolean'
-export const date = 'date'
-export const isoDateString = 'isoDateString'
-export const number = 'number'
-export const objectId = 'objectId'
-export const string = 'string'
+export const types = {
+  array: 'array',
+  boolean: 'boolean',
+  date: 'date',
+  isoDateString: 'isoDateString',
+  number: 'number',
+  objectId: 'objectId',
+  string: 'string',
+}
+
 
 // Array
 export const isArray = (val) => Array.isArray(val)

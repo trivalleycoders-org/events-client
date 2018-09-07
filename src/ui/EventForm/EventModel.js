@@ -1,48 +1,54 @@
-import * as types from './model-types'
+import { types } from 'models'
 
-export const Event = {
+const EventModel = {
   title: {
     type: types.string,
-    always: true,
+    required: true,
   },
   organization: {
     type: types.string,
-    always: true,
+    required: true,
   },
   venueName: {
     type: types.string,
-    always: false,
+    required: false,
   },
   linkToUrl: {
     type: types.string,
-    always: true,
+    required: true,
   },
   price: {
     type: types.number,
-    always: false,
+    required: false,
   },
   free: {
     type: types.boolean,
-    always: false,
+    required: false,
   },
   category: {
     type: types.string,
-    always: true,
+    required: true,
   },
   tags: {
     type: types.array,
-    always: false,
+    required: false,
   },
   endDateTime: {
     type: types.date,
-    always: true,
+    required: true,
   },
   startDateTime: {
     type: types.date,
-    always: true,
+    required: true,
   },
-  postalCode_id: {
+  postalCode: {
+    type: types.string,
+    required: true,
+  },
+  userId: {
     type: types.objectId,
-    always: true,
-  }
+    required: true,
+  },
 }
+
+export default EventModel

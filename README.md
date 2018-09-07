@@ -57,7 +57,24 @@ We would love to have contributers. At this point, early September 2018, we are 
 
 We like helping people learn so you know JS & CSS let's chat.
 
-We aren't designers. If you are a designer who also writes CSS and wants to learn to style a React app, we are happy to teach you in exchange for your making our app look good.
+What do we need right now?
+
+- We aren't designers. If you are a designer who also writes CSS and wants to learn to style a React app, we are happy to teach you in exchange for your making our app look good.
+
+- Our server-side test coverage is good but our client-side coverage has fallen behind. If you would like a place to learn and/or practice writing test please let us know.
+
+- Help implementing design (i.e., css and JSX as needed)
+
+- Bug fixing
+
+- Work on future features. For example
+  - auto-complete for tags
+  - input masks
+  - making registration, login & account components more inviting (they are just edit boxes on page at the moment - so plain)
+  - Social media integration
+
+
+
 
 Contact us by opening an issue marked as 'question'
 
