@@ -37,7 +37,7 @@ const checkType = (key, type, val ) => {
 }
 
 export const validateModel = (model, values) => {
-  green('values', values)
+  // green('values', values)
   const modelKeys = Object.entries(model)
   if ( keys(values).length === 0) {
     throw new Error('parameter values is empty - nothing to check')
