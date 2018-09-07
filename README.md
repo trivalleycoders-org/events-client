@@ -32,13 +32,15 @@ $ git clone https://github.com/trivalleycoders-org/events-client
 ```
 
 - Start the server. It will run on port 3030
+
 ```
 $ cd /events-server
 $ yarn install
 $ yarn start
-``
+```
 
 - Start the client. It currently tries to get port 3000
+
 ```
 $ cd /events-client
 $ yarn install
@@ -60,6 +62,8 @@ We aren't designers. If you are a designer who also writes CSS and wants to lear
 Contact us by opening an issue marked as 'question'
 
 # Who are we?
+
+A group of people who love making software and sharing our knowledge with others.
 
 [TriValley Coders](http://trivalleycoders.org)
 
