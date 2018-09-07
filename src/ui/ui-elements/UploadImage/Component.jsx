@@ -69,20 +69,17 @@ const styles = theme => ({
     paddingTop: '56.25%', // 16:9
   },
   p1: {
-    // border: '1px solid green',
     padding: 10,
 
   },
   p2: {
     maxWidth: '100%',
     height: 'auto',
-    // border: '1px solid blue',
     alignItems: 'stretch',
     justifyContent: 'stretch'
   },
   wrapper: {
     margin: 0,
-    // border: '1px solid red'
   },
 })
 
@@ -114,24 +111,7 @@ class UploadImage extends React.Component {
       imageUrl: imageUrl,
     }
   }
-  // onDropAccepted = (files) => {
-  //   console.log('onDragAccepted', files)
-  //   this.setState({
-  //     previewBlob: files[0].preview
-  //   })
-  // }
-  // onDropRejected = (a) => {
-  //   console.log('onDragRejected', a)
-  // }
-  // previewBlob = () => {
-  //   if (!this.state.accepted[0] === undefined) {
-  //     console.log('it is not undefined')
-  //     console.log('blob', this.state.accepted[0])
-  //   } else {
-  //     console.log('it is undefined')
-  //   }
-  //   return ''
-  // }
+
   onDrop = async (accepted, rejected) => {
 
     this.setState({
@@ -141,11 +121,17 @@ class UploadImage extends React.Component {
     let formData = new FormData()
     formData.append('upload', accepted[0])
     await this.props.imageUploadOneRequest(formData)
-    // green('onDrop: uploadedImageUrl', this.props.uploadedImageUrl)
     this.setState({
       imageUrl: this.props.uploadedImageUrl
     })
     this.props.onChange(this.props.uploadedImageUrl)
+  }
+  removeImage = () => {
+    green('removeImage()')
+    this.setState({
+      imageUrl: undefined
+    })
+    this.props.onChange('')
   }
   render() {
     const { classes } = this.props
@@ -158,7 +144,14 @@ class UploadImage extends React.Component {
               this.state.imageUrl
                 ? <div className={classes.imageDiv}>
                     <MediaCard src={this.state.imageUrl} />
-                    <Button mini variant="fab" color='secondary' aria-label="Delete" className={classes.fab}>
+                    <Button
+                      mini
+                      variant="fab"
+                      color='secondary'
+                      aria-label="Delete"
+                      className={classes.fab}
+                      onClick={this.removeImage}
+                    >
                       <DeleteIcon />
                     </Button>
                   </div>
@@ -168,11 +161,7 @@ class UploadImage extends React.Component {
                     rejectStyle={rejectStyle}
                     accept="image/jpeg, image/png"
                     onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
-                    // onDropAccepted={this.onDropAccepted}
-                    // onDropRejected={this.onDropRejected}
                   >
-
-                    {/* {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => { */}
                     {(props) => {
                       if (props.isDragActive) {
                         return props.isDragAccept ? dropZoneDefault : dropZoneReject
