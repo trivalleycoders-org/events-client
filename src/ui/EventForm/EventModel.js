@@ -41,8 +41,8 @@ const EventModel = {
     type: types.date,
     required: true,
   },
-  postalCode: {
-    type: types.string,
+  postalCodeId: {
+    type: types.objectId,
     required: true,
   },
   userId: {

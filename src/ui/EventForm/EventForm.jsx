@@ -17,6 +17,7 @@ import isBefore from 'date-fns/isBefore'
 /* User */
 import * as eventActions from 'store/actions/event-actions'
 import * as eventSelectors from 'store/selectors/events-selectors'
+import * as authSelectors from 'store/selectors/auth-selectors'
 
 import ChipRedux from 'ui/ui-elements/ChipRedux'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
@@ -39,12 +40,13 @@ import { green } from 'logger'
 const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
-const shapeDataOut = (formValues) => {
-
+const shapeDataOut = (formValues, currentUserId) => {
+  green('formValues', formValues)
   // dates
   const dates = pick(['combinedDateTime'], formValues)
-  // postalCode
-  const postalCode_id = formValues.postalCode._id
+  // postalCode - server expects postalCode._id which it uses to lookup
+  // city, state & postalCode
+  const postalCodeId = formValues.postalCode._id
   // remove props not needed
   const formValues0 = omit(['combinedDateTime', 'postalCode'], formValues)
   // merge it
@@ -52,10 +54,11 @@ const shapeDataOut = (formValues) => {
     formValues0,
     {endDateTime: dates.combinedDateTime.endDate},
     {startDateTime: dates.combinedDateTime.startDate},
-    {postalCode_id: postalCode_id},
+    {postalCodeId: postalCodeId},
+    {userId: currentUserId}
   ])
   green('validate', validateModel(Event, mergedData))
-  // green('shapeDataOut OUT:', mergedData)
+  green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
 class EventForm extends React.Component {
@@ -74,7 +77,7 @@ class EventForm extends React.Component {
   onSubmit = (values) => {
     // shapeCheck(values)
     const { mode, eventCreateRequest, eventUpdateOneRequest, editIdUnset } = this.props
-    const reshapedData = shapeDataOut(values)
+    const reshapedData = shapeDataOut(values, this.props.currentUserId)
 
     this.setState({
       values: reshapedData
@@ -246,6 +249,8 @@ const mapStateToProps = (state) => {
   const _id = eventSelectors.getEventEdit_id(state)
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
+  const currentUserId = authSelectors.getUserId(state)
+  green('currentUserId', currentUserId)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
     const startDate = prop('startDateTime', data)
@@ -257,6 +262,7 @@ const mapStateToProps = (state) => {
       initialValues: shapedData,
       mode,
       pastEvent,
+      currentUserId,
     }
   } else {
     return {
@@ -264,6 +270,7 @@ const mapStateToProps = (state) => {
       initialValues: {},
       mode,
       pastEvent: false,
+      currentUserId,
     }
   }
 }
