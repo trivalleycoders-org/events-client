@@ -73,9 +73,6 @@ What do we need right now?
   - making registration, login & account components more inviting (they are just edit boxes on page at the moment - so plain)
   - Social media integration
 
-
-
-
 Contact us by opening an issue marked as 'question'
 
 # Who are we?
