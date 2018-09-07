@@ -140,7 +140,6 @@ class EventForm extends React.Component {
               required={true}
               rows={2}
               error={true}
-            // required
             />
             <TextFieldRedux
               fullWidth
@@ -239,7 +238,6 @@ const shapeDataIn = (data) => {
         [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
       ),
   ])
-  // green('shapeDataIn: r2', r2)
   return r2
 }
 
