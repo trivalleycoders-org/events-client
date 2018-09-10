@@ -24,6 +24,7 @@ class TextFieldRedux extends React.Component {
       multiline,
       required,
       rows,
+      type,
       ...rest,
     } = props
     const { error } = meta
@@ -54,6 +55,7 @@ class TextFieldRedux extends React.Component {
           error={this.state.isError}
           multiline={multiline}
           rows={rows}
+          type={type}
           {...rest}
           {...inputRest}
         />
@@ -62,7 +64,7 @@ class TextFieldRedux extends React.Component {
     )
   }
   render() {
-    const { fieldName, fieldLabel, disabled, required, fullWidth = false, rows = 0 } = this.props
+    const { fieldName, fieldLabel, disabled, required, fullWidth = false, rows = 0, type } = this.props
     // green(`state for ${fieldName}`, this.state)
     return (
       <Field
@@ -74,6 +76,7 @@ class TextFieldRedux extends React.Component {
         name={fieldName}
         required={required}
         rows={rows}
+        type={type}
       />
     )
   }
