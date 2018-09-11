@@ -48,14 +48,14 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    green('App.componentDidUpdate')
+    // green('App.componentDidUpdate')
   }
 
   render() {
 
     const { currentUser, classes } = this.props
-    green('App: currentUser', currentUser.id)
-    green('App: props', this.props)
+    // green('App: currentUser', currentUser.id)
+    // green('App: props', this.props)
     return (
       <Router>
         <Fragment>

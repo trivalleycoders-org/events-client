@@ -1,6 +1,6 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
-import { hasProp } from 'lib'
+import fetchPostalCodes from './fetchPostalCodes'
 
 /* Dev */
 // eslint-disable-next-line
@@ -95,20 +95,13 @@ export default {
     }
   },
   postalCodes: {
-    async read(searchString) {
-      try {
-        const data = await fetchJson(
-          `/location/postal-codes/${searchString}`,
-          {
-            method: 'GET',
-            body: JSON.strinify
-          }
-        )
-        return data.data
+    read: async (searchString) => {
+      const a = await fetchPostalCodes(searchString)
+      pink('a', a)
+      if (a === undefined) {
+        return []
       }
-      catch (e) {
-        red('api.postalCodes.read', e)
-      }
+      return a
     }
   },
   events: {
