@@ -31,21 +31,24 @@ export default {
   users: {
     async register(user) {
       // pink('api.users.register: ', user)
-      // try {
-      const data = await fetchJson(
-        '/users',
-        {
-          method: 'POST',
-          body: JSON.stringify(user)
-        }
-      )
-      pink('data returned from api.users.register: ', data)
-      return data.data
-      //}
-      // catch (e) {
-      //   red('error in api.users.register', e.body)
-      //   throw e
-      // }
+      try {
+        const data = await fetchJson(
+          '/users',
+          {
+            method: 'POST',
+            body: JSON.stringify(user)
+          }
+        )
+        // pink('data returned from api.users.register: ', data)
+        return data.data
+      }
+      catch (e) {
+        // red('error in api.users.register', e.body)
+        // throw e
+        red('error in api.users.login', e)
+        const error = await e.error
+        throw error
+      }
     },
     async login(user) {
       pink('api.users.login: ', user)
@@ -90,7 +93,9 @@ export default {
         return data.data
       }
       catch (e) {
-        red('error in api.users.update', e)
+        red('error in api.users.login', e)
+        const error = await e.error
+        throw error
       }
     }
   },
