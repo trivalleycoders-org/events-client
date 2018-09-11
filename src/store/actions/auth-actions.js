@@ -23,6 +23,26 @@ export const userLogoutRequest = createRequestThunk({
   failure: [(error) => snackbarSet(error.error, 'error')]
 })
 
+export const userValidateKey = 'userValidateKey'
+
+export const userValidate = (user) => {
+  console.log('userValidate: user', user)
+  return ({
+    type: userValidateKey,
+    payload: user
+  })
+}
+
+export const userValidateRequestKey = 'userValidateRequestKey'
+
+export const userValidateRequest = createRequestThunk({
+  request: api.users.validate,
+  key: userValidateRequestKey,
+  success: [userValidate],
+  failure: [(error) => snackbarSet(error.error, 'error')]
+})
+
+
 // login
 
 export const userLoginKey = 'userLoginKey'
@@ -63,13 +83,6 @@ const userRegister = (user) => {
     payload: user
   })
 }
-
-// const registerFailed = (error) => {
-//   return ({
-//     type: 'none',
-//   })
-
-// }
 
 export const userRegisterRequestKey = 'userRegisterRequestKey'
 export const userRegisterRequest = createRequestThunk({

@@ -1,5 +1,6 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
+import { hasProp } from 'lib'
 
 /* Dev */
 // eslint-disable-next-line
@@ -31,15 +32,15 @@ export default {
     async register(user) {
       // pink('api.users.register: ', user)
       // try {
-        const data = await fetchJson(
-          '/users',
-          {
-            method: 'POST',
-            body: JSON.stringify(user)
-          }
-        )
-        pink('data returned from api.users.register: ', data)
-        return data.data
+      const data = await fetchJson(
+        '/users',
+        {
+          method: 'POST',
+          body: JSON.stringify(user)
+        }
+      )
+      pink('data returned from api.users.register: ', data)
+      return data.data
       //}
       // catch (e) {
       //   red('error in api.users.register', e.body)
@@ -61,12 +62,18 @@ export default {
       }
       catch (e) {
         red('error in api.users.login', e)
-        throw e
+        const error = await e.error
+        throw error
       }
     },
     logout(user) {
       return new Promise(function (resolve, reject) {
         resolve('Will call remove token in action creator')
+      })
+    },
+    validate(user) {
+      return new Promise(function (resolve, reject) {
+        resolve({ user })
       })
     },
     async update(password) {

@@ -5,12 +5,15 @@ import { pink } from 'logger'
 
 const rejectErrors = (res) => {
   const { status } = res
+
   if (status >= 200 && status < 300) {
     return res
   }
+
   return Promise.reject({
     statusText: res.statusText,
     status: res.status,
+    error: res.json()
   })
 }
 

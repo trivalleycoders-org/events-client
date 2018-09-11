@@ -54,6 +54,7 @@ class RegisterForm extends React.Component {
             <TextFieldRedux
               fieldName='password'
               fieldLabel='Password'
+              type='password'
               fullWidth
               required={true}
               error={true}

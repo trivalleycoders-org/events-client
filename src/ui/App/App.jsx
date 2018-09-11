@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
-import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-// User
+import { parse } from '../../api/cookie-parser'
+import jwt from 'jsonwebtoken'
 
+// User
 import * as authActions from 'store/actions/auth-actions'
 import * as authSelectors from 'store/selectors/auth-selectors'
 
@@ -26,11 +28,31 @@ import PrivateRoute from 'ui/PrivateRoute'
 import { green } from 'logger'
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    const { userValidateRequest } = this.props
+    let user
+    if (document.cookie) {
+      const tokenObj = parse(document.cookie)
+      const decoded = jwt.decode(tokenObj.token, { complete: true })
+
+      user = {
+        id: decoded.payload.id,
+        email: decoded.payload.email,
+        token: tokenObj.token
+      }
+
+      userValidateRequest(user)
+    }
+  }
+
   componentDidUpdate() {
     green('App.componentDidUpdate')
   }
 
   render() {
+
     const { currentUser, classes } = this.props
     green('App: currentUser', currentUser.id)
     green('App: props', this.props)
