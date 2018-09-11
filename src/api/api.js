@@ -91,7 +91,9 @@ export default {
         return data.data
       }
       catch (e) {
-        red('error in api.users.update', e)
+        red('error in api.users.login', e)
+        const error = await e.error
+        throw error
       }
     }
   },

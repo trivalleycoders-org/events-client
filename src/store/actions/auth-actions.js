@@ -1,11 +1,9 @@
 import { createRequestThunk } from './action-helpers'
 import api from 'api'
-import { snackbarSet } from './snackbar-actions'
 import { orange } from 'logger'
 import { pageMessage } from './page-message-actions'
 
 // logout
-
 export const userLogoutKey = 'userLogoutKey'
 
 export const userLogout = (user) => {
@@ -20,7 +18,7 @@ export const userLogoutRequest = createRequestThunk({
   request: api.users.logout,
   key: userLogoutRequestKey,
   success: [userLogout],
-  failure: [(error) => snackbarSet(error.error, 'error')]
+  failure: [(error) => pageMessage(error.error)]
 })
 
 export const userValidateKey = 'userValidateKey'
@@ -39,12 +37,11 @@ export const userValidateRequest = createRequestThunk({
   request: api.users.validate,
   key: userValidateRequestKey,
   success: [userValidate],
-  failure: [(error) => snackbarSet(error.error, 'error')]
+  failure: [(error) => pageMessage(error.error)]
 })
 
 
 // login
-
 export const userLoginKey = 'userLoginKey'
 
 const userLogin = (user) => {
@@ -74,7 +71,6 @@ export const userLoginRequest = createRequestThunk({
 })
 
 // register
-
 export const userRegisterKey = 'userRegisterKey'
 
 const userRegister = (user) => {
@@ -93,13 +89,11 @@ export const userRegisterRequest = createRequestThunk({
     () => pageMessage('')
   ],
   failure: [
-    // (error) => registerFailed(error),
     (error) => pageMessage(error.error)
   ]
 })
 
 // update password
-
 export const userPasswordUpdateKey = 'userUpdatePasswordKey'
 
 const passwordUpdate = (password) => {
@@ -116,5 +110,5 @@ export const passwordUpdateRequest = createRequestThunk({
   request: api.users.update,
   key: userPasswordUpdateRequestKey,
   success: [passwordUpdate],
-  failure: [(error) => snackbarSet(error)]
+  failure: [(error) => pageMessage(error.error)]
 })
