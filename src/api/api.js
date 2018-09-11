@@ -1,5 +1,6 @@
 import { fetchJson, fetchUploadImage } from './api-helpers'
 import { red } from 'logger'
+import { hasProp } from 'lib'
 
 /* Dev */
 // eslint-disable-next-line
@@ -61,7 +62,8 @@ export default {
       }
       catch (e) {
         red('error in api.users.login', e)
-        throw e
+        const error = await e.error
+        throw error
       }
     },
     logout(user) {
