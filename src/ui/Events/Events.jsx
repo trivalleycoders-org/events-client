@@ -33,11 +33,13 @@ class Events extends React.Component {
 
   constructor(props) {
     super(props)
-    this.props.pageMessageActions.pageMessage('')
+    console.log('props: ', props)
+    console.log('this.props: ', props)
+    this.props.pageMessage('')
   }
 
   componentDidMount() {
-    this.props.eventActions.eventsReadRequest('Events')
+    this.props.eventsReadRequest('Events')
   }
 
   render() {
@@ -79,10 +81,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    eventActions: bindActionCreators(eventActions, dispatch),
-    pageMessageActions: bindActionCreators(pageMessageActions, dispatch)
-  }
+  return bindActionCreators(Object.assign({}, eventActions, pageMessageActions), dispatch)
 }
 
 export default compose(
