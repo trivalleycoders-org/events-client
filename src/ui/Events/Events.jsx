@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Typography,
 } from '@material-ui/core'
 
 /* User */
+import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as eventActions from 'store/actions/event-actions'
 import * as eventsSelectors from '../../store/selectors/events-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
@@ -29,8 +31,13 @@ const styles = theme => ({
 
 class Events extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.props.pageMessageActions.pageMessage('')
+  }
+
   componentDidMount() {
-    this.props.eventsReadRequest('Events')
+    this.props.eventActions.eventsReadRequest('Events')
   }
 
   render() {
@@ -52,7 +59,7 @@ class Events extends React.Component {
       return (
         <div className={classes.pageMock}>
           <SearchBox />
-          <EventsGrid events={events}/>
+          <EventsGrid events={events} />
         </div>
       )
     }
@@ -71,7 +78,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    eventActions: bindActionCreators(eventActions, dispatch),
+    pageMessageActions: bindActionCreators(pageMessageActions, dispatch)
+  }
+}
+
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, eventActions)
+  connect(mapStateToProps, mapDispatchToProps)
 )(Events)

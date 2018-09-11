@@ -70,7 +70,7 @@ export const userLoginRequest = createRequestThunk({
   request: api.users.login,
   key: userLoginRequestKey,
   success: [userLogin /*, userLoginCache*/],
-  failure: [loginFailed, (error) => snackbarSet(error.error, 'error')]
+  failure: [loginFailed, (error) => pageMessage(error.error)]
 })
 
 // register
@@ -94,7 +94,7 @@ export const userRegisterRequest = createRequestThunk({
   ],
   failure: [
     // (error) => registerFailed(error),
-    () => pageMessage('that email is already taken')
+    (error) => pageMessage(error.error)
   ]
 })
 
