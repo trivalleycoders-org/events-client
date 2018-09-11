@@ -14,7 +14,6 @@ const fetchPostalCodes = pDebounce(
         `/location/postal-codes/${searchString}`,
         {
           method: 'GET',
-          body: JSON.strinify(searchString)
         }
       )
       pink('fetchPostalCodes: data.data', data.data)
