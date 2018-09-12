@@ -9,14 +9,14 @@ import {
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { renderInput, renderSuggestion } from './postalcode-helpers'
-/* Dev */
+
 // eslint-disable-next-line
 import { green, red } from 'logger'
 
-class PostalCodesComponent extends React.Component {
+class PostalCodesRedux extends React.Component {
   onInputValueChange = (inputValue, state) => {
     // green('inputValue', typeof inputValue)
-    // green('selectedItem', state.selectedItem)
+
 
     if (!(inputValue === '') && inputValue !== undefined ) {
       const inputValueLength = inputValue.length
@@ -28,7 +28,11 @@ class PostalCodesComponent extends React.Component {
       this.props.postalCodesClear()
 
     }
-    this.props.onChange(state.selectedItem)
+    green('selectedItem', state.selectedItem)
+    green('suggestions.length', this.props.suggestions.length)
+    // When the user selects a postal code  redux will have only one suggestion
+    // Return this suggestion to redux-form
+    this.props.onChange(this.props.suggestions[0])
   }
   render() {
     const { classes, suggestions } = this.props
@@ -93,12 +97,6 @@ class PostalCodesComponent extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    suggestions: getPostalCodes(state)
-  }
-}
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -120,8 +118,13 @@ const styles = theme => ({
   },
 })
 
+const mapStateToProps = (state) => {
+  return {
+    suggestions: getPostalCodes(state)
+  }
+}
 
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, locationActions),
-)(PostalCodesComponent)
+)(PostalCodesRedux)
