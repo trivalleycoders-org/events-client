@@ -17,7 +17,7 @@ export const userLogoutRequestKey = 'userLogoutRequestKey'
 export const userLogoutRequest = createRequestThunk({
   request: api.users.logout,
   key: userLogoutRequestKey,
-  success: [userLogout],
+  success: [userLogout, () => pageMessage('')],
   failure: [(error) => pageMessage(error.error)]
 })
 
@@ -36,7 +36,7 @@ export const userValidateRequestKey = 'userValidateRequestKey'
 export const userValidateRequest = createRequestThunk({
   request: api.users.validate,
   key: userValidateRequestKey,
-  success: [userValidate],
+  success: [userValidate, () => pageMessage('')],
   failure: [(error) => pageMessage(error.error)]
 })
 
@@ -66,7 +66,7 @@ export const userLoginRequestKey = 'userLoginRequestKey'
 export const userLoginRequest = createRequestThunk({
   request: api.users.login,
   key: userLoginRequestKey,
-  success: [userLogin /*, userLoginCache*/],
+  success: [userLogin /*, userLoginCache*/, () => pageMessage('')],
   failure: [loginFailed, (error) => pageMessage(error.error)]
 })
 
@@ -109,6 +109,6 @@ export const userPasswordUpdateRequestKey = 'userPasswordUpdateRequestKey'
 export const passwordUpdateRequest = createRequestThunk({
   request: api.users.update,
   key: userPasswordUpdateRequestKey,
-  success: [passwordUpdate],
+  success: [passwordUpdate, () => pageMessage('')],
   failure: [(error) => pageMessage(error.error)]
 })

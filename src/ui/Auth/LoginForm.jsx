@@ -1,4 +1,5 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
@@ -10,6 +11,7 @@ import styles from './styles'
 
 // actions, selectors
 import * as authActions from '../../store/actions/auth-actions'
+import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import { userLoginRequestKey } from 'store/actions/auth-actions'
 import * as authSelectors from 'store/selectors/auth-selectors'
@@ -21,9 +23,11 @@ import { green } from 'logger'
 
 class LoginForm extends React.Component {
 
-  // state = {
-  //   goBack: this.props.history.goBack,
-  // }
+  constructor(props) {
+    super(props)
+    console.log('this.props: ', this.props)
+    this.props.pageMessage('')
+  }
 
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
@@ -77,9 +81,13 @@ const mapStateToProps = (state) => ({
   loggedIn: authSelectors.getLoggedIn(state),
 })
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Object.assign({}, authActions, pageMessageActions), dispatch)
+}
+
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, authActions),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
     form: 'LoginForm',
     validate,
