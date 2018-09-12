@@ -8,7 +8,6 @@ import jwt from 'jsonwebtoken'
 
 // User
 import * as authActions from 'store/actions/auth-actions'
-import * as authSelectors from 'store/selectors/auth-selectors'
 
 import AppBar from 'ui/AppBar'
 import Events from 'ui/Events'
@@ -53,7 +52,7 @@ class App extends React.Component {
 
   render() {
 
-    const { currentUser, classes } = this.props
+    const { classes } = this.props
     // green('App: currentUser', currentUser.id)
     // green('App: props', this.props)
     return (
@@ -85,7 +84,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: authSelectors.getUserId
+    // currentUser: authSelectors.getUserId
   }
 }
 
