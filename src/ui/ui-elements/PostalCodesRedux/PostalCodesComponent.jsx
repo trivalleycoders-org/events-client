@@ -28,8 +28,8 @@ class PostalCodesRedux extends React.Component {
       this.props.postalCodesClear()
 
     }
-    green('selectedItem', state.selectedItem)
-    green('suggestions.length', this.props.suggestions.length)
+    // green('selectedItem', state.selectedItem)
+    // green('suggestions.length', this.props.suggestions.length)
     // When the user selects a postal code  redux will have only one suggestion
     // Return this suggestion to redux-form
     this.props.onChange(this.props.suggestions[0])
