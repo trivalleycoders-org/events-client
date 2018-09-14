@@ -29,6 +29,14 @@ export const requestReadCities = createRequestThunk({
 })
 */
 
+// Clear postalCodes
+export const postalCodesClearKey = 'postalCodesClearKey'
+export const postalCodesClear = () => {
+  return ({
+    type: postalCodesClearKey,
+  })
+}
+
 // Read postalCode
 export const postalCodesReadKey = 'actionKeyReadPostalCodes'
 const postalCodesRead = (postalCodes) => {

@@ -47,11 +47,12 @@ export const eventsReadRequest = createRequestThunk({
 export const eventUpdateOneKey = 'eventUpdateOneKey'
 export const eventUpdateOneRequestKey = 'eventUpdateOneRequestKey'
 
-const eventUpdateOne = (data) => {
+const eventUpdateOne = (event) => {
   // orange('event-actions.eventUpdateOne: event', event)
+
   return ({
     type: eventUpdateOneKey,
-    payload: { data },
+    payload: { event },
   })
 }
 
@@ -66,11 +67,11 @@ export const eventUpdateOneRequest = createRequestThunk({
 export const eventDeleteOneKey = 'eventDeleteOneKey'
 export const eventDeleteOneRequestKey = 'eventDeleteOneRequestKey'
 
-const eventDeleteOne = (data) => {
-  // orange('event-actions.eventDeleteOne: data', data)
+const eventDeleteOne = (event) => {
+  // orange('event-actions.eventDeleteOne: event', event)
   return ({
     type: eventDeleteOneKey,
-    payload: data,
+    payload: { event },
   })
 }
 

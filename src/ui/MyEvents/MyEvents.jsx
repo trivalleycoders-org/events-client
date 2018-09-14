@@ -32,7 +32,8 @@ function getSorting(order, orderBy) {
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1)
 }
 
-const dateFormat = 'MMM DD, YYYY  hh:mm A'
+const dateFormat = 'MMM do YYYY'
+const timeFormat = 'hh:mm a'
 
 class MyEvents extends React.Component {
 
@@ -149,8 +150,14 @@ class MyEvents extends React.Component {
                           {n.cityName}, {n.stateCode}
                         </div>
                       </TableCell>
-                      <TableCell numeric>{format(n.startDateTime, dateFormat)}</TableCell>
-                      <TableCell numeric>{format(n.endDateTime, dateFormat)}</TableCell>
+                      <TableCell numeric>
+                        <div>{format(n.startDateTime, dateFormat)}</div>
+                        <div>{format(n.startDateTime, timeFormat)}</div>
+                      </TableCell>
+                      <TableCell numeric>
+                        <div>{format(n.endDateTime, dateFormat)}</div>
+                        <div>{format(n.endDateTime, timeFormat)}</div>
+                      </TableCell>
                       <TableCell numeric>{n.price || 'Free'}</TableCell>
                     </TableRow>
                   )

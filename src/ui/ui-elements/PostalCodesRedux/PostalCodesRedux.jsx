@@ -1,25 +1,19 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import { FormControl } from '@material-ui/core'
-import Component from './Component'
+import PostalCodesComponent from './PostalCodesComponent'
 /* Dev */
 // eslint-disable-next-line
-import { green, blue } from 'logger'
+import { green } from 'logger'
 
-const styles = {
-  field: {
-    width: '100%',
-  }
-}
-class PostalCodeRedux extends React.Component {
+class PostalCodesRedux extends React.Component {
   picker = (props) => {
-    // green('PostalCodeRedux: props', props)
     const { onChange, ...rest } = props.input
     return (
       <FormControl
         fullWidth={true}
       >
-        <Component
+        <PostalCodesComponent
           onChange={onChange}
           { ...rest }
         />
@@ -30,7 +24,7 @@ class PostalCodeRedux extends React.Component {
   render() {
     const { fieldLabel, fieldName } = this.props
     return (
-      <Field style={styles.field}
+      <Field
         component={this.picker}
         name={fieldName}
         label={fieldLabel}
@@ -39,4 +33,4 @@ class PostalCodeRedux extends React.Component {
   }
 }
 
-export default PostalCodeRedux
+export default PostalCodesRedux

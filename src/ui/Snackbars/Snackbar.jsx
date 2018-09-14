@@ -36,7 +36,7 @@ import * as snackbarSelectors from '../../store/selectors/snackbar-selectors'
 //   info: InfoIcon,
 // }
 
-const variants = ['success', 'warning', 'error', 'info']
+// const variants = ['success', 'warning', 'error', 'info']
 
 function Content(props) {
   const { classes, className, message, onClose, variant, ...other } = props

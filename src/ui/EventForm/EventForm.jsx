@@ -26,11 +26,10 @@ import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
-import PostalCodeRedux from 'ui/ui-elements/PostalCodeRedux'
 import AreYouSure from './AreYouSure'
 import { validateModel } from 'models'
 import Event from './EventModel'
-
+import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
@@ -170,7 +169,7 @@ class EventForm extends React.Component {
               fieldName='linkToUrl'
               required={true}
             />
-            <PostalCodeRedux
+            <PostalCodesRedux
               fieldName='postalCode'
               fieldLabel='Postal Code'
               required={false}
@@ -250,7 +249,7 @@ const mapStateToProps = (state) => {
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
   const currentUserId = authSelectors.getUserId(state)
-  green('currentUserId', currentUserId)
+  // green('currentUserId', currentUserId)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
     const startDate = prop('startDateTime', data)
