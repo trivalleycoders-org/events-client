@@ -22,6 +22,7 @@ import AppMenu from 'ui/AppMenu'
 import RouteNotfound from 'ui/RouteNotFound'
 import PageMessage from 'ui/ui-elements/PageMessage'
 import PrivateRoute from 'ui/PrivateRoute'
+import Typography from 'ui/Typography'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -64,13 +65,14 @@ class App extends React.Component {
           <div className={classes.page}>
             <PageMessage></PageMessage>
             <Switch>
+              <Route exact path='/typography' component={Typography} />
               <Route exact path='/new-event' component={EventForm} />
               <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
               <Route exact path='/register' component={RegisterForm} />
               <Route exact path='/login' component={LoginForm} />
               <PrivateRoute exact path='/settings' component={SettingsForm} />
               <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-              <PrivateRoute exact path='/my-events' component={Events} />
+              <Route exact path='/my-events' component={Events} />
               <Route exact path='/events' component={Events} />
               <Route exact path='/' component={Events} />
               <Route component={RouteNotfound} />

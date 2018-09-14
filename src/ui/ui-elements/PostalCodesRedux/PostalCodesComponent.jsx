@@ -39,7 +39,6 @@ class PostalCodesRedux extends React.Component {
     // green('suggestions', suggestions)
     return (
       <div className={classes.root}>
-        <p>suggestions: {suggestions.length}</p>
         <Downshift
           onInputValueChange={this.onInputValueChange}
           // itemToString={item => (item ? item.searchString : '')}
@@ -49,7 +48,6 @@ class PostalCodesRedux extends React.Component {
               const {
                 getInputProps,
                 getItemProps,
-                getLabelProps,
                 getMenuProps,
                 highlightedIndex,
                 isOpen,
@@ -57,7 +55,7 @@ class PostalCodesRedux extends React.Component {
               } = downshift
               return (
                 <div className={classes.container}>
-                  <label {...getLabelProps()}>Enter a Zip Code</label>
+
                   {
                     renderInput({
                       fullWidth: true,
@@ -100,7 +98,6 @@ class PostalCodesRedux extends React.Component {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 250
   },
   container: {
     flexGrow: 1,
