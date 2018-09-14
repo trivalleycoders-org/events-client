@@ -59,10 +59,10 @@ class RegisterForm extends React.Component {
               required={true}
               error={true}
             />
-            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+        <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
               Submit
         </Button>
-            <Button type='button' disabled={pristine || submitting} onClick={reset}>
+        <Button type='button' disabled={pristine || submitting} onClick={reset}>
               Clear Values
         </Button>
           </form>
