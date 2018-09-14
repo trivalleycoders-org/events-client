@@ -26,6 +26,7 @@ export default (state = {}, { type, payload }) => {
     case userPasswordUpdateKey:
       return {
         ...state,
+        loggedIn: false,
         currentUser: null
       }
     case loginFailedKey:
