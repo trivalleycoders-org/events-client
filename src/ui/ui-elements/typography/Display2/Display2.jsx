@@ -22,11 +22,12 @@ const Display2 = ({
   classes,
   className,
   color,
+  gutterBottom = false,
   noWrap,
   theme
 }) => {
   // greenl('classNames', classNames([classes[variant], className ]))
-  greenl('color', typeof color)
+  // greenl('color', typeof color)
   const fontColor = color === 'white'
     ? { color: 'rgba(255, 255, 255, 1)' }
     : {}

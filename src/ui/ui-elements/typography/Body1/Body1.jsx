@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Typography,
+//   Typography,
   withStyles,
 } from '@material-ui/core'
 /* User */
@@ -9,6 +9,8 @@ import classNames from 'classnames'
 /* Dev */
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
+
+import Typography from '../Typography'
 
 /*
     Params match their material-ui equilivant
@@ -23,26 +25,35 @@ const Body1 = ({
   classes,
   className,
   color,
+  gutterBottom = false,
   noWrap,
 }) => {
-  greenl('children', children)
+
+  const style = {
+    color: color,
+  }
+
   return (
     <Typography
       align={align}
-      className={classNames([classes[variant], className ])}
+      classes={{
+        root: classes.root
+      }}
+      style={style}
       noWrap={noWrap}
       variant={variant}
+      gutterBottom
     >
       {children}
     </Typography>
   )
+
 }
+
 const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
-
-
   return ({
-    [variant]: {
+    root: {
       [theme.breakpoints.down('xs')]: {
         fontSize: fontSizeFromString(originalSize, 1),
       },
@@ -50,15 +61,16 @@ const styles = theme => {
         fontSize: fontSizeFromString(originalSize, 1),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: originalSize,
+        fontSize: fontSizeFromString(originalSize, 1),
       },
       [theme.breakpoints.up('lg')]: {
-        fontSize: originalSize,
+        fontSize: fontSizeFromString(originalSize, 1),
       },
       [theme.breakpoints.up('xl')]: {
-        fontSize: originalSize,
+        fontSize: fontSizeFromString(originalSize, 1),
       },
-    }
+    },
   })
 }
+
 export default withStyles(styles, { withTheme: true })(Body1)

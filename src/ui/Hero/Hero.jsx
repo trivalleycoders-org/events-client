@@ -11,7 +11,7 @@ const Hero = ({ classes }) => {
   return (
     <Paper className={classes.wrapper}>
       <div className={classes.title}>
-        <Display4 color='white'>Drone Madness</Display4>
+        <Display4 /*color='white'*/>Drone Madness</Display4>
       </div>
 
       <div className={classes.search}>

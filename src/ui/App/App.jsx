@@ -20,7 +20,7 @@ import SettingsForm from 'ui/Auth/SettingsForm'
 import RouteNotfound from 'ui/RouteNotFound'
 import PageMessage from 'ui/ui-elements/PageMessage'
 import PrivateRoute from 'ui/PrivateRoute'
-// import Typography from 'ui/Typography'
+import TypographyGuide from 'ui/TypographyGuide'
 import Hero from 'ui/Hero'
 
 
@@ -56,7 +56,7 @@ class App extends React.Component {
   render() {
 
     const { classes } = this.props
-    green('*** APP RENDER')
+    // green('*** APP RENDER')
     return (
       <Fragment>
 
@@ -65,6 +65,7 @@ class App extends React.Component {
           <Hero />
           <div className={classes.body}>
             <Switch>
+              <Route exact path='/typography' component={TypographyGuide} />
               <Route exact path='/new-event' component={EventForm} />
               <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
               <Route exact path='/register' component={RegisterForm} />

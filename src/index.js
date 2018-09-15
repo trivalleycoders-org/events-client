@@ -7,6 +7,7 @@ import App from './ui/App'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
 import AppMenu from 'ui/AppMenu'
+import Footer from 'ui/Footer'
 
 ReactDOM.render(
   <Provider store={configureStore()}>
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Snackbars />
         <AppMenu />
         <Route component={App} />
+        <Footer />
       </React.Fragment>
     </Router>
   </Provider>,
