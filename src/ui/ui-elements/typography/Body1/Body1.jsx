@@ -1,59 +1,32 @@
 import React from 'react'
-import {
-//   Typography,
-  withStyles,
-} from '@material-ui/core'
-/* User */
+import { withStyles } from '@material-ui/core'
+import TypographyBase from '../TypographyBase'
 import fontSizeFromString from 'lib/fontSizeFromString'
-import classNames from 'classnames'
-/* Dev */
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
 
-import Typography from '../Typography'
+const variant = 'body1'
 
-/*
-    Params match their material-ui equilivant
-    See: https://material-ui.com/api/typography/#typography
-*/
-
-const variant='body1'
-
-const Body1 = ({
-  align,
-  children,
-  classes,
-  className,
-  color,
-  gutterBottom = false,
-  noWrap,
-}) => {
-
-  const style = {
-    color: color,
-  }
-
+const Body1 = (props) => {
+  const { children, classes } = props
   return (
-    <Typography
-      align={align}
+    <TypographyBase
+      variant={variant}
       classes={{
         root: classes.root
       }}
-      style={style}
-      noWrap={noWrap}
-      variant={variant}
-      gutterBottom
+      { ...props }
     >
       {children}
-    </Typography>
+    </TypographyBase>
   )
-
 }
 
 const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
+
   return ({
-    root: {
+    [variant]: {
       [theme.breakpoints.down('xs')]: {
         fontSize: fontSizeFromString(originalSize, 1),
       },
@@ -61,16 +34,16 @@ const styles = theme => {
         fontSize: fontSizeFromString(originalSize, 1),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: fontSizeFromString(originalSize, 1),
+        fontSize: originalSize,
       },
       [theme.breakpoints.up('lg')]: {
-        fontSize: fontSizeFromString(originalSize, 1),
+        fontSize: originalSize,
       },
       [theme.breakpoints.up('xl')]: {
-        fontSize: fontSizeFromString(originalSize, 1),
+        fontSize: originalSize,
       },
-    },
+    }
   })
 }
 
-export default withStyles(styles, { withTheme: true })(Body1)
+export default withStyles(styles)(Body1)

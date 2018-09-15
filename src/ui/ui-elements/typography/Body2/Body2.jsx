@@ -1,41 +1,24 @@
 import React from 'react'
-import {
-  Typography,
-  withStyles,
-} from '@material-ui/core'
-import classNames from 'classnames'
-/* User */
+import { withStyles } from '@material-ui/core'
 import fontSizeFromString from 'lib/fontSizeFromString'
-/* Dev */
+import TypographyBase from '../TypographyBase'
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
 
-/*
-    Params match their material-ui equilivant
-    See: https://material-ui.com/api/typography/#typography
-*/
-
 const variant='body2'
 
-const Body2 = ({
-  align,
-  children,
-  classes,
-  className,
-  color,
-  noWrap,
-}) => {
-
+const Body2 = (props) => {
+  const { children, classes } = props
   return (
-    <Typography
-      align={align}
-      className={classNames([classes[variant], className ])}
-      color={color}
-      noWrap={noWrap}
+    <TypographyBase
       variant={variant}
+      classes={{
+        root: classes.root
+      }}
+      { ...props }
     >
       {children}
-    </Typography>
+    </TypographyBase>
   )
 }
 const styles = theme => {
@@ -61,4 +44,4 @@ const styles = theme => {
     }
   })
 }
-export default withStyles(styles, { withTheme: true })(Body2)
+export default withStyles(styles)(Body2)

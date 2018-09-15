@@ -22,7 +22,7 @@ import PageMessage from 'ui/ui-elements/PageMessage'
 import PrivateRoute from 'ui/PrivateRoute'
 import TypographyGuide from 'ui/TypographyGuide'
 import Hero from 'ui/Hero'
-
+import Breakpoints from 'ui/ui-elements/Breakpoints'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -62,6 +62,8 @@ class App extends React.Component {
 
         <div className={classes.wrapper}>
           <PageMessage></PageMessage>
+
+          <Breakpoints />
           <Hero />
           <div className={classes.body}>
             <Switch>

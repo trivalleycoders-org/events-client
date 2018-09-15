@@ -15,7 +15,7 @@ const Typography = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
       <Body1 color='blue'>Body 1</Body1>
-      <Body2>Body 2</Body2>TypographyTypography
+      <Body2>Body 2</Body2>
       <Display1>Display 1</Display1>
       <Display2>Display 2</Display2>
       <Display3>Display 3</Display3>

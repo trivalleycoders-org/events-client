@@ -1,42 +1,27 @@
 import React from 'react'
-import {
-  Typography,
-  withStyles,
-} from '@material-ui/core'
-/* User */
+import { withStyles } from '@material-ui/core'
+import TypographyBase from '../TypographyBase'
 import fontSizeFromString from 'lib/fontSizeFromString'
-import classNames from 'classnames'
-/* Dev */
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
 
-/*
-    Params match their material-ui equilivant
-    See: https://material-ui.com/api/typography/#typography
-*/
-const variant='display3'
+const variant = 'display3'
 
-const Display3 = ({
-  align,
-  children,
-  classes,
-  className,
-  color,
-  noWrap,
-}) => {
-  // greenl('theme', theme)
+const Display3 = (props) => {
+  const { children, classes } = props
   return (
-    <Typography
-      align={align}
-      className={classNames([classes[variant], className ])}
-      color={color}
-      noWrap={noWrap}
+    <TypographyBase
       variant={variant}
+      classes={{
+        root: classes.root
+      }}
+      { ...props }
     >
       {children}
-    </Typography>
+    </TypographyBase>
   )
 }
+
 const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
 
@@ -60,4 +45,5 @@ const styles = theme => {
     }
   })
 }
-export default withStyles(styles, { withTheme: true })(Display3)
+
+export default withStyles(styles)(Display3)

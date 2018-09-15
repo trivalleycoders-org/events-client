@@ -9,6 +9,7 @@ import Snackbars from 'ui/Snackbars'
 import AppMenu from 'ui/AppMenu'
 import Footer from 'ui/Footer'
 
+
 ReactDOM.render(
   <Provider store={configureStore()}>
     <Router>

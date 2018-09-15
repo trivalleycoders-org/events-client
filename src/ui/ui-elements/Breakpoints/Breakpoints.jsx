@@ -8,108 +8,42 @@ import green from '@material-ui/core/colors/green'
 import purple from '@material-ui/core/colors/purple'
 import yellow from '@material-ui/core/colors/yellow'
 import grey from '@material-ui/core/colors/grey'
+import withWidth from '@material-ui/core/withWidth'
+import { compose } from 'recompose'
 
-const Xs = ({ classes }) => (
- <Typography variant='headline' className={classes.showXs}>xs</Typography>
-)
-const Sm = ({ classes }) => (
-  <Typography variant='headline' className={classes.showSm}>sm</Typography>
-)
-const Md = ({ classes }) => (
-  <Typography variant='headline' className={classes.showMd}>md</Typography>
-)
-
-const Lg = ({ classes }) => (
-  <Typography variant='headline' className={classes.showLg}>lg</Typography>
-)
-
-const Xl = ({ classes }) => (
-  <Typography variant='headline' className={classes.showXl}>xl</Typography>
-)
-
-const Breakpoints = ({ classes }) => {
+const Breakpoints = ({ classes, width }) => {
+  console.log('width', width)
   return (
-    <React.Fragment>
-      <Xs classes={classes}/>
-      <Sm classes={classes}/>
-      <Md classes={classes}/>
-      <Lg classes={classes}/>
-      <Xl classes={classes}/>
-    </React.Fragment>
+    <Typography variant='headline' className={classes.root}>{width}</Typography>
   )
 }
 
 const styles = theme => ({
-  showXs: {
-    [theme.breakpoints.down('xs')]: {
+  root: {
+    textAlign: 'center',
+    paddingBottom: theme.spacing.unit,
+    paddingTop: theme.spacing.unit,
+    [theme.breakpoints.only('xs')]: {
       backgroundColor: red[500],
-      textAlign: 'center',
-      paddingBottom: theme.spacing.unit,
-      paddingTop: theme.spacing.unit,
     },
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-    marginBottom: 40,
-  },
-  showSm: {
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.only('sm')]: {
       backgroundColor: green[500],
-      textAlign: 'center',
-      paddingBottom: theme.spacing.unit,
-      paddingTop: theme.spacing.unit,
     },
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-    marginBottom: 40,
-  },
-  showMd: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.only('md')]: {
       backgroundColor: purple[500],
-      textAlign: 'center',
-      paddingBottom: theme.spacing.unit,
-      paddingTop: theme.spacing.unit,
     },
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
-    marginBottom: 40,
-  },
-  showLg: {
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.only('lg')]: {
       backgroundColor: yellow[500],
-      textAlign: 'center',
-      color: 'black',
-      paddingBottom: theme.spacing.unit,
-      paddingTop: theme.spacing.unit,
     },
-    [theme.breakpoints.up('xl')]: {
-      display: 'none',
-    },
-    marginBottom: 40,
-  },
-  showXl: {
-    [theme.breakpoints.down('lg')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.only('xl')]: {
       backgroundColor: grey[500],
-      textAlign: 'center',
-      paddingBottom: theme.spacing.unit,
-      paddingTop: theme.spacing.unit,
     },
-    marginBottom: 40,
   },
 })
 
-export default withStyles(styles)(Breakpoints)
+export default compose(
+  withWidth(),
+  withStyles(styles),
+)(Breakpoints)
+
+// export default withWidth()(withStyles(styles))(Breakpoints)
