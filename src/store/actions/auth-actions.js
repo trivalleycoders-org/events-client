@@ -86,7 +86,6 @@ export const userRegisterRequest = createRequestThunk({
   key: userRegisterRequestKey,
   success: [
     userRegister,
-    () => pageMessage('')
   ],
   failure: [
     (error) => pageMessage(error.error)
