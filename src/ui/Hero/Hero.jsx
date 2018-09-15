@@ -35,7 +35,10 @@ const styles = theme => {
       color: theme.palette.common.white,
       marginBottom: theme.spacing.unit * 4,
       backgroundImage: 'url(https://s3-us-west-2.amazonaws.com/tvc-events/media/hero.jpg)',
+
       height: '500px',
+      paddingTop: unit * 8,
+      // opacity: 0.2,
     },
     title: {
       // paddingTop: unit * 4,

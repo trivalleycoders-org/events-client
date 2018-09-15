@@ -63,18 +63,20 @@ class App extends React.Component {
         <div className={classes.wrapper}>
           <PageMessage></PageMessage>
           <Hero />
-          <Switch>
-            <Route exact path='/new-event' component={EventForm} />
-            <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
-            <Route exact path='/register' component={RegisterForm} />
-            <Route exact path='/login' component={LoginForm} />
-            <PrivateRoute exact path='/settings' component={SettingsForm} />
-            <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-            <PrivateRoute exact path='/my-events' component={Events} />
-            <Route exact path='/events' component={Events} />
-            <Route exact path='/' component={Events} />
-            <Route component={RouteNotfound} />
-          </Switch>
+          <div className={classes.body}>
+            <Switch>
+              <Route exact path='/new-event' component={EventForm} />
+              <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
+              <Route exact path='/register' component={RegisterForm} />
+              <Route exact path='/login' component={LoginForm} />
+              <PrivateRoute exact path='/settings' component={SettingsForm} />
+              <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+              <PrivateRoute exact path='/my-events' component={Events} />
+              <Route exact path='/events' component={Events} />
+              <Route exact path='/' component={Events} />
+              <Route component={RouteNotfound} />
+            </Switch>
+          </div>
         </div>
       </Fragment>
     )
@@ -89,7 +91,9 @@ const mapStateToProps = (state) => {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 80,
+    marginTop: 60,
+  },
+  body: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,

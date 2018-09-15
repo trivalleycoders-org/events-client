@@ -11,7 +11,7 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.common.black,
     /* eslint-disable */
     fontFamily: "'Roboto Condensed', sans-serif",
     /* eslint-disable */

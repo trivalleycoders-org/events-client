@@ -26,6 +26,9 @@ const Display4 = ({
   noWrap,
 }) => {
   // greenl('theme', theme)
+  const styleColor = {
+    color: 'red'
+  }
   return (
     <Typography
       align={align}
@@ -33,11 +36,13 @@ const Display4 = ({
       color={color}
       noWrap={noWrap}
       variant={variant}
+      style={styleColor}
     >
       {children}
     </Typography>
   )
 }
+
 const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
 

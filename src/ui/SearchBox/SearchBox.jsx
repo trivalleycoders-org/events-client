@@ -4,8 +4,9 @@ import { compose } from 'recompose'
 import { Link } from 'react-router-dom'
 import * as searchActions from 'store/actions/search-actions'
 import * as searchSelectors from 'store/selectors/search-selectors'
-import { TextField, Paper, Button } from '@material-ui/core'
+import { TextField, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import Button from 'ui/ui-elements/Button'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -31,6 +32,7 @@ export class SearchEvent extends Component {
           <TextField onChange={e => this.handleChange(e.target.value)} value={searchText} />
             <Link to={`/search-events/${searchText}`}>
               <Button
+                color='green'
                 className={classes.searchIcon}
                 disabled={searchText.length < 3}
               >

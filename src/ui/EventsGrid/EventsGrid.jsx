@@ -49,7 +49,7 @@ const EventGrid = (props) => {
       {events.map(c => {
         const location = `${c.cityName}, ${c.stateCode} ${c.postalCode}`
         return (
-          <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Grid key={c._id} item xs={12} sm={6} md={4} >
             <Card className={classes.card}>
               <a href={c.linkToUrl} className={classes.link}>
                 <CardMedia
@@ -85,18 +85,7 @@ const EventGrid = (props) => {
                       : null
                   }
                 </div>
-                <div className={classes.actions}>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Add to favorites'>
-                      <FavoriteIcon />
-                    </IconButton>
-                  </div>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Share'>
-                      <ShareIcon />
-                    </IconButton>
-                  </div>
-                </div>
+
               </CardActions>
             </Card>
           </Grid>
@@ -176,3 +165,17 @@ const styles = {
 
 export default withStyles(styles)(EventGrid)
 
+/*
+<div className={classes.actions}>
+                  <div className={classes.action}>
+                    <IconButton aria-label='Add to favorites'>
+                      <FavoriteIcon />
+                    </IconButton>
+                  </div>
+                  <div className={classes.action}>
+                    <IconButton aria-label='Share'>
+                      <ShareIcon />
+                    </IconButton>
+                  </div>
+                </div>
+*/
