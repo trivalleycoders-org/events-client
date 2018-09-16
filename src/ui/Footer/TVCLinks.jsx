@@ -5,7 +5,7 @@ import {
   withStyles,
   Grid,
 } from '@material-ui/core'
-import Body1 from 'ui/ui-elements/typography/Body1'
+import A from 'ui/ui-elements/A'
 
 const TVCLinks = ({ classes }) => {
   return (
@@ -23,7 +23,7 @@ const TVCLinks = ({ classes }) => {
           container
           justify='center'
         >
-          <FontAwesomeIcon className={classes.meetup} icon={faMeetup} />
+          <A href='https://www.meetup.com/trivalleycoders/'><FontAwesomeIcon className={classes.meetup} icon={faMeetup} /></A>
         </Grid>
         <Grid
           item
@@ -32,7 +32,7 @@ const TVCLinks = ({ classes }) => {
           container
           justify='center'
         >
-          <FontAwesomeIcon className={classes.github} icon={faGithub} />
+          <A href='https://github.com/trivalleycoders-org'><FontAwesomeIcon className={classes.github} icon={faGithub} /></A>
         </Grid>
         <Grid
           item
@@ -41,7 +41,7 @@ const TVCLinks = ({ classes }) => {
           container
           justify='center'
         >
-          <FontAwesomeIcon className={classes.slack} icon={faSlack} />
+          <A href='https://join.slack.com/t/trivalleycoders/shared_invite/enQtMjk2NDY3NDAwMjI1LWU0YjFjNjE5MDgwYzYwYmUwMWJlNjk1NDU4YmI5ZmZjZGU0ZDcwY2E2Y2RlNmU0MWFlZTUyODFkYzM1NGVlYTQ'><FontAwesomeIcon className={classes.slack} icon={faSlack} /></A>
         </Grid>
         <Grid
           item
@@ -50,7 +50,7 @@ const TVCLinks = ({ classes }) => {
           container
           justify='center'
         >
-          <FontAwesomeIcon className={classes.facebook} icon={faFacebook} />
+          <A href='https://www.facebook.com/groups/free.code.camp.sanramon/'><FontAwesomeIcon className={classes.facebook} icon={faFacebook} /></A>
         </Grid>
       </Grid>
       </div>
@@ -58,17 +58,12 @@ const TVCLinks = ({ classes }) => {
 }
 
 const styles = theme => {
-  const unit = theme.spacing.unit
   const leftRightMargin = theme.spacing.unit * 4
   const topBottomMargin = theme.spacing.unit * 4
   const logoMargin = `${topBottomMargin}px ${leftRightMargin}px ${topBottomMargin}px ${leftRightMargin}px`
   return ({
     logoGrid: {
-      // margin: '50px 0 50px 0',
-      // width: '100%',
-      // maxWidth: '70%',
-      backgroundColor: 'green',
-
+      // backgroundColor: 'green',
     },
     meetup: {
       color: '#f64060',

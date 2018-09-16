@@ -25,7 +25,7 @@ const TvcCopyright = ({ classes }) => {
 
 const styles = {
   wrapper: {
-    backgroundColor: 'red'
+    // backgroundColor: 'red'
   }
 }
 

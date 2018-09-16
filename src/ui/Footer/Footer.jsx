@@ -3,12 +3,9 @@ import {
   withStyles,
 } from '@material-ui/core'
 
-import Body2 from 'ui/ui-elements/typography/Body2'
-
-
 /* User */
+import Body2 from 'ui/ui-elements/typography/Body2'
 import ByTvc from './ByTvc'
-
 import TVCLinks from './TVCLinks'
 import TvcCopyright from './TvcCopyright'
 /* Dev */
