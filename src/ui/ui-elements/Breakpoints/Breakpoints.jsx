@@ -21,8 +21,9 @@ const Breakpoints = ({ classes, width }) => {
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingBottom: theme.spacing.unit,
-    paddingTop: theme.spacing.unit,
+    // paddingBottom: theme.spacing.unit,
+    // paddingTop: theme.spacing.unit,
+    padding: '0.5rem',
     [theme.breakpoints.only('xs')]: {
       backgroundColor: red[500],
     },
