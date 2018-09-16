@@ -55,8 +55,11 @@ class App extends React.Component {
 
   render() {
 
-    const { classes } = this.props
-    // green('*** APP RENDER')
+    const { classes, location } = this.props
+    const showHero = location.pathname.startsWith('/search-events')
+      || location.pathname === '/events'
+      || location.pathname === '/'
+
     return (
       <Fragment>
 
@@ -64,7 +67,12 @@ class App extends React.Component {
           <PageMessage></PageMessage>
 
           <Breakpoints />
-          <Hero />
+          {
+            showHero
+            ? <Hero />
+            : null
+          }
+
           <div className={classes.body}>
             <Switch>
               <Route exact path='/typography' component={TypographyGuide} />
