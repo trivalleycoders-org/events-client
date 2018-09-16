@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ import Button from 'ui/ui-elements/Button'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-export class SearchEvent extends Component {
+export class SearchEvent extends React.Component {
 
   constructor(props) {
   super(props)
