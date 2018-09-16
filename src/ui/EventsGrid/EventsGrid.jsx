@@ -8,9 +8,6 @@ import {
   CardMedia,
   CardContent,
 } from '@material-ui/core'
-import { Favorite as FavoriteIcon } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
-import { Share as ShareIcon } from '@material-ui/icons'
 import { has } from 'ramda'
 
 /* User */
@@ -45,7 +42,7 @@ const EventGrid = (props) => {
   const { classes, events } = props
 
   return (
-    <Grid container spacing={Number(8)} className={classes.outer} >
+    <Grid container spacing={Number(32)} className={classes.outer} >
       {events.map(c => {
         const location = `${c.cityName}, ${c.stateCode} ${c.postalCode}`
         return (
@@ -55,6 +52,7 @@ const EventGrid = (props) => {
                 <CardMedia
                   className={classes.media}
                   image={c.imageUrl}
+
                   >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
