@@ -8,6 +8,7 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  withWidth,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as authSelectors from 'store/selectors/auth-selectors'
@@ -26,7 +27,10 @@ class MainAppBar extends React.Component {
   }
 
   render() {
-    const { classes, isLoggedIn } = this.props
+
+    const { classes, isLoggedIn, width } = this.props
+    green('width', width === 'xs')
+
     return (
       <div className={classes.root}>
         <AppBar position='fixed'>
@@ -37,8 +41,10 @@ class MainAppBar extends React.Component {
             <Typography variant='title' color='inherit' className={classes.flex}>
               Drone Events
             </Typography>
-            {
-              isLoggedIn ? <LoggedIn /> : <LoggedOut />
+
+            {width !== 'xs'
+              ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
+              : null
               // true ? <LoggedIn /> : <LoggedOut />
             }
 
@@ -74,6 +80,7 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
+  withWidth(),
   withStyles(styles),
   connect(mapStateToProps, appMenuActions),
 )(MainAppBar)
