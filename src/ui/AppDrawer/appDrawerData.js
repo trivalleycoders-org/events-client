@@ -19,7 +19,36 @@ const linkStyle = {
   textDecoration: 'none'
 }
 
-export const menuItems = (
+export const menuLoggedOut = (
+  <div>
+    <ListItem button>
+      <ListItemIcon>
+        <Home />
+      </ListItemIcon>
+      <Link to='/' style={linkStyle}>
+        <ListItemText primary='Home' />
+      </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <Link to='/register' style={linkStyle}>
+        <ListItemText primary='Register' />
+      </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <Link to='/login' style={linkStyle}>
+        <ListItemText primary='Login' />
+      </Link>
+    </ListItem>
+  </div>
+)
+
+export const menuLoggedIn = (
   <div>
     <ListItem button>
       <ListItemIcon>
@@ -49,22 +78,6 @@ export const menuItems = (
       <ListItemIcon>
         <InboxIcon />
       </ListItemIcon>
-      <Link to='/register' style={linkStyle}>
-        <ListItemText primary='Register' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <Link to='/login' style={linkStyle}>
-        <ListItemText primary='Login' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
       <Link to='/settings' style={linkStyle}>
         <ListItemText primary='Settings' />
       </Link>
@@ -72,54 +85,3 @@ export const menuItems = (
   </div>
 )
 
-export const mailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <ListItemText primary="Inbox" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <StarIcon />
-      </ListItemIcon>
-      <ListItemText primary="Starred" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Send mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drafts" />
-    </ListItem>
-  </div>
-)
-
-export const otherMailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="All mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DeleteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Trash" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ReportIcon />
-      </ListItemIcon>
-      <ListItemText primary="Spam" />
-    </ListItem>
-  </div>
-)

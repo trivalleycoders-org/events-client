@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import App from './ui/App'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
-import AppMenu from 'ui/AppMenu'
+import AppDrawer from 'ui/AppDrawer'
 import Footer from 'ui/Footer'
 
 
@@ -16,7 +16,7 @@ ReactDOM.render(
       <React.Fragment>
         <AppBar />
         <Snackbars />
-        <AppMenu />
+        <AppDrawer />
         <Route component={App} />
         <Footer />
       </React.Fragment>

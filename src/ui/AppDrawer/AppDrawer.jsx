@@ -5,9 +5,11 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
-import { menuItems } from './appMenuData'
+import { menuLoggedIn, menuLoggedOut } from './appDrawerData'
 import * as appMenuActions from 'store/actions/app-menu-actions'
 import * as appMenuSelectors from 'store/selectors/app-menu-selectors'
+import * as authSelectors from 'store/selectors/auth-selectors'
+
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -25,7 +27,11 @@ class AppMenu extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, isLoggedIn } = this.props
+
+    const menuItems = isLoggedIn
+      ? menuLoggedIn
+      : menuLoggedOut
 
     const renderMenuItems = (
       <div className={classes.list}>
@@ -62,6 +68,7 @@ const styles = {
 
 const mapStateToProps = (state) => ({
   appMenuState: appMenuSelectors.getAppMenuState(state),
+  isLoggedIn: authSelectors.getLoggedIn(state),
 })
 
 export default compose(
