@@ -22,6 +22,7 @@ import PageMessage from 'ui/ui-elements/PageMessage'
 import PrivateRoute from 'ui/PrivateRoute'
 import TypographyGuide from 'ui/TypographyGuide'
 import Hero from 'ui/Hero'
+import Breakpoints from 'ui/ui-elements/Breakpoints'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -62,7 +63,9 @@ class App extends React.Component {
     return (
       <Fragment>
         <div className={classes.wrapper}>
+          <Breakpoints />
           <PageMessage></PageMessage>
+
           {
             showHero
             ? <Hero />
@@ -77,7 +80,10 @@ class App extends React.Component {
               <Route exact path='/login' component={LoginForm} />
               <PrivateRoute exact path='/settings' component={SettingsForm} />
               <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-              <PrivateRoute exact path='/my-events' component={Events} />
+
+              // TODO: make route private - code is below
+              <Route exact path='/my-events' component={Events} />
+
               <Route exact path='/events' component={Events} />
               <Route exact path='/' component={Events} />
               <Route component={RouteNotfound} />
@@ -88,6 +94,8 @@ class App extends React.Component {
     )
   }
 }
+
+// <PrivateRoute exact path='/my-events' component={Events} />
 
 const mapStateToProps = (state) => {
   return {

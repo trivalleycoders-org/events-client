@@ -4,23 +4,21 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TablePagination,
-  TableRow,
-  Paper,
-  Checkbox,
+  Button,
+  Grid,
+  withWidth,
+  Toolbar,
 } from '@material-ui/core'
-import format from 'date-fns/format'
+import {
+  ViewList,
+  ViewModule,
+} from '@material-ui/icons'
 import { append, without, contains } from 'ramda'
 /* User */
-import TableHead from './TableHead'
-import TableToolbar from './TableToolbar'
 import * as eventsSelectors from 'store/selectors/events-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
-import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
-import Body2 from 'ui/ui-elements/typography/Body2'
+import EventColumn from './EventColumn'
+import EventRow from './EventRow'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -32,8 +30,6 @@ function getSorting(order, orderBy) {
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1)
 }
 
-const dateFormat = 'MMM do YYYY'
-const timeFormat = 'hh:mm a'
 
 class MyEvents extends React.Component {
 
@@ -101,97 +97,57 @@ class MyEvents extends React.Component {
   }
 
   render() {
-    const { classes, events } = this.props
+    const { classes, events, width } = this.props
     const { order, orderBy, selected, rowsPerPage, page } = this.state
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, events.length - page * rowsPerPage)
+    // const emptyRows = rowsPerPage - Math.min(rowsPerPage, events.length - page * rowsPerPage)
+
+    // TODO: is this div, Paper or Fragmen?
     return (
-      <Paper className={classes.root}>
-        <TableToolbar
-          selected={selected}
-          clearSelected={this.clearSelected}
-        />
-        <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
-            <TableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
-              onRequestSort={this.handleRequestSort}
-              rowCount={events.length}
-            />
-            <TableBody>
-              {events
-                .sort(getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  const isSelected = this.isSelected(n._id)
-                  return (
-                    <TableRow
-                      hover
-                      onClick={event => this.handleClick(event, n._id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
-                      tabIndex={-1}
-                      key={n._id}
-                      selected={isSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
-                      </TableCell>
-                      <TableCell>
-                        <ResponsiveImage src={n.imageUrl} alt='some' className={classes.image}/>
-                      </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
-                        <Body2>
-                          {n.title}
-                        </Body2>
-                        <div className={classes.cityState}>
-                          {n.cityName}, {n.stateCode}
-                        </div>
-                      </TableCell>
-                      <TableCell numeric>
-                        <div>{format(n.startDateTime, dateFormat)}</div>
-                        <div>{format(n.startDateTime, timeFormat)}</div>
-                      </TableCell>
-                      <TableCell numeric>
-                        <div>{format(n.endDateTime, dateFormat)}</div>
-                        <div>{format(n.endDateTime, timeFormat)}</div>
-                      </TableCell>
-                      <TableCell numeric>{n.price || 'Free'}</TableCell>
-                    </TableRow>
-                  )
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          component="div"
-          count={events.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            'aria-label': 'Previous Page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'Next Page',
-          }}
-          onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handleChangeRowsPerPage}
-        />
-      </Paper>
+      <div>
+        <Toolbar className={classes.toolbar}>
+
+          <Button className={classes.button}>
+            <ViewList/>
+          </Button>
+          <Button className={classes.button}>
+            <ViewModule/>
+          </Button>
+        </Toolbar>
+        <Grid container spacing={Number(8)}>
+        {events
+            .sort(getSorting(order, orderBy))
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map(n => {
+              return (
+                <Grid key={n._id} item xs={12}>
+                  {
+                    width === 'xs'
+                      ? <EventRow
+                          isSelected={this.isSelected(n._id)}
+                          event={n}
+                        />
+                      : <EventRow
+                          isSelected={this.isSelected(n._id)}
+                          event={n}
+                        />
+                  }
+                </Grid>
+              )
+            })}
+        </Grid>
+      </div>
     )
   }
 }
 
 const styles = theme => ({
-  title: {
-
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
   },
   cityState: {
     paddingTop: theme.spacing.unit
@@ -225,6 +181,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
+  withWidth(),
   withStyles(styles),
   connect(mapStateToProps)
 )(MyEvents)
