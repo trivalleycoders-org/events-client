@@ -15,24 +15,14 @@ import format from 'date-fns/format'
 
 import Body1 from 'ui/ui-elements/typography/Body1'
 import Body2 from 'ui/ui-elements/typography/Body2'
+import StartDate from './StartDate'
+import EndDate from './EndDate'
+import StartTime from './StartTime'
+import EndTime from './EndTime'
 // import Title from 'ui/ui-elements/typography/Title'
 
-
-
-
-
-const EndDate = ({ event, classes }) => {
-  return (
-    <div id='endDate' className={classes.date}>
-      <Body1>
-        {format(event.endDateTime, dateFormat)}
-      </Body1>
-      <Body1>
-        {format(event.endDateTime, timeFormat)}
-      </Body1>
-    </div>
-  )
-}
+const dateFormat = 'MMM d, YYYY'
+const timeFormat = 'h:mm a'
 
 const Price = ({ event, classes }) => {
   return (
@@ -59,15 +49,12 @@ const Event = ({ classes, event, isSelected, width }) => {
           {event.cityName}, {event.stateCode}
         </Body1>
       </div>
-      {
-        width !== 'xs'
-          ? 'nope'
-          : <div className={classes.datesXS}>
-              <StartDate event={event} classes={classes} />
-              <EndDate event={event} classes={classes} />
-              <Price event={event} classes={classes} />
-            </div>
-      }
+      <div className={classes.datesXS}>
+        <StartDate event={event} classes={classes} />
+        <EndDate event={event} classes={classes} />
+        <Price event={event} classes={classes} />
+      </div>
+
 
 
       <div id='actions' className={classes.actions}>
@@ -108,11 +95,11 @@ const styles = theme => {
       backgroundColor: 'tan',
     },
     date: {
-      padding: `${padTopBottom} ${padLeftRight} ${padTopBottom} ${padLeftRight}`,
-      // flexBasis: '25%',
-      display: 'flex',
-      flexFlow: 'column',
-      justifyContent: 'center',
+      // padding: `${padTopBottom} ${padLeftRight} ${padTopBottom} ${padLeftRight}`,
+      // // flexBasis: '25%',
+      // display: 'flex',
+      // flexFlow: 'column',
+      // justifyContent: 'center',
       backgroundColor: 'pink',
     },
     price: {

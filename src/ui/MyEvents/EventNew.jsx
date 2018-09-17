@@ -17,10 +17,6 @@ import Body1 from 'ui/ui-elements/typography/Body1'
 import Body2 from 'ui/ui-elements/typography/Body2'
 // import Title from 'ui/ui-elements/typography/Title'
 
-
-
-
-
 const EndDate = ({ event, classes }) => {
   return (
     <div id='endDate' className={classes.date}>

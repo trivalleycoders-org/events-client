@@ -17,8 +17,10 @@ import { append, without, contains } from 'ramda'
 /* User */
 import * as eventsSelectors from 'store/selectors/events-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
-import EventColumn from './EventColumn'
-import EventRow from './EventRow'
+// import EventColumn from './EventColumn'
+// import EventRow from './EventRow'
+// import EventCompact from './EventCompact'
+import EventNew from './EventNew'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -122,11 +124,11 @@ class MyEvents extends React.Component {
                 <Grid key={n._id} item xs={12}>
                   {
                     width === 'xs'
-                      ? <EventRow
+                      ? <EventNew
                           isSelected={this.isSelected(n._id)}
                           event={n}
                         />
-                      : <EventRow
+                      : <EventNew
                           isSelected={this.isSelected(n._id)}
                           event={n}
                         />
