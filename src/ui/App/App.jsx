@@ -65,7 +65,6 @@ class App extends React.Component {
         <div className={classes.wrapper}>
           <Breakpoints />
           <PageMessage></PageMessage>
-
           {
             showHero
             ? <Hero />
@@ -80,10 +79,7 @@ class App extends React.Component {
               <Route exact path='/login' component={LoginForm} />
               <PrivateRoute exact path='/settings' component={SettingsForm} />
               <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-
-              // TODO: make route private - code is below
-              <Route exact path='/my-events' component={Events} />
-
+              <PrivateRoute exact path='/my-events' component={Events} />
               <Route exact path='/events' component={Events} />
               <Route exact path='/' component={Events} />
               <Route component={RouteNotfound} />
@@ -95,12 +91,8 @@ class App extends React.Component {
   }
 }
 
-// <PrivateRoute exact path='/my-events' component={Events} />
-
 const mapStateToProps = (state) => {
-  return {
-    // currentUser: authSelectors.getUserId
-  }
+  return {}
 }
 
 const styles = theme => ({

@@ -4,128 +4,91 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Paper,
   withWidth,
-  Tooltip,
-  IconButton,
+  Grid,
 } from '@material-ui/core'
-import {
-  Delete as DeleteIcon,
-  Edit as EditIcon
-} from '@material-ui/icons'
-import format from 'date-fns/format'
-
+import blue from '@material-ui/core/colors/blue'
+import { dateFormat } from './helpers'
 import Body1 from 'ui/ui-elements/typography/Body1'
 import Body2 from 'ui/ui-elements/typography/Body2'
-// import Title from 'ui/ui-elements/typography/Title'
+import Title from 'ui/ui-elements/typography/Title'
+import ButtonFit from 'ui/ui-elements/ButtonFit'
+import Chevron5 from './Chevron5'
+// eslint-disable-next-line
+import { green } from 'logger'
 
-const EndDate = ({ event, classes }) => {
-  return (
-    <div id='endDate' className={classes.date}>
-      <Body1>
-        {format(event.endDateTime, dateFormat)}
-      </Body1>
-      <Body1>
-        {format(event.endDateTime, timeFormat)}
-      </Body1>
-    </div>
-  )
-}
-
-const Price = ({ event, classes }) => {
-  return (
-    <div id='Price' className={classes.price}>
-      <Body1 align='center'>
-        {
-          event.price
-            ? `$${event.price}`
-            : 'Free'
-        }
-      </Body1>
-    </div>
-  )
-}
-
-const Event = ({ classes, event, isSelected, width }) => {
+const Event = ({ classes, event, handleItemClick }) => {
   return (
     <Paper className={classes.wrapper}>
-      <div id='title' className={classes.title}>
-        <Body2>
-          {event.title}
-        </Body2>
-        <Body1>
-          {event.cityName}, {event.stateCode}
-        </Body1>
-      </div>
-      {
-        width !== 'xs'
-          ? 'nope'
-          : <div className={classes.datesXS}>
-              <StartDate event={event} classes={classes} />
-              <EndDate event={event} classes={classes} />
-              <Price event={event} classes={classes} />
-            </div>
-      }
+      <Grid container>
+        <Grid
+          item
+          xs={3}
+          className={classes.date}
+        >
+          <Title align='center' gutterBottom color='white'>
+            {dateFormat(event.startDateTime, 'day')}
+          </Title>
+          <Body1 align='center' color='white'>
+            {dateFormat(event.startDateTime, 'moYr')}
+          </Body1>
+          <Body1 align='center' color='white'>
+            {dateFormat(event.startDateTime, 'time')}
+          </Body1>
+        </Grid>
 
+        <Grid
+          item
+          xs={8}
+          className={classes.detail}
+        >
+          <Body2>
+            {event.title}
+          </Body2>
+          <Body1>
+            {event.cityName}, {event.stateCode}
+          </Body1>
+        </Grid>
 
-      <div id='actions' className={classes.actions}>
-        <Tooltip title="Edit">
-          <IconButton aria-label="Edit" onClick={e => this.handleEditClick(e)}>
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Delete">
-          <IconButton aria-label="Delete" onClick={e => this.handleDeleteClick(e)}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      </div>
+        <Grid
+          item xs={1}
+          className={classes.chevronWrap}
+          onClick={() => handleItemClick(event._id)}
+        >
+          <ButtonFit>
+            <Chevron5
+              className={classes.svg}
+              width={10}
+              color={blue[500]}
+            />
+          </ButtonFit>
+        </Grid>
+
+      </Grid>
     </Paper>
   )
+
 }
 
 const styles = theme => {
-  const padTopBottom = `${theme.spacing.unit}px`
-  const padLeftRight = `${theme.spacing.unit}px`
   return ({
-    datesXS: {
-      display: 'flex',
-      flexFlow: 'row nowrap',
+    svg: {
+      width: 10,
+      color: 'blue',
     },
-    actions: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'space-around',
-      flexBasis: '10%',
-    },
-    title: {
-      padding: `${padTopBottom} ${padLeftRight} ${padTopBottom} ${padLeftRight}`,
-      flexBasis: '45%',
-      flexFlow: 'column',
-      backgroundColor: 'tan',
+    detail: {
+      padding: theme.spacing.unit,
     },
     date: {
-      padding: `${padTopBottom} ${padLeftRight} ${padTopBottom} ${padLeftRight}`,
-      // flexBasis: '25%',
+      padding: theme.spacing.unit,
       display: 'flex',
       flexFlow: 'column',
       justifyContent: 'center',
-      backgroundColor: 'pink',
-    },
-    price: {
-      padding: `${padTopBottom} ${padLeftRight} ${padTopBottom} ${padLeftRight}`,
-      flexBasis: '20%',
-      display: 'flex',
-      flexFlow: 'column',
-      justifyContent: 'center',
-      backgroundColor: 'yellow',
-      // height: '100%',
+      backgroundColor: blue[500],
+      color: 'white',
     },
     wrapper: {
       display: 'flex',
       flexFlow: 'row nowrap',
-      [theme.breakpoints.down('xs')]: {
-        flexFlow: 'column nowrap',
-      }
     },
   })
 }
@@ -134,11 +97,3 @@ export default compose(
   withWidth(),
   withStyles(styles)
 )(Event)
-
-
-/*
-<div>{format(n.endDateTime, dateFormat)}</div>
-                  <div>{format(n.endDateTime, timeFormat)}</div>
-*/
-
-// {n.price || 'Free'}

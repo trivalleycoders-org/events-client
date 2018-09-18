@@ -1,11 +1,12 @@
+
 import format from 'date-fns/format'
+import { green } from 'logger'
 
 const moDayYrFormat = 'MMM d, YYYY'
 const moDayFormat = 'MMM d'
 const timeFormat = 'h:mm a'
 const dayFormat = 'd'
-const moYrformat = 'MMM YYYY'
-
+const moYrFormat = 'MMM YYYY'
 /*
    returns formated date as string according to parameters sent
    - moDayYr: Sep 21, 2018
@@ -16,6 +17,19 @@ const moYrformat = 'MMM YYYY'
 */
 
 
-const dateFormat = (date, format) => {
-  {format(event.endDateTime, dateFormat)}
+export const dateFormat = (date, style) => {
+  green('date', date)
+  switch (style) {
+    case 'moDay':
+      return format(date, moDayFormat)
+    case 'time':
+      return format(date, timeFormat)
+    case 'day':
+      return format(date, dayFormat)
+    case 'moYr':
+      return format(date, moYrFormat)
+    case 'moDayYr':
+    default:
+      return format(date, moDayYrFormat)
+  }
 }
