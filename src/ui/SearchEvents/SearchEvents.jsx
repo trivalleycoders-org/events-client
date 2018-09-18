@@ -15,7 +15,6 @@ import * as requestSelectors from '../../store/selectors/request-selectors'
 
 import { eventsSearchReadRequestKey } from 'store/actions/search-actions'
 import EventsGrid from 'ui/EventsGrid'
-import SearchBox from 'ui/SearchBox'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -52,7 +51,6 @@ class SearchEvents extends React.Component {
     } else {
       return (
         <div className={classes.pageMock}>
-          <SearchBox />
           <EventsGrid
             events={events}
           />
