@@ -8,12 +8,12 @@ import { green } from 'logger'
 class UploadImage extends React.Component {
 
   picker = (props) => {
-    const { onChange, ...rest } = props.input
-    const { initial } = props.meta
     const { enableEdit } = props
+
+    const { onChange } = props.input
+    const { initial } = props.meta
     return (
       <Component
-        {...rest}
         onChange={onChange}
         initial={initial}
         enableEdit={enableEdit}
