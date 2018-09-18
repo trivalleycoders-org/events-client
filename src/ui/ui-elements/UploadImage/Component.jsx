@@ -60,7 +60,6 @@ class UploadImage extends React.Component {
     this.props.onChange(this.props.uploadedImageUrl)
   }
   removeImage = () => {
-    green('removeImage()')
     this.setState({
       imageUrl: undefined
     })
@@ -68,7 +67,6 @@ class UploadImage extends React.Component {
   }
   render() {
     const { classes, enableEdit } = this.props
-    green('Component: enableEdit', enableEdit)
     return (
       <div className={classes.wrapper}>
         <div className={classes.p1}>

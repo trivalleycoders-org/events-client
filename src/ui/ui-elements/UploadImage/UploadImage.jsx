@@ -8,11 +8,9 @@ import { green } from 'logger'
 class UploadImage extends React.Component {
 
   picker = (props) => {
-    green('picker props', props)
     const { onChange, ...rest } = props.input
     const { initial } = props.meta
     const { enableEdit } = props
-    green('rest', rest)
     return (
       <Component
         {...rest}
@@ -24,7 +22,6 @@ class UploadImage extends React.Component {
   }
   render() {
     const { fieldLabel, fieldName, enableEdit } = this.props
-    green('enableEdit', enableEdit)
     return (
       <Field
         component={this.picker}
