@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Button,
-  MenuItem,
   Typography,
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
@@ -21,7 +20,6 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 
 import ChipRedux from 'ui/ui-elements/ChipRedux'
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
-import SelectRedux from 'ui/ui-elements/SelectRedux'
 import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
 import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import styles from './styles'
@@ -40,7 +38,6 @@ const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues, currentUserId) => {
-  green('formValues', formValues)
   // dates
   const dates = pick(['combinedDateTime'], formValues)
   // postalCode - server expects postalCode._id which it uses to lookup
@@ -56,8 +53,6 @@ const shapeDataOut = (formValues, currentUserId) => {
     {postalCodeId: postalCodeId},
     {userId: currentUserId}
   ])
-  green('validate', validateModel(Event, mergedData))
-  green('shapeDataOut OUT:', mergedData)
   return mergedData
 }
 class EventForm extends React.Component {
@@ -74,7 +69,6 @@ class EventForm extends React.Component {
   }
 
   onSubmit = (values) => {
-    // shapeCheck(values)
     const { mode, eventCreateRequest, eventUpdateOneRequest, editIdUnset } = this.props
     const reshapedData = shapeDataOut(values, this.props.currentUserId)
 
@@ -189,17 +183,6 @@ class EventForm extends React.Component {
               fieldName='free'
               onChange={() => this.freeClick()}
             />
-            <SelectRedux
-              fieldName='category'
-              fieldLabel='Category'
-              fullWidth
-              required={true}
-            >
-              <MenuItem value='select' disabled>Select a category *</MenuItem>
-              <MenuItem value='quadcopter'>Quadcopter</MenuItem>
-              <MenuItem value='octocopter'>Octocopter</MenuItem>
-              <MenuItem value='battleDrone'>Battle Drone</MenuItem>
-            </SelectRedux>
             <ChipRedux
               fieldLabel='Tags'
               fieldName='tags'
@@ -208,10 +191,6 @@ class EventForm extends React.Component {
               <Button type='button' onClick={() => this.onCancel(pristine)} disabled={submitting}>
                 Cancel
               </Button>
-              {/* <Button type='submit' disabled={pristine || submitting}>
-                Submit
-              </Button> */}
-
               <Button
                 type='button'
                 onClick={handleSubmit(this.onSubmit)}
@@ -219,8 +198,8 @@ class EventForm extends React.Component {
               >
                 Submit
               </Button>
-              <Button type='button' disabled={pristine || submitting} onClick={reset}>
-                Clear Values
+              <Button type='button' color='secondary' disabled={submitting} onClick={reset}>
+                Delete
               </Button>
             </div>
           </form>
