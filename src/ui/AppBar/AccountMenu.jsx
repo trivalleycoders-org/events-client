@@ -21,10 +21,16 @@ import { nameFromEmail } from 'lib/nameFromEmail'
 // eslint-disable-next-line
 import { green } from 'logger'
 
+
+const linkStyle = {
+  textDecoration: 'none'
+}
+
 class AccountMenu extends React.Component {
   state = {
     open: false,
   }
+
   handleToggle = () => {
     this.setState(state => ({ open: !state.open }))
   }
@@ -68,9 +74,8 @@ class AccountMenu extends React.Component {
               <Paper>
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'profile')}>Profile</MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings'>Settings</Link></MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/events'>Logout</Link></MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings' style={linkStyle}>Settings</Link></MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/events' style={linkStyle}>Logout</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
