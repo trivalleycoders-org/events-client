@@ -15,7 +15,6 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 import * as appMenuActions from 'store/actions/app-menu-actions'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
-import Breakpoints from 'ui/ui-elements/Breakpoints'
 
 /* Dev */
 // eslint-disable-next-line
@@ -42,7 +41,6 @@ class MainAppBar extends React.Component {
             <Typography variant='title' color='inherit' className={classes.flex}>
               Drone Events
             </Typography>
-            <Breakpoints />
             {width !== 'xs'
               ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
               : null
