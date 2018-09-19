@@ -16,7 +16,7 @@ const fetchPostalCodes = pDebounce(
           method: 'GET',
         }
       )
-      pink('fetchPostalCodes: data.data', data.data)
+      // pink('fetchPostalCodes: data.data', data.data)
       return data.data
     }
     catch (e) {
