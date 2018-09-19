@@ -57,7 +57,7 @@ const EventGrid = (props) => {
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
                   <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {formattedDate(c.startDateTime)}
+                    {formattedDate(c.dates.startDateTime)}
                   </Typography>
                   <Typography variant='subheading' component='p' className={classes.title}>
                     {c.title}

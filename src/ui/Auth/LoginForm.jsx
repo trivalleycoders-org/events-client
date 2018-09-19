@@ -49,6 +49,7 @@ class LoginForm extends React.Component {
               fullWidth
               required={true}
               error={true}
+              enableEdit={true}
             />
             <TextFieldRedux
               fieldName='password'
@@ -57,6 +58,7 @@ class LoginForm extends React.Component {
               fullWidth
               required={true}
               error={true}
+              enableEdit={true}
             />
             <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
               Submit
