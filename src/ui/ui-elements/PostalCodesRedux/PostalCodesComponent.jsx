@@ -32,10 +32,19 @@ class PostalCodesRedux extends React.Component {
     // green('suggestions.length', this.props.suggestions.length)
     // When the user selects a postal code  redux will have only one suggestion
     // Return this suggestion to redux-form
+    green('suggestions[0]', this.props.suggestions[0])
+
+
+
+
+
+
+
     this.props.onChange(this.props.suggestions[0])
   }
   render() {
     const { classes, suggestions } = this.props
+    green('postalCodesComponent: props', this.props)
     // green('suggestions', suggestions)
     return (
       <div className={classes.root}>
@@ -46,6 +55,7 @@ class PostalCodesRedux extends React.Component {
           {
             downshift => {
               const {
+                // defaultSelectedItem=
                 getInputProps,
                 getItemProps,
                 getMenuProps,
