@@ -73,7 +73,7 @@ class App extends React.Component {
           <div className={classes.body}>
             <Switch>
               <Route exact path='/typography' component={TypographyGuide} />
-              <Route exact path='/new-event' component={EventForm} />
+              <PrivateRoute exact path='/new-event' component={EventForm} />
               <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
               <Route exact path='/register' component={RegisterForm} />
               <Route exact path='/login' component={LoginForm} />
