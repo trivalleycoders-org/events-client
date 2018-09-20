@@ -10,7 +10,7 @@ import { green, red } from '@material-ui/core/colors'
 import { green as grn } from 'logger'
 
 const Button = (props) => {
-  grn('Button: props', props)
+  // grn('Button: props', props)
   const { classes, color, children, onClick } = props
   // const btnStyle = {
   //   color: theme.palette.getContrastText(green[500]),

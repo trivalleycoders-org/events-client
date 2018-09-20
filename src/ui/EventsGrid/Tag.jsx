@@ -3,6 +3,14 @@ import { withStyles } from '@material-ui/core/styles'
 // eslint-disable-next-line
 // import { green } from 'logger'
 
+const Tag = ({ classes, label }) => {
+  return (
+    <div className={classes.tagWrapper}>
+      <a href='#' className={classes.tag}>#{label}</a>
+    </div>
+  )
+}
+
 const styles = theme => ({
   tagWrapper: {
     marginRight: '10px',
@@ -11,7 +19,7 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.common.black,
     /* eslint-disable */
     fontFamily: "'Roboto Condensed', sans-serif",
     /* eslint-disable */
@@ -23,12 +31,5 @@ const styles = theme => ({
     textTransform: 'capitalize',
   }
 })
-const Tag = ({ classes, label }) => {
-  return (
-    <div className={classes.tagWrapper}>
-      <a href='#' className={classes.tag}>#{label}</a>
-    </div>
-  )
-}
 
 export default withStyles(styles)(Tag)
