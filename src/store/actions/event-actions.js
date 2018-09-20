@@ -1,6 +1,8 @@
 import { createRequestThunk, logError } from './action-helpers'
 import api from 'api'
 import { snackbarSet } from './snackbar-actions'
+import { pageMessage } from './page-message-actions'
+
 /* Dev */
 // eslint-disable-next-line
 import { orange } from 'logger'
@@ -37,7 +39,7 @@ export const eventsRead = (events) => {
 export const eventsReadRequest = createRequestThunk({
   request: api.events.read,
   key: eventsReadRequestKey,
-  success: [eventsRead, () => snackbarSet('Events loaded', 'success')],
+  success: [eventsRead, () => snackbarSet('Events loaded', 'success'), () => pageMessage('')],
   failure: [(error) => snackbarSet('Could not get events', 'error')]
 })
 

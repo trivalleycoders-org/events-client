@@ -6,13 +6,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
-import DraftsIcon from '@material-ui/icons/Drafts'
-import StarIcon from '@material-ui/icons/Star'
-import SendIcon from '@material-ui/icons/Send'
-import MailIcon from '@material-ui/icons/Mail'
-import DeleteIcon from '@material-ui/icons/Delete'
-import ReportIcon from '@material-ui/icons/Report'
-
 import { Home, Event } from '@material-ui/icons'
 
 const linkStyle = {
@@ -21,67 +14,67 @@ const linkStyle = {
 
 export const menuLoggedOut = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <Home />
-      </ListItemIcon>
-      <Link to='/' style={linkStyle}>
+    <Link to='/' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <Home />
+        </ListItemIcon>
         <ListItemText primary='Home' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <Link to='/register' style={linkStyle}>
+      </ListItem>
+    </Link>
+    <Link to='/register' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
         <ListItemText primary='Register' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <Link to='/login' style={linkStyle}>
+      </ListItem>
+    </Link>
+    <Link to='/login' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
         <ListItemText primary='Login' />
-      </Link>
-    </ListItem>
+      </ListItem>
+    </Link>
   </div>
 )
 
 export const menuLoggedIn = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <Home />
-      </ListItemIcon>
-      <Link to='/' style={linkStyle}>
+    <Link to='/' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <Home />
+        </ListItemIcon>
         <ListItemText primary='Home' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <Event />
-      </ListItemIcon>
-      <Link to='/new-event' style={linkStyle}>
+      </ListItem>
+    </Link>
+    <Link to='/new-event' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <Event />
+        </ListItemIcon>
         <ListItemText primary='New Event' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <Link to='/my-events' style={linkStyle}>
+      </ListItem>
+    </Link>
+    <Link to='/my-events' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
         <ListItemText primary='My Events' />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <Link to='/settings' style={linkStyle}>
+      </ListItem>
+    </Link>
+    <Link to='/settings' style={linkStyle}>
+      <ListItem button>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
         <ListItemText primary='Settings' />
-      </Link>
-    </ListItem>
+      </ListItem>
+    </Link>
   </div>
 )
 
