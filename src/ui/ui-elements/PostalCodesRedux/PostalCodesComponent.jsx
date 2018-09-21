@@ -32,25 +32,22 @@ class PostalCodesRedux extends React.Component {
     // green('suggestions.length', this.props.suggestions.length)
     // When the user selects a postal code  redux will have only one suggestion
     // Return this suggestion to redux-form
+
+    // suggestions are same shape as location from db
     green('suggestions[0]', this.props.suggestions[0])
-
-
-
-
-
-
 
     this.props.onChange(this.props.suggestions[0])
   }
   render() {
-    const { classes, suggestions } = this.props
+    const { classes, suggestions, initial } = this.props
+    const initialValue = initial !== undefined ? initial.searchString : ''
     green('postalCodesComponent: props', this.props)
     // green('suggestions', suggestions)
     return (
       <div className={classes.root}>
         <Downshift
           onInputValueChange={this.onInputValueChange}
-          // itemToString={item => (item ? item.searchString : '')}
+          defaultInputValue={initialValue}
         >
           {
             downshift => {
@@ -80,6 +77,7 @@ class PostalCodesRedux extends React.Component {
                       <Paper className={classes.paper} square>
                         {
                           suggestions.map((suggestion, index) => {
+                            green('map suggestion', suggestion)
                             return (
                               renderSuggestion({
                                 suggestion,

@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { mergeAll, omit, pick, prop, zipObj } from 'ramda'
+import { mergeAll, omit, path, pick, prop, zipObj } from 'ramda'
 import isBefore from 'date-fns/isBefore'
 
 /* User */
@@ -28,6 +28,7 @@ import AreYouSure from './AreYouSure'
 import { validateModel } from 'models'
 import Event from './EventModel'
 import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
+import Toolbar from './Toolbar'
 
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
@@ -133,6 +134,7 @@ class EventForm extends React.Component {
                   </Typography></div>
               : null
           }
+          <Toolbar />
           <form>
             <UploadImage
               fieldName='imageUrl'
@@ -177,7 +179,7 @@ class EventForm extends React.Component {
               enableEdit={true}
             />
             <PostalCodesRedux
-              fieldName='postalCode'
+              fieldName='location'
               fieldLabel='Postal Code'
               required={false}
               enableEdit={true}
@@ -248,13 +250,14 @@ const mapStateToProps = (state) => {
   const currentUserId = authSelectors.getUserId(state)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
-    const startDate = prop('startDateTime', data)
+    const startDate = path(['dates', 'startDateTime'], data)
     const pastEvent = isBefore(startDate, new Date())
-    const shapedData = shapeDataIn(data)
+    const free = path(['free'], data) === undefined ? false :  true
+    // const shapedData = shapeDataIn(data)
 
     return {
-      free: prop('free', shapedData),
-      initialValues: shapedData,
+      free: free,
+      initialValues: data,
       mode,
       pastEvent,
       currentUserId,

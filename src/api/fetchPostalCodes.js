@@ -11,7 +11,7 @@ const fetchPostalCodes = pDebounce(
   async (searchString) => {
     try {
       const data = await fetchJson(
-        `/location/postal-codes/${searchString}`,
+        `/location/postal-code/${searchString}`,
         {
           method: 'GET',
         }

@@ -135,7 +135,7 @@ export default {
             method: 'GET',
           }
         )
-        // pink('api.events.read: data', data)
+        pink('api.events.read: data', data)
         return data.data
       }
       catch (e) {
