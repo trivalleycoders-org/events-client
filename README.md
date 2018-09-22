@@ -50,20 +50,25 @@ $ yarn start
 # Roadmap
 At this point, early September 2018, we are a few weeks from out first beta release.
 There is no official roadmap yet but you can browse our backlog and icebox issues to see what we are thinking about.
+Beta
+- Demo/beta app live: Sep 26, 2018
+- Final design from designer: Sep 25, 2018
+- Implementing the design: Sep 25 - Oct 10, 2018
+- Code freeze for beta Oct 10, 2018
 
 
 # Contributing
-We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are working on styling, tweaking UI and mopping up bugs.
+We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are implementing a new design and mopping up bugs.
 
-We like helping people learn so you know JS & CSS let's chat.
+We enjoy helping contributors. If you know JS, CSS & some amount of React, Express or MongoDB contact by opening an issue marked Question.
 
 What do we need right now?
 
-- We aren't designers. If you are a designer who also writes CSS and wants to learn to style a React app, we are happy to teach you in exchange for your making our app look good.
+- Implementing our new design using Material UI
 
-- Our server-side test coverage is good but our client-side coverage has fallen behind. If you would like a place to learn and/or practice writing test please let us know.
+- Writing tests: Our server-side test coverage is good but needs some updates. Our client-side coverage is not where it should be. There are lots of test to write. If you would like a place to learn and/or practice writing test please let us know.
 
-- Help implementing design (i.e., css and JSX as needed)
+- Help implementing design (i.e., CSS and JSX as needed)
 
 - Bug fixing
 
@@ -73,12 +78,10 @@ What do we need right now?
   - making registration, login & account components more inviting (they are just edit boxes on page at the moment - so plain)
   - Social media integration
 
-Contact us by opening an issue marked as 'question'
-
 # Who are we?
 
 A group of people who love making software and sharing our knowledge with others.
 
 [TriValley Coders](http://trivalleycoders.org)
 
-[on Meetup](https://www.meetup.com/trivalleycoders/)
+[On Meetup](https://www.meetup.com/trivalleycoders/)
