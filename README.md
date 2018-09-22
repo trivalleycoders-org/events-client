@@ -84,8 +84,11 @@ A group of people who love making software and sharing our knowledge with others
 
 [TriValley Coders](http://trivalleycoders.org)
 
-[On Meetup](https://www.meetup.com/trivalleycoders/)
+[Free bi-weekly Meetup](https://www.meetup.com/trivalleycoders/)
 
 # Sponsors
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Horizontal_Blue.png">](https://www.browserstack.com/)
+[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Horizontal_Blue.png">](https://www.digitalocean.com/)
+
+
+[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png">](https://briia.io/)
