@@ -88,7 +88,7 @@ A group of people who love making software and sharing our knowledge with others
 
 # Sponsors
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Horizontal_Blue.png">](https://www.digitalocean.com/)
+[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Horizontal_Blue.png" width="300">](https://www.digitalocean.com/)
 
 
 [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png">](https://briia.io/)
