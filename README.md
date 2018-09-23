@@ -100,7 +100,7 @@ A group of people who love making software and sharing our knowledge with others
 
 <div  style="text-align: center">
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="200">](https://www.digitalocean.com/)
+[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="100">](https://www.digitalocean.com/)
 
 <p>Provides hosting</p>
 
