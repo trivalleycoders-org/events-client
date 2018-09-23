@@ -32,6 +32,7 @@ Images for Events are the same size as images for Facebook, Meetup & EventBrite 
 
 # Use
 
+**Clone the Repositories**
 Client - this repository
 Server - https://github.com/trivalleycoders-org/events-server
 
@@ -45,9 +46,21 @@ Full instructions on loading data will be available soon. In the meantime, the c
 - Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
 - The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
 
+**Dev Database Setup**
+Using MongoDB Compass
+- Create a database named EventsDev with the initial collection 
+- Create 2 more collections: 'postalCodes' and 'users'
+
+**Import Data**
+Using the data collections [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections), use Compass to import data as follows
+
+|Collection Name|File to Import|
+|events         |events-collection.json|
+|postalCodes    |postalCodes.json      |
+|users          |users.json            |
 
 
-- Clone the repositories
+
 ```
 
 $ git clone https://github.com/trivalleycoders-org/events-server
