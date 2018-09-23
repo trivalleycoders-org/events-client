@@ -15,10 +15,15 @@ All current events posted by registered users are shown.
 Images for Events are the same size as images for Facebook, Meetup & EventBrite allowing user to use the same image they created for these sites.
 
 ## Tech Stack
-Client: React, Redux, Redux Form, Redux Thunk, Material UI, date-fns, Ramda
-Server: Express, AWS SDK, JSON Web Tokens, Passport
-File storage: Amazon S3
-Database: MongoDB on Atlas
+**Client:** React, Redux, Redux Form, Redux Thunk, Material UI, date-fns, Ramda
+
+**Server:** Express, AWS SDK, JSON Web Tokens, Passport
+
+**File storage:** Amazon S3
+
+**Database:** MongoDB on Atlas
+
+**Hosting - client & server:** DigitalOcean
 
 ## Purpose of the app
 - Show how we build full-stack web apps.
@@ -33,8 +38,7 @@ Database: MongoDB on Atlas
 ## Server
 - https://github.com/trivalleycoders-org/events-server
 
-## Use
-We don't have full instructions on loading test/dev data yet. However, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will will be happy to help. Other than that:
+Full instructions on loading data will be available soon. In the meantime, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will will be happy to help. Other than that:
 
 - Install MongoDB locally and run on the default port
 - The data collections are here: https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections
