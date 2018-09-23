@@ -101,7 +101,7 @@ We enjoy helping contributors. If you know JS, CSS & some amount of React, Expre
 If you want to contribute as a learning experience, here are some things you can do
 
 
-**More or less easy**
+**More or less easy** (from less hard to more hard)
 - Create a color palette page: This is a React component that reads the Material UI color pallete and displays rectangles of colors with text. It will be used ot help visualize what colors are available for use in the UI
 - Create the footer: This is static content. You would use Material UI and flexbox to arrange static content (images, text, links) in the footer according to the design spec.
 - Style one or more of these components according to the design spec
@@ -109,6 +109,8 @@ If you want to contribute as a learning experience, here are some things you can
   - Registration
   - ChangePassword
 - Header: The Header is mostly static content but contains the Search component that interacts with other components. It is currently working but needs styling
+
+**Writing tests**
 - Write server-side tests: We have a good set of server-side test but they need updating
 - Write client-side tests: We have a few that solve some of the hardes problems but test coverage on the client is low
 
