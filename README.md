@@ -88,21 +88,23 @@ A group of people who love making software and sharing our knowledge with others
 
 # Than you to our sponsors!
 
-<div style="display: flex; justify-content: space-around">
+<div style="display: flex; flex-flow: column nowrap; justify-content: space-around">
 
-<div  style="text-align: center">
+  <div  style="display: flex; align-items: center;">
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100">](https://briia.io/)
+  [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100">](https://briia.io/)
 
-<p>Provides Meeting Space</p>
+  <p style="padding-left: 30px">Provides Meeting Space</p>
 
 </div>
 
-<div  style="text-align: center">
+<div style="display: flex; flex-flow: column nowrap; justify-content: space-around">
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="100">](https://www.digitalocean.com/)
+  <div  style="display: flex; align-items: center;">
 
-<p>Provides hosting</p>
+  [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="120">](https://www.digitalocean.com/)
+
+  <p style="padding-left: 30px">Provides hosting</p>
 
 </div>
 
