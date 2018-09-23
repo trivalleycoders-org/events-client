@@ -4,6 +4,10 @@ Events is a technical demo to demonstrate how we create MERN stack apps.
 
 Events is a generic events application and can be used for any type of event. Our demo is using Drone Events. However, there is nothing at the core of the app that restricts it to drone events other than styling of the home page. Events could easily be used for other types of events.
 
+## Purpose of the app
+- Show how we build full-stack web apps.
+- Open source project that TriValley Coders members can contribute to and get mentoring.
+
 ## How it works
 
 Users must regester before they can post an event.
@@ -25,23 +29,23 @@ Images for Events are the same size as images for Facebook, Meetup & EventBrite 
 
 **Hosting - client & server:** DigitalOcean
 
-## Purpose of the app
-- Show how we build full-stack web apps.
-- Open source project that TriValley Coders members can contribute to and get mentoring.
-
 
 # Use
 
-## Client
-- This repository
+Client - this repository
+Server - https://github.com/trivalleycoders-org/events-server
 
-## Server
-- https://github.com/trivalleycoders-org/events-server
+Full instructions on loading data will be available soon. In the meantime, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will be happy to help. Other than that:
 
-Full instructions on loading data will be available soon. In the meantime, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will will be happy to help. Other than that:
+- Install MongoDB locally. MongoDB's installation instructions are excellent
+  - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
+  - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)  
+  - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-windows/)
 
-- Install MongoDB locally and run on the default port
-- The data collections are here: https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections
+- Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
+- The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
+
+
 
 - Clone the repositories
 ```
