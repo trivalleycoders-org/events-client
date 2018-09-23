@@ -112,7 +112,7 @@ If you want to contribute as a learning experience, here are some things you can
 
 **Writing tests**
 - Write server-side tests: We have a good set of server-side test but they need updating
-- Write client-side tests: We have a few that solve some of the hardes problems but test coverage on the client is low
+- Write client-side tests: We have a few that solve some of the hardest problems but test coverage on the client is low
 
 **Bug fixing**
 - Fixing bugs in an existing code base is difficult but an excellent way to learn.
