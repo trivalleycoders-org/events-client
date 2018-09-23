@@ -54,10 +54,11 @@ Using MongoDB Compass
 **Import Data**
 Using the data collections [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections), use Compass to import data as follows
 
-|Collection Name|File to Import|
-|events         |events-collection.json|
-|postalCodes    |postalCodes.json      |
-|users          |users.json            |
+|Collection Name|File to Import        
+|---------------|----------------------
+|events         |events-collection.json
+|postalCodes    |postalCodes.json      
+|users          |users.json            
 
 
 
