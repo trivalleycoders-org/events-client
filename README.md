@@ -95,12 +95,12 @@ $ yarn start
 You would want to contribute to this project because
 - You want to learn something and you can get __free mentoring__ from us
 - You want to create an events site of our own
-We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are implementing a new design and mopping up bugs.
-99
 
-We enjoy helping contributors. If you know JS, CSS & some amount of React, Express or MongoDB contact by opening an issue marked Question.
+We enjoy helping contributors. If you know JS, CSS & some amount of React, Express or MongoDB contact us by opening an issue marked 'question' and we will help you get started.
 
 If you want to contribute as a learning experience, here are some things you can do
+
+
 **More or less easy**
 - Create a color palette page: This is a React component that reads the Material UI color pallete and displays rectangles of colors with text. It will be used ot help visualize what colors are available for use in the UI
 - Create the footer: This is static content. You would use Material UI and flexbox to arrange static content (images, text, links) in the footer according to the design spec.
@@ -116,6 +116,7 @@ If you want to contribute as a learning experience, here are some things you can
 - Fixing bugs in an existing code base is difficult but an excellent way to learn.
 
 **Other**
+
 Not feeling up to coding? There is lot's to do including, UI design improvements & Documentation creation.
 
 
