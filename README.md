@@ -1,14 +1,31 @@
 # Events Client & Server
-__This readme is for both the client and server__
 
-For now, the focus is to list Drone Events, but could be forked and used for any type of event.
+Events is a technical demo to demonstrate how we create MERN stack apps.
 
-Events are created in this app and linked to the ticketing and/or registration site such as EventBrite or Meetup. You could use this app to add events to your website.
+Events is a generic events application and can be used for any type of event. Our demo is using Drone Events. However, there is nothing at the core of the app that restricts it to drone events other than styling of the home page. Events could easily be used for other types of events.
 
-The app uses material-ui (which is Material Design) with a full theme file so it can easily be modified in terms of colors, fonts, etc.
+## How it works
+
+Users must regester before they can post an event.
+
+Events created in this app and linked to a ticketing and/or registration site such as EventBrite or Meetup.
+
+All current events posted by registered users are shown.
+
+Images for Events are the same size as images for Facebook, Meetup & EventBrite allowing user to use the same image they created for these sites.
+
+## Tech Stack
+Client: React, Redux, Redux Form, Redux Thunk, Material UI, date-fns, Ramda
+Server: Express, AWS SDK, JSON Web Tokens, Passport
+File storage: Amazon S3
+Database: MongoDB on Atlas
 
 ## Purpose of the app
-Events is a technical demo to demonstrate how we create a MERN stack app. In a few weeks there will be a technical presentation explaining the architecture of the app.
+- Show how we build full-stack web apps.
+- Open source project that TriValley Coders members can contribute to and get mentoring.
+
+
+# Use
 
 ## Client
 - This repository
@@ -58,6 +75,7 @@ Beta
 
 
 # Contributing
+
 We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are implementing a new design and mopping up bugs.
 
 We enjoy helping contributors. If you know JS, CSS & some amount of React, Express or MongoDB contact by opening an issue marked Question.
@@ -88,7 +106,7 @@ A group of people who love making software and sharing our knowledge with others
 
 # Thank you to our sponsors!
 
-|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100px;"/><br/><sub><b>Meeting Space</b></sub>](https://briia.io)<br/>|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="100px;"/><br/><sub><b>Hosting</b></sub>](https://github.com/HillLiu)<br/>
+|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100px;"/><br/><sub><b>Meeting Space</b></sub>](https://briia.io)<br/>|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="100px;"/><br/><sub><b>Hosting</b></sub>](https://www.digitalocean.com/)<br/>
 | :---: | :---: |
 
 ## License
