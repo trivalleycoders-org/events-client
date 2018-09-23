@@ -32,11 +32,13 @@ Images for Events are the same size as images for Facebook, Meetup & EventBrite 
 
 # Use
 
-**Clone the Repositories**
-Client - this repository
-Server - https://github.com/trivalleycoders-org/events-server
+If you would like to contribute open an issue labeled 'question' and we will help you get started.
 
-Full instructions on loading data will be available soon. In the meantime, the collections are available if you know how to load data into MongoDB. If you want to try the app open an issue marked 'question' and we will be happy to help. Other than that:
+**Clone the Repositories**
+
+Client - https://github.com/trivalleycoders-org/events-client (this repository)
+
+Server - https://github.com/trivalleycoders-org/events-server
 
 - Install MongoDB locally. MongoDB's installation instructions are excellent
   - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
@@ -44,11 +46,12 @@ Full instructions on loading data will be available soon. In the meantime, the c
   - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-windows/)
 
 - Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
+
 - The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
 
 **Dev Database Setup**
 Using MongoDB Compass
-- Create a database named EventsDev with the initial collection 
+- Create a database named 'EventsDev' with the initial collection named 'events'
 - Create 2 more collections: 'postalCodes' and 'users'
 
 **Import Data**
@@ -61,14 +64,7 @@ Using the data collections [data collections](https://github.com/trivalleycoders
 |users          |users.json            
 
 
-
-```
-
-$ git clone https://github.com/trivalleycoders-org/events-server
-
-$ git clone https://github.com/trivalleycoders-org/events-client
-
-```
+**Start-up the App**
 
 - Start the server. It will run on port 3030
 
