@@ -86,9 +86,28 @@ A group of people who love making software and sharing our knowledge with others
 
 [Free bi-weekly Meetup](https://www.meetup.com/trivalleycoders/)
 
-# Sponsors
+# Than you to our sponsors!
+
+<div style="display: flex; justify-content: space-around">
+
+<div  style="text-align: center">
 
 [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Horizontal_Blue.png" width="300">](https://www.digitalocean.com/)
 
+<p>Provides hosting</p>
 
-[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png">](https://briia.io/)
+</div>
+
+<div  style="text-align: center">
+
+[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100">](https://briia.io/)
+
+<p>Provides Meeting Space</p>
+
+</div>
+
+</div>
+
+## License
+This project is licensed under the terms of the
+[MIT license](/LICENSE).
