@@ -86,32 +86,16 @@ A group of people who love making software and sharing our knowledge with others
 
 [Free bi-weekly Meetup](https://www.meetup.com/trivalleycoders/)
 
-# Than you to our sponsors!
+# Thank you to our sponsors!
 
-<div style="display: flex; flex-flow: column nowrap; justify-content: space-around">
-
-  <div  style="display: flex; align-items: center;">
-
-  [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100">](https://briia.io/)
-
-  <p style="padding-left: 30px">Provides Meeting Space</p>
-
-</div>
-
-<div style="display: flex; flex-flow: column nowrap; justify-content: space-around">
-
-  <div  style="display: flex; align-items: center;">
-
-  [<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="120">](https://www.digitalocean.com/)
-
-  <p style="padding-left: 30px">Provides hosting</p>
-
-</div>
-
-
-
-</div>
+|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/briia-logo.png" width="100px;"/><br/><sub><b>Meeting Space</b></sub>](https://briia.io)<br/>|[<img src="https://s3-us-west-2.amazonaws.com/trivalleycoders-images/DO_Logo_Vertical_Blue.png" width="100px;"/><br/><sub><b>Hosting</b></sub>](https://github.com/HillLiu)<br/>
+| :---: | :---: |
 
 ## License
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
+
+
+
+
+
