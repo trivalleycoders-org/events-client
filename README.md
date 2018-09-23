@@ -2,7 +2,7 @@
 
 Events is a technical demo to demonstrate how we create MERN stack apps.
 
-Events is a generic events application and can be used for any type of event. Our demo is using Drone Events. However, there is nothing at the core of the app that restricts it to drone events other than styling of the home page. Events could easily be used for other types of events.
+Events is a generic events application and can be used for any type of event. Our demo is using Drone Events. However, there is nothing at the core of the app that restricts it to drone events other than styling of the home page. Events could easily be used for any type of events.
 
 ## Purpose of the app
 - Show how we build full-stack web apps.
@@ -12,11 +12,11 @@ Events is a generic events application and can be used for any type of event. Ou
 
 Users must regester before they can post an event.
 
-Events created in this app and linked to a ticketing and/or registration site such as EventBrite or Meetup.
+Events created in this app are linked to a ticketing and/or registration site such as EventBrite or Meetup.
 
 All current events posted by registered users are shown.
 
-Images for Events are the same size as images for Facebook, Meetup & EventBrite allowing user to use the same image they created for these sites.
+Images for Events are the same size as images for Facebook, Meetup & EventBrite, allowing user to use the same image they created for these sites.
 
 ## Tech Stack
 **Client:** React, Redux, Redux Form, Redux Thunk, Material UI, date-fns, Ramda
@@ -32,7 +32,7 @@ Images for Events are the same size as images for Facebook, Meetup & EventBrite 
 
 # Use
 
-If you would like to contribute open an issue labeled 'question' and we will help you get started.
+If you would like to contribute, open an issue labeled 'question' and we will help you get started.
 
 **Clone the Repositories**
 
@@ -40,6 +40,7 @@ Client - https://github.com/trivalleycoders-org/events-client (this repository)
 
 Server - https://github.com/trivalleycoders-org/events-server
 
+**Install MongoDB & Compass**
 - Install MongoDB locally. MongoDB's installation instructions are excellent
   - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
   - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)  
@@ -47,14 +48,13 @@ Server - https://github.com/trivalleycoders-org/events-server
 
 - Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
 
-- The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
-
 **Dev Database Setup**
+- The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
 Using MongoDB Compass
 - Create a database named 'EventsDev' with the initial collection named 'events'
 - Create 2 more collections: 'postalCodes' and 'users'
 
-**Import Data**
+**Import Dev Data**
 Using the data collections [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections), use Compass to import data as follows
 
 |Collection Name|File to Import        
@@ -62,7 +62,6 @@ Using the data collections [data collections](https://github.com/trivalleycoders
 |events         |events-collection.json
 |postalCodes    |postalCodes.json      
 |users          |users.json            
-
 
 **Start-up the App**
 
@@ -74,7 +73,7 @@ $ yarn install
 $ yarn start
 ```
 
-- Start the client. It currently tries to get port 3000
+- Start the client. It currently tries to get port 3000 but will grab the next available port if needed.
 
 ```
 $ cd /events-client
