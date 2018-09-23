@@ -5,12 +5,12 @@ Events is a technical demo to demonstrate how we create MERN stack apps.
 Events is a generic events application and can be used for any type of event. Our demo is using Drone Events. However, there is nothing at the core of the app that restricts it to drone events other than styling of the home page. Events could easily be used for any type of events.
 
 ## Purpose of the app
-- Show how we build full-stack web apps.
+- Show how we build full-stack/MERN web apps.
 - Open source project that TriValley Coders members can contribute to and get mentoring.
 
-## How it works
+## How the app works
 
-Users must regester before they can post an event.
+Users must register before they can post an event.
 
 Events created in this app are linked to a ticketing and/or registration site such as EventBrite or Meetup.
 
@@ -49,13 +49,14 @@ Server - https://github.com/trivalleycoders-org/events-server
 - Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
 
 **Dev Database Setup**
-- The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
+The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
+
 Using MongoDB Compass
 - Create a database named 'EventsDev' with the initial collection named 'events'
 - Create 2 more collections: 'postalCodes' and 'users'
 
 **Import Dev Data**
-Using the data collections [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections), use Compass to import data as follows
+Use Compass to import the [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections):
 
 |Collection Name|File to Import        
 |---------------|----------------------
@@ -82,9 +83,7 @@ $ yarn start
 ```
 
 # Roadmap
-At this point, early September 2018, we are a few weeks from out first beta release.
-There is no official roadmap yet but you can browse our backlog and icebox issues to see what we are thinking about.
-Beta
+
 - Demo/beta app live: Sep 26, 2018
 - Final design from designer: Sep 25, 2018
 - Implementing the design: Sep 25 - Oct 10, 2018
@@ -93,25 +92,33 @@ Beta
 
 # Contributing
 
+You would want to contribute to this project because
+- You want to learn something and you can get __free mentoring__ from us
+- You want to create an events site of our own
 We would love to have contributers. At this point, early September 2018, we are a few weeks from out first beta release. We are implementing a new design and mopping up bugs.
+99
 
 We enjoy helping contributors. If you know JS, CSS & some amount of React, Express or MongoDB contact by opening an issue marked Question.
 
-What do we need right now?
+If you want to contribute as a learning experience, here are some things you can do
+**More or less easy**
+- Create a color palette page: This is a React component that reads the Material UI color pallete and displays rectangles of colors with text. It will be used ot help visualize what colors are available for use in the UI
+- Create the footer: This is static content. You would use Material UI and flexbox to arrange static content (images, text, links) in the footer according to the design spec.
+- Style one or more of these components according to the design spec
+  - Login
+  - Registration
+  - ChangePassword
+- Header: The Header is mostly static content but contains the Search component that interacts with other components. It is currently working but needs styling
+- Write server-side tests: We have a good set of server-side test but they need updating
+- Write client-side tests: We have a few that solve some of the hardes problems but test coverage on the client is low
 
-- Implementing our new design using Material UI
+**Bug fixing**
+- Fixing bugs in an existing code base is difficult but an excellent way to learn.
 
-- Writing tests: Our server-side test coverage is good but needs some updates. Our client-side coverage is not where it should be. There are lots of test to write. If you would like a place to learn and/or practice writing test please let us know.
+**Other**
+Not feeling up to coding? There is lot's to do including, UI design improvements & Documentation creation.
 
-- Help implementing design (i.e., CSS and JSX as needed)
 
-- Bug fixing
-
-- Work on future features. For example
-  - auto-complete for tags
-  - input masks
-  - making registration, login & account components more inviting (they are just edit boxes on page at the moment - so plain)
-  - Social media integration
 
 # Who are we?
 
