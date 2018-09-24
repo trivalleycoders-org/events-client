@@ -29,6 +29,26 @@ Images for Events are the same size as images for Facebook, Meetup & EventBrite,
 
 **Hosting - client & server:** DigitalOcean
 
+# Local Dev Machine Setup
+MongoDB, MongoDB Compass, Yarn, Chrome &/or Firefox Developer Edition
+
+**Install MongoDB**
+- Install MongoDB locally. MongoDB's installation instructions are excellent
+  - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
+  - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)  
+  - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-windows/)
+
+**Install MongoDB Compass**
+- Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
+
+**Install Yarn**
+Using npm on a project maintained with Yarn causes versioning conflicts. 
+- [Install Yarn](https://yarnpkg.com/en/docs/install#windows-stable)
+
+**Browser Extensions**
+- React Developer Tools
+- Redux DevTools
+- JSON Lite (optional)
 
 # Use
 
@@ -40,16 +60,13 @@ Client - https://github.com/trivalleycoders-org/events-client (this repository)
 
 Server - https://github.com/trivalleycoders-org/events-server
 
-**Install MongoDB & Compass**
-- Install MongoDB locally. MongoDB's installation instructions are excellent
-  - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
-  - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)  
-  - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-windows/)
+Documentation and data collections: https://github.com/trivalleycoders-org/event-doc-and-admin
 
-- Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
 
 **Dev Database Setup**
 The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
+
+
 
 Using MongoDB Compass
 - Create a database named 'EventsDev' with the initial collection named 'events'
