@@ -30,7 +30,6 @@ const Xl = ({ classes, width }) => (
 )
 
 const Breakpoints = ({ classes, width }) => {
-  console.log('width', width)
   return (
     <React.Fragment>
       <Xs classes={classes} width={width}/>

@@ -44,7 +44,7 @@ const EventGrid = (props) => {
   return (
     <Grid container spacing={Number(32)} className={classes.outer} >
       {events.map(c => {
-        const location = `${c.cityName}, ${c.stateCode} ${c.postalCode}`
+        const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
         return (
           <Grid key={c._id} item xs={12} sm={6} md={4} >
             <Card className={classes.card}>
@@ -57,7 +57,7 @@ const EventGrid = (props) => {
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
                   <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {formattedDate(c.startDateTime)}
+                    {formattedDate(c.dates.startDateTime)}
                   </Typography>
                   <Typography variant='subheading' component='p' className={classes.title}>
                     {c.title}

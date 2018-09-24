@@ -12,7 +12,6 @@ import withWidth from '@material-ui/core/withWidth'
 import { compose } from 'recompose'
 
 const Breakpoints = ({ classes, width }) => {
-  console.log('width', width)
   return (
     <Typography variant='headline' className={classes.root}>{width}</Typography>
   )

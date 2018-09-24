@@ -16,39 +16,39 @@ class Combined extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      startDate: props.initial ? props.initial.startDate : null,
-      endDate: props.initial ? props.initial.startDate : null,
+      startDateTime: props.initial ? props.initial.startDateTime : null,
+      endDateTime: props.initial ? props.initial.startDateTime : null,
     }
   }
 
   localOnChange = (date, control) => {
     let sd
     let ed
-    if (control === 'startDate') {
+    if (control === 'startDateTime') {
       sd = date
       if (isBefore(ed, sd)) {
         ed = sd
       } else {
-        ed = this.state.endDate
+        ed = this.state.endDateTime
       }
     } else {
-      sd = this.state.startDate
+      sd = this.state.startDateTime
       ed = date
     }
 
     this.setState({
-      startDate: sd,
-      endDate: ed,
+      startDateTime: sd,
+      endDateTime: ed,
     })
 
     // calls redux-form onChange()
     this.props.onChange({
-      startDate: sd,
-      endDate: ed,
+      startDateTime: sd,
+      endDateTime: ed,
     })
   }
   render() {
-    const { startDate, endDate, /*errorEndDate, errorStartDate*/ } = this.state
+    const { startDateTime, endDateTime, /*errorEndDate, errorStartDate*/ } = this.state
     const { classes } = this.props
     return (
       <div className={classes.wrapper}>
@@ -67,9 +67,9 @@ class Combined extends React.Component {
               )
             }}
             minDate={startMinDate}
-            onChange={(date) => this.localOnChange(date, 'startDate')}
+            onChange={(date) => this.localOnChange(date, 'startDateTime')}
             required={true}
-            value={startDate}
+            value={startDateTime}
 
             // onClose={() => console.log('onCloase')}
             // onError={() => console.log('onError')}
@@ -88,11 +88,11 @@ class Combined extends React.Component {
               }}
             label='End Date / Time'
             fullWidth
-            minDate={startDate || new Date()}
+            minDate={startDateTime || new Date()}
             minDateMessage='End date must be after start date'
-            onChange={(date) => this.localOnChange(date, 'endDate')}
+            onChange={(date) => this.localOnChange(date, 'endDateTime')}
             required={true}
-            value={endDate}
+            value={endDateTime}
           />
         </div>
       </div>

@@ -17,6 +17,7 @@ import Chevron5 from './Chevron5'
 import { green } from 'logger'
 
 const Event = ({ classes, event, handleItemClick }) => {
+  green('event', event)
   return (
     <Paper className={classes.wrapper}>
       <Grid container>
@@ -26,13 +27,13 @@ const Event = ({ classes, event, handleItemClick }) => {
           className={classes.date}
         >
           <Title align='center' gutterBottom color='white'>
-            {dateFormat(event.startDateTime, 'day')}
+            {dateFormat(event.dates.startDateTime, 'day')}
           </Title>
           <Body1 align='center' color='white'>
-            {dateFormat(event.startDateTime, 'moYr')}
+            {dateFormat(event.dates.startDateTime, 'moYr')}
           </Body1>
           <Body1 align='center' color='white'>
-            {dateFormat(event.startDateTime, 'time')}
+            {dateFormat(event.dates.startDateTime, 'time')}
           </Body1>
         </Grid>
 
@@ -45,7 +46,7 @@ const Event = ({ classes, event, handleItemClick }) => {
             {event.title}
           </Body2>
           <Body1>
-            {event.cityName}, {event.stateCode}
+            {event.location.cityName}, {event.location.stateCode}
           </Body1>
         </Grid>
 

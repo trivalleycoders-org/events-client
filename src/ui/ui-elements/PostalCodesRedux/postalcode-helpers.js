@@ -8,7 +8,7 @@ import {
 import { green } from 'logger'
 
 export const renderInput = (inputProps) => {
-  green('inputProps', inputProps.InputProps.value)
+  // green('inputProps', inputProps.InputProps.value)
   const { InputProps, classes, ref, ...other } = inputProps
 
   return (

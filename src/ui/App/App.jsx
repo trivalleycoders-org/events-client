@@ -23,6 +23,7 @@ import PrivateRoute from 'ui/PrivateRoute'
 import TypographyGuide from 'ui/TypographyGuide'
 import Hero from 'ui/Hero'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
+import Palette from 'ui/Palette'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -73,7 +74,8 @@ class App extends React.Component {
           <div className={classes.body}>
             <Switch>
               <Route exact path='/typography' component={TypographyGuide} />
-              <PrivateRoute exact path='/new-event' component={EventForm} />
+              <Route exact path='/palette' component={Palette} />
+              <Route exact path='/new-event' component={EventForm} />
               <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
               <Route exact path='/register' component={RegisterForm} />
               <Route exact path='/login' component={LoginForm} />
