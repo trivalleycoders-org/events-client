@@ -19,6 +19,9 @@ import { CssBaseline } from '@material-ui/core'
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
+  props: {
+    x: 'custom prop'
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -169,6 +172,7 @@ const theme = createMuiTheme({
       /* eslint-enable */
       lineHeight: '1.46429em',
       color: 'rgba(0, 0, 0, 0.87)',
+      x: 'y'
     },
     caption: {
       fontSize: '0.75rem',

@@ -8,9 +8,6 @@ import {
   CardMedia,
   CardContent,
 } from '@material-ui/core'
-import { Favorite as FavoriteIcon } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
-import { Share as ShareIcon } from '@material-ui/icons'
 import { has } from 'ramda'
 
 /* User */
@@ -45,16 +42,17 @@ const EventGrid = (props) => {
   const { classes, events } = props
 
   return (
-    <Grid container spacing={Number(8)} className={classes.outer} >
+    <Grid container spacing={Number(32)} className={classes.outer} >
       {events.map(c => {
         const location = `${c.cityName}, ${c.stateCode} ${c.postalCode}`
         return (
-          <Grid key={c._id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Grid key={c._id} item xs={12} sm={6} md={4} >
             <Card className={classes.card}>
               <a href={c.linkToUrl} className={classes.link}>
                 <CardMedia
                   className={classes.media}
                   image={c.imageUrl}
+
                   >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
@@ -85,18 +83,7 @@ const EventGrid = (props) => {
                       : null
                   }
                 </div>
-                <div className={classes.actions}>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Add to favorites'>
-                      <FavoriteIcon />
-                    </IconButton>
-                  </div>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Share'>
-                      <ShareIcon />
-                    </IconButton>
-                  </div>
-                </div>
+
               </CardActions>
             </Card>
           </Grid>
@@ -176,3 +163,17 @@ const styles = {
 
 export default withStyles(styles)(EventGrid)
 
+/*
+<div className={classes.actions}>
+                  <div className={classes.action}>
+                    <IconButton aria-label='Add to favorites'>
+                      <FavoriteIcon />
+                    </IconButton>
+                  </div>
+                  <div className={classes.action}>
+                    <IconButton aria-label='Share'>
+                      <ShareIcon />
+                    </IconButton>
+                  </div>
+                </div>
+*/

@@ -5,9 +5,9 @@ import fontSizeFromString from 'lib/fontSizeFromString'
 // eslint-disable-next-line
 import { green as greenl } from 'logger'
 
-const variant = 'display3'
+const variant = 'title'
 
-const Display3 = (props) => {
+const Title = (props) => {
   const { children, classes } = props
   return (
     <TypographyBase
@@ -46,4 +46,4 @@ const styles = theme => {
   })
 }
 
-export default withStyles(styles)(Display3)
+export default withStyles(styles)(Title)

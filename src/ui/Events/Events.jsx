@@ -16,7 +16,6 @@ import { eventsReadRequestKey } from 'store/actions/event-actions'
 import EventsGrid from 'ui/EventsGrid'
 // import EventsGridList from 'ui/EventsGridList'
 import MyEvents from 'ui/MyEvents'
-import SearchBox from 'ui/SearchBox'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -51,8 +50,7 @@ class Events extends React.Component {
     } else {
       return (
         <div className={classes.pageMock}>
-          <SearchBox />
-          <EventsGrid events={events} />
+          <EventsGrid events={events}/>
         </div>
       )
     }

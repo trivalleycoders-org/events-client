@@ -1,4 +1,4 @@
-import pDebounce from 'p-debounce'
+import debounce from 'lib/debounce'
 import { fetchJson } from './api-helpers'
 import { red } from 'logger'
 
@@ -6,7 +6,7 @@ import { red } from 'logger'
 // eslint-disable-next-line
 import { pink } from 'logger'
 
-const fetchPostalCodes = pDebounce(
+const fetchPostalCodes = debounce(
 
   async (searchString) => {
     try {
