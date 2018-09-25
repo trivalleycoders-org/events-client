@@ -79,7 +79,13 @@ Use Compass to import the [data collections](https://github.com/trivalleycoders-
 |---------------|----------------------
 |events         |events-collection.json
 |postalCodes    |postalCodes.json      
-|users          |users.json            
+|users          |users.json   
+
+If you have problems importing Postal Codes, use the following command from the command line(not mongo shell) to import (Make sure directory where MongoDb is installed is in the Path).
+
+```
+mongoimport --db EventsDev --collection postalCodes --file postalCodes.json
+```
 
 **Start-up the App**
 
