@@ -14,16 +14,16 @@ import { withStyles } from '@material-ui/core'
 const Typography = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
-      <Body1 color='blue'>Body 1</Body1>
+      <Caption>Caption</Caption>
+      <Body1>Body 1</Body1>
       <Body2>Body 2</Body2>
+      <Subheading>Subheading</Subheading>
+      <Headline>Headline</Headline>
+      <Title>Title</Title>
       <Display1>Display 1</Display1>
       <Display2>Display 2</Display2>
       <Display3>Display 3</Display3>
       <Display4>Display 4</Display4>
-      <Headline>Headline</Headline>
-      <Caption>Caption</Caption>
-      <Subheading>Subheading</Subheading>
-      <Title>Title</Title>
 
     </div>
   )
