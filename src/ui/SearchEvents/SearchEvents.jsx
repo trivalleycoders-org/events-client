@@ -19,8 +19,6 @@ import EventsGrid from 'ui/EventsGrid'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const styles = theme => ({})
-
 class SearchEvents extends React.Component {
   componentDidMount() {
     const { searchValue } = this.props.match.params
@@ -74,6 +72,8 @@ const mapStateToProps = (state) => {
 }
 
 const actions = merge(eventActions, searchActions)
+
+const styles = theme => ({})
 
 export default compose(
   withStyles(styles),

@@ -50,13 +50,11 @@ describe('validateModel', () => {
   })
   it('02 - missing userId: should return false', () => {
     const r = validateModel(EventModel, missingUserId)
-    // console.log('r', r)
     expect(r.result).toEqual(false)
     expect(r.error).toBe('required field not found - key: userId, type: objectId, value: undefined')
   })
   it('03 - invalide ObjectId: should return false', () => {
     const r = validateModel(EventModel, invalideObjectId)
-    console.log('r', r)
     expect(r.result).toEqual(false)
     expect(r.error).toBe('type does not match key: userId, type: objectId, value: 10')
   })

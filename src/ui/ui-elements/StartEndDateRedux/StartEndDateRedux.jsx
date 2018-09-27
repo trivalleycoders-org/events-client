@@ -5,37 +5,51 @@ import { Field } from 'redux-form'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
+import { hasProp } from 'lib/hasProp'
 
 class StartEndDateRedux extends React.Component {
 
   picker = (props) => {
-    green('date props', props)
     const { onChange, ...rest } = props.input
-    return (
-      <Combined
-        {...rest}
-        onChange={onChange}
-        format={props.dateFormat}
-        fullWidth
-        initial={props.meta.initial}
-        // required={true}
-      />
-    )
+    const { enableEdit } = props
+    const initial = props.meta.initial
+    const startDate = hasProp('startDate', initial) ? initial.startDate : undefined
+    const endDate = hasProp('endDate', initial) ? initial.endDate : undefined
+
+    if (enableEdit) {
+      return (
+        <Combined
+          {...rest}
+          onChange={onChange}
+          format={props.dateFormat}
+          fullWidth
+          initial={props.meta.initial}
+        />
+      )
+    } else {
+
+      return (
+        <div>
+          <label>Start date: </label><label>{startDate}</label><br/>
+          <label>End date: </label><label>{endDate}</label>
+        </div>
+      )
+    }
+
   }
-  // format='MMM do YYYY hh:mm a'
   render() {
-    const { fieldLabel, fieldName, dateFormat='MMM do YYYY hh:mm a' } = this.props
+    const { fieldLabel, fieldName, fullWidth=true, dateFormat='MMM do YYYY hh:mm a', enableEdit=false } = this.props
 
     return (
       <Field
         component={this.picker}
-        fullWidth
         name={fieldName}
         label={fieldLabel}
-        dateFormat={dateFormat}
-        // required={true}
-
-        // validate={() => console.log('validate')}
+        props={{
+          dateFormat: dateFormat,
+          fullWidth,
+          enableEdit,
+        }}
       />
     )
   }

@@ -16,6 +16,7 @@ class PostalCodesRedux extends React.Component {
         <PostalCodesComponent
           onChange={onChange}
           { ...rest }
+          { ...props.meta }
         />
       </FormControl>
     )
@@ -28,6 +29,7 @@ class PostalCodesRedux extends React.Component {
         component={this.picker}
         name={fieldName}
         label={fieldLabel}
+
       />
     )
   }

@@ -29,7 +29,6 @@ class MainAppBar extends React.Component {
   render() {
 
     const { classes, isLoggedIn, width } = this.props
-    green('width', width === 'xs')
 
     return (
       <div className={classes.root}>

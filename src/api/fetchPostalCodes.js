@@ -11,12 +11,12 @@ const fetchPostalCodes = debounce(
   async (searchString) => {
     try {
       const data = await fetchJson(
-        `/location/postal-codes/${searchString}`,
+        `/location/postal-code/${searchString}`,
         {
           method: 'GET',
         }
       )
-      pink('fetchPostalCodes: data.data', data.data)
+      // pink('fetchPostalCodes: data.data', data.data)
       return data.data
     }
     catch (e) {

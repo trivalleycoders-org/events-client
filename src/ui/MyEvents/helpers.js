@@ -18,7 +18,6 @@ const moYrFormat = 'MMM YYYY'
 
 
 export const dateFormat = (date, style) => {
-  green('date', date)
   switch (style) {
     case 'moDay':
       return format(date, moDayFormat)
