@@ -8,15 +8,19 @@ import {
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
 
-export const Toolbar = ({ classes }) => {
+export const Toolbar = ({ classes, handleDeleteClick, handleEditClick }) => {
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.toolbar}>
-        <IconButton>
-          <Edit className={classes.editBtn} />
+        <IconButton onClick={handleEditClick}>
+          <Edit
+            className={classes.editBtnIcon}
+          />
         </IconButton>
-        <IconButton>
-          <DeleteForever className={classes.deleteBtn} />
+        <IconButton onClick={handleDeleteClick}>
+          <DeleteForever
+            className={classes.deleteBtnIcon}
+          />
         </IconButton>
       </MuiToolbar>
     </Paper>
@@ -28,10 +32,10 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
   },
-  editBtn: {
+  editBtnIcon: {
     color: 'blue',
   },
-  deleteBtn: {
+  deleteBtnIcon: {
     color: 'red',
   },
 }
