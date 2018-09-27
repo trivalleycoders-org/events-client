@@ -28,7 +28,6 @@
     "material-ui-chip-input": "^1.0.0-beta.5",
     "material-ui-pickers": "^1.0.0-rc.14",
     "object-assign": "4.1.1",
-    "p-debounce": "^1.0.0",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "ramda": "^0.25.0",
