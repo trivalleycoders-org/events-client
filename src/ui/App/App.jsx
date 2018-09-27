@@ -8,7 +8,9 @@ import jwt from 'jsonwebtoken'
 
 // User
 import * as authActions from 'store/actions/auth-actions'
+import { userValidateRequestKey } from 'store/actions/auth-actions'
 import * as pageMessageActions from 'store/actions/page-message-actions'
+import * as requestSelectors from 'store/selectors/request-selectors'
 import Events from 'ui/Events'
 import SearchEvents from 'ui/SearchEvents'
 import EventForm from 'ui/EventForm'
@@ -29,8 +31,7 @@ import { green } from 'logger'
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props)
+  componentDidMount() {
     const { userValidateRequest } = this.props
     let user
     if (document.cookie) {
@@ -55,11 +56,14 @@ class App extends React.Component {
 
   render() {
 
-    const { classes, location } = this.props
+    const { classes, location, userValidateRequestStatus } = this.props
     const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/events'
       || location.pathname === '/'
 
+    if (userValidateRequestStatus.status !== 'success') {
+      return <h1>loading</h1>
+    }
     return (
       <Fragment>
         <div className={classes.wrapper}>
@@ -93,7 +97,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey)
+  }
 }
 
 const styles = theme => ({
