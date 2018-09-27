@@ -67,9 +67,3 @@ const styles = theme => {
 }
 
 export default withStyles(styles)(Hero)
-
-/*
-<ResponsiveImage
-        src='https://s3-us-west-2.amazonaws.com/tvc-events/media/hero.jpg'
-      />
-*/

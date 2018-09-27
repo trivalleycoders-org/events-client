@@ -162,18 +162,3 @@ const styles = {
 }
 
 export default withStyles(styles)(EventGrid)
-
-/*
-<div className={classes.actions}>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Add to favorites'>
-                      <FavoriteIcon />
-                    </IconButton>
-                  </div>
-                  <div className={classes.action}>
-                    <IconButton aria-label='Share'>
-                      <ShareIcon />
-                    </IconButton>
-                  </div>
-                </div>
-*/

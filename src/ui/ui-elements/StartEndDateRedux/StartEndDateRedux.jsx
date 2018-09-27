@@ -37,9 +37,6 @@ class StartEndDateRedux extends React.Component {
     }
 
   }
-
-
-  // format='MMM do YYYY hh:mm a'
   render() {
     const { fieldLabel, fieldName, fullWidth=true, dateFormat='MMM do YYYY hh:mm a', enableEdit=false } = this.props
 
