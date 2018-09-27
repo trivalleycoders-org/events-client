@@ -30,9 +30,14 @@ import Palette from 'ui/ui-design/Palette'
 import { green } from 'logger'
 
 class App extends React.Component {
-
+  state = {
+    hasCookie: false,
+  }
   componentDidMount() {
     const { userValidateRequest } = this.props
+    this.setState({
+      hasCookie: true,
+    })
     let user
     if (document.cookie) {
       const tokenObj = parse(document.cookie)
@@ -56,12 +61,12 @@ class App extends React.Component {
 
   render() {
 
-    const { classes, location, userValidateRequestStatus } = this.props
+    const { classes, hasCookie, location, userValidateRequestStatus } = this.props
     const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/events'
       || location.pathname === '/'
 
-    if (userValidateRequestStatus.status !== 'success') {
+    if (userValidateRequestStatus.status !== 'success' && hasCookie) {
       return <h1>loading</h1>
     }
     return (
