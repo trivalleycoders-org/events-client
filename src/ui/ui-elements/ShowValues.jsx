@@ -5,7 +5,6 @@ const style = {
 }
 
 const ShowValues = ({ values }) => {
-  // console.log('values', values)
   return (
     <div>
       <pre style={style}>

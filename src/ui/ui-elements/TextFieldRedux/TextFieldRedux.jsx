@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import { FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core'
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  FormHelperText
+} from '@material-ui/core'
 
 /* Dev */
 // eslint-disable-next-line
@@ -25,6 +30,7 @@ class TextFieldRedux extends React.Component {
       required,
       rows,
       type,
+      enableEdit,
       ...rest,
     } = props
     const { error } = meta
@@ -32,7 +38,6 @@ class TextFieldRedux extends React.Component {
 
     const { name, onChange, onBlur, ...inputRest } = input
     const handleOnBlur = (e) => {
-      // green('handleBlur')
       if (required) {
         const len = e.target.value.length
         // green('handleBlur: len', `${len}(${typeof len})`)
@@ -41,31 +46,41 @@ class TextFieldRedux extends React.Component {
         })
       }
     }
-    return (
-      <FormControl
-        fullWidth={fullWidth}
-      >
-        <InputLabel htmlFor={name}>{label}</InputLabel>
-        <Input
-          onBlur={(e) => handleOnBlur(e)}
-          id={name}
-          onChange={onChange}
+
+      if (enableEdit) {
+        return (
+          <FormControl
           fullWidth={fullWidth}
-          disabled={disabled}
-          error={this.state.isError}
-          multiline={multiline}
-          rows={rows}
-          type={type}
-          {...rest}
-          {...inputRest}
-        />
-        <FormHelperText error={isError}>{error}</FormHelperText>
-      </FormControl>
-    )
+          >
+            <InputLabel htmlFor={name}>{label}</InputLabel>
+            <Input
+              onBlur={(e) => handleOnBlur(e)}
+              id={name}
+              onChange={onChange}
+              fullWidth={fullWidth}
+              disabled={disabled}
+              error={this.state.isError}
+              multiline={multiline}
+              rows={rows}
+              type={type}
+              {...rest}
+              {...inputRest}
+            />
+            <FormHelperText error={isError}>{error}</FormHelperText>
+          </FormControl>
+        )
+      } else {
+        return (
+          <div>
+            <label>{label}: </label><label>{input.value}</label>
+          </div>
+        )
+      }
+
+
   }
   render() {
-    const { fieldName, fieldLabel, disabled, required, fullWidth = false, rows = 0, type } = this.props
-    // green(`state for ${fieldName}`, this.state)
+    const { fieldName, fieldLabel, disabled, enableEdit=false, fullWidth = false, required, rows = 0, type } = this.props
     return (
       <Field
         component={this.component}
@@ -77,6 +92,9 @@ class TextFieldRedux extends React.Component {
         required={required}
         rows={rows}
         type={type}
+        props={{
+          enableEdit: enableEdit,
+        }}
       />
     )
   }

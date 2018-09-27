@@ -16,6 +16,103 @@ import MediaCard from 'ui/ui-elements/MediaCard'
 // eslint-disable-next-line
 import { green } from 'logger'
 
+const dropZoneDefault = <ResponsiveImage
+  src='https://s3-us-west-2.amazonaws.com/photo-app-tvc/drag-or-browse.png' alt='drag and drop of click to browse'
+  />
+
+const dropZoneReject = <ResponsiveImage
+  src='https://s3-us-west-2.amazonaws.com/tvc-events/media/drag-reject.png' alt='image rejected'
+  />
+
+class UploadImage extends React.Component {
+  constructor(props) {
+    super(props)
+    const initial = this.props.initial
+    const uploadedImageUrl = this.props.uploadedImageUrl
+    let imageUrl = ''
+    if (typeof initial !== 'undefined') {
+      imageUrl = initial
+    } else if (!uploadedImageUrl === null) {
+      imageUrl = uploadedImageUrl
+    } else {
+      imageUrl = ''
+    }
+    this.state = {
+      accepted: [],
+      rejected: [],
+      // previewBlob: '',
+      imageUrl: imageUrl,
+    }
+  }
+
+  onDrop = async (accepted, rejected) => {
+
+    this.setState({
+      accepted,
+      rejected,
+    })
+    let formData = new FormData()
+    formData.append('upload', accepted[0])
+    await this.props.imageUploadOneRequest(formData)
+    this.setState({
+      imageUrl: this.props.uploadedImageUrl
+    })
+    this.props.onChange(this.props.uploadedImageUrl)
+  }
+  removeImage = () => {
+    this.setState({
+      imageUrl: undefined
+    })
+    this.props.onChange('')
+  }
+  render() {
+    const { classes, enableEdit } = this.props
+    return (
+      <div className={classes.wrapper}>
+        <div className={classes.p1}>
+          <Paper className={classes.p2}>
+            {
+              this.state.imageUrl
+                ? <div className={classes.imageDiv}>
+                    <MediaCard src={this.state.imageUrl} />
+                    {enableEdit
+                      ? <Button
+                          mini
+                          variant="fab"
+                          color='secondary'
+                          aria-label="Delete"
+                          className={classes.fab}
+                          onClick={this.removeImage}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      : null
+                    }
+
+                  </div>
+                : <Dropzone
+                    style={style}
+                    acceptStyle={acceptStyle}
+                    rejectStyle={rejectStyle}
+                    accept="image/jpeg, image/png"
+                    onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
+                  >
+                    {(props) => {
+                      if (props.isDragActive) {
+                        return props.isDragAccept ? dropZoneDefault : dropZoneReject
+                      } else {
+                        return dropZoneDefault
+                      }
+                  }}
+                  </Dropzone>
+            }
+          </Paper>
+        </div>
+      </div>
+    )
+  }
+}
+
 const style = {
   backgroundColor: 'transparent',
   width: '100%',
@@ -82,101 +179,6 @@ const styles = theme => ({
     margin: 0,
   },
 })
-
-const dropZoneDefault = <ResponsiveImage
-  src='https://s3-us-west-2.amazonaws.com/photo-app-tvc/drag-or-browse.png' alt='drag and drop of click to browse'
-  />
-
-const dropZoneReject = <ResponsiveImage
-  src='https://s3-us-west-2.amazonaws.com/tvc-events/media/drag-reject.png' alt='image rejected'
-  />
-
-class UploadImage extends React.Component {
-  constructor(props) {
-    super(props)
-    const initial = this.props.initial
-    const uploadedImageUrl = this.props.uploadedImageUrl
-    let imageUrl = ''
-    if (typeof initial !== 'undefined') {
-      imageUrl = initial
-    } else if (!uploadedImageUrl === null) {
-      imageUrl = uploadedImageUrl
-    } else {
-      imageUrl = ''
-    }
-    this.state = {
-      accepted: [],
-      rejected: [],
-      // previewBlob: '',
-      imageUrl: imageUrl,
-    }
-  }
-
-  onDrop = async (accepted, rejected) => {
-
-    this.setState({
-      accepted,
-      rejected,
-    })
-    let formData = new FormData()
-    formData.append('upload', accepted[0])
-    await this.props.imageUploadOneRequest(formData)
-    this.setState({
-      imageUrl: this.props.uploadedImageUrl
-    })
-    this.props.onChange(this.props.uploadedImageUrl)
-  }
-  removeImage = () => {
-    green('removeImage()')
-    this.setState({
-      imageUrl: undefined
-    })
-    this.props.onChange('')
-  }
-  render() {
-    const { classes } = this.props
-
-    return (
-      <div className={classes.wrapper}>
-        <div className={classes.p1}>
-          <Paper className={classes.p2}>
-            {
-              this.state.imageUrl
-                ? <div className={classes.imageDiv}>
-                    <MediaCard src={this.state.imageUrl} />
-                    <Button
-                      mini
-                      variant="fab"
-                      color='secondary'
-                      aria-label="Delete"
-                      className={classes.fab}
-                      onClick={this.removeImage}
-                    >
-                      <DeleteIcon />
-                    </Button>
-                  </div>
-                : <Dropzone
-                    style={style}
-                    acceptStyle={acceptStyle}
-                    rejectStyle={rejectStyle}
-                    accept="image/jpeg, image/png"
-                    onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
-                  >
-                    {(props) => {
-                      if (props.isDragActive) {
-                        return props.isDragAccept ? dropZoneDefault : dropZoneReject
-                      } else {
-                        return dropZoneDefault
-                      }
-                  }}
-                  </Dropzone>
-            }
-          </Paper>
-        </div>
-      </div>
-    )
-  }
-}
 
 const mapStateToProps = (state) => {
   return {

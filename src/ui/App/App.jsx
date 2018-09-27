@@ -9,7 +9,6 @@ import jwt from 'jsonwebtoken'
 // User
 import * as authActions from 'store/actions/auth-actions'
 import * as pageMessageActions from 'store/actions/page-message-actions'
-
 import Events from 'ui/Events'
 import SearchEvents from 'ui/SearchEvents'
 import EventForm from 'ui/EventForm'
@@ -20,9 +19,10 @@ import SettingsForm from 'ui/Auth/SettingsForm'
 import RouteNotfound from 'ui/RouteNotFound'
 import PageMessage from 'ui/ui-elements/PageMessage'
 import PrivateRoute from 'ui/PrivateRoute'
-import TypographyGuide from 'ui/TypographyGuide'
+import TypographyGuide from 'ui/ui-design/TypographyGuide'
 import Hero from 'ui/Hero'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
+import Palette from 'ui/ui-design/Palette'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -73,7 +73,8 @@ class App extends React.Component {
           <div className={classes.body}>
             <Switch>
               <Route exact path='/typography' component={TypographyGuide} />
-              <PrivateRoute exact path='/new-event' component={EventForm} />
+              <Route exact path='/palette' component={Palette} />
+              <Route exact path='/new-event' component={EventForm} />
               <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
               <Route exact path='/register' component={RegisterForm} />
               <Route exact path='/login' component={LoginForm} />

@@ -1,17 +1,15 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { Redirect } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-
 // actions, selectors
 import { userRegisterRequestKey } from 'store/actions/auth-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authActions from 'store/actions/auth-actions'
-import * as pageMessageActions from 'store/actions/page-message-actions'
+
 import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
 import styles from './styles'
 import validate from './validate'
@@ -22,14 +20,8 @@ import { green } from 'logger'
 
 class RegisterForm extends React.Component {
 
-  constructor(props) {
-    super(props)
-    console.log('this.props: ', this.props)
-    this.props.pageMessage('')
-
-    this.state = {
-      justMounted: true,
-    }
+  state = {
+    justMounted: true,
   }
 
   onSubmit = (values) => {
@@ -58,6 +50,7 @@ class RegisterForm extends React.Component {
               fullWidth
               required={true}
               error={true}
+              enableEdit={true}
             />
             <TextFieldRedux
               fieldName='password'
@@ -66,6 +59,7 @@ class RegisterForm extends React.Component {
               fullWidth
               required={true}
               error={true}
+              enableEdit={true}
             />
         <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
               Submit
@@ -82,16 +76,12 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey),
+  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey ),
 })
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Object.assign({}, authActions, pageMessageActions), dispatch)
-}
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, authActions),
   reduxForm({
     form: 'RegisterForm',
     validate,

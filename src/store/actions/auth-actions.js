@@ -24,7 +24,6 @@ export const userLogoutRequest = createRequestThunk({
 export const userValidateKey = 'userValidateKey'
 
 export const userValidate = (user) => {
-  console.log('userValidate: user', user)
   return ({
     type: userValidateKey,
     payload: user
@@ -96,7 +95,6 @@ export const userRegisterRequest = createRequestThunk({
 export const userPasswordUpdateKey = 'userUpdatePasswordKey'
 
 const passwordUpdate = (password) => {
-  console.log('before deleting cookie')
   return ({
     type: userPasswordUpdateKey,
     payload: password
