@@ -32,10 +32,10 @@ class MyEvents extends React.Component {
   }
 
   render() {
-    const { classes, events, width } = this.props
+    const { classes, events } = this.props
     const { navigateAway } = this.state
     if (navigateAway) {
-      return <Redirect to={'/new-event'}/>
+      return <Redirect to={'/event-details'}/>
     }
 
     return (

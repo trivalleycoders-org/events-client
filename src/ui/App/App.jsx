@@ -11,20 +11,21 @@ import * as authActions from 'store/actions/auth-actions'
 import { userValidateRequestKey } from 'store/actions/auth-actions'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
-import Events from 'ui/Events'
-import SearchEvents from 'ui/SearchEvents'
-import EventForm from 'ui/EventForm'
-import withRoot from 'ui/withRoot'
-import RegisterForm from 'ui/Auth/RegisterForm'
-import LoginForm from 'ui/Auth/LoginForm'
-import SettingsForm from 'ui/Auth/SettingsForm'
-import RouteNotfound from 'ui/RouteNotFound'
-import PageMessage from 'ui/ui-elements/PageMessage'
-import PrivateRoute from 'ui/PrivateRoute'
-import TypographyGuide from 'ui/ui-design/TypographyGuide'
-import Hero from 'ui/Hero'
+
 import Breakpoints from 'ui/ui-elements/Breakpoints'
+import Events from 'ui/Events'
+import EventForm from 'ui/EventForm'
+import Hero from 'ui/Hero'
+import LoginForm from 'ui/Auth/LoginForm'
+import PageMessage from 'ui/ui-elements/PageMessage'
 import Palette from 'ui/ui-design/Palette'
+import PrivateRoute from 'ui/PrivateRoute'
+import RegisterForm from 'ui/Auth/RegisterForm'
+import RouteNotfound from 'ui/RouteNotFound'
+import SearchEvents from 'ui/SearchEvents'
+import SettingsForm from 'ui/Auth/SettingsForm'
+import TypographyGuide from 'ui/ui-design/TypographyGuide'
+import withRoot from 'ui/withRoot'
 
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -81,16 +82,16 @@ class App extends React.Component {
           }
           <div className={classes.body}>
             <Switch>
-              <Route exact path='/typography' component={TypographyGuide} />
-              <Route exact path='/palette' component={Palette} />
-              <Route exact path='/new-event' component={EventForm} />
-              <PrivateRoute exact path='/new-event/:_id' component={EventForm} />
-              <Route exact path='/register' component={RegisterForm} />
-              <Route exact path='/login' component={LoginForm} />
-              <PrivateRoute exact path='/settings' component={SettingsForm} />
-              <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-              <PrivateRoute exact path='/my-events' component={Events} />
+              <PrivateRoute exact path='/event-details' component={Events} />
               <Route exact path='/events' component={Events} />
+              <Route exact path='/login' component={LoginForm} />
+              <PrivateRoute exact path='/my-events' component={Events} />
+              <Route exact path='/new-event' component={EventForm} />
+              <Route exact path='/palette' component={Palette} />
+              <Route exact path='/register' component={RegisterForm} />
+              <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+              <PrivateRoute exact path='/settings' component={SettingsForm} />
+              <Route exact path='/typography' component={TypographyGuide} />
               <Route exact path='/' component={Events} />
               <Route component={RouteNotfound} />
             </Switch>

@@ -13,9 +13,10 @@ import * as eventsSelectors from '../../store/selectors/events-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
-import EventsGrid from 'ui/EventsGrid'
-// import EventsGridList from 'ui/EventsGridList'
+import EventCards from 'ui/EventCards'
+import EventDetails from 'ui/EventDetails'
 import MyEvents from 'ui/MyEvents'
+
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -47,10 +48,16 @@ class Events extends React.Component {
           <MyEvents events={events} />
         </div>
       )
+    } else if (match.path === '/event-details') {
+      return (
+        <div className={classes.pageMock}>
+          <EventDetails events={events}/>
+        </div>
+      )
     } else {
       return (
         <div className={classes.pageMock}>
-          <EventsGrid events={events}/>
+          <EventCards events={events}/>
         </div>
       )
     }
