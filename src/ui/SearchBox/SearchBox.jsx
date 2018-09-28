@@ -26,7 +26,6 @@ export class SearchEvent extends React.Component {
 
   render() {
     const { classes, searchText } = this.props
-      // green('props', this.props)
       return (
         <Paper className={classes.wrapper}>
           <TextField onChange={e => this.handleChange(e.target.value)} value={searchText} />
