@@ -232,7 +232,6 @@ const mapStateToProps = (state) => {
   // if there is an _id then form is in edit mode
   const mode = _id ? EDIT_MODE : CREATE_MODE
   const currentUserId = authSelectors.getUserId(state)
-  // green('currentUserId', currentUserId)
   if (_id) {
     const data = eventSelectors.getOneEvent(state, _id)
     const startDate = prop('startDateTime', data)

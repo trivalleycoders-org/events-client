@@ -41,14 +41,11 @@ const isValidDate = (dirtyDate) => {
 
 export const isDate = (val) => {
   if (isInstanceOfDate(val)) {
-    // green('is an instanceof date')
     return isValidDate(val)
   } else if (isNumber(val)) {
     // sure, a number could be a date but let's say not for this app
-    // green('is a number')
     return false
   } else if (isString(val)) {
-    // green('is NOT an instanceof date')
     const d = new Date(val)
     return isValidDate(d)
   } else {

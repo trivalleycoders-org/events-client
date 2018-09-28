@@ -6,14 +6,12 @@ export const logError = (err, key) => {
   red(`actions.logError(key:${key})`, err)
 }
 export const logReturnValue = (value) => {
-  // orange('actions.logReturnValue', value)
   return ({
     type: 'app/noAction'
   })
 }
 
 const markRequestPending = (key) => {
-  // log(`pending (${key})`, '', 'blue')
   return {
     type: 'app/markRequestPending',
     meta: { key },
@@ -21,7 +19,6 @@ const markRequestPending = (key) => {
 }
 
 const markRequestSuccess = (key) => {
-  // log(`success (${key})`, '', 'blue')
   return ({
     type: 'app/markRequestSuccess',
     meta: { key },
@@ -29,7 +26,6 @@ const markRequestSuccess = (key) => {
 }
 
 const markRequestFailed = (reason, key) => {
-  // log(`failed (${key})`, '', 'blue')
   return {
     type: 'app/markRequestFailed',
     payload: reason,

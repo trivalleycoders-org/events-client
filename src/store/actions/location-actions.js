@@ -12,7 +12,6 @@ import { orange } from 'logger'
 export const keyReadCities = 'actionKeyReadCities'
 
 const readCities = (cities) => {
-  orange('** readCities')
   return ({
     type: keyReadCities,
     payload: { cities },
@@ -40,7 +39,6 @@ export const postalCodesClear = () => {
 // Read postalCode
 export const postalCodesReadKey = 'actionKeyReadPostalCodes'
 const postalCodesRead = (postalCodes) => {
-  // orange('** postalCodesRead')
   return ({
     type: postalCodesReadKey,
     payload: { postalCodes },

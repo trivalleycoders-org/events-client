@@ -74,7 +74,6 @@ class EventForm extends React.Component {
   }
 
   handleDeleteClick = () => {
-    green('handleDelete')
     const { eventEditId } = this.props
     this.props.eventDeleteOneRequest(eventEditId)
     this.props.editIdUnset()

@@ -5,7 +5,6 @@ import { green } from 'logger'
 const variant = 'body1'
 export const styles = (theme) => {
   const originalSize = theme.typography[variant].fontSize
-  green('theme', theme)
   return ({
     root: {
       [theme.breakpoints.down('xs')]: {

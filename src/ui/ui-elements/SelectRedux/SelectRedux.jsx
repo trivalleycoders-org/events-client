@@ -32,13 +32,11 @@ class SelectRedux extends React.Component {
   }
 
   handleChange = (e, val) => {
-    // this.setState({ [a.target.name]: a.target.value })
     this.setState({value: val})
   }
 
   render() {
     const { classes, children, fieldLabel, fieldName, fullWidth } = this.props
-    // green('SelectRedux: props', this.props)
 
     return (
 

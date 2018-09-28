@@ -70,10 +70,6 @@ class Combined extends React.Component {
             onChange={(date) => this.localOnChange(date, 'startDateTime')}
             required={true}
             value={startDateTime}
-
-            // onClose={() => console.log('onCloase')}
-            // onError={() => console.log('onError')}
-            // onOpen={() => console.log('onOpen')}
           />
           <DateTimePicker
             disablePast

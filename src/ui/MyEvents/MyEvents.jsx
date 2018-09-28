@@ -24,7 +24,6 @@ class MyEvents extends React.Component {
   }
 
   handleItemClick = (_id) => {
-    green('handleItemClick', _id)
     this.props.editIdSet(_id)
     this.setState({
       navigateAway: true,
