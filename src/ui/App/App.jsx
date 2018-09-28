@@ -87,6 +87,7 @@ class App extends React.Component {
               <Route exact path='/login' component={LoginForm} />
               <PrivateRoute exact path='/my-events' component={Events} />
               <Route exact path='/new-event' component={EventForm} />
+              <Route exact path='/edit-event' component={EventForm} />
               <Route exact path='/palette' component={Palette} />
               <Route exact path='/register' component={RegisterForm} />
               <Route exact path='/search-events/:searchValue' component={SearchEvents} />
