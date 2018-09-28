@@ -1,27 +1,9 @@
 import React from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
-// import { blue } from '@material-ui/core/colors'
 
-// dummy theme for testing
-// const theme = createMuiTheme({
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 480,
-//       md: 800,
-//       lg: 1280,
-//       xl: 1920,
-//     }
-//   },
-// })
 
-// A theme with custom primary and secondary color.
-// It's optional.
 const theme = createMuiTheme({
-  props: {
-    x: 'custom prop'
-  },
   breakpoints: {
     values: {
       xs: 0,
@@ -80,9 +62,8 @@ const theme = createMuiTheme({
     // },
   },
   typography: {
-    /* eslint-disable */
+    // eslint-disable-next-line
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    /* eslint-enable */
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -90,9 +71,8 @@ const theme = createMuiTheme({
     display4: {
       fontSize: '7rem',
       fontWeight: 300,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       letterSpacing: '-.04em',
       lineHeight: '1.14286em',
       marginLeft: '-.04em',
@@ -101,9 +81,8 @@ const theme = createMuiTheme({
     display3: {
       fontSize: '3.5rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       letterSpacing: '-.02em',
       lineHeight: '1.30357em',
       marginLeft: '-.02em',
@@ -112,9 +91,8 @@ const theme = createMuiTheme({
     display2: {
       fontSize: '2.8125rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.06667em',
       marginLeft: '-.02em',
       color: 'rgba(0, 0, 0, 0.54)',
@@ -122,54 +100,48 @@ const theme = createMuiTheme({
     display1: {
       fontSize: '2.125rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.20588em',
       color: 'rgba(0, 0, 0, 0.54)',
     },
     headline: {
       fontSize: '1.5rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.35417em',
       color: 'rgba(0, 0, 0, 0.87)',
     },
     title: {
       fontSize: '1.3125rem',
       fontWeight: 500,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.16667em',
       color: 'rgba(0, 0, 0, 0.87)',
     },
     subheading: {
       fontSize: '1rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.5em',
       color: 'rgba(0, 0, 0, 0.87)',
     },
     body2: {
       fontSize: '0.875rem',
       fontWeight: 500,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.71429em',
       color: 'rgba(0, 0, 0, 0.87)',
     },
     body1: {
       fontSize: '0.875rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.46429em',
       color: 'rgba(0, 0, 0, 0.87)',
       x: 'y'
@@ -177,9 +149,8 @@ const theme = createMuiTheme({
     caption: {
       fontSize: '0.75rem',
       fontWeight: 400,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       lineHeight: '1.375em',
       color: 'rgba(0, 0, 0, 0.54)',
     },
@@ -187,9 +158,8 @@ const theme = createMuiTheme({
       fontSize: '0.875rem',
       textTransform: 'uppercase',
       fontWeight: 500,
-      /* eslint-disable */
+      // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-      /* eslint-enable */
       color: 'rgba(0, 0, 0, 0.87)',
     }
   }
@@ -197,11 +167,8 @@ const theme = createMuiTheme({
 
 function withRoot(Component) {
   function WithRoot(props) {
-    // MuiThemeProvider makes the theme available down the React tree
-    // thanks to React context.
     return (
       <MuiThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Component {...props} />
       </MuiThemeProvider>
