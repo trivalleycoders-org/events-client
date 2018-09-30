@@ -31,10 +31,11 @@ import withRoot from 'ui/withRoot'
 import { green } from 'logger'
 
 class App extends React.Component {
-  state = {
-    hasCookie: false,
-  }
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasCookie: false,
+    }
     const { userValidateRequest } = this.props
     this.setState({
       hasCookie: true,
