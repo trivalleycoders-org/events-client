@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
@@ -26,22 +26,41 @@ import SearchEvents from 'ui/SearchEvents'
 import SettingsForm from 'ui/Auth/SettingsForm'
 import TypographyGuide from 'ui/ui-design/TypographyGuide'
 import withRoot from 'ui/withRoot'
+import AppBar from 'ui/AppBar'
+import Snackbars from 'ui/Snackbars'
+import AppDrawer from 'ui/AppDrawer'
 
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, yellow } from 'logger'
 
 class App extends React.Component {
   constructor(props) {
+    green('1) constructor start')
     super(props)
+
+    green('2) constructor before this.state')
     this.state = {
       hasCookie: false,
+      mountDone: false,
     }
+    green('3) constructor end')
+  }
+
+  // componentWillMount() {
+  //   green('4) componentWillMount')
+  // }
+
+  static getDerivedStateFromProps(props, state) {
+    green('** getDerivedStateFromProps')
+    return state
+  }
+
+  async componentDidMount() {
+    green('5) componentDidMount start')
     const { userValidateRequest } = this.props
-    this.setState({
-      hasCookie: true,
-    })
     let user
     if (document.cookie) {
+      yellow('has cookie true')
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
 
@@ -51,55 +70,50 @@ class App extends React.Component {
         token: tokenObj.token
       }
 
-      userValidateRequest(user)
+      await userValidateRequest(user)
     }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.props.pageMessage('')
-    }
+    this.setState({ mountDone: true })
+    green('6) componentDidMount end')
   }
 
   render() {
-
-    const { classes, hasCookie, location, userValidateRequestStatus } = this.props
-    const showHero = location.pathname.startsWith('/search-events')
-      || location.pathname === '/events'
-      || location.pathname === '/'
-
-    if (userValidateRequestStatus.status !== 'success' && hasCookie) {
-      return <h1>loading</h1>
-    }
+    green('7) component render')
+    const { classes } = this.props
     return (
-      <Fragment>
-        <div className={classes.wrapper}>
-          <Breakpoints />
-          <PageMessage></PageMessage>
-          {
-            showHero
-            ? <Hero />
-            : null
-          }
-          <div className={classes.body}>
-            <Switch>
-              <PrivateRoute exact path='/event-details' component={Events} />
-              <Route exact path='/events' component={Events} />
-              <Route exact path='/login' component={LoginForm} />
-              <PrivateRoute exact path='/my-events' component={Events} />
-              <Route exact path='/new-event' component={EventForm} />
-              <Route exact path='/edit-event' component={EventForm} />
-              <Route exact path='/palette' component={Palette} />
-              <Route exact path='/register' component={RegisterForm} />
-              <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-              <PrivateRoute exact path='/settings' component={SettingsForm} />
-              <Route exact path='/typography' component={TypographyGuide} />
-              <Route exact path='/' component={Events} />
-              <Route component={RouteNotfound} />
-            </Switch>
+      <Router>
+        <Fragment>
+          <AppBar />
+          <Snackbars />
+          <AppDrawer />
+          <div className={classes.wrapper}>
+            <Breakpoints />
+            <PageMessage></PageMessage>
+            <Hero />
+            {
+              !this.state.mountDone
+                ? null
+                : <div className={classes.body}>
+                    <Switch>
+                      <PrivateRoute exact path='/event-details' component={Events} />
+                      <Route exact path='/events' component={Events} />
+                      <Route exact path='/login' component={LoginForm} />
+                      <PrivateRoute exact path='/my-events' component={Events} />
+                      <Route exact path='/new-event' component={EventForm} />
+                      <Route exact path='/edit-event' component={EventForm} />
+                      <Route exact path='/palette' component={Palette} />
+                      <Route exact path='/register' component={RegisterForm} />
+                      <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+                      <PrivateRoute exact path='/settings' component={SettingsForm} />
+                      <Route exact path='/typography' component={TypographyGuide} />
+                      <Route exact path='/' component={Events} />
+                      <Route component={RouteNotfound} />
+                    </Switch>
+                  </div>
+            }
+
           </div>
-        </div>
-      </Fragment>
+        </Fragment>
+      </Router>
     )
   }
 }
@@ -133,3 +147,6 @@ export default compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
 )(withRoot(App))
+
+
+

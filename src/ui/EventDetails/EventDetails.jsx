@@ -7,11 +7,11 @@ import Toolbar from './Toolbar'
 import { green } from 'logger'
 
 const EventDetails = (props) => {
-  green('EventDetails: props', props)
+  // green('EventDetails: props', props)
 
-  const handleDeleteClick = () => {
+  // const handleDeleteClick = () => {
 
-  }
+  // }
 
   return (
     <div>
