@@ -66,7 +66,7 @@ Documentation and data collections: https://github.com/trivalleycoders-org/event
 **Dev Database Setup**
 The data collections are here: [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections)
 
-
+> For detailed instructions on loading the data using Compass see [Loading Dev Data](https://github.com/trivalleycoders-org/event-doc-and-admin/blob/master/doc/loading-dev-data/loading-dev-data.md).
 
 Using MongoDB Compass
 - Create a database named 'EventsDev' with the initial collection named 'events'
