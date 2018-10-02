@@ -1,12 +1,16 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
-const ButtonFit = ({ classes, children }) => {
+const ButtonFit = ({ classes, children, to }) => {
+  const LinkComponent = props => <Link
+    to={to}
+    {...props}
+  />
   return (
     <Button
-      // variant='contained'
-      // color='primary'
+      component={LinkComponent}
       className={classes.fit}
     >
       {children}

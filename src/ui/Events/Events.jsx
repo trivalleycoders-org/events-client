@@ -35,6 +35,7 @@ class Events extends React.Component {
 
   render() {
     const { classes, events, match } = this.props
+
     if (this.props.requestReadAllEvents.status !== 'success') {
       return (
         <Typography variant='display1'>

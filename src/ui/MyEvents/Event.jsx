@@ -54,7 +54,9 @@ const Event = ({ classes, event, handleItemClick }) => {
           className={classes.chevronWrap}
           onClick={() => handleItemClick(event._id)}
         >
-          <ButtonFit>
+          <ButtonFit
+            to={`/event-details/${event._id}`}
+          >
             <Chevron5
               className={classes.svg}
               width={10}

@@ -6,7 +6,7 @@ import Toolbar from './Toolbar'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EventDetails = (props) => {
+const EventDetails = ({ event }) => {
   // green('EventDetails: props', props)
 
   // const handleDeleteClick = () => {
@@ -17,6 +17,10 @@ const EventDetails = (props) => {
     <div>
       <Toolbar />
       <h1>Event Details</h1>
+      <div>
+        <p><b>title:</b> {event.title}</p>
+        <p><b>id:</b> {event._id}</p>
+      </div>
       <p>This component is waiting to be worked on. The toolbar will have the edit and delete icons. The Edit link is temporary.</p>
       <p>We need to create an IconButton that is a React Router Link. It will be similar to ButtonNavLink but will use Link instead of NavLink. See issue #122.</p>
     </div>

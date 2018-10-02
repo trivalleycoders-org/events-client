@@ -29,6 +29,7 @@ import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
 import AppDrawer from 'ui/AppDrawer'
+import EventsController from 'ui/Events/EventsController'
 
 // eslint-disable-next-line
 import { green, yellow } from 'logger'
@@ -77,18 +78,18 @@ class App extends React.Component {
                 ? null
                 : <div className={classes.body}>
                     <Switch>
-                      <PrivateRoute exact path='/event-details' component={Events} />
-                      <Route exact path='/events' component={Events} />
+                      <Route exact path='/events' component={EventsController} />
+                      <PrivateRoute exact path='/event-details/:id' component={EventsController} />
                       <Route exact path='/login' component={LoginForm} />
-                      <PrivateRoute exact path='/my-events' component={Events} />
-                      <Route exact path='/new-event' component={EventForm} />
-                      <Route exact path='/edit-event' component={EventForm} />
+                      <PrivateRoute exact path='/my-events' component={EventsController} />
+                      <Route exact path='/new-event' component={EventsController} />
+                      <Route exact path='/edit-event' component={EventsController} />
                       <Route exact path='/palette' component={Palette} />
                       <Route exact path='/register' component={RegisterForm} />
                       <Route exact path='/search-events/:searchValue' component={SearchEvents} />
                       <PrivateRoute exact path='/settings' component={SettingsForm} />
                       <Route exact path='/typography' component={TypographyGuide} />
-                      <Route exact path='/' component={Events} />
+                      <Route exact path='/' component={EventsController} />
                       <Route component={RouteNotfound} />
                     </Switch>
                   </div>
