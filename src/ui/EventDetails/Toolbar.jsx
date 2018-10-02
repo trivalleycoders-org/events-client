@@ -1,6 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
+import IconButtonLink from '../ui-elements/IconButtonLink'
 import {
   Toolbar as MuiToolbar,
   IconButton,
@@ -13,12 +14,11 @@ export const Toolbar = ({ classes, handleDeleteClick, handleEditClick }) => {
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.toolbar}>
-        <Link to='/edit-event' >Edit</Link>
-        <IconButton onClick={handleEditClick}>
+        <IconButtonLink to='/edit-event'>
           <Edit
             className={classes.editBtnIcon}
           />
-        </IconButton>
+        </IconButtonLink>
         <IconButton onClick={handleDeleteClick}>
           <DeleteForever
             className={classes.deleteBtnIcon}
