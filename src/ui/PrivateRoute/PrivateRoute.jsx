@@ -3,10 +3,12 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as authSelectors from 'store/selectors/auth-selectors'
 
+
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, blue } from 'logger'
 
 const PrivateRoute = ({ component: Component, loggedIn, areRequestsPending, ...rest }) => {
+  blue('PrivateRoute')
   return (
     <Route {...rest} render={(props) => (
       loggedIn

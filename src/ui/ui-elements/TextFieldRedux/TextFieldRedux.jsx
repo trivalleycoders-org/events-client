@@ -40,7 +40,6 @@ class TextFieldRedux extends React.Component {
     const handleOnBlur = (e) => {
       if (required) {
         const len = e.target.value.length
-        // green('handleBlur: len', `${len}(${typeof len})`)
         this.setState({
           isError: len === 0  // && touched
         })

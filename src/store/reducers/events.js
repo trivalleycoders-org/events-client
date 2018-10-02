@@ -26,7 +26,6 @@ const updateEvent = (state, newEvent) => {
 }
 
 const deleteEvent = (state, payload) => {
-  // blue('deleteEvent', payload)
   const _id = payload[0]._id
   const idx = indexOfObjectInArray(state, _id)
   const newState = remove(idx, 1, state)
@@ -34,7 +33,6 @@ const deleteEvent = (state, payload) => {
 }
 
 export const events = (state = [], { type, payload }) => {
-  // blue('events reducer')
   try {
     switch (type) {
       case eventCreateKey:
@@ -44,7 +42,6 @@ export const events = (state = [], { type, payload }) => {
       case eventUpdateOneKey:
         return updateEvent(state, payload.event)
       case eventDeleteOneKey:
-        blue('events: payload', payload)
         return deleteEvent(state, payload.event)
       default:
         return state

@@ -13,8 +13,6 @@ import { blue } from 'logger'
 export const cities = (state = [], { type, payload }) => {
   switch (type) {
     case keyReadCities:
-      blue(keyReadCities, payload)
-      blue('createEvent state', state)
       return payload.cities
     default:
       return state
@@ -27,7 +25,6 @@ export const postalCodes = (state = [], { type, payload }) => {
     case postalCodesClearKey:
       return []
     case postalCodesReadKey:
-      // blue('postalCodes: payload', payload)
       return payload.postalCodes
     default:
       return state

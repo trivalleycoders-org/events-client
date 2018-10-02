@@ -8,7 +8,6 @@ import {
 import { green } from 'logger'
 
 export const renderInput = (inputProps) => {
-  // green('inputProps', inputProps.InputProps.value)
   const { InputProps, classes, ref, ...other } = inputProps
 
   return (
@@ -34,7 +33,6 @@ export const renderSuggestion = ({
 }) => {
   const isHighlighted = highlightedIndex === index
   const isSelected = (selectedItem || '').indexOf(suggestion.searchString) > -1
-  // green('selectedItem', selectedItem)
   return (
     <MenuItem
       {...itemProps}

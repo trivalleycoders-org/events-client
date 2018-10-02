@@ -49,7 +49,7 @@ export default {
       }
     },
     async login(user) {
-      pink('api.users.login: ', user)
+      // pink('api.users.login: ', user)
       try {
         const data = await fetchJson(
           '/users/login',
@@ -58,7 +58,7 @@ export default {
             body: JSON.stringify(user)
           }
         )
-        pink('data returned from api.users.login: ', data)
+        // pink('data returned from api.users.login: ', data)
         return data.data
       }
       catch (e) {
@@ -78,7 +78,7 @@ export default {
       })
     },
     async update(password) {
-      pink('api.users.update: ', password)
+      // pink('api.users.update: ', password)
       try {
         const data = await fetchJson(
           '/user',
@@ -87,7 +87,7 @@ export default {
             body: JSON.stringify(password)
           }
         )
-        pink('data returned from api.users.update: ', data)
+        // pink('data returned from api.users.update: ', data)
         return data.data
       }
       catch (e) {

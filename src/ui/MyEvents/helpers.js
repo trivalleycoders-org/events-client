@@ -1,5 +1,7 @@
 
 import format from 'date-fns/format'
+
+// eslint-disable-next-line
 import { green } from 'logger'
 
 const moDayYrFormat = 'MMM d, YYYY'

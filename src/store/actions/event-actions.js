@@ -48,8 +48,6 @@ export const eventUpdateOneKey = 'eventUpdateOneKey'
 export const eventUpdateOneRequestKey = 'eventUpdateOneRequestKey'
 
 const eventUpdateOne = (event) => {
-  // orange('event-actions.eventUpdateOne: event', event)
-
   return ({
     type: eventUpdateOneKey,
     payload: { event },
@@ -68,7 +66,6 @@ export const eventDeleteOneKey = 'eventDeleteOneKey'
 export const eventDeleteOneRequestKey = 'eventDeleteOneRequestKey'
 
 const eventDeleteOne = (event) => {
-  // orange('event-actions.eventDeleteOne: event', event)
   return ({
     type: eventDeleteOneKey,
     payload: { event },
@@ -87,7 +84,6 @@ export const editIdSetKey = 'editIdSetKey'
 export const editIdUnsetKey = 'editIdUnsetKey'
 
 export const editIdSet = (_id) => {
-  // orange('event-actions.editIdSet: _id', _id)
   return ({
     type: editIdSetKey,
     payload: { _id }
@@ -95,7 +91,6 @@ export const editIdSet = (_id) => {
 }
 
 export const editIdUnset = () => {
-  // orange('event-actions.editIdUnset')
   return ({
     type: editIdUnsetKey,
   })

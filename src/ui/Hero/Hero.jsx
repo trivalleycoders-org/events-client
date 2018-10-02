@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Paper
@@ -7,19 +8,22 @@ import {
 import SearchBox from 'ui/SearchBox'
 import Display4 from 'ui/ui-elements/typography/Display4'
 
-const Hero = ({ classes }) => {
-  return (
-    <Paper className={classes.wrapper}>
-      <div className={classes.title}>
-        <Display4 /*color='white'*/>Drone Madness</Display4>
-      </div>
+const Hero = ({ classes, location }) => {
+  const showHero = location.pathname.startsWith('/search-events')
+      || location.pathname === '/events'
+      || location.pathname === '/'
+  return showHero
+    ? <Paper className={classes.wrapper}>
+        <div className={classes.title}>
+          <Display4 /*color='white'*/>Drone Madness</Display4>
+        </div>
 
-      <div className={classes.search}>
-        <SearchBox />
-      </div>
+        <div className={classes.search}>
+          <SearchBox />
+        </div>
 
-    </Paper>
-  )
+      </Paper>
+    : null
 }
 
 const styles = theme => {
@@ -66,4 +70,4 @@ const styles = theme => {
   })
 }
 
-export default withStyles(styles)(Hero)
+export default withStyles(styles)(withRouter(Hero))

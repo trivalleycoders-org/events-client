@@ -4,10 +4,7 @@ import { green } from 'logger'
 
 const formatMinutes = (minutes) => {
   const mins = Number(minutes).toString()
-  // green('mins', mins)
-  // green('mins.length', mins.length)
   if (mins.length === 1) {
-    // green('with zero', `0${mins}`)
     return mins.padStart(2, '0')
   }
   return mins
@@ -16,7 +13,6 @@ const formatMinutes = (minutes) => {
 const hourAmPm = (date) => {
   const h = date.getHours()
   const m = date.getMinutes().toString().padStart(2, 0)
-  // green('m', m)
   return (h > 12)
     ? `${h-12}:${m} PM`
     : `${h}:${m} AM`

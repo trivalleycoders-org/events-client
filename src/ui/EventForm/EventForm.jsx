@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import { mergeAll, omit, path, pick, prop, zipObj } from 'ramda'
+import { mergeAll, path } from 'ramda'
 import isBefore from 'date-fns/isBefore'
 
 /* User */
@@ -25,8 +25,6 @@ import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
 import styles from './styles'
 import UploadImage from 'ui/ui-elements/UploadImage'
 import AreYouSure from './AreYouSure'
-import { validateModel } from 'models'
-import Event from './EventModel'
 import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
 import Toolbar from './Toolbar'
 
@@ -39,27 +37,10 @@ const EDIT_MODE = 'edit-mode'
 const CREATE_MODE = 'create-mode'
 
 const shapeDataOut = (formValues, currentUserId) => {
-  green('formValues', formValues)
   const mergedData = mergeAll([
     formValues,
     {userId: currentUserId}
   ])
-
-  // // dates
-  // const dates = pick(['combinedDateTime'], formValues)
-  // // postalCode - server expects postalCode._id which it uses to lookup
-  // // city, state & postalCode
-  // const postalCodeId = formValues.postalCode._id
-  // // remove props not needed
-  // const formValues0 = omit(['combinedDateTime', 'postalCode'], formValues)
-  // // merge it
-  // const mergedData = mergeAll([
-  //   formValues0,
-  //   {endDateTime: dates.combinedDateTime.endDate},
-  //   {startDateTime: dates.combinedDateTime.startDate},
-  //   {postalCodeId: postalCodeId},
-  //   {userId: currentUserId}
-  // ])
   return mergedData
 }
 
@@ -92,6 +73,17 @@ class EventForm extends React.Component {
     this.goBack()
   }
 
+  handleDeleteClick = () => {
+    const { eventEditId } = this.props
+    this.props.eventDeleteOneRequest(eventEditId)
+    this.props.editIdUnset()
+    this.goBack()
+  }
+
+  handleEditClick = () => {
+    green('handleEdit')
+  }
+
   onCancel = (pristine) => {
     if (pristine) {
       this.goBack()
@@ -117,7 +109,7 @@ class EventForm extends React.Component {
   }
 
   render() {
-    const { classes, handleSubmit, mode, pastEvent, pristine, reset, submitting } = this.props
+    const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
     const { areYouSure } = this.state
     // const enableEdit = mode !== VIEW_MODE
     return (
@@ -134,7 +126,10 @@ class EventForm extends React.Component {
                   </Typography></div>
               : null
           }
-          <Toolbar />
+          <Toolbar
+            handleDeleteClick={this.handleDeleteClick}
+            handleEditClick={this.handleEditClick}
+          />
           <form>
             <UploadImage
               fieldName='imageUrl'
@@ -229,20 +224,6 @@ class EventForm extends React.Component {
   }
 }
 
-const shapeDataIn = (data) => {
-  const r1 = omit(['startDateTime', 'endDateTime'], data)
-  const searchString = `${data.postalCode} ${data.cityName} ${data.stateCode}`
-  const r2 = mergeAll ([
-    r1,
-    zipObj(
-        ['combinedDateTime'],
-        [zipObj(['startDate', 'endDate'], [data.startDateTime, data.endDateTime])]
-      ),
-    searchString,
-  ])
-  return r2
-}
-
 const mapStateToProps = (state) => {
   const _id = eventSelectors.getEventEdit_id(state)
   // if there is an _id then form is in edit mode
@@ -253,7 +234,6 @@ const mapStateToProps = (state) => {
     const startDate = path(['dates', 'startDateTime'], data)
     const pastEvent = isBefore(startDate, new Date())
     const free = path(['free'], data) === undefined ? false :  true
-    // const shapedData = shapeDataIn(data)
 
     return {
       free: free,

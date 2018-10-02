@@ -24,7 +24,6 @@ class MyEvents extends React.Component {
   }
 
   handleItemClick = (_id) => {
-    green('handleItemClick', _id)
     this.props.editIdSet(_id)
     this.setState({
       navigateAway: true,
@@ -32,10 +31,10 @@ class MyEvents extends React.Component {
   }
 
   render() {
-    const { classes, events, width } = this.props
+    const { classes, events } = this.props
     const { navigateAway } = this.state
     if (navigateAway) {
-      return <Redirect to={'/new-event'}/>
+      return <Redirect to={'/event-details'}/>
     }
 
     return (

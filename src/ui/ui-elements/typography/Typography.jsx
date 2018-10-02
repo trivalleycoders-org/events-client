@@ -18,7 +18,6 @@ export function contains(obj, pred) {
 }
 
 function Typography(props) {
-  green('Typography: props', props)
   const {
     align,
     classes,

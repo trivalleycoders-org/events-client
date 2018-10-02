@@ -1,7 +1,9 @@
 import { createRequestThunk } from './action-helpers'
 import api from 'api'
-import { orange } from 'logger'
 import { pageMessage } from './page-message-actions'
+
+// eslint-disable-next-line
+import { orange } from 'logger'
 
 // logout
 export const userLogoutKey = 'userLogoutKey'
@@ -44,7 +46,6 @@ export const userValidateRequest = createRequestThunk({
 export const userLoginKey = 'userLoginKey'
 
 const userLogin = (user) => {
-  orange('userLogin: user', user)
   return ({
     type: userLoginKey,
     payload: user
