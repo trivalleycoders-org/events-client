@@ -67,8 +67,8 @@ class App extends React.Component {
           <PageMessage></PageMessage>
           {
             showHero
-            ? <Hero />
-            : null
+              ? <Hero />
+              : null
           }
           <div className={classes.body}>
             <Switch>
@@ -82,7 +82,7 @@ class App extends React.Component {
               <Route exact path='/search-events/:searchValue' component={SearchEvents} />
               <PrivateRoute exact path='/my-events' component={Events} />
               <Route exact path='/events' component={Events} />
-              <Route exact path='/' component={Events} />
+              <Route path='/' component={Events} />
               <Route component={RouteNotfound} />
             </Switch>
           </div>
@@ -113,7 +113,7 @@ const styles = theme => ({
 
 })
 
-const actions = { ...authActions, ...pageMessageActions}
+const actions = { ...authActions, ...pageMessageActions }
 
 export default compose(
   withStyles(styles),
