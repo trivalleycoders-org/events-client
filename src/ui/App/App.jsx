@@ -35,45 +35,28 @@ import { green, yellow } from 'logger'
 
 class App extends React.Component {
   constructor(props) {
-    green('1) constructor start')
     super(props)
 
-    green('2) constructor before this.state')
     this.state = {
       hasCookie: false,
       mountDone: false,
     }
-    green('3) constructor end')
-  }
-
-  // componentWillMount() {
-  //   green('4) componentWillMount')
-  // }
-
-  static getDerivedStateFromProps(props, state) {
-    green('** getDerivedStateFromProps')
-    return state
   }
 
   async componentDidMount() {
-    green('5) componentDidMount start')
     const { userValidateRequest } = this.props
     let user
     if (document.cookie) {
-      yellow('has cookie true')
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
-
       user = {
         id: decoded.payload.id,
         email: decoded.payload.email,
         token: tokenObj.token
       }
-
       await userValidateRequest(user)
     }
     this.setState({ mountDone: true })
-    green('6) componentDidMount end')
   }
 
   render() {
