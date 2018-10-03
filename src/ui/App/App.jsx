@@ -13,8 +13,6 @@ import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 
 import Breakpoints from 'ui/ui-elements/Breakpoints'
-import Events from 'ui/Events'
-import EventForm from 'ui/EventForm'
 import Hero from 'ui/Hero'
 import LoginForm from 'ui/Auth/LoginForm'
 import PageMessage from 'ui/ui-elements/PageMessage'
@@ -29,7 +27,7 @@ import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
 import AppDrawer from 'ui/AppDrawer'
-import EventsController from 'ui/Events/EventsController'
+import EventsController from 'ui/EventsController'
 
 // eslint-disable-next-line
 import { green, yellow } from 'logger'
@@ -83,7 +81,7 @@ class App extends React.Component {
                       <Route exact path='/login' component={LoginForm} />
                       <PrivateRoute exact path='/my-events' component={EventsController} />
                       <Route exact path='/new-event' component={EventsController} />
-                      <Route exact path='/edit-event' component={EventsController} />
+                      <Route exact path='/edit-event/:id' component={EventsController} />
                       <Route exact path='/palette' component={Palette} />
                       <Route exact path='/register' component={RegisterForm} />
                       <Route exact path='/search-events/:searchValue' component={SearchEvents} />

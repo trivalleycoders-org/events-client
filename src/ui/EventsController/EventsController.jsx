@@ -6,19 +6,21 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Typography,
 } from '@material-ui/core'
+import { mergeAll, path } from 'ramda'
+import isBefore from 'date-fns/isBefore'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
-import * as eventsSelectors from '../../store/selectors/events-selectors'
-import * as requestSelectors from '../../store/selectors/request-selectors'
+import * as eventsSelectors from 'store/selectors/events-selectors'
+import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
-import EventCards from 'ui/EventCards'
-import EventDetails from 'ui/EventDetails'
-import MyEvents from 'ui/MyEvents'
-import EventForm from 'ui/EventForm'
-import { mergeAll, path } from 'ramda'
-import isBefore from 'date-fns/isBefore'
+import EventCards from './EventCards'
+import EventDetails from './EventDetails'
+import MyEvents from './MyEvents'
+import EventForm from './EventForm'
+import { EDIT_MODE, CREATE_MODE } from './EventForm'
+
 
 /* Dev */
 // eslint-disable-next-line
@@ -28,13 +30,6 @@ const reEventDetails = /^\/event-details/
 const reNewEvent = /^\/new-event/
 const reEditEvent = /^\/edit-event/
 
-
-const styles = theme => ({
-  pageMock: {
-    marginTop: 100,
-  }
-})
-
 const getEventsForUser = (events, userId) => {
   green('getEventsForUser: events', events)
   green('getEventsForUser: userId', userId)
@@ -43,22 +38,32 @@ const getEventsForUser = (events, userId) => {
   return ret
 }
 
-// const pastEvent = isBefore(startDate, new Date())
-// pastEvent,
-
-const shapeEditData = (event) => {
+const pastEvent = (event) => {
   const startDate = path(['dates', 'startDateTime'], event)
+  return isBefore(startDate, new Date())
+
+}
+
+const shapeEditDataIn = (event) => {
+
   const free = path(['free'], event) === undefined ? false :  true
   return {
     free: free,
     initialValues: event,
-
   }
+}
+
+const shapeEditDataOut = (formValues, currentUserId) => {
+  const mergedData = mergeAll([
+    formValues,
+    {userId: currentUserId}
+  ])
+  return mergedData
 }
 
 const getOneEvent = (events, eventId) => {
   const e = events.find(e => e._id === eventId)
-  return shapeEditData(e)
+  return shapeEditDataIn(e)
 }
 
 class Events extends React.Component {
@@ -70,8 +75,10 @@ class Events extends React.Component {
     this.props.eventsReadRequest('Events')
   }
 
-  eventCreate = () => {
+  eventCreate = (formValues) => {
     green('** EventsController.eventCreate')
+    const data = shapeEditDataOut(formValues)
+    this.props.eventCreateRequest(data)
     this.goBack()
   }
 
@@ -80,8 +87,10 @@ class Events extends React.Component {
     this.goBack()
   }
 
-  eventUpdate = () => {
+  eventUpdate = (formValues) => {
     green('** EventsController.eventUpdate')
+    const data = shapeEditDataOut(formValues)
+    this.props.eventUpdateOneRequest(data)
     this.goBack()
   }
 
@@ -89,12 +98,15 @@ class Events extends React.Component {
     this.state.goBack()
   }
 
+  // myEventsItemClick = (_id) => {
+  //   this.setState({
+  //     navigateAway: true,
+  //   })
+  // }
+
   render() {
     const { classes, events, match, currentUserId } = this.props
     const eventId = match.params.id
-    // green('Events: history', this.props.history)
-    // green('Events: location', this.props.location)
-    // green('Events: match', this.props.match)
     if (this.props.requestReadAllEvents.status !== 'success') {
       return (
         <Typography variant='display1'>
@@ -126,21 +138,20 @@ class Events extends React.Component {
       return (
         <div className={classes.pageMock}>
           <EventForm
-            // event={getOneEvent(events, eventId)}
             eventCreate={this.eventCreate}
-            eventDelete={this.eventDelete}
             goBack={this.goBack}
+            mode={CREATE_MODE}
           />
         </div>
       )
-    } else if (reNewEvent.test(match.path)) {
+    } else if (reEditEvent.test(match.path)) {
       return (
         <div className={classes.pageMock}>
           <EventForm
             event={getOneEvent(events, eventId)}
             eventUpdate={this.eventUpdate}
-            eventDelete={this.eventDelete}
             goBack={this.goBack}
+            mode={EDIT_MODE}
           />
         </div>
       )
@@ -153,6 +164,12 @@ class Events extends React.Component {
     }
   }
 }
+
+const styles = theme => ({
+  pageWrapper: {
+    padding: '20px',
+  },
+})
 
 Events.propTypes = {
   classes: PropTypes.object.isRequired

@@ -1,21 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  Button,
-  Typography,
-} from '@material-ui/core'
-import { MuiPickersUtilsProvider } from 'material-ui-pickers'
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-
-
-/* User */
-// import * as eventActions from 'store/actions/event-actions'
-// import * as eventSelectors from 'store/selectors/events-selectors'
-// import * as authSelectors from 'store/selectors/auth-selectors'
-import Form from './Form'
-
+import EventFormForm from './EventFormForm'
+import PastEvent from './PastEvent'
+import { hasProp } from 'lib/hasProp'
 
 // fix?
 import styles from './styles'
@@ -26,16 +14,8 @@ import ShowValues from 'ui/ui-elements/ShowValues'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EDIT_MODE = 'edit-mode'
-const CREATE_MODE = 'create-mode'
-
-const shapeDataOut = (formValues, currentUserId) => {
-  const mergedData = mergeAll([
-    formValues,
-    {userId: currentUserId}
-  ])
-  return mergedData
-}
+export const EDIT_MODE = 'edit-mode'
+export const CREATE_MODE = 'create-mode'
 
 class EventForm extends React.Component {
   state = {
@@ -43,7 +23,6 @@ class EventForm extends React.Component {
     imageUrl: '',
     free: this.props.free,
     areYouSure: false,
-    // mode: undefined,
   }
 
   componentDidMount() {
@@ -57,23 +36,18 @@ class EventForm extends React.Component {
   }
 
   onSubmit = (values) => {
-    // const { mode, eventCreateRequest, eventUpdateOneRequest, editIdUnset } = this.props
     const { mode, eventUpdate, eventCreate } = this.props
-    const reshapedData = shapeDataOut(values, this.props.currentUserId)
 
     // TODO: remove this for production
     this.setState({
-      values: reshapedData
+      values: values
     })
     //
 
     if (mode === EDIT_MODE) {
-      // eventUpdateOneRequest(reshapedData)
-      eventUpdate(reshapedData)
-      // editIdUnset()
+      eventUpdate(values)
     } else {
-      // eventCreateRequest(reshapedData)
-      eventCreate(reshapedData)
+      eventCreate(values)
     }
   }
 
@@ -109,35 +83,47 @@ class EventForm extends React.Component {
   }
 
   render() {
-    const { classes, handleSubmit, pastEvent, pristine, reset, submitting } = this.props
     const { areYouSure } = this.state
-    // const enableEdit = mode !== VIEW_MODE
+
+    const { pastEvent } = this.props
+    const event = hasProp('event', this.props) ? this.props.event : {}
+
+    green('EventForm: props', this.props)
     return (
-      <MuiPickersUtilsProvider
-        utils={DateFnsUtils}
-      >
+      <div>
         <AreYouSure open={areYouSure} close={this.closeModal} />
-        {
-          pastEvent
-            ? <div>
-                <Typography variant='display1' className={classes.pastEvent}>
-                  This event is in the past
-                </Typography></div>
-            : null
-        }
-        <Form />
+
+        <PastEvent
+          event={event}
+        />
+        <EventFormForm
+          event={event}
+          freeClick={this.freeClick}
+          free={this.free}
+          onCancel={this.onCancel}
+          onSubmit={this.onSubmit}
+        />
         <ShowValues values={this.state.values} />
-      </MuiPickersUtilsProvider>
+      </div>
     )
   }
 }
 
-const dataIn = (event) => {
+/*
+this.state.free
+this.freeClick()
+this.onCancel(pristine)
+this.onSubmit
 
-  if (event) {
+*/
 
-  }
-}
+
+//
+//
+/*
+
+*/
+
 
 // const mapStateToProps = (state) => {
 //   const _id = eventSelectors.getEventEdit_id(state)
