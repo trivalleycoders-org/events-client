@@ -9,11 +9,15 @@ import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
 import IconButtonLink from 'ui/ui-elements/IconButtonLink'
 
-export const Toolbar = ({ classes, handleDeleteClick, handleEditClick }) => {
+// eslint-disable-next-line
+import { green } from 'logger'
+
+export const Toolbar = ({ classes, handleDeleteClick, id }) => {
+  green('Toolbar: id', id)
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.wrapper}>
-        <IconButtonLink to='/edit-event'>
+        <IconButtonLink to={`/edit-event/${id}`}>
           <Edit
             className={classes.editBtnIcon}
           />

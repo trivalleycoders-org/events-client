@@ -6,16 +6,18 @@ import Toolbar from './Toolbar'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EventDetails = ({ event }) => {
-  // green('EventDetails: props', props)
+const EventDetails = ({ event, eventId }) => {
 
-  // const handleDeleteClick = () => {
+  green('EventDetails: event', event)
+  green('EventDetails: event', eventId)
 
-  // }
+  const handleDeleteClick = () => {
+
+  }
 
   return (
     <div>
-      <Toolbar />
+      <Toolbar id={event._id} />
       <h1>Event Details</h1>
       <div>
         <p><b>title:</b> {event.title}</p>

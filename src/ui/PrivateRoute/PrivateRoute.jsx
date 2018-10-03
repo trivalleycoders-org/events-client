@@ -8,7 +8,6 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 import { green, blue } from 'logger'
 
 const PrivateRoute = ({ component: Component, loggedIn, areRequestsPending, ...rest }) => {
-  blue('PrivateRoute')
   return (
     <Route {...rest} render={(props) => (
       loggedIn

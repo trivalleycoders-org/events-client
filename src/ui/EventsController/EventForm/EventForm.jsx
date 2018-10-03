@@ -88,7 +88,6 @@ class EventForm extends React.Component {
     const { pastEvent } = this.props
     const event = hasProp('event', this.props) ? this.props.event : {}
 
-    green('EventForm: props', this.props)
     return (
       <div>
         <AreYouSure open={areYouSure} close={this.closeModal} />

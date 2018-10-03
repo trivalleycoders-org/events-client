@@ -3,11 +3,16 @@ import { withStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
+// eslint-disable-next-line
+import { green } from 'logger'
+
 const ButtonFit = ({ classes, children, to }) => {
+  green('ButtonFit: to', to)
   const LinkComponent = props => <Link
     to={to}
     {...props}
   />
+
   return (
     <Button
       component={LinkComponent}

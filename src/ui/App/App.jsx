@@ -59,7 +59,6 @@ class App extends React.Component {
   }
 
   render() {
-    green('7) component render')
     const { classes } = this.props
     return (
       <Router>

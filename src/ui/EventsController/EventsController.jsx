@@ -31,10 +31,10 @@ const reNewEvent = /^\/new-event/
 const reEditEvent = /^\/edit-event/
 
 const getEventsForUser = (events, userId) => {
-  green('getEventsForUser: events', events)
-  green('getEventsForUser: userId', userId)
+  // green('getEventsForUser: events', events)
+  // green('getEventsForUser: userId', userId)
   const ret =  events.filter(e => e.userId === userId)
-  green('getEventsForUser: ret', ret)
+  // green('getEventsForUser: ret', ret)
   return ret
 }
 
@@ -62,7 +62,11 @@ const shapeEditDataOut = (formValues, currentUserId) => {
 }
 
 const getOneEvent = (events, eventId) => {
-  const e = events.find(e => e._id === eventId)
+  return events.find(e => e._id === eventId)
+}
+
+const getOneEventForEdit = (events, eventId) => {
+  const e = getOneEvent(events, eventId)
   return shapeEditDataIn(e)
 }
 
@@ -76,19 +80,19 @@ class Events extends React.Component {
   }
 
   eventCreate = (formValues) => {
-    green('** EventsController.eventCreate')
+    // green('** EventsController.eventCreate')
     const data = shapeEditDataOut(formValues)
     this.props.eventCreateRequest(data)
     this.goBack()
   }
 
   eventDelete = () => {
-    green('** EventsController.eventDelete')
+    // green('** EventsController.eventDelete')
     this.goBack()
   }
 
   eventUpdate = (formValues) => {
-    green('** EventsController.eventUpdate')
+    // green('** EventsController.eventUpdate')
     const data = shapeEditDataOut(formValues)
     this.props.eventUpdateOneRequest(data)
     this.goBack()
@@ -97,12 +101,6 @@ class Events extends React.Component {
   goBack = () => {
     this.state.goBack()
   }
-
-  // myEventsItemClick = (_id) => {
-  //   this.setState({
-  //     navigateAway: true,
-  //   })
-  // }
 
   render() {
     const { classes, events, match, currentUserId } = this.props
@@ -115,7 +113,6 @@ class Events extends React.Component {
       )
     }
     if (match.path === '/my-events') {
-      green('EventsController - my-events')
       return (
         <div className={classes.pageMock}>
           <MyEvents
@@ -145,10 +142,11 @@ class Events extends React.Component {
         </div>
       )
     } else if (reEditEvent.test(match.path)) {
+      green('EventsConroller: eventId', eventId)
       return (
         <div className={classes.pageMock}>
           <EventForm
-            event={getOneEvent(events, eventId)}
+            event={getOneEventForEdit(events, eventId)}
             eventUpdate={this.eventUpdate}
             goBack={this.goBack}
             mode={EDIT_MODE}

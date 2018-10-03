@@ -16,11 +16,11 @@ const MyEvents = ({ classes, events }) => {
   return (
     <div className={classes.wrapper}>
       <Grid container spacing={Number(8)}>
-        {events.map(n => {
+        {events.map(e => {
           return (
-            <Grid key={n._id} item xs={12} lg={6}>
+            <Grid key={e._id} item xs={12} lg={6}>
               <Event
-                event={n}
+                event={e}
               />
             </Grid>
           )
