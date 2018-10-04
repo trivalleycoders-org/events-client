@@ -126,8 +126,8 @@ class Events extends React.Component {
         <div className={classes.pageMock}>
           <EventDetails
             event={getOneEvent(events, eventId)}
-            eventCreate={this.eventCreate}
             eventDelete={this.eventDelete}
+            goBack={this.goBack}
           />
         </div>
       )
