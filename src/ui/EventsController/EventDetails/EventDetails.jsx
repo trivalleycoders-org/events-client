@@ -8,9 +8,6 @@ import { green } from 'logger'
 
 const EventDetails = ({ event, eventId }) => {
 
-  green('EventDetails: event', event)
-  green('EventDetails: event', eventId)
-
   const handleDeleteClick = () => {
 
   }

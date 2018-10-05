@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { green } from 'logger'
 
 const ButtonFit = ({ classes, children, to }) => {
-  green('ButtonFit: to', to)
   const LinkComponent = props => <Link
     to={to}
     {...props}

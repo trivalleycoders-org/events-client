@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
@@ -20,11 +21,12 @@ import EventDetails from './EventDetails'
 import MyEvents from './MyEvents'
 import EventForm from './EventForm'
 import { EDIT_MODE, CREATE_MODE } from './EventForm'
+import shortid from 'shortid'
 
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, blue } from 'logger'
 
 const reEventDetails = /^\/event-details/
 const reNewEvent = /^\/new-event/
@@ -38,11 +40,11 @@ const getEventsForUser = (events, userId) => {
   return ret
 }
 
-const pastEvent = (event) => {
-  const startDate = path(['dates', 'startDateTime'], event)
-  return isBefore(startDate, new Date())
+// const pastEvent = (event) => {
+//   const startDate = path(['dates', 'startDateTime'], event)
+//   return isBefore(startDate, new Date())
 
-}
+// }
 
 const shapeEditDataIn = (event) => {
 
@@ -71,12 +73,26 @@ const getOneEventForEdit = (events, eventId) => {
 }
 
 class Events extends React.Component {
-  state = {
-    goBack: this.props.history.goBack,
+  constructor(props) {
+    super(props)
+    this.state = {
+      goBack: this.props.history.goBack,
+      instanceId: shortid.generate()
+    }
   }
 
+
   componentDidMount() {
+    blue('EventController.componentDidMOUNT', this.state.instanceId)
     this.props.eventsReadRequest('Events')
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    blue('EventController.componentDidUpdate', this.state.instanceId)
+  }
+
+  componentWillUnmout() {
+    blue('EventController.componentWillUnmount', this.state.instanceId)
   }
 
   eventCreate = (formValues) => {
@@ -124,11 +140,14 @@ class Events extends React.Component {
     } else if (reEventDetails.test(match.path)) {
       return (
         <div className={classes.pageMock}>
-          <EventDetails
-            event={getOneEvent(events, eventId)}
-            eventCreate={this.eventCreate}
-            eventDelete={this.eventDelete}
+          <Route path='/event-details/:id' render={() =>
+            <EventDetails
+              event={getOneEvent(events, eventId)}
+              eventCreate={this.eventCreate}
+              eventDelete={this.eventDelete}
+            />}
           />
+
         </div>
       )
     } else if (reNewEvent.test(match.path)) {
@@ -142,7 +161,6 @@ class Events extends React.Component {
         </div>
       )
     } else if (reEditEvent.test(match.path)) {
-      green('EventsConroller: eventId', eventId)
       return (
         <div className={classes.pageMock}>
           <EventForm
@@ -185,3 +203,12 @@ export default compose(
   withStyles(styles),
   connect(mapStateToProps, eventActions)
 )(Events)
+
+
+/*
+<EventDetails
+            event={getOneEvent(events, eventId)}
+            eventCreate={this.eventCreate}
+            eventDelete={this.eventDelete}
+          />
+*/

@@ -13,7 +13,6 @@ import IconButtonLink from 'ui/ui-elements/IconButtonLink'
 import { green } from 'logger'
 
 export const Toolbar = ({ classes, handleDeleteClick, id }) => {
-  green('Toolbar: id', id)
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.wrapper}>

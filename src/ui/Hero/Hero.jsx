@@ -5,7 +5,7 @@ import {
   Paper
 } from '@material-ui/core'
 // import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
-import SearchBox from 'ui/SearchBox'
+// import SearchBox from 'ui/SearchBox'
 import Display4 from 'ui/ui-elements/typography/Display4'
 
 const Hero = ({ classes, location }) => {
@@ -19,7 +19,7 @@ const Hero = ({ classes, location }) => {
         </div>
 
         <div className={classes.search}>
-          <SearchBox />
+
         </div>
 
       </Paper>

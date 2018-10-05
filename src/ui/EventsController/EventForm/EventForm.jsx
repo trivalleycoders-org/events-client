@@ -12,7 +12,7 @@ import AreYouSure from './AreYouSure'
 /* Dev */
 import ShowValues from 'ui/ui-elements/ShowValues'
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, yellow } from 'logger'
 
 export const EDIT_MODE = 'edit-mode'
 export const CREATE_MODE = 'create-mode'
@@ -26,14 +26,18 @@ class EventForm extends React.Component {
   }
 
   componentDidMount() {
-    const { event } = this.props
-    if (!event) {
-      return
-    } else {
-
-    }
+    yellow('EventForm.componentDidMount', this.props.mode)
 
   }
+
+  componentDidUpdate() {
+    yellow('EventForm.componentDidUpdate')
+  }
+
+  componentWillUnmout() {
+    yellow('App.componentWillUnmount')
+  }
+
 
   onSubmit = (values) => {
     const { mode, eventUpdate, eventCreate } = this.props
@@ -53,8 +57,6 @@ class EventForm extends React.Component {
 
   handleDeleteClick = () => {
     const { /*eventEditId,*/ eventDelete, event } = this.props
-    // this.props.eventDeleteOneRequest(eventEditId)
-    // this.props.editIdUnset()
     eventDelete(event._id)
   }
 
@@ -83,11 +85,10 @@ class EventForm extends React.Component {
   }
 
   render() {
+
     const { areYouSure } = this.state
-
-    const { pastEvent } = this.props
     const event = hasProp('event', this.props) ? this.props.event : {}
-
+    green('EventForm: initialValues', event.initialValues)
     return (
       <div>
         <AreYouSure open={areYouSure} close={this.closeModal} />
@@ -97,6 +98,7 @@ class EventForm extends React.Component {
         />
         <EventFormForm
           event={event}
+          initialValues={event.initialValues}
           freeClick={this.freeClick}
           free={this.free}
           onCancel={this.onCancel}

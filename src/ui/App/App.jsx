@@ -20,7 +20,7 @@ import Palette from 'ui/ui-design/Palette'
 import PrivateRoute from 'ui/PrivateRoute'
 import RegisterForm from 'ui/Auth/RegisterForm'
 import RouteNotfound from 'ui/RouteNotFound'
-import SearchEvents from 'ui/SearchEvents'
+// import SearchEvents from 'ui/SearchEvents'
 import SettingsForm from 'ui/Auth/SettingsForm'
 import TypographyGuide from 'ui/ui-design/TypographyGuide'
 import withRoot from 'ui/withRoot'
@@ -77,16 +77,18 @@ class App extends React.Component {
                     <Switch>
                       <Route exact path='/events' component={EventsController} />
                       <PrivateRoute exact path='/event-details/:id' component={EventsController} />
-                      <Route exact path='/login' component={LoginForm} />
                       <PrivateRoute exact path='/my-events' component={EventsController} />
                       <Route exact path='/new-event' component={EventsController} />
                       <Route exact path='/edit-event/:id' component={EventsController} />
+                      <Route exact path='/' component={EventsController} />
+
+                      <Route exact path='/login' component={LoginForm} />
                       <Route exact path='/palette' component={Palette} />
                       <Route exact path='/register' component={RegisterForm} />
-                      <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+
                       <PrivateRoute exact path='/settings' component={SettingsForm} />
                       <Route exact path='/typography' component={TypographyGuide} />
-                      <Route exact path='/' component={EventsController} />
+
                       <Route component={RouteNotfound} />
                     </Switch>
                   </div>
@@ -98,7 +100,7 @@ class App extends React.Component {
     )
   }
 }
-
+// <Route exact path='/search-events/:searchValue' component={SearchEvents} />
 const mapStateToProps = (state) => {
   return {
     userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey)

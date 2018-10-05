@@ -17,8 +17,6 @@ import Chevron5 from './Chevron5'
 import { green } from 'logger'
 
 const Event = ({ classes, event, handleItemClick }) => {
-  green('Event: event', event)
-  green('Event: event._id', event._id)
   return (
     <Paper className={classes.wrapper}>
       <Grid container>
