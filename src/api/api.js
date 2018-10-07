@@ -140,6 +140,21 @@ export default {
         red('api.events.read', e)
       }
     },
+    async forUserRead(userId) {
+      try {
+        const data = await fetchJson(
+          `/events/user/${userId}`,
+          {
+            method: 'GET',
+          }
+        )
+        pink('api.events.forUserRead: data', data)
+        return data.data
+      }
+      catch (e) {
+        red('api.events.foruserRead', e)
+      }
+    },
     async patch(event) {
       try {
         // pink('api.patch: event', event)

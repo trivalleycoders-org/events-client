@@ -14,12 +14,12 @@ import * as eventsSelectors from 'store/selectors/events-selectors'
 import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
-import EventCards from './EventCards'
 import shortid from 'shortid'
-import MyEvents from './MyEvents'
 import EventDetails from './EventDetails'
 import EventFormController from './EventFormController'
 import { EDIT_MODE, CREATE_MODE } from './EventFormController'
+// import EventCards from './EventCards'
+// import MyEvents from './MyEvents'
 
 
 /* Dev */
@@ -90,7 +90,7 @@ class EventsController extends React.Component {
 
     return (
       <div className={classes.pageWrapper}>
-        <Route
+        {/* <Route
           exact
           path='/'
           render={props =>
@@ -98,8 +98,8 @@ class EventsController extends React.Component {
               events={events}
             />
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path='/my-events'
           render={props =>
             <MyEvents
@@ -107,7 +107,7 @@ class EventsController extends React.Component {
               eventCreate={this.eventCreate}
             />
           }
-        />
+        /> */}
         <Route
           path='/event-details/:id'
           render={props =>

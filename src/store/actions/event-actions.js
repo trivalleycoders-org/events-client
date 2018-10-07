@@ -26,6 +26,24 @@ export const eventCreateRequest = createRequestThunk({
 })
 
 // Read
+export const eventsForUserReadKey = 'eventsForUserReadKey'
+export const eventsForUserReadRequestKey = 'eventsForUserReadRequestKey'
+
+export const eventsForUserRead = (events) => {
+  return ({
+    type: eventsForUserReadKey,
+    payload: { events },
+  })
+}
+
+export const eventsForUserReadRequest = createRequestThunk({
+  request: api.events.forUserRead,
+  key: eventsForUserReadRequestKey,
+  success: [eventsForUserRead, () => snackbarSet('Events for user retrieved.', 'success'), () => pageMessage('')],
+  failure: [(error) => snackbarSet('Could not get events', 'error')]
+})
+
+// Read
 export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 

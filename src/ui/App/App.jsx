@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import {
   Route,
   Switch ,
@@ -20,21 +20,24 @@ import Breakpoints from 'ui/ui-elements/Breakpoints'
 import Hero from 'ui/Hero'
 import LoginForm from 'ui/Auth/LoginForm'
 import PageMessage from 'ui/ui-elements/PageMessage'
-import Palette from 'ui/ui-design/Palette'
+
 import PrivateRoute from 'ui/PrivateRoute'
 import RegisterForm from 'ui/Auth/RegisterForm'
-// import RouteNotfound from 'ui/RouteNotFound'
-// import SearchEvents from 'ui/SearchEvents'
 import SettingsForm from 'ui/Auth/SettingsForm'
-import TypographyGuide from 'ui/ui-design/TypographyGuide'
 import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
 import AppDrawer from 'ui/AppDrawer'
+// import SearchEvents from 'ui/SearchEvents'
+// import RouteNotfound from 'ui/RouteNotFound'
+// import TypographyGuide from 'ui/ui-design/TypographyGuide'
 import EventsController from 'ui/EventsController'
+// import Palette from 'ui/ui-design/Palette'
 
 // eslint-disable-next-line
 import { green, yellow } from 'logger'
+import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
+import MyEventsContainer from 'ui/MyEventsContainer'
 
 class App extends React.Component {
   constructor(props) {
@@ -74,6 +77,8 @@ class App extends React.Component {
             <div className={classes.body}>
               <EventsController />
               <Switch>
+                <Route exact path='/' component={EventCardsContainer} />
+                <Route exact path='/my-events' component={MyEventsContainer} />
                 <Route exact path='/login' component={LoginForm} />
                 <Route exact path='/register' component={RegisterForm} />
                 <PrivateRoute exact path='/settings' component={SettingsForm} />
