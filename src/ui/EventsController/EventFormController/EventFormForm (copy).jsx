@@ -18,19 +18,17 @@ import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EventFormForm = ({
-  classes,
-  freeClick,
-  handleSubmit,
-  initialValues,
-  onCancel,
-  onSubmit,
-  pristine,
-  reset,
-  submitting,
-  free,
-}) => {
-  green('EventFormForm: initialValues', initialValues)
+const EventFormForm = (props) => {
+  green('EventFormForm: props', props)
+  const { classes,
+    freeClick,
+    handleSubmit,
+    onCancel,
+    onSubmit,
+    pristine,
+    reset,
+    submitting,
+    free, } = props
   return (
     <div className={classes.pageWrapper}>
       <MuiPickersUtilsProvider

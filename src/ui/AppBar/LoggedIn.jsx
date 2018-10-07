@@ -25,7 +25,6 @@ const  LoggedIn = () => {
   )
 }
 
-
 const styles = {}
 
 export default withStyles(styles)(LoggedIn)

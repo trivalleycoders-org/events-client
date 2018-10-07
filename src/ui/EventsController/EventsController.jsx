@@ -3,10 +3,10 @@ import { Route, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
+import { mergeAll } from 'ramda'
 import {
   Typography,
 } from '@material-ui/core'
-import { mergeAll, path } from 'ramda'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
@@ -18,20 +18,13 @@ import EventCards from './EventCards'
 import shortid from 'shortid'
 import MyEvents from './MyEvents'
 import EventDetails from './EventDetails'
-import EventForm from './EventForm'
-import { EDIT_MODE, CREATE_MODE } from './EventForm'
+import EventFormController from './EventFormController'
+import { EDIT_MODE, CREATE_MODE } from './EventFormController'
+
 
 /* Dev */
 // eslint-disable-next-line
 import { green, blue } from 'logger'
-
-const shapeEditDataIn = (event) => {
-  const free = path(['free'], event) === undefined ? false :  true
-  return {
-    free: free,
-    initialValues: event,
-  }
-}
 
 const shapeEditDataOut = (formValues, currentUserId) => {
   const mergedData = mergeAll([
@@ -45,17 +38,6 @@ const getEventsForUserId = (events, userId) => {
   return events.filter(e => e.userId === userId)
 }
 
-const getOneEventById = (events, eventId) => {
-  const r = events.find(e => e._id === eventId)
-  return r
-}
-
-const getOneEventForEdit = (events, eventId) => {
-  const e = getOneEventById(events, eventId)
-  return shapeEditDataIn(e)
-}
-
-
 class EventsController extends React.Component {
   constructor(props) {
     super(props)
@@ -66,7 +48,7 @@ class EventsController extends React.Component {
 
   componentDidMount() {
     this.props.eventsReadRequest('Events')
-    green('EventsController: componentDidMount', this.state.instanceId)
+    // green('EventsController: componentDidMount', this.state.instanceId)
   }
 
   eventCreate = (formValues) => {
@@ -91,6 +73,9 @@ class EventsController extends React.Component {
 
   render() {
     const { classes, userId, events, match } = this.props
+
+    // green('EventsController: match', match)
+
     const eventId = match.params.id
 
     // MAYBE NEED
@@ -134,9 +119,9 @@ class EventsController extends React.Component {
           }
         />
         <Route
-          path='/create-event:id'
+          path='/create-event'
           render={props =>
-          <EventForm
+          <EventFormController
             { ...props }
             eventCreate={this.eventCreate}
             goBack={this.goBack}
@@ -144,14 +129,14 @@ class EventsController extends React.Component {
           />
         } />
         <Route path='/edit-event/:id' render={props =>
-          <EventForm
+          <EventFormController
             { ...props }
-            event={getOneEventForEdit(events, eventId)}
             eventUpdate={this.eventUpdate}
             goBack={this.goBack}
             mode={EDIT_MODE}
           />
         } />
+
       </div>
     )
   }
@@ -160,7 +145,7 @@ class EventsController extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  // green('EventsController: ownProps', ownProps.match)
+  // green('EventsController: ownProps.match', ownProps.match)
   return {
     events: eventsSelectors.getAllEvents(state),
     requestReadAllEvents: requestSelectors.getRequest(state, eventsReadRequestKey),

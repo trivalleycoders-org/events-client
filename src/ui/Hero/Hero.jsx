@@ -10,7 +10,6 @@ import Display4 from 'ui/ui-elements/typography/Display4'
 
 const Hero = ({ classes, location }) => {
   const showHero = location.pathname.startsWith('/search-events')
-      || location.pathname === '/events'
       || location.pathname === '/'
   return showHero
     ? <Paper className={classes.wrapper}>

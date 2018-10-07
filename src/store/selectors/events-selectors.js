@@ -10,9 +10,9 @@ export const getEventById = (state, eventId) => {
   return state.events.find(e => e._id === eventId)
 }
 
-// export const getEventEdit_id = (state) => {
-//   return state.eventsUi.edit_id || ''
-// }
+export const getEventsForUserId = (state, id) => {
+  return state.events.filter(e => e.userId === id)
+}
 
 
 // export const getOneEvent = (state, _id) => {

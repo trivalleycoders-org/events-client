@@ -59,8 +59,6 @@ class AreYouSure extends React.Component {
                 No
               </Button>
             </div>
-
-
           </div>
         </Modal>
       </div>

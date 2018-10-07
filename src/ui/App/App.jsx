@@ -65,38 +65,31 @@ class App extends React.Component {
   render() {
     const { classes } = this.props
     return (
-        <Fragment>
+        <div className={classes.wrapper}>
           <AppBar />
-
+          <Breakpoints />
+          <PageMessage></PageMessage>
+          <Hero />
           <div className={classes.wrapper}>
             <div className={classes.body}>
               <EventsController />
               <Switch>
                 <Route exact path='/login' component={LoginForm} />
                 <Route exact path='/register' component={RegisterForm} />
+                <PrivateRoute exact path='/settings' component={SettingsForm} />
               </Switch>
             </div>
           </div>
-        </Fragment>
+        </div>
     )
   }
 }
-/*
-<Breakpoints />
-            <PageMessage></PageMessage>
-            <Hero />
-                            <Route exact path='/palette' component={Palette} />
-
-                <PrivateRoute exact path='/settings' component={SettingsForm} />
-                <Route exact path='/typography' component={TypographyGuide} />
+/* Save these for now
+<Route exact path='/palette' component={Palette} />
+<Route exact path='/typography' component={TypographyGuide} />
 */
 // <Route exact path='/search-events/:searchValue' component={SearchEvents} />
-/* <Route exact path='/events' component={EventsController} />
-<PrivateRoute exact path='/event-details/:id' component={EventsController} />
-<PrivateRoute exact path='/my-events' component={EventsController} />
-<Route exact path='/new-event' component={EventsController} />
-<Route exact path='/edit-event/:id' component={EventsController} />
-<Route exact path='/' component={EventsController} /> */
+
 const mapStateToProps = (state) => {
   return {
     userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey)
