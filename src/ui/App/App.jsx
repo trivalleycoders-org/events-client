@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  Route,
+  Switch ,
+  withRouter
+} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
@@ -19,7 +23,7 @@ import PageMessage from 'ui/ui-elements/PageMessage'
 import Palette from 'ui/ui-design/Palette'
 import PrivateRoute from 'ui/PrivateRoute'
 import RegisterForm from 'ui/Auth/RegisterForm'
-import RouteNotfound from 'ui/RouteNotFound'
+// import RouteNotfound from 'ui/RouteNotFound'
 // import SearchEvents from 'ui/SearchEvents'
 import SettingsForm from 'ui/Auth/SettingsForm'
 import TypographyGuide from 'ui/ui-design/TypographyGuide'
@@ -61,46 +65,38 @@ class App extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <Router>
         <Fragment>
           <AppBar />
-          <Snackbars />
-          <AppDrawer />
+
           <div className={classes.wrapper}>
-            <Breakpoints />
-            <PageMessage></PageMessage>
-            <Hero />
-            {
-              !this.state.mountDone
-                ? null
-                : <div className={classes.body}>
-                    <Switch>
-                      <Route exact path='/events' component={EventsController} />
-                      <PrivateRoute exact path='/event-details/:id' component={EventsController} />
-                      <PrivateRoute exact path='/my-events' component={EventsController} />
-                      <Route exact path='/new-event' component={EventsController} />
-                      <Route exact path='/edit-event/:id' component={EventsController} />
-                      <Route exact path='/' component={EventsController} />
-
-                      <Route exact path='/login' component={LoginForm} />
-                      <Route exact path='/palette' component={Palette} />
-                      <Route exact path='/register' component={RegisterForm} />
-
-                      <PrivateRoute exact path='/settings' component={SettingsForm} />
-                      <Route exact path='/typography' component={TypographyGuide} />
-
-                      <Route component={RouteNotfound} />
-                    </Switch>
-                  </div>
-            }
-
+            <div className={classes.body}>
+              <EventsController />
+              <Switch>
+                <Route exact path='/login' component={LoginForm} />
+                <Route exact path='/register' component={RegisterForm} />
+              </Switch>
+            </div>
           </div>
         </Fragment>
-      </Router>
     )
   }
 }
+/*
+<Breakpoints />
+            <PageMessage></PageMessage>
+            <Hero />
+                            <Route exact path='/palette' component={Palette} />
+
+                <PrivateRoute exact path='/settings' component={SettingsForm} />
+                <Route exact path='/typography' component={TypographyGuide} />
+*/
 // <Route exact path='/search-events/:searchValue' component={SearchEvents} />
+/* <Route exact path='/events' component={EventsController} />
+<PrivateRoute exact path='/event-details/:id' component={EventsController} />
+<PrivateRoute exact path='/my-events' component={EventsController} />
+<Route exact path='/new-event' component={EventsController} />
+<Route exact path='/edit-event/:id' component={EventsController} />
+<Route exact path='/' component={EventsController} /> */
 const mapStateToProps = (state) => {
   return {
     userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey)
@@ -127,9 +123,11 @@ const styles = theme => ({
 const actions = { ...authActions, ...pageMessageActions}
 
 export default compose(
+  withRouter,
   withStyles(styles),
-  connect(mapStateToProps, actions)
-)(withRoot(App))
+  connect(mapStateToProps, actions),
+  withRoot
+)(App)
 
 
 

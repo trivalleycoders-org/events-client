@@ -22,6 +22,7 @@ const EventFormForm = ({
   classes,
   freeClick,
   handleSubmit,
+  initialValues,
   onCancel,
   onSubmit,
   pristine,
@@ -29,7 +30,7 @@ const EventFormForm = ({
   submitting,
   free,
 }) => {
-  // green('EventFormForm: props', classes)
+  green('EventFormForm: initialValues', initialValues)
   return (
     <div className={classes.pageWrapper}>
       <MuiPickersUtilsProvider

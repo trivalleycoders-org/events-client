@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
@@ -8,7 +7,6 @@ import {
   Typography,
 } from '@material-ui/core'
 import { mergeAll, path } from 'ramda'
-import isBefore from 'date-fns/isBefore'
 
 /* User */
 import * as eventActions from 'store/actions/event-actions'
@@ -17,37 +15,17 @@ import * as requestSelectors from 'store/selectors/request-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
 import EventCards from './EventCards'
-import EventDetails from './EventDetails'
+import shortid from 'shortid'
 import MyEvents from './MyEvents'
+import EventDetails from './EventDetails'
 import EventForm from './EventForm'
 import { EDIT_MODE, CREATE_MODE } from './EventForm'
-import shortid from 'shortid'
-
 
 /* Dev */
 // eslint-disable-next-line
 import { green, blue } from 'logger'
 
-const reEventDetails = /^\/event-details/
-const reNewEvent = /^\/new-event/
-const reEditEvent = /^\/edit-event/
-
-const getEventsForUser = (events, userId) => {
-  // green('getEventsForUser: events', events)
-  // green('getEventsForUser: userId', userId)
-  const ret =  events.filter(e => e.userId === userId)
-  // green('getEventsForUser: ret', ret)
-  return ret
-}
-
-// const pastEvent = (event) => {
-//   const startDate = path(['dates', 'startDateTime'], event)
-//   return isBefore(startDate, new Date())
-
-// }
-
 const shapeEditDataIn = (event) => {
-
   const free = path(['free'], event) === undefined ? false :  true
   return {
     free: free,
@@ -63,152 +41,148 @@ const shapeEditDataOut = (formValues, currentUserId) => {
   return mergedData
 }
 
-const getOneEvent = (events, eventId) => {
-  return events.find(e => e._id === eventId)
+const getEventsForUserId = (events, userId) => {
+  return events.filter(e => e.userId === userId)
+}
+
+const getOneEventById = (events, eventId) => {
+  const r = events.find(e => e._id === eventId)
+  return r
 }
 
 const getOneEventForEdit = (events, eventId) => {
-  const e = getOneEvent(events, eventId)
+  const e = getOneEventById(events, eventId)
   return shapeEditDataIn(e)
 }
 
-class Events extends React.Component {
+
+class EventsController extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      goBack: this.props.history.goBack,
       instanceId: shortid.generate()
     }
   }
 
-
   componentDidMount() {
-    blue('EventController.componentDidMOUNT', this.state.instanceId)
     this.props.eventsReadRequest('Events')
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    blue('EventController.componentDidUpdate', this.state.instanceId)
-  }
-
-  componentWillUnmout() {
-    blue('EventController.componentWillUnmount', this.state.instanceId)
+    green('EventsController: componentDidMount', this.state.instanceId)
   }
 
   eventCreate = (formValues) => {
-    // green('** EventsController.eventCreate')
     const data = shapeEditDataOut(formValues)
     this.props.eventCreateRequest(data)
     this.goBack()
   }
 
   eventDelete = () => {
-    // green('** EventsController.eventDelete')
     this.goBack()
   }
 
   eventUpdate = (formValues) => {
-    // green('** EventsController.eventUpdate')
     const data = shapeEditDataOut(formValues)
     this.props.eventUpdateOneRequest(data)
     this.goBack()
   }
 
   goBack = () => {
-    this.state.goBack()
+    this.props.history.goBack()
   }
 
   render() {
-    const { classes, events, match, currentUserId } = this.props
+    const { classes, userId, events, match } = this.props
     const eventId = match.params.id
-    if (this.props.requestReadAllEvents.status !== 'success') {
-      return (
-        <Typography variant='display1'>
-          Loading
-        </Typography>
-      )
-    }
-    if (match.path === '/my-events') {
-      return (
-        <div className={classes.pageMock}>
-          <MyEvents
-            events={getEventsForUser(events, currentUserId)}
-            eventCreate={this.eventCreate}
-          />
-        </div>
-      )
-    } else if (reEventDetails.test(match.path)) {
-      return (
-        <div className={classes.pageMock}>
-          <Route path='/event-details/:id' render={() =>
+
+    // MAYBE NEED
+    // if (this.props.requestReadAllEvents.status !== 'success') {
+    //   // green('LOADING')
+    //   return (
+    //     <Typography variant='display1'>
+    //       Loading
+    //     </Typography>
+    //   )
+    // }
+
+    return (
+      <div className={classes.pageWrapper}>
+        <Route
+          exact
+          path='/'
+          render={props =>
+            <EventCards
+              events={events}
+            />
+          }
+        />
+        <Route
+          path='/my-events'
+          render={props =>
+            <MyEvents
+              events={getEventsForUserId(events, userId)}
+              eventCreate={this.eventCreate}
+            />
+          }
+        />
+        <Route
+          path='/event-details/:id'
+          render={props =>
             <EventDetails
-              event={getOneEvent(events, eventId)}
+              {...props}
               eventCreate={this.eventCreate}
               eventDelete={this.eventDelete}
-            />}
-          />
-
-        </div>
-      )
-    } else if (reNewEvent.test(match.path)) {
-      return (
-        <div className={classes.pageMock}>
+            />
+          }
+        />
+        <Route
+          path='/create-event:id'
+          render={props =>
           <EventForm
+            { ...props }
             eventCreate={this.eventCreate}
             goBack={this.goBack}
             mode={CREATE_MODE}
           />
-        </div>
-      )
-    } else if (reEditEvent.test(match.path)) {
-      return (
-        <div className={classes.pageMock}>
+        } />
+        <Route path='/edit-event/:id' render={props =>
           <EventForm
+            { ...props }
             event={getOneEventForEdit(events, eventId)}
             eventUpdate={this.eventUpdate}
             goBack={this.goBack}
             mode={EDIT_MODE}
           />
-        </div>
-      )
-    } else {
-      return (
-        <div className={classes.pageMock}>
-          <EventCards events={events}/>
-        </div>
-      )
-    }
+        } />
+      </div>
+    )
+  }
+}
+// <Route path='/event-details/:id' component={EventDetails} />
+
+
+const mapStateToProps = (state, ownProps) => {
+  // green('EventsController: ownProps', ownProps.match)
+  return {
+    events: eventsSelectors.getAllEvents(state),
+    requestReadAllEvents: requestSelectors.getRequest(state, eventsReadRequestKey),
+    userId: authSelectors.getUserId(state)
   }
 }
 
 const styles = theme => ({
   pageWrapper: {
-    padding: '20px',
+    padding: '80px',
   },
 })
 
-Events.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => {
-  return {
-    events: eventsSelectors.getAllEvents(state),
-    requestReadAllEvents: requestSelectors.getRequest(state, eventsReadRequestKey),
-    currentUserId: authSelectors.getUserId(state),
-  }
-}
-
 export default compose(
+  withRouter,
   withStyles(styles),
-  connect(mapStateToProps, eventActions)
-)(Events)
+  connect(mapStateToProps, eventActions),
+)(EventsController)
+
+// export default compose(
+//   withStyles(styles),
+//   connect(mapStateToProps, eventActions)
+// )(withRouter(Events))
 
 
-/*
-<EventDetails
-            event={getOneEvent(events, eventId)}
-            eventCreate={this.eventCreate}
-            eventDelete={this.eventDelete}
-          />
-*/

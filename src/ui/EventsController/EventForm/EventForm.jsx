@@ -1,9 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import * as eventSelectors from 'store/selectors/events-selectors'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import EventFormForm from './EventFormForm'
 import PastEvent from './PastEvent'
 import { hasProp } from 'lib/hasProp'
+
 
 // fix?
 import styles from './styles'
@@ -26,7 +29,7 @@ class EventForm extends React.Component {
   }
 
   componentDidMount() {
-    yellow('EventForm.componentDidMount', this.props.mode)
+    // yellow('EventForm.componentDidMount', this.props.mode)
 
   }
 
@@ -88,7 +91,7 @@ class EventForm extends React.Component {
 
     const { areYouSure } = this.state
     const event = hasProp('event', this.props) ? this.props.event : {}
-    green('EventForm: initialValues', event.initialValues)
+    green('EventForm: event', event)
     return (
       <div>
         <AreYouSure open={areYouSure} close={this.closeModal} />
@@ -97,8 +100,8 @@ class EventForm extends React.Component {
           event={event}
         />
         <EventFormForm
-          event={event}
-          initialValues={event.initialValues}
+          // event={event}
+          initialValues={event}
           freeClick={this.freeClick}
           free={this.free}
           onCancel={this.onCancel}
@@ -110,21 +113,31 @@ class EventForm extends React.Component {
   }
 }
 
+
+
+const mstp = (state, ownProps) => {
+  // green('EventForm: ownProps', ownProps.match)
+  const eventId = ownProps.match.params.id
+  green('EventForm: eventId', eventId)
+  return {
+    event: eventSelectors.getEventById(state, eventId)
+  }
+}
+
+export default compose(
+  withStyles(styles),
+  connect(mstp)
+)(EventForm)
+
+
+
+
 /*
 this.state.free
 this.freeClick()
 this.onCancel(pristine)
 this.onSubmit
-
 */
-
-
-//
-//
-/*
-
-*/
-
 
 // const mapStateToProps = (state) => {
 //   const _id = eventSelectors.getEventEdit_id(state)
@@ -155,11 +168,6 @@ this.onSubmit
 //     }
 //   }
 // }
-
-export default compose(
-  withStyles(styles),
-)(EventForm)
-
 // EventForm.propTypes = {
 //   classes: PropTypes.object.isRequired,
 //   free: PropTypes.bool,

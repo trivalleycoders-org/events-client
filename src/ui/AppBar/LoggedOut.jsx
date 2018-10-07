@@ -4,7 +4,7 @@ import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 const LoggedOut = () => {
   return (
     <React.Fragment>
-      <ButtonNavLink to='/Events'>
+      <ButtonNavLink to='/'>
         Home
       </ButtonNavLink>
       <ButtonNavLink to='/login'>

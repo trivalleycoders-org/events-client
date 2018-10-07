@@ -11,10 +11,10 @@ const  LoggedIn = () => {
 
   return (
     <React.Fragment>
-      <ButtonNavLink to='/events'>
+      <ButtonNavLink to='/'>
         Home
       </ButtonNavLink>
-      <ButtonNavLink to='/new-event'>
+      <ButtonNavLink to='/create-event'>
         Create Event
       </ButtonNavLink>
       <ButtonNavLink to='/my-events'>
