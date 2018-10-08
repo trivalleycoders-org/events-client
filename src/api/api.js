@@ -107,7 +107,7 @@ export default {
     }
   },
   events: {
-    async create(event) {
+    async createOne(event) {
       // pink('api.events.create: event', event)
       try {
         const data = await fetchJson(

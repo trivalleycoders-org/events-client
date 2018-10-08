@@ -1,0 +1,90 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { eventCreateOneRequest, eventUpdateOneRequest } from 'store/actions/event-actions'
+import { getEventById } from 'store/selectors/events-selectors'
+import { mergeAll, path } from 'ramda'
+import { hasProp } from 'lib/hasProp'
+import EventForm from './EventForm'
+
+// eslint-disable-next-line
+import { green } from 'logger'
+
+export const EDIT_MODE = 'edit-mode'
+export const CREATE_MODE = 'create-mode'
+
+const shapeEditDataIn = (event) => {
+  const free = path(['free'], event) === undefined ? false :  true
+  const r =  {
+    free: free,
+    // initialValues: event,
+    ...event
+  }
+  green('EventFormContainer: r', r)
+  return r
+}
+
+const shapeEditDataOut = (formValues, currentUserId) => {
+  const mergedData = mergeAll([
+    formValues,
+    {userId: currentUserId}
+  ])
+  return mergedData
+}
+
+class EventFormContainer extends React.Component {
+
+  eventCreate = (formValues) => {
+    const data = shapeEditDataOut(formValues)
+    this.props.eventCreateOneRequest(data)
+    this.goBack()
+  }
+
+  // eventDelete = () => {
+  //   this.goBack()
+  // }
+
+  eventUpdate = (formValues) => {
+    const data = shapeEditDataOut(formValues)
+    this.props.eventUpdateOneRequest(data)
+    this.goBack()
+  }
+
+  goBack = () => {
+    this.props.history.goBack()
+  }
+
+  render() {
+    // green('EventFormContainer: props', this.props)
+    const { event } = this.props
+    green('EventFormContainer: event', event)
+    const hasEvent = hasProp('event', this.props) ? true : false
+    green('EventFormContainer: hasEvent', hasEvent)
+    // const event = hasEvent ? this.props.event : {}
+    const mergedEvent = hasEvent ? shapeEditDataIn(event) : {}
+    green('EventFormContainer: mergedEvent', mergedEvent)
+    return (
+      <EventForm
+        event={mergedEvent}
+        eventCreate={this.eventCreate}
+        eventUpdate={this.eventUpdate}
+        mode={hasEvent ? EDIT_MODE : CREATE_MODE}
+      />
+    )
+  }
+
+}
+
+const mstp = (state, ownProps) => {
+  // green('EventFormContainer: ownProps', ownProps)
+  const eventId = ownProps.match.params.id
+  // green('EventForm: eventId', eventId)
+  return {
+    event: getEventById(state, eventId),
+    eventId,
+  }
+}
+
+export default connect(
+    mstp,
+    { eventCreateOneRequest, eventUpdateOneRequest }
+)(EventFormContainer)

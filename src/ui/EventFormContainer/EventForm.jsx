@@ -1,19 +1,29 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import * as eventSelectors from 'store/selectors/events-selectors'
-import { compose } from 'recompose'
-import EventFormForm from './EventFormForm'
+import Form from './Form'
 import PastEvent from './PastEvent'
-import { hasProp } from 'lib/hasProp'
-import { EDIT_MODE } from './EventFormController'
+import { EDIT_MODE } from './EventFormContainer'
 
 // fix?
-import styles from './styles'
+// import styles from './styles'
 import AreYouSure from './AreYouSure'
 
 /* Dev */
 // eslint-disable-next-line
-import { green, yellow } from 'logger'
+import { green } from 'logger'
+
+
+
+// const getOneEventById = (events, eventId) => {
+//   const r = events.find(e => e._id === eventId)
+//   return r
+// }
+
+// const getOneEventForEdit = (events, eventId) => {
+//   green('events', events)
+//   green('eventId', eventId)
+//   const e = getOneEventById(events, eventId)
+//   return shapeEditDataIn(e)
+// }
 
 class EventForm extends React.Component {
   state = {
@@ -56,9 +66,9 @@ class EventForm extends React.Component {
   }
 
   render() {
-
-    const { areYouSure } = this.state
-    const event = hasProp('event', this.props) ? this.props.event : {}
+    // green('EventForm: props', this.props)
+    const { areYouSure, event, mode } = this.state
+    green('EventForm: event', event)
 
     return (
       <div>
@@ -66,27 +76,18 @@ class EventForm extends React.Component {
         <PastEvent
           event={event}
         />
-        <EventFormForm
-          event={event}
+        <Form
+          // event={event}
           initialValues={event}
           freeClick={this.freeClick}
           free={this.free}
           onCancel={this.onCancel}
           onSubmit={this.onSubmit}
+          // mode={mode}
         />
       </div>
     )
   }
 }
 
-const mstp = (state, ownProps) => {
-  const eventId = ownProps.match.params.id
-  return {
-    event: eventSelectors.getEventById(state, eventId),
-    eventId,
-  }
-}
-
-export default compose(
-  connect(mstp)
-)(EventForm)
+export default EventForm

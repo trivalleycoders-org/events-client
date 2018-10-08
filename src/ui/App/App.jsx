@@ -28,16 +28,25 @@ import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 import Snackbars from 'ui/Snackbars'
 import AppDrawer from 'ui/AppDrawer'
+
+// New
+import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
+import MyEventsContainer from 'ui/MyEventsContainer'
+import EventFormContainer from 'ui/EventFormContainer'
+import EventDetailsContainer from 'ui/EventDetailsContainer'
+
+// Delete
+
 // import SearchEvents from 'ui/SearchEvents'
 // import RouteNotfound from 'ui/RouteNotFound'
 // import TypographyGuide from 'ui/ui-design/TypographyGuide'
-import EventsController from 'ui/EventsController'
+// import EventsController from 'ui/EventsController'
+
 // import Palette from 'ui/ui-design/Palette'
 
 // eslint-disable-next-line
 import { green, yellow } from 'logger'
-import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
-import MyEventsContainer from 'ui/MyEventsContainer'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -75,10 +84,12 @@ class App extends React.Component {
           <Hero />
           <div className={classes.wrapper}>
             <div className={classes.body}>
-              <EventsController />
               <Switch>
                 <Route exact path='/' component={EventCardsContainer} />
                 <Route exact path='/my-events' component={MyEventsContainer} />
+                <Route exact path='/create-event' component={EventFormContainer} />
+                <Route exact path='/edit-event/:id' component={EventFormContainer} />
+                <Route exact path='/event-details/:id' component={EventDetailsContainer} />
                 <Route exact path='/login' component={LoginForm} />
                 <Route exact path='/register' component={RegisterForm} />
                 <PrivateRoute exact path='/settings' component={SettingsForm} />

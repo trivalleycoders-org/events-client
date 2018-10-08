@@ -16,8 +16,8 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 import { eventsReadRequestKey } from 'store/actions/event-actions'
 import shortid from 'shortid'
 import EventDetails from './EventDetails'
-import EventFormController from './EventFormController'
-import { EDIT_MODE, CREATE_MODE } from './EventFormController'
+// import EventFormController from './EventFormController'
+// import { EDIT_MODE, CREATE_MODE } from './EventFormController'
 // import EventCards from './EventCards'
 // import MyEvents from './MyEvents'
 
@@ -118,7 +118,7 @@ class EventsController extends React.Component {
             />
           }
         />
-        <Route
+        {/* <Route
           path='/create-event'
           render={props =>
           <EventFormController
@@ -135,7 +135,7 @@ class EventsController extends React.Component {
             goBack={this.goBack}
             mode={EDIT_MODE}
           />
-        } />
+        } /> */}
 
       </div>
     )

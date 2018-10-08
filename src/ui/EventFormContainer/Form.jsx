@@ -18,18 +18,25 @@ import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EventFormForm = (props) => {
-  green('EventFormForm: props', props)
-  const { classes,
+const Form = (props) => {
+
+  green('Form: props', props)
+
+  const {
+    classes,
     freeClick,
     handleSubmit,
+    initialValues,
     onCancel,
     onSubmit,
     pristine,
     reset,
     submitting,
-    free, } = props
+    free
+  } = props
+
   return (
+
     <div className={classes.pageWrapper}>
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
@@ -149,4 +156,4 @@ export default compose(
     // validate,
     // asyncBlurFields: ['combinedDateTime']
   })
-)(EventFormForm)
+)(Form)

@@ -14,7 +14,6 @@ class MyEventsContainer extends React.Component {
   }
 
   render() {
-    green('MyEventsContainer: props', this.props)
     return (
       <MyEvents
         events={this.props.events}

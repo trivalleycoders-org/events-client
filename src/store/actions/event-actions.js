@@ -8,21 +8,21 @@ import { pageMessage } from './page-message-actions'
 import { orange } from 'logger'
 
 // Create
-export const eventCreateKey = 'reventCreateKey'
-export const eventCreateRequestKey = 'eventCreateRequestKey'
+export const eventCreateOneKey = 'reventCreateOneKey'
+export const eventCreateOneRequestKey = 'eventCreateOneRequestKey'
 
-export const eventCreate = (event) => {
+export const eventCreateOne = (event) => {
   return ({
-    type: eventCreateKey,
+    type: eventCreateOneKey,
     payload: { event },
   })
 }
 
-export const eventCreateRequest = createRequestThunk({
-  request: api.events.create,
-  key: eventCreateRequestKey,
-  success: [eventCreate, () => snackbarSet('Event added', 'success')],
-  failure: [() => snackbarSet('Couldn\'t add note', 'warn')],
+export const eventCreateOneRequest = createRequestThunk({
+  request: api.events.createOne,
+  key: eventCreateOneRequestKey,
+  success: [eventCreateOne, () => snackbarSet('Event added', 'success')],
+  failure: [() => snackbarSet('Couldn\'t add event', 'warn')],
 })
 
 // Read

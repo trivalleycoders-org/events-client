@@ -1,24 +1,17 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { compose } from 'recompose'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import * as eventSelectors from 'store/selectors/events-selectors'
-import Toolbar from './Toolbar'
 
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
 const EventDetails = ({ event }) => {
-  green('EventDetails: event', event)
   // const handleDeleteClick = () => {
 
   // }
   return (
     <div>
-      <Toolbar id={event._id} />
-      <h1>Event Details</h1>
       <div>
         <p><b>title:</b> {event.title}</p>
         <p><b>id:</b> {event._id}</p>
@@ -33,17 +26,6 @@ const EventDetails = ({ event }) => {
 
 const styles = {}
 
-const mapStateToProps = (state, ownProps) => {
-  green('EventDetails: ownProps', ownProps.match)
-  const eventId = ownProps.match.params.id
-  return {
-    event: eventSelectors.getEventById(state, eventId)
-  }
-}
-
-export default compose(
-  withStyles(styles),
-  connect(mapStateToProps)
-)(EventDetails)
+export default withStyles(styles)(EventDetails)
 
 
