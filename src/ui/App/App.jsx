@@ -10,12 +10,15 @@ import { withStyles } from '@material-ui/core/styles'
 import { parse } from '../../api/cookie-parser'
 import jwt from 'jsonwebtoken'
 
-// User
-import * as authActions from 'store/actions/auth-actions'
-import { userValidateRequestKey } from 'store/actions/auth-actions'
+// Store
+import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
+
+import { userValidateRequest, userValidateRequestKey} from 'store/actions/auth-actions'
+import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 
+// User
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 import Hero from 'ui/Hero'
 import LoginForm from 'ui/Auth/LoginForm'
@@ -45,8 +48,10 @@ import EventDetailsContainer from 'ui/EventDetailsContainer'
 // import Palette from 'ui/ui-design/Palette'
 
 // eslint-disable-next-line
-import { green, yellow } from 'logger'
+import { green, yellow, orange, red } from 'logger'
 
+const componentName = 'App'
+const log = true
 
 class App extends React.Component {
   constructor(props) {
@@ -54,13 +59,15 @@ class App extends React.Component {
 
     this.state = {
       hasCookie: false,
-      mountDone: false,
     }
   }
 
   async componentDidMount() {
-    const { userValidateRequest } = this.props
+    log && orange(`${componentName} - Mount - START`)
+    const { location, userValidateRequest, eventsReadRequest } = this.props
+    green(`${componentName}`, 'before check cookie')
     let user
+
     if (document.cookie) {
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
@@ -71,7 +78,34 @@ class App extends React.Component {
       }
       await userValidateRequest(user)
     }
-    this.setState({ mountDone: true })
+
+    green(`${componentName}`, 'after check cookie')
+    green(`${componentName} props`, this.props)
+    const xcurrentUserId = this.props.currentUserId
+    green(`${componentName} currentUserId`, xcurrentUserId)
+
+    green(`${componentName}`, 'before eventsReadRequest')
+    const pathname = location.pathname
+    green(`${componentName}: pathname`, pathname)
+
+    if (pathname === '/') {
+      await eventsReadRequest()
+    } else if (pathname === '/my-events') {
+      await this.props.eventsForUserReadRequest(xcurrentUserId)
+    } else {
+      console.assert(false, {
+        component: componentName,
+        msg: 'unknown pathname'
+      })
+    }
+
+    green(`${componentName}`, 'after eventsReadRequest')
+
+    log && orange(`${componentName} - Mount - END`)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    log && orange(`${componentName} - Update`)
   }
 
   render() {
@@ -106,12 +140,6 @@ class App extends React.Component {
 */
 // <Route exact path='/search-events/:searchValue' component={SearchEvents} />
 
-const mapStateToProps = (state) => {
-  return {
-    userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey)
-  }
-}
-
 const styles = theme => ({
   wrapper: {
     marginTop: 60,
@@ -129,7 +157,14 @@ const styles = theme => ({
 
 })
 
-const actions = { ...authActions, ...pageMessageActions}
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions}
+
+const mapStateToProps = (state) => {
+  return {
+    userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey),
+    currentUserId: getUserId(state),
+  }
+}
 
 export default compose(
   withRouter,

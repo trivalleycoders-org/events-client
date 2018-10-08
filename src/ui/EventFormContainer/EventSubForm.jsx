@@ -18,7 +18,7 @@ import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const Form = (props) => {
+const EventSubForm = (props) => {
 
   green('Form: props', props)
 
@@ -26,7 +26,6 @@ const Form = (props) => {
     classes,
     freeClick,
     handleSubmit,
-    initialValues,
     onCancel,
     onSubmit,
     pristine,
@@ -156,4 +155,4 @@ export default compose(
     // validate,
     // asyncBlurFields: ['combinedDateTime']
   })
-)(Form)
+)(EventSubForm)

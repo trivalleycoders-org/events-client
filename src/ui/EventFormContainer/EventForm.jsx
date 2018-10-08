@@ -1,7 +1,8 @@
 import React from 'react'
-import Form from './Form'
-import PastEvent from './PastEvent'
+// import PastEvent from './PastEvent'
 import { EDIT_MODE } from './EventFormContainer'
+// import EventSubForm from './EventSubForm'
+import TestIt from './TestIt'
 
 // fix?
 // import styles from './styles'
@@ -66,19 +67,19 @@ class EventForm extends React.Component {
   }
 
   render() {
-    // green('EventForm: props', this.props)
+    // green('EventForm: props.event', this.props.event)
     const { areYouSure, event, mode } = this.state
-    green('EventForm: event', event)
+    // green('EventForm: event', event)
 
     return (
       <div>
         <AreYouSure open={areYouSure} close={this.closeModal} />
-        <PastEvent
+        {/* <PastEvent
           event={event}
-        />
-        <Form
+        /> */}
+        <TestIt
           // event={event}
-          initialValues={event}
+          food={event}
           freeClick={this.freeClick}
           free={this.free}
           onCancel={this.onCancel}

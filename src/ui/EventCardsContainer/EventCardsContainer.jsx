@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { eventsReadRequest } from 'store/actions/event-actions'
+
 import { getAllEvents } from 'store/selectors/events-selectors'
 import EventCards from './EventCards'
 
@@ -10,7 +10,7 @@ import { green } from 'logger'
 class EventCardsContainer extends React.Component {
 
   componentDidMount() {
-    this.props.eventsReadRequest()
+    // this.props.eventsReadRequest()
   }
 
   render() {
@@ -30,6 +30,5 @@ const mstp = (state, ownProps) => {
 }
 
 export default connect(
-    mstp,
-    { eventsReadRequest }
+    mstp
 )(EventCardsContainer)

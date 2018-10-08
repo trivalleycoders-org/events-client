@@ -2,6 +2,7 @@ import { append, insert, merge, remove } from 'ramda'
 import {
   eventCreateOneKey,
   eventDeleteOneKey,
+  eventsForUserReadKey,
   eventsReadKey,
   eventUpdateOneKey,
   editIdSetKey,
@@ -37,6 +38,7 @@ export const events = (state = [], { type, payload }) => {
     switch (type) {
       case eventCreateOneKey:
         return append(payload.event[0], state)
+      case eventsForUserReadKey:
       case eventsReadKey:
         return payload.events
       case eventUpdateOneKey:
