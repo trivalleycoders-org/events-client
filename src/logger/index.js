@@ -55,11 +55,12 @@ const getStyle = (styleName) => {
   return color
 }
 
-const makeMessage = (message = '', value = '', color = '') => {
+const makeMessage = (message = '', value = '', color = '', indent = 0) => {
   const nMessage = `%c[${message}]`
   const style = getStyle(color)
+  const padding = ''.padStart(indent, ' ')
   // eslint-disable-next-line no-console
-  console.log(nMessage, style, value)
+  console.log(`${padding}${nMessage}`, style, value)
 }
 
 export const yellow = (message = '', value = '') => {
@@ -75,25 +76,26 @@ export const green = (message = '', value = '') => {
   makeMessage(message, value, 'green')
 }
 
-export const orange = (message = '', value = '') => {
-  makeMessage(message, value, 'orange')
+export const orange = (message = '', value = '', indent = 0) => {
+
+  makeMessage(message, value, 'orange', indent)
 }
 
 export const pink = (message = '', value = '') => {
   makeMessage(message, value, 'pink')
 }
 
-export const log = (message = '', value = '', color = '') => {
+export const log = (message = '', value = '', color = '', indent = false) => {
   let count = 3
   if (color === '') { count-- }
   if (value === '') { count-- }
 
   let nMessage
   if (count === 1) {
-    nMessage = '[log]'
+    nMessage = indent ? '  [log]' : '[log]'
     value = message
   } else {
-    nMessage = `%c[${message}]`
+    nMessage = indent ? `  %c[${message}]` : `%c[${message}]`
   }
   const style = getStyle(color)
 

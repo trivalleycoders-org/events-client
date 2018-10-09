@@ -126,6 +126,7 @@ export default {
 
     },
     async read(user) {
+      pink('api.events.read: data', 'start')
       try {
         const data = await fetchJson(
           '/events',

@@ -48,7 +48,7 @@ export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 
 export const eventsRead = (events) => {
-  // orange('actions.eventsRead: events', events)
+  orange('actions.eventsRead: events', events)
   return ({
     type: eventsReadKey,
     payload: { events },
@@ -76,7 +76,7 @@ const eventUpdateOne = (event) => {
 export const eventUpdateOneRequest = createRequestThunk({
   request: api.events.patch,
   key: eventUpdateOneRequestKey,
-  success: [eventUpdateOne, () => snackbarSet('Event updated', 'success')],
+  success: [eventUpdateOne, eventsReadRequest, () => snackbarSet('Event updated', 'success')],
   failure: [error => logError(`Could not update event: ${error}`, 'error')]
 })
 
