@@ -65,16 +65,20 @@ class App extends React.Component {
         email: decoded.payload.email,
         token: tokenObj.token
       }
+      this.props.userValidateRequest(user)
+
+      this.state = {
+        userId: user.id,
+      }
       green(`${componentName} - cookie found with userId`, user.id)
     } else {
       green(`${componentName} - cookie NOT found`)
+      this.state = {
+        userId: undefined,
+      }
     }
 
-    this.props.userValidateRequest(user)
 
-    this.state = {
-      userId: user.id,
-    }
     log && orange(`${componentName} - Constructor - END`)
   }
 
@@ -90,7 +94,7 @@ class App extends React.Component {
     }
     green(`${componentName} - loadData: currPath`, currPath)
 
-    if (userId === '') {
+    if (userId === undefined) {
       red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
     } else {
       green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
