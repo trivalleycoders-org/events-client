@@ -41,6 +41,8 @@ const hasTags = has('tags')
 const EventCards = (props) => {
   const { classes, events } = props
   return (
+    <React.Fragment>
+    <p>number of events is {events.length}</p>
     <Grid container spacing={Number(32)} className={classes.outer} >
       {events.map(c => {
         const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
@@ -88,6 +90,7 @@ const EventCards = (props) => {
         )
       })}
     </Grid>
+    </React.Fragment>
   )
 }
 

@@ -48,7 +48,7 @@ export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 
 export const eventsRead = (events) => {
-  orange('actions.eventsRead: events', events)
+  // orange('actions.eventsRead: events', events)
   return ({
     type: eventsReadKey,
     payload: { events },

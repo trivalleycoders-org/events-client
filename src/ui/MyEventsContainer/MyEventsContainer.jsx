@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+import { eventsForUserReadRequest } from 'store/actions/event-actions'
 import { getAllEvents } from 'store/selectors/events-selectors'
 import { getUserId } from 'store/selectors/auth-selectors'
 import MyEvents from './MyEvents'
@@ -8,13 +10,19 @@ import MyEvents from './MyEvents'
 import { green, orange } from 'logger'
 
 const componentName = 'MyEventsContainer'
-const log = true
+const log = false
 
 class MyEventsContainer extends React.Component {
 
   async componentDidMount() {
-    // green('MyEventsContainer: props', this.props)
+
+    const { eventsForUserReadRequest, currentUserId } = this.props
+
+    green('MyEventsContainer: props', this.props)
+    eventsForUserReadRequest(currentUserId)
+
     log && orange(`${componentName} - Mount`)
+
   }
 
   render() {
@@ -46,4 +54,5 @@ const mstp = (state, ownProps) => {
 
 export default connect(
     mstp,
+    { eventsForUserReadRequest }
 )(MyEventsContainer)

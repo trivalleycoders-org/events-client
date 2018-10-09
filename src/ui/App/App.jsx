@@ -29,8 +29,8 @@ import RegisterForm from 'ui/Auth/RegisterForm'
 import SettingsForm from 'ui/Auth/SettingsForm'
 import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
-import Snackbars from 'ui/Snackbars'
-import AppDrawer from 'ui/AppDrawer'
+// import Snackbars from 'ui/Snackbars'
+// import AppDrawer from 'ui/AppDrawer'
 
 // New
 import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
@@ -53,9 +53,15 @@ import { green, yellow, orange, red } from 'logger'
 const componentName = 'App'
 const log = true
 
+const loadAllEvents = async (action) => {
+  green(`${componentName} - getting data - START`)
+  await action()
+  green(`${componentName} - getting data - DONE`)
+}
+
 class App extends React.Component {
   constructor(props) {
-    orange(`${componentName} - Constructor - START`)
+    // orange(`${componentName} - Constructor - START`)
     super(props)
     let user
     if (document.cookie) {
@@ -67,46 +73,20 @@ class App extends React.Component {
         token: tokenObj.token
       }
       this.props.userValidateRequest(user)
-      red('inside cookie if')
     }
-    red('after cookie if')
     this.state = {
-      hasCookie: false,
-      currentUserId: user.id
+      currentUserId: user.id,
+      lastRouterPath: undefined,
     }
-    orange(`${componentName} - Constructor - END`)
+    // orange(`${componentName} - Constructor - END`)
   }
 
   async componentDidMount() {
     log && orange(`${componentName} - Mount - START`)
-    green(`${componentName} currentUserId`, this.state.currentUserId)
-    const { location, userValidateRequest, eventsReadRequest } = this.props
-    // green(`${componentName}`, 'before check cookie')
 
-
-
-
-    // green(`${componentName}`, 'after check cookie')
-    green(`${componentName} props`, this.props)
-
-
-
-    green(`${componentName}`, 'before eventsReadRequest')
-    const pathname = location.pathname
-    green(`${componentName}: pathname`, pathname)
-
-    // if (pathname === '/') {
-    //   await eventsReadRequest()
-    // } else if (pathname === '/my-events') {
-    //   await this.props.eventsForUserReadRequest(this.state.currentUserId)
-    // } else {
-    //   console.assert(false, {
-    //     component: componentName,
-    //     msg: 'unknown pathname'
-    //   })
-    // }
-
-    green(`${componentName}`, 'after eventsReadRequest')
+    const { eventsReadRequest } = this.props
+    // await eventsReadRequest()
+    await loadAllEvents(eventsReadRequest)
 
     log && orange(`${componentName} - Mount - END`)
   }
@@ -114,21 +94,14 @@ class App extends React.Component {
   async componentDidUpdate(prevProps, prevState, snapshot) {
     log && orange(`${componentName} - Update`)
     const { eventsReadRequest } = this.props
-    const { pathname } = this.props.location
-    green(`** ${componentName} - Update: pathname`, pathname)
-    red('pathname.length', pathname.length)
-    red('pathname === /', pathname === '/')
+    // const { pathname } = this.props.location
+    const currPath = this.props.location.pathname
+    const prevPath = prevProps.location.pathname
 
-    if (pathname === '/') {
-      red('** inside if true')
-      await eventsReadRequest()
-    } else if (pathname === '/my-events') {
-      await this.props.eventsForUserReadRequest(this.state.currentUserId)
-    } else {
-      console.assert(false, {
-        component: componentName,
-        msg: 'unknown pathname'
-      })
+    green(`${componentName} - Update: currPath`, currPath)
+    green(`${componentName} - Update: prevPath`, prevPath)
+    if ( currPath === '/' && currPath !== prevPath) {
+      await loadAllEvents(eventsReadRequest)
     }
   }
 
