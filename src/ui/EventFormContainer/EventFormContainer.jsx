@@ -19,7 +19,7 @@ const shapeEditDataIn = (event) => {
     // initialValues: event,
     ...event
   }
-  // green('EventFormContainer: r', r)
+  // green('EventFormContainer.shapeEditDataIn: r', r)
   return r
 }
 
@@ -54,13 +54,9 @@ class EventFormContainer extends React.Component {
   }
 
   render() {
-    // green('EventFormContainer: props', this.props)
     const { event } = this.props
-    // green('EventFormContainer: event', event)
     const hasEvent = hasProp('event', this.props) ? true : false
-    // green('EventFormContainer: hasEvent', hasEvent)
     const mergedEvent = hasEvent ? shapeEditDataIn(event) : {}
-    // green('EventFormContainer: mergedEvent', mergedEvent)
     return (
       <EventForm
         event={mergedEvent}
@@ -74,9 +70,7 @@ class EventFormContainer extends React.Component {
 }
 
 const mstp = (state, ownProps) => {
-  // green('EventFormContainer: ownProps', ownProps)
   const eventId = ownProps.match.params.id
-  // green('EventForm: eventId', eventId)
   return {
     event: getEventById(state, eventId),
     eventId,

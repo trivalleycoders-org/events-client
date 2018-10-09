@@ -141,7 +141,7 @@ export default {
       }
     },
     async forUserRead(userId) {
-      pink('api.events.forUserRead: userId', userId)
+      // pink('api.events.forUserRead: userId', userId)
       try {
         const data = await fetchJson(
           `/events/user/${userId}`,

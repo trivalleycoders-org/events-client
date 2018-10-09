@@ -4,7 +4,7 @@ import React from 'react'
 import { green } from 'logger'
 
 const TestIt = (props) => {
-  // green('TestIt: props.food', props.food)
+  green('TestIt: props.initialValues', props.initialValues)
   return (
     <h1>TestIt</h1>
   )

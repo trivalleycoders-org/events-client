@@ -20,8 +20,6 @@ import { green } from 'logger'
 
 const EventSubForm = (props) => {
 
-  green('Form: props', props)
-
   const {
     classes,
     freeClick,
@@ -35,7 +33,6 @@ const EventSubForm = (props) => {
   } = props
 
   return (
-
     <div className={classes.pageWrapper}>
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}

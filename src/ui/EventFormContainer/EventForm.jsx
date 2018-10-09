@@ -1,8 +1,8 @@
 import React from 'react'
 // import PastEvent from './PastEvent'
 import { EDIT_MODE } from './EventFormContainer'
-// import EventSubForm from './EventSubForm'
-import TestIt from './TestIt'
+import EventSubForm from './EventSubForm'
+// import TestIt from './TestIt'
 
 // fix?
 // import styles from './styles'
@@ -68,7 +68,8 @@ class EventForm extends React.Component {
 
   render() {
     // green('EventForm: props.event', this.props.event)
-    const { areYouSure, event, mode } = this.state
+    const { areYouSure } = this.state
+    const { event } = this.props
     // green('EventForm: event', event)
 
     return (
@@ -77,9 +78,9 @@ class EventForm extends React.Component {
         {/* <PastEvent
           event={event}
         /> */}
-        <TestIt
+        <EventSubForm
           // event={event}
-          food={event}
+          initialValues={event}
           freeClick={this.freeClick}
           free={this.free}
           onCancel={this.onCancel}

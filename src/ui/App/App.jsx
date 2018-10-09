@@ -51,17 +51,17 @@ import EventDetailsContainer from 'ui/EventDetailsContainer'
 import { green, yellow, orange, red } from 'logger'
 
 const componentName = 'App'
-const log = true
+const log = false
 
 const loadAllEvents = async (action) => {
-  green(`${componentName} - getting data - START`)
+  // green(`${componentName} - getting data - START`)
   await action()
-  green(`${componentName} - getting data - DONE`)
+  // green(`${componentName} - getting data - DONE`)
 }
 
 class App extends React.Component {
   constructor(props) {
-    // orange(`${componentName} - Constructor - START`)
+    log && orange(`${componentName} - Constructor - START`)
     super(props)
     let user
     if (document.cookie) {
@@ -78,7 +78,7 @@ class App extends React.Component {
       currentUserId: user.id,
       lastRouterPath: undefined,
     }
-    // orange(`${componentName} - Constructor - END`)
+    log && orange(`${componentName} - Constructor - END`)
   }
 
   async componentDidMount() {
@@ -98,8 +98,8 @@ class App extends React.Component {
     const currPath = this.props.location.pathname
     const prevPath = prevProps.location.pathname
 
-    green(`${componentName} - Update: currPath`, currPath)
-    green(`${componentName} - Update: prevPath`, prevPath)
+    // green(`${componentName} - Update: currPath`, currPath)
+    // green(`${componentName} - Update: prevPath`, prevPath)
     if ( currPath === '/' && currPath !== prevPath) {
       await loadAllEvents(eventsReadRequest)
     }

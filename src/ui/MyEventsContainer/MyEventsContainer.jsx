@@ -18,7 +18,7 @@ class MyEventsContainer extends React.Component {
 
     const { eventsForUserReadRequest, currentUserId } = this.props
 
-    green('MyEventsContainer: props', this.props)
+    // green('MyEventsContainer: props', this.props)
     eventsForUserReadRequest(currentUserId)
 
     log && orange(`${componentName} - Mount`)
