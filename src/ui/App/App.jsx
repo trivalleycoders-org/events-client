@@ -14,7 +14,7 @@ import jwt from 'jsonwebtoken'
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
 
 import { userValidateRequest, userValidateRequestKey} from 'store/actions/auth-actions'
-import { getUserId } from 'store/selectors/auth-selectors'
+// import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
 
@@ -55,19 +55,9 @@ const log = true
 
 class App extends React.Component {
   constructor(props) {
+    orange(`${componentName} - Constructor - START`)
     super(props)
-
-    this.state = {
-      hasCookie: false,
-    }
-  }
-
-  async componentDidMount() {
-    log && orange(`${componentName} - Mount - START`)
-    const { location, userValidateRequest, eventsReadRequest } = this.props
-    green(`${componentName}`, 'before check cookie')
     let user
-
     if (document.cookie) {
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
@@ -76,36 +66,70 @@ class App extends React.Component {
         email: decoded.payload.email,
         token: tokenObj.token
       }
-      await userValidateRequest(user)
+      this.props.userValidateRequest(user)
+      red('inside cookie if')
     }
+    red('after cookie if')
+    this.state = {
+      hasCookie: false,
+      currentUserId: user.id
+    }
+    orange(`${componentName} - Constructor - END`)
+  }
 
-    green(`${componentName}`, 'after check cookie')
+  async componentDidMount() {
+    log && orange(`${componentName} - Mount - START`)
+    green(`${componentName} currentUserId`, this.state.currentUserId)
+    const { location, userValidateRequest, eventsReadRequest } = this.props
+    // green(`${componentName}`, 'before check cookie')
+
+
+
+
+    // green(`${componentName}`, 'after check cookie')
     green(`${componentName} props`, this.props)
-    const xcurrentUserId = this.props.currentUserId
-    green(`${componentName} currentUserId`, xcurrentUserId)
+
+
 
     green(`${componentName}`, 'before eventsReadRequest')
     const pathname = location.pathname
     green(`${componentName}: pathname`, pathname)
 
-    if (pathname === '/') {
-      await eventsReadRequest()
-    } else if (pathname === '/my-events') {
-      await this.props.eventsForUserReadRequest(xcurrentUserId)
-    } else {
-      console.assert(false, {
-        component: componentName,
-        msg: 'unknown pathname'
-      })
-    }
+    // if (pathname === '/') {
+    //   await eventsReadRequest()
+    // } else if (pathname === '/my-events') {
+    //   await this.props.eventsForUserReadRequest(this.state.currentUserId)
+    // } else {
+    //   console.assert(false, {
+    //     component: componentName,
+    //     msg: 'unknown pathname'
+    //   })
+    // }
 
     green(`${componentName}`, 'after eventsReadRequest')
 
     log && orange(`${componentName} - Mount - END`)
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  async componentDidUpdate(prevProps, prevState, snapshot) {
     log && orange(`${componentName} - Update`)
+    const { eventsReadRequest } = this.props
+    const { pathname } = this.props.location
+    green(`** ${componentName} - Update: pathname`, pathname)
+    red('pathname.length', pathname.length)
+    red('pathname === /', pathname === '/')
+
+    if (pathname === '/') {
+      red('** inside if true')
+      await eventsReadRequest()
+    } else if (pathname === '/my-events') {
+      await this.props.eventsForUserReadRequest(this.state.currentUserId)
+    } else {
+      console.assert(false, {
+        component: componentName,
+        msg: 'unknown pathname'
+      })
+    }
   }
 
   render() {
@@ -162,7 +186,7 @@ const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadReque
 const mapStateToProps = (state) => {
   return {
     userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey),
-    currentUserId: getUserId(state),
+    // currentUserId: getUserId(state),
   }
 }
 

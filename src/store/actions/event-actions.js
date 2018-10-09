@@ -5,7 +5,7 @@ import { pageMessage } from './page-message-actions'
 
 /* Dev */
 // eslint-disable-next-line
-import { orange } from 'logger'
+import { orange, red } from 'logger'
 
 // Create
 export const eventCreateOneKey = 'reventCreateOneKey'
@@ -48,6 +48,7 @@ export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 
 export const eventsRead = (events) => {
+  orange('actions.eventsRead: events', events)
   return ({
     type: eventsReadKey,
     payload: { events },
@@ -58,7 +59,7 @@ export const eventsReadRequest = createRequestThunk({
   request: api.events.read,
   key: eventsReadRequestKey,
   success: [eventsRead, () => snackbarSet('Events loaded', 'success'), () => pageMessage('')],
-  failure: [(error) => snackbarSet('Could not get events', 'error')]
+  failure: [(error) => snackbarSet('Could not get events', 'error'), (error) => red('request failed', error)]
 })
 
 // Patch
