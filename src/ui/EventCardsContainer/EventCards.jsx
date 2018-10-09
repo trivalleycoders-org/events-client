@@ -38,10 +38,11 @@ const formattedDate = (isoDateString) => {
 
 const hasTags = has('tags')
 
-const EventGrid = (props) => {
+const EventCards = (props) => {
   const { classes, events } = props
-
   return (
+    <React.Fragment>
+    <p>number of events is {events.length}</p>
     <Grid container spacing={Number(32)} className={classes.outer} >
       {events.map(c => {
         const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
@@ -52,8 +53,7 @@ const EventGrid = (props) => {
                 <CardMedia
                   className={classes.media}
                   image={c.imageUrl}
-
-                  >
+                >
                 </CardMedia>
                 <CardContent className={classes.cardContent}>
                   <Typography variant='caption' component='p' noWrap className={classes.time}>
@@ -90,6 +90,7 @@ const EventGrid = (props) => {
         )
       })}
     </Grid>
+    </React.Fragment>
   )
 }
 
@@ -161,4 +162,4 @@ const styles = {
   },
 }
 
-export default withStyles(styles)(EventGrid)
+export default withStyles(styles)(EventCards)

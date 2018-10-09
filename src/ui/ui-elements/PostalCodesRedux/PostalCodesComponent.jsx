@@ -21,9 +21,7 @@ class PostalCodesRedux extends React.Component {
         this.props.postalCodesReadRequest(inputValue)
       }
     } else {
-      red('else')
       this.props.postalCodesClear()
-
     }
     // When the user selects a postal code  redux will have only one suggestion
     // Return this suggestion to redux-form

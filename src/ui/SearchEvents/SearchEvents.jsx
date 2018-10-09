@@ -14,7 +14,7 @@ import * as searchSelectors from 'store/selectors/search-selectors'
 import * as requestSelectors from '../../store/selectors/request-selectors'
 
 import { eventsSearchReadRequestKey } from 'store/actions/search-actions'
-import EventCards from 'ui/EventCards'
+import EventCards from 'ui/EventsController/EventCards'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'

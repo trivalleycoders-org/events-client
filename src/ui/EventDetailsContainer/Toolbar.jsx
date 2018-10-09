@@ -7,16 +7,20 @@ import {
 } from '@material-ui/core'
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
+import IconButtonLink from 'ui/ui-elements/IconButtonLink'
 
-export const Toolbar = ({ classes, handleDeleteClick, handleEditClick }) => {
+// eslint-disable-next-line
+import { green } from 'logger'
+
+export const Toolbar = ({ classes, handleDeleteClick, id }) => {
   return (
     <Paper>
-      <MuiToolbar variant='dense' className={classes.toolbar}>
-        <IconButton onClick={handleEditClick}>
+      <MuiToolbar variant='dense' className={classes.wrapper}>
+        <IconButtonLink to={`/edit-event/${id}`}>
           <Edit
             className={classes.editBtnIcon}
           />
-        </IconButton>
+        </IconButtonLink>
         <IconButton onClick={handleDeleteClick}>
           <DeleteForever
             className={classes.deleteBtnIcon}
@@ -28,7 +32,7 @@ export const Toolbar = ({ classes, handleDeleteClick, handleEditClick }) => {
 }
 
 const styles = {
-  toolbar: {
+  wrapper: {
     display: 'flex',
     justifyContent: 'flex-end',
   },

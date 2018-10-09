@@ -5,24 +5,42 @@ import { pageMessage } from './page-message-actions'
 
 /* Dev */
 // eslint-disable-next-line
-import { orange } from 'logger'
+import { orange, red } from 'logger'
 
 // Create
-export const eventCreateKey = 'reventCreateKey'
-export const eventCreateRequestKey = 'eventCreateRequestKey'
+export const eventCreateOneKey = 'reventCreateOneKey'
+export const eventCreateOneRequestKey = 'eventCreateOneRequestKey'
 
-export const eventCreate = (event) => {
+export const eventCreateOne = (event) => {
   return ({
-    type: eventCreateKey,
+    type: eventCreateOneKey,
     payload: { event },
   })
 }
 
-export const eventCreateRequest = createRequestThunk({
-  request: api.events.create,
-  key: eventCreateRequestKey,
-  success: [eventCreate, () => snackbarSet('Event added', 'success')],
-  failure: [() => snackbarSet('Couldn\'t add note', 'warn')],
+export const eventCreateOneRequest = createRequestThunk({
+  request: api.events.createOne,
+  key: eventCreateOneRequestKey,
+  success: [eventCreateOne, () => snackbarSet('Event added', 'success')],
+  failure: [() => snackbarSet('Couldn\'t add event', 'warn')],
+})
+
+// Read
+export const eventsForUserReadKey = 'eventsForUserReadKey'
+export const eventsForUserReadRequestKey = 'eventsForUserReadRequestKey'
+
+export const eventsForUserRead = (events) => {
+  return ({
+    type: eventsForUserReadKey,
+    payload: { events },
+  })
+}
+
+export const eventsForUserReadRequest = createRequestThunk({
+  request: api.events.forUserRead,
+  key: eventsForUserReadRequestKey,
+  success: [eventsForUserRead, () => snackbarSet('Events for user retrieved.', 'success'), () => pageMessage('')],
+  failure: [(error) => snackbarSet('Could not get events', 'error')]
 })
 
 // Read
@@ -30,6 +48,7 @@ export const eventsReadKey = 'eventsReadKey'
 export const eventsReadRequestKey = 'eventsReadRequestKey'
 
 export const eventsRead = (events) => {
+  orange('actions.eventsRead: events', events)
   return ({
     type: eventsReadKey,
     payload: { events },
@@ -40,7 +59,7 @@ export const eventsReadRequest = createRequestThunk({
   request: api.events.read,
   key: eventsReadRequestKey,
   success: [eventsRead, () => snackbarSet('Events loaded', 'success'), () => pageMessage('')],
-  failure: [(error) => snackbarSet('Could not get events', 'error')]
+  failure: [(error) => snackbarSet('Could not get events', 'error'), (error) => red('request failed', error)]
 })
 
 // Patch
@@ -57,7 +76,7 @@ const eventUpdateOne = (event) => {
 export const eventUpdateOneRequest = createRequestThunk({
   request: api.events.patch,
   key: eventUpdateOneRequestKey,
-  success: [eventUpdateOne, () => snackbarSet('Event updated', 'success')],
+  success: [eventUpdateOne, eventsReadRequest, () => snackbarSet('Event updated', 'success')],
   failure: [error => logError(`Could not update event: ${error}`, 'error')]
 })
 

@@ -34,6 +34,7 @@ const markRequestFailed = (reason, key) => {
 }
 
 export const createRequestThunk = ({ request, key, start = [], success = [], failure = [] }) => {
+  // red('createRequestThunk', request)
   return (...args) => (dispatch) => {
     const requestKey = (typeof key === 'function') ? key(...args) : key
     start.forEach((actionCreator) => {

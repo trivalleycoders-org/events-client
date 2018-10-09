@@ -78,56 +78,62 @@ class App extends React.Component {
     log && orange(`${componentName} - Constructor - END`)
   }
 
-  loadData = async (from, prevProps = undefined) => {
-    red('loadData', from)
+  loadData = async (from) => {
     const { userId } = this.state
-    const { eventsReadRequest, eventsForUserReadRequest } = this.props
     const currPath = this.props.location.pathname
-    let prevPath = undefined
-    if (prevProps !== undefined) {
-      prevPath = prevProps.location.pathname
-      green(`${componentName} - loadData: prevPath`, prevPath)
-    }
-    green(`${componentName} - loadData: currPath`, currPath)
 
-    if (userId === '') {
-      red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    } else {
-      green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    }
-    if ( currPath !== prevPath) {
-      switch (currPath) {
-        case '/':
-          green(`${componentName} - case /`)
-          await eventsReadRequest()
-          break
-        case '/my-events':
-          green(`${componentName} - case /my-events`)
-          await eventsForUserReadRequest(userId)
-          break
-        default:
-          red('default - oh no!')
-      }
-    }
+    red('loadData', from)
   }
+
+  // loadData = (from) => {
+    //
+    //
+    // const prevPath = prevProps.location.pathname
+
+    // green(`${componentName} - loadData: currPath`, currPath)
+    // green(`${componentName} - loadData: prevPath`, prevPath)
+
+    // if (userId === '') {
+    //   red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // } else {
+    //   green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // }
+
+
+
+    // if ( currPath !== prevPath) {
+    //   switch (currPath) {
+    //     case '/':
+    //       green(`${componentName} - case /`)
+    //       await eventsReadRequest()
+    //       break
+    //     case '/my-events':
+    //       green(`${componentName} - case /my-events`)
+    //       await eventsForUserReadRequest(userId)
+    //       break
+    //     default:
+    //       red(`${componentName} - unknown path`)
+    //   }
+    // }
+
+  // }
 
   componentDidMount() {
     log && orange(`${componentName} - Mount - START`)
     // green('load data', this.loadData)
     // this.loadData('mount')
-
+    // const { eventsReadRequest } = this.props
+    // this.loadData('mount')
     // this.someFun('hi')
-    this.loadData('mount')
-
+    eventsReadRequest()
     log && orange(`${componentName} - Mount - END`)
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    log && orange(`${componentName} - Update - START`)
-    // this.loadData('update', prevProps)
-    await this.loadData('update', prevProps)
-    log && orange(`${componentName} - Update - END`)
-  }
+  // async componentDidUpdate(prevProps, prevState, snapshot) {
+  //   log && orange(`${componentName} - Update`)
+  //   // this.loadData('update', prevProps)
+  //   this.loadData('update')
+  // }
 
   render() {
     const { classes } = this.props

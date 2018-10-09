@@ -107,7 +107,7 @@ export default {
     }
   },
   events: {
-    async create(event) {
+    async createOne(event) {
       // pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
@@ -126,6 +126,7 @@ export default {
 
     },
     async read(user) {
+      pink('api.events.read: data', 'start')
       try {
         const data = await fetchJson(
           '/events',
@@ -133,11 +134,27 @@ export default {
             method: 'GET',
           }
         )
-        // pink('api.events.read: data', data)
+        pink('api.events.read: data', data)
         return data.data
       }
       catch (e) {
         red('api.events.read', e)
+      }
+    },
+    async forUserRead(userId) {
+      // pink('api.events.forUserRead: userId', userId)
+      try {
+        const data = await fetchJson(
+          `/events/user/${userId}`,
+          {
+            method: 'GET',
+          }
+        )
+        pink('api.events.forUserRead: data', data)
+        return data.data
+      }
+      catch (e) {
+        red('api.events.foruserRead', e)
       }
     },
     async patch(event) {

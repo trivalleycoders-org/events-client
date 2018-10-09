@@ -75,7 +75,7 @@ class AccountMenu extends React.Component {
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
                     <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings' style={linkStyle}>Settings</Link></MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/events' style={linkStyle}>Logout</Link></MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/' style={linkStyle}>Logout</Link></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

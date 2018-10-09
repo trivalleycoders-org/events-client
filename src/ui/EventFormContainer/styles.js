@@ -38,9 +38,7 @@ const styles = theme => ({
   organizationArea: {
     padding: '20px 0 20px 0'
   },
-  pageWrapper: {
-    padding: '20px',
-  },
+
   pastEvent: {
     backgroundColor: theme.palette.error.dark,
     color: theme.palette.error.contrastText,

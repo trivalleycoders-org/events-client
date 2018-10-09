@@ -21,7 +21,7 @@ import validate from './validate'
 import { green } from 'logger'
 // import { request } from 'https'
 
-class LoginForm extends React.Component {
+class LoginForm extends React.PureComponent {
 
   constructor(props) {
     super(props)
@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
 
     if (logInUserRequest.status === 'success' && loggedIn) {
       return (
-        <Redirect to='/events' />
+        <Redirect to='/' />
       )
     } else {
       return (
