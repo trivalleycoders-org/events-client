@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Route,
-  Switch ,
+  Switch,
   withRouter
 } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -12,7 +12,7 @@ import jwt from 'jsonwebtoken'
 
 // Store
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
-import { userValidateRequest, userValidateRequestKey} from 'store/actions/auth-actions'
+import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
 // import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
@@ -48,6 +48,7 @@ import EventDetailsContainer from 'ui/EventDetailsContainer'
 
 // eslint-disable-next-line
 import { green, yellow, orange, red } from 'logger'
+import SearchBox from '../SearchBox/SearchBox';
 
 const componentName = 'App'
 const log = true
@@ -99,7 +100,7 @@ class App extends React.Component {
     } else {
       green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
     }
-    if ( currPath !== prevPath) {
+    if (currPath !== prevPath) {
       switch (currPath) {
         case '/':
           green(`${componentName} - case /`)
@@ -136,26 +137,27 @@ class App extends React.Component {
   render() {
     const { classes } = this.props
     return (
+      <div className={classes.wrapper}>
+        <AppBar />
+        <Breakpoints />
+        <PageMessage></PageMessage>
+        <Hero />
+        <SearchBox />
         <div className={classes.wrapper}>
-          <AppBar />
-          <Breakpoints />
-          <PageMessage></PageMessage>
-          <Hero />
-          <div className={classes.wrapper}>
-            <div className={classes.body}>
-              <Switch>
-                <Route exact path='/' component={EventCardsContainer} />
-                <Route exact path='/my-events' component={MyEventsContainer} />
-                <Route exact path='/create-event' component={EventFormContainer} />
-                <Route exact path='/edit-event/:id' component={EventFormContainer} />
-                <Route exact path='/event-details/:id' component={EventDetailsContainer} />
-                <Route exact path='/login' component={LoginForm} />
-                <Route exact path='/register' component={RegisterForm} />
-                <PrivateRoute exact path='/settings' component={SettingsForm} />
-              </Switch>
-            </div>
+          <div className={classes.body}>
+            <Switch>
+              <Route exact path='/' component={EventCardsContainer} />
+              <Route exact path='/my-events' component={MyEventsContainer} />
+              <Route exact path='/create-event' component={EventFormContainer} />
+              <Route exact path='/edit-event/:id' component={EventFormContainer} />
+              <Route exact path='/event-details/:id' component={EventDetailsContainer} />
+              <Route exact path='/login' component={LoginForm} />
+              <Route exact path='/register' component={RegisterForm} />
+              <PrivateRoute exact path='/settings' component={SettingsForm} />
+            </Switch>
           </div>
         </div>
+      </div>
     )
   }
 }
@@ -182,11 +184,11 @@ const styles = theme => ({
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions}
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions }
 
 const mapStateToProps = (state) => {
   return {
-    userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey),
+    userValidateRequestStatus: requestSelectors.getRequest(state, userValidateRequestKey),
     // currentUserId: getUserId(state), // getting it from state set in constructor
   }
 }
