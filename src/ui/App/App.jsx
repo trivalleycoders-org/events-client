@@ -48,7 +48,7 @@ import EventDetailsContainer from 'ui/EventDetailsContainer'
 
 // eslint-disable-next-line
 import { green, yellow, orange, red } from 'logger'
-import SearchBox from '../SearchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox'
 
 const componentName = 'App'
 const log = true
