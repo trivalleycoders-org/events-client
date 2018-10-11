@@ -38,7 +38,6 @@ export class SearchEvent extends React.Component {
   }
 
   clearSearchResults = () => {
-    console.log('clearing results')
     this.setState((prevState, props) => ({
       showSearchIcon: !prevState.showSearchIcon,
       searchText: ''
