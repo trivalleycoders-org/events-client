@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="195.7072"
+   height="47.805008"
+   viewBox="0 0 195.7072 47.80501"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.3 (d244b95, 2018-08-02)"
+   sodipodi:docname="tvc-wordmark-2.svg"
+   inkscape:export-filename="/home/klequis/Dropbox/trivalleycoders/branding.tvc/tvc-logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#26272c"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-75.156904"
+     inkscape:cy="7.4615557"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     guidecolor="#ff0000"
+     guideopacity="1"
+     inkscape:window-width="1920"
+     inkscape:window-height="1048"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showborder="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4172"
+       spacingx="5.0000001"
+       spacingy="5.0000002"
+       color="#ff0000"
+       opacity="0.89411765"
+       empcolor="#fd0000"
+       empopacity="1"
+       originx="-415.29423"
+       originy="-512.84772" />
+    <sodipodi:guide
+       position="-415.29424,-212.13341"
+       orientation="1,0"
+       id="guide4198"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="492.89408,338.09999"
+       orientation="0,1"
+       id="guide45"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="522.89408,-192.90002"
+       orientation="0,1"
+       id="guide47"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-415.29423,-491.70926)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.79919243px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.83338201px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="415.36688"
+       y="512.16162"
+       id="text4140"><tspan
+         sodipodi:role="line"
+         id="tspan4142"
+         x="415.36688"
+         y="512.16162"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.79919243px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:0.83338201px">TriValley</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.30242729px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.81668818px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="523.6153"
+       y="512.32312"
+       id="text4144"><tspan
+         sodipodi:role="line"
+         id="tspan4146"
+         x="523.6153"
+         y="512.32312"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:29.7029705px;line-height:125%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#34e97c;fill-opacity:1;stroke-width:0.81668818px">coders</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:9.6782999px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.80652499px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="414.71823"
+       y="539.32227"
+       id="text4146"><tspan
+         sodipodi:role="line"
+         id="tspan4148"
+         x="414.71823"
+         y="539.32227"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:50%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:0.80652499px">Don't code alone!™</tspan></text>
+  </g>
+</svg>

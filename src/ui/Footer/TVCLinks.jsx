@@ -1,91 +1,98 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faMeetup, faGithub, faSlack } from '@fortawesome/free-brands-svg-icons'
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Body1 from 'ui/ui-elements/typography/Body1'
+import classNames from 'classnames'
 import {
-  withStyles,
-  Grid,
-} from '@material-ui/core'
-import A from 'ui/ui-elements/A'
+  faFacebook,
+  faMeetup,
+  faGithub,
+  faSlack
+} from "@fortawesome/free-brands-svg-icons";
 
-const TVCLinks = ({ classes }) => {
+const styles = theme => ({
+  meetup: {
+    color: '#f64060',
+     // margin: logoMargin
+  },
+  github: {
+    color: 'white',
+    // margin: logoMargin
+  },
+  slack: {
+    color: 'white',
+    // margin: logoMargin
+  },
+  facebook: {
+    color: '#3e5b99',
+    // margin: logoMargin
+  },
+  faItem: {
+    fontSize: '3em'
+    // justifyContent: 'canter',
+    // alignItems: 'center',
+  },
+  root: {
+    flexGrow: 1,
+    // backgroundColor: 'orange',
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    // color: theme.palette.text.secondary
+    backgroundColor: 'transparent'
+    // width: 50,
+    // height: 50
+  },
+  grid: {
+    margin: '2px 0 2px 0'
+  }
+})
+
+function CenteredGrid(props) {
+  const { classes } = props;
+
   return (
-    <div className={classes.logoGrid}>
-      <Grid
-        item
-        container
-        xs={12}
-        justify='center'
+    <div className={classes.root}>
+      <Body1
+        align='center'
+        color='white'
       >
-        <Grid
-          item
-          xs={6}
-          sm={3}
-          container
-          justify='center'
-        >
-          <A href='https://www.meetup.com/trivalleycoders/'><FontAwesomeIcon className={classes.meetup} icon={faMeetup} /></A>
+        About Us
+      </Body1>
+      <Grid container spacing={8} justify='center' className={classes.grid}>
+        <Grid item>
+          <Paper className={classes.paper} elevation={0}>
+            <FontAwesomeIcon className={classNames(classes.faItem, classes.meetup)} icon={faMeetup} />
+          </Paper>
         </Grid>
-        <Grid
-          item
-          xs={6}
-          sm={3}
-          container
-          justify='center'
-        >
-          <A href='https://github.com/trivalleycoders-org'><FontAwesomeIcon className={classes.github} icon={faGithub} /></A>
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          sm={3}
-          container
-          justify='center'
-        >
-          <A href='https://join.slack.com/t/trivalleycoders/shared_invite/enQtMjk2NDY3NDAwMjI1LWU0YjFjNjE5MDgwYzYwYmUwMWJlNjk1NDU4YmI5ZmZjZGU0ZDcwY2E2Y2RlNmU0MWFlZTUyODFkYzM1NGVlYTQ'><FontAwesomeIcon className={classes.slack} icon={faSlack} /></A>
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          sm={3}
-          container
-          justify='center'
-        >
-          <A href='https://www.facebook.com/groups/free.code.camp.sanramon/'><FontAwesomeIcon className={classes.facebook} icon={faFacebook} /></A>
+        <Grid item>
+          <Paper className={classes.paper} elevation={0}>
+            <FontAwesomeIcon className={classNames(classes.faItem, classes.facebook)} icon={faFacebook} />
+          </Paper>
         </Grid>
       </Grid>
-      </div>
-  )
+      <Grid container spacing={8} justify='center' className={classes.grid}>
+        <Grid item>
+          <Paper className={classes.paper} elevation={0}>
+            <FontAwesomeIcon className={classNames(classes.faItem, classes.github)} icon={faGithub} />
+          </Paper>
+        </Grid>
+        <Grid item>
+          <Paper className={classes.paper} elevation={0}>
+            <FontAwesomeIcon className={classNames(classes.faItem, classes.slack)} icon={faSlack} />
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
-const styles = theme => {
-  const leftRightMargin = theme.spacing.unit * 4
-  const topBottomMargin = theme.spacing.unit * 4
-  const logoMargin = `${topBottomMargin}px ${leftRightMargin}px ${topBottomMargin}px ${leftRightMargin}px`
-  return ({
-    logoGrid: {
-      // backgroundColor: 'green',
-    },
-    meetup: {
-      color: '#f64060',
-      fontSize: '3em',
-      margin: logoMargin
-    },
-    github: {
-      color: 'white',
-      fontSize: '3em',
-      margin: logoMargin
-    },
-    slack: {
-      color: 'white',
-      fontSize: '3em',
-      margin: logoMargin
-    },
-    facebook: {
-      color: '#3e5b99',
-      fontSize: '3em',
-      margin: logoMargin
-    },
-  })
-}
+CenteredGrid.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default withStyles(styles)(TVCLinks)
+export default withStyles(styles)(CenteredGrid);

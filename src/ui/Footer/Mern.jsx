@@ -6,20 +6,26 @@ import {
   withStyles,
   Grid,
 } from '@material-ui/core'
+import Body1 from 'ui/ui-elements/typography/Body1'
 import A from 'ui/ui-elements/A'
-import iExpress from './media/express.01.svg'
+import iExpress from './media/express.svg'
 import iMongodb from './media/mongodb.svg'
-import iNode from './media/node.svg'
-import iReact from './media/react.svg'
+import iNode from './media/nodejs.svg'
+import iReact from './media/react-word.svg'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 
 const TVCLinks = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
-      <ResponsiveImage src={iReact} className={classes.logo} alt='express js' />
+      <Body1
+          color='white'
+      >
+        MERN Stack Experts
+      </Body1>
+      <ResponsiveImage src={iMongodb} className={classes.logo} alt='mongo db' />
       <ResponsiveImage src={iExpress} className={classNames(classes.logo, classes.express)} alt='express js' />
-      <ResponsiveImage src={iMongodb} className={classes.logo} alt='express js' />
-      <ResponsiveImage src={iNode} className={classes.logo} alt='express js' />
+      <ResponsiveImage src={iReact} className={classes.logo} alt='react js' />
+      <ResponsiveImage src={iNode} className={classes.logo} alt='node js' />
     </div>
   )
 }
@@ -33,16 +39,21 @@ const styles = theme => {
       // backgroundColor: 'green',
       // backgroundColor: 'green',
       display: 'flex',
+      flexFlow: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
       // flexflow: 'row wrap',
     },
     logo: {
-      maxHeight: 50,
-      paddingRight: theme.spacing.unit,
-      paddingLeft: theme.spacing.unit,
+      maxHeight: 35,
+      // paddingRight: theme.spacing.unit,
+      // paddingLeft: theme.spacing.unit,
     },
     express: {
-      padding: '5px 0 5px 0',
-      minWidth: 100,
+      // padding: '5px 0 5px 0',
+      paddingTop: 2,
+      paddingBottom: 2,
+      // minWidth: 100,
     }
     // meetup: {
     //   color: '#f64060',
