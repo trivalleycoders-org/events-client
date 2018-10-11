@@ -10,7 +10,15 @@ const LoggedOut = () => {
       <ButtonNavLink to='/login'>
         Login
       </ButtonNavLink>
-      <ButtonNavLink to='/register' variant='contained' color='secondary'>
+      <ButtonNavLink
+        to='/register'
+        variant='outlined'
+        // variant='flat'
+        // variant='contained'
+        // variant=''
+        // color='secondary'
+        color='secondary'
+      >
         Register
       </ButtonNavLink>
     </React.Fragment>

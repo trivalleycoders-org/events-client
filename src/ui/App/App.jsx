@@ -36,6 +36,7 @@ import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
 import MyEventsContainer from 'ui/MyEventsContainer'
 import EventFormContainer from 'ui/EventFormContainer'
 import EventDetailsContainer from 'ui/EventDetailsContainer'
+import Footer from 'ui/Footer'
 
 // Delete
 
@@ -138,7 +139,6 @@ class App extends React.Component {
     return (
         <div className={classes.wrapper}>
           <AppBar />
-          <Breakpoints />
           <PageMessage></PageMessage>
           <Hero />
           <div className={classes.wrapper}>
@@ -155,6 +155,7 @@ class App extends React.Component {
               </Switch>
             </div>
           </div>
+          <Footer />
         </div>
     )
   }
@@ -167,7 +168,7 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 60,
+    marginTop: 100,
   },
   body: {
     width: 'auto',

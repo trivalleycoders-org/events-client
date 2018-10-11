@@ -31,14 +31,14 @@ class MainAppBar extends React.Component {
     const { classes, isLoggedIn, width } = this.props
 
     return (
-      <div className={classes.root}>
-        <AppBar position='fixed'>
+      <div className={classes.wrapper}>
+        <AppBar position='fixed' className={classes.appBar}>
           <Toolbar>
             <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
               <MenuIcon />
             </IconButton>
             <Typography variant='title' color='inherit' className={classes.flex}>
-              Drone Events
+              <span className={classes.drone}>Drone</span> <span className={classes.madness}>Madness</span>
             </Typography>
             {width !== 'xs'
               ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
@@ -58,11 +58,22 @@ MainAppBar.propTypes = {
 }
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
+  drone: {
+    fontWeight: 600,
   },
-  paper: {
-    marginRight: theme.spacing.unit * 2
+  madness: {
+    // color: theme.palette.secondary.main,
+    // fontWeight: 400,
+
+  },
+  appBar: {
+    height: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    // backgroundColor: theme.palette.background.default,
+  },
+  wrapper: {
+    // display: 'flex',
   },
   flex: {
     flex: 1,

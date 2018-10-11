@@ -2,6 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 import AccountMenu from './AccountMenu'
+import Body2 from 'ui/ui-elements/typography/Body2'
 
 /* Dev */
 // eslint-disable-next-line
@@ -12,7 +13,7 @@ const  LoggedIn = () => {
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>
-        Home
+          Home
       </ButtonNavLink>
       <ButtonNavLink to='/create-event'>
         Create Event

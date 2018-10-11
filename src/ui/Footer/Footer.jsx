@@ -4,10 +4,10 @@ import {
 } from '@material-ui/core'
 
 /* User */
-import Body2 from 'ui/ui-elements/typography/Body2'
 import ByTvc from './ByTvc'
 import TVCLinks from './TVCLinks'
 import TvcCopyright from './TvcCopyright'
+import Mern from './Mern'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
@@ -16,8 +16,7 @@ const Footer = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
       <ByTvc />
-      <TVCLinks />
-      <TvcCopyright />
+      <Mern />
     </div>
 
   )
@@ -28,21 +27,15 @@ const styles = theme => ({
 
   wrapper: {
     display: 'flex',
-    flexFlow: 'column nowrap',
     justifyContent: 'center',
+    flexFlow: 'row wrap',
     alignItems: 'center',
     backgroundColor: 'rgb(22, 22, 22)',
-
+    paddingTop: 65,
+    paddingBottom: 85,
   },
-
-  body1: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    color: 'white',
-  },
-  body2: {
-    color: 'white',
-  },
-
 })
 export default withStyles(styles)(Footer)
+
+// <TVCLinks />
+   //    <TvcCopyright />
