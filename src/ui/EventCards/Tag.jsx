@@ -19,12 +19,12 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: theme.palette.common.black,
+    color: theme.palette.primary.main,
     /* eslint-disable */
     fontFamily: "'Roboto Condensed', sans-serif",
     /* eslint-disable */
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: 600,
     letterSpacing: '0.5px',
     lineHeight: '40px',
     textDecoration: 'none',

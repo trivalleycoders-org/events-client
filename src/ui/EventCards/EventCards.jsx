@@ -1,12 +1,14 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
+  Button,
   Grid,
   Typography,
   Card,
   CardActions,
   CardMedia,
   CardContent,
+  CardActionArea,
 } from '@material-ui/core'
 import { has } from 'ramda'
 
@@ -19,15 +21,19 @@ import { green } from 'logger'
 
 const hourAmPm = (date) => {
   const h = date.getHours()
-  const m = date.getMinutes()
+  const tempMin = date.getMinutes()
+  const m = (tempMin < 10) ? `0${tempMin}` : tempMin
+  console.log('minutes: ', m)
   return (h > 12)
-    ? `${h-12}:${m} PM`
+    ? `${h - 12}:${m} PM`
     : `${h}:${m} AM`
 }
 
 const formattedDate = (isoDateString) => {
-  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  // const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  // const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const d = new Date(isoDateString)
   const MMM = monthNames[d.getMonth()]
   const DDD = dayNames[d.getDay()]
@@ -42,59 +48,56 @@ const EventCards = (props) => {
   const { classes, events } = props
   return (
     <React.Fragment>
-    <p>number of events is {events.length}</p>
-    <Grid container spacing={Number(32)} className={classes.outer} >
-      {events.map(c => {
-        const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
-        return (
-          <Grid key={c._id} item xs={12} sm={6} md={4} >
-            <Card className={classes.card}>
-              <a href={c.linkToUrl} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image={c.imageUrl}
-                >
-                </CardMedia>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {formattedDate(c.dates.startDateTime)}
-                  </Typography>
-                  <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                    {`by: ${c.organization}`}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {c.venueName}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {location}
-                  </Typography>
-                </CardContent>
-              </a>
-              <CardActions className={classes.actions} disableActionSpacing>
-                <div className={classes.tags}>
-                  {
-                    hasTags(c)
-                      ? c.tags.map((t, index) => (
-                          <Tag key={`t${index}`} label={t} />
-                        ))
-                      : null
-                  }
-                </div>
-
-              </CardActions>
-            </Card>
-          </Grid>
-        )
-      })}
-    </Grid>
+      <p>number of events is {events.length}</p>
+      <Grid container spacing={Number(32)} className={classes.outer} >
+        {events.map(c => {
+          const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
+          return (
+            <Grid key={c._id} item xs={12} sm={6} md={4} >
+              <Card className={classes.card}>
+                <a href={c.linkToUrl} className={classes.link}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      image={c.imageUrl}
+                      height="180"
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography className={classes.title}>
+                        {c.title}
+                      </Typography>
+                      <Typography className={classes.time} component="p">
+                        {formattedDate(c.dates.startDateTime)}
+                      </Typography>
+                      <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                        {location}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions className={classes.actions} disableActionSpacing>
+                    <div className={classes.tags}>
+                      {
+                        hasTags(c)
+                          ? c.tags.map((t, index) => (
+                            <Tag key={`t${index}`} label={t} />
+                          ))
+                          : null
+                      }
+                    </div>
+                  </CardActions>
+                </a>
+              </Card>
+            </Grid>
+          )
+        })}
+      </Grid>
     </React.Fragment>
   )
 }
 
-const styles = {
+const styles = theme => ({
   action: {
     border: 'none',
   },
@@ -109,7 +112,7 @@ const styles = {
   card: {
     minHeight: 0,
     minWidth: 0,
-    padding: '15px 5px 0 5px',
+    maxWidth: '345px'
   },
   cardContent: {
     padding: '5px 15px 5px 15px',
@@ -121,11 +124,11 @@ const styles = {
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
+    marginLeft: '.6em',
     overflow: 'hidden',
   },
   media: {
-    height: 0,
-    paddingTop: '50%',
+    objectFit: 'cover',
   },
   organization: {
     height: '33px',
@@ -140,18 +143,19 @@ const styles = {
     paddingBottom: '40px'
   },
   time: {
+    marginTop: '1em',
     overflow: 'hidden',
     paddingTop: '.4rem',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
   title: {
+    fontWeight: '600',
     height: '40px',
     letterSpacing: '0px',
     lineHeight: '19px',
     margin: 0,
     overflow: 'hidden',
-    paddingTop: '5px',
   },
   venue: {
     overflow: 'hidden',
@@ -160,6 +164,6 @@ const styles = {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-}
+})
 
 export default withStyles(styles)(EventCards)
