@@ -7,6 +7,7 @@ import {
   CardActions,
   CardMedia,
   CardContent,
+  CardActionArea,
 } from '@material-ui/core'
 import { has } from 'ramda'
 
@@ -19,9 +20,11 @@ import { green } from 'logger'
 
 const hourAmPm = (date) => {
   const h = date.getHours()
-  const m = date.getMinutes()
+  const tempMin = date.getMinutes()
+  const m = (tempMin < 10) ? `0${tempMin}` : tempMin
+  console.log('minutes: ', m)
   return (h > 12)
-    ? `${h-12}:${m} PM`
+    ? `${h - 12}:${m} PM`
     : `${h}:${m} AM`
 }
 
@@ -42,54 +45,51 @@ const EventCards = (props) => {
   const { classes, events } = props
   return (
     <React.Fragment>
-    <p>number of events is {events.length}</p>
-    <Grid container spacing={Number(32)} className={classes.outer} >
-      {events.map(c => {
-        const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
-        return (
-          <Grid key={c._id} item xs={12} sm={6} md={4} >
-            <Card className={classes.card}>
-              <a href={c.linkToUrl} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image={c.imageUrl}
-                >
-                </CardMedia>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {formattedDate(c.dates.startDateTime)}
-                  </Typography>
-                  <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                    {`by: ${c.organization}`}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {c.venueName}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {location}
-                  </Typography>
-                </CardContent>
-              </a>
-              <CardActions className={classes.actions} disableActionSpacing>
-                <div className={classes.tags}>
-                  {
-                    hasTags(c)
-                      ? c.tags.map((t, index) => (
+      <p>number of events is {events.length}</p>
+      <Grid container spacing={Number(32)} className={classes.outer} >
+        {events.map(c => {
+          const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
+          return (
+            <Grid key={c._id} item xs={12} sm={6} md={4} >
+              <Card className={classes.card}>
+                <a href={c.linkToUrl} className={classes.link}>
+                  <CardMedia
+                    className={classes.media}
+                    image={c.imageUrl}
+                  >
+                  </CardMedia>
+                  <CardContent className={classes.cardContent}>
+                    <Typography variant="subtitle1" className={classes.title}>
+                      {c.title}
+                    </Typography>
+                    <Typography variant='subheading' component='p' noWrap className={classes.time}>
+                      {formattedDate(c.dates.startDateTime)}
+                    </Typography>
+                    <Typography variant='caption' component='p' noWrap className={classes.organization}>
+                      {`${c.organization}`}
+                    </Typography>
+                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                      {location}
+                    </Typography>
+                  </CardContent>
+                </a>
+                <CardActions className={classes.actions} disableActionSpacing>
+                  <div className={classes.tags}>
+                    {
+                      hasTags(c)
+                        ? c.tags.map((t, index) => (
                           <Tag key={`t${index}`} label={t} />
                         ))
-                      : null
-                  }
-                </div>
+                        : null
+                    }
+                  </div>
 
-              </CardActions>
-            </Card>
-          </Grid>
-        )
-      })}
-    </Grid>
+                </CardActions>
+              </Card>
+            </Grid>
+          )
+        })}
+      </Grid>
     </React.Fragment>
   )
 }
@@ -125,7 +125,7 @@ const styles = {
   },
   media: {
     height: 0,
-    paddingTop: '50%',
+    paddingTop: '60%',
   },
   organization: {
     height: '33px',
