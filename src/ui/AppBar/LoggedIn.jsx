@@ -12,7 +12,7 @@ const  LoggedIn = () => {
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>
-        Home
+          Home
       </ButtonNavLink>
       <ButtonNavLink to='/create-event'>
         Create Event

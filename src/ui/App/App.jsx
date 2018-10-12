@@ -32,10 +32,12 @@ import AppBar from 'ui/AppBar'
 // import AppDrawer from 'ui/AppDrawer'
 
 // New
-import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
+import EventsContainer from 'ui/EventsContainer'
 import MyEventsContainer from 'ui/MyEventsContainer'
 import EventFormContainer from 'ui/EventFormContainer'
 import EventDetailsContainer from 'ui/EventDetailsContainer'
+import SearchEventsContainer from 'ui/SearchEventsContainer'
+import Footer from 'ui/Footer'
 
 // Delete
 
@@ -51,7 +53,7 @@ import { green, yellow, orange, red } from 'logger'
 import SearchBox from '../SearchBox/SearchBox'
 
 const componentName = 'App'
-const log = true
+const log = false
 
 class App extends React.Component {
   constructor(props) {
@@ -71,9 +73,9 @@ class App extends React.Component {
       this.state = {
         userId: user.id,
       }
-      green(`${componentName} - cookie found with userId`, user.id)
+      // green(`${componentName} - cookie found with userId`, user.id)
     } else {
-      green(`${componentName} - cookie NOT found`)
+      // green(`${componentName} - cookie NOT found`)
       this.state = {
         userId: undefined,
       }
@@ -84,16 +86,17 @@ class App extends React.Component {
   }
 
   loadData = async (from, prevProps = undefined) => {
-    red('loadData', from)
+    green('props', this.props)
+    // red('loadData', from)
     const { userId } = this.state
     const { eventsReadRequest, eventsForUserReadRequest } = this.props
     const currPath = this.props.location.pathname
     let prevPath = undefined
     if (prevProps !== undefined) {
       prevPath = prevProps.location.pathname
-      green(`${componentName} - loadData: prevPath`, prevPath)
+      // green(`${componentName} - loadData: prevPath`, prevPath)
     }
-    green(`${componentName} - loadData: currPath`, currPath)
+    // green(`${componentName} - loadData: currPath`, currPath)
 
     if (userId === undefined) {
       red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
@@ -103,15 +106,15 @@ class App extends React.Component {
     if (currPath !== prevPath) {
       switch (currPath) {
         case '/':
-          green(`${componentName} - case /`)
+          // green(`${componentName} - case /`)
           await eventsReadRequest()
           break
         case '/my-events':
-          green(`${componentName} - case /my-events`)
+          // green(`${componentName} - case /my-events`)
           await eventsForUserReadRequest(userId)
           break
         default:
-          red('default - oh no!')
+          red(`App.loadData: unknown route path ${currPath}`)
       }
     }
   }
@@ -144,18 +147,25 @@ class App extends React.Component {
         <Hero />
         <SearchBox />
         <div className={classes.wrapper}>
-          <div className={classes.body}>
-            <Switch>
-              <Route exact path='/' component={EventCardsContainer} />
-              <Route exact path='/my-events' component={MyEventsContainer} />
-              <Route exact path='/create-event' component={EventFormContainer} />
-              <Route exact path='/edit-event/:id' component={EventFormContainer} />
-              <Route exact path='/event-details/:id' component={EventDetailsContainer} />
-              <Route exact path='/login' component={LoginForm} />
-              <Route exact path='/register' component={RegisterForm} />
-              <PrivateRoute exact path='/settings' component={SettingsForm} />
-            </Switch>
+          <AppBar />
+          <Breakpoints />
+          <PageMessage></PageMessage>
+          <Hero />
+          <div className={classes.wrapper}>
+            <div className={classes.body}>
+              <Switch>
+                <Route exact path='/' component={EventCardsContainer} />
+                <Route exact path='/my-events' component={MyEventsContainer} />
+                <Route exact path='/create-event' component={EventFormContainer} />
+                <Route exact path='/edit-event/:id' component={EventFormContainer} />
+                <Route exact path='/event-details/:id' component={EventDetailsContainer} />
+                <Route exact path='/login' component={LoginForm} />
+                <Route exact path='/register' component={RegisterForm} />
+                <PrivateRoute exact path='/settings' component={SettingsForm} />
+              </Switch>
+            </div>
           </div>
+          <Footer />
         </div>
       </div>
     )
@@ -169,7 +179,7 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 60,
+    marginTop: 100,
   },
   body: {
     width: 'auto',

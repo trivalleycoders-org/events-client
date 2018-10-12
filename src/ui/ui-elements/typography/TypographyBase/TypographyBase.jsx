@@ -30,6 +30,7 @@ const TypographyBase = ({
       noWrap={noWrap}
       variant={variant}
       gutterBottom={gutterBottom}
+      className={className}
     >
       {children}
     </Typography>

@@ -126,7 +126,7 @@ export default {
 
     },
     async read(user) {
-      pink('api.events.read: data', 'start')
+      // pink('api.events.read: data', 'start')
       try {
         const data = await fetchJson(
           '/events',
@@ -134,7 +134,7 @@ export default {
             method: 'GET',
           }
         )
-        pink('api.events.read: data', data)
+        // pink('api.events.read: data', data)
         return data.data
       }
       catch (e) {
@@ -150,7 +150,7 @@ export default {
             method: 'GET',
           }
         )
-        pink('api.events.forUserRead: data', data)
+        // pink('api.events.forUserRead: data', data)
         return data.data
       }
       catch (e) {
