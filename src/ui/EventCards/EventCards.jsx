@@ -1,6 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
+  Button,
   Grid,
   Typography,
   Card,
@@ -53,38 +54,35 @@ const EventCards = (props) => {
             <Grid key={c._id} item xs={12} sm={6} md={4} >
               <Card className={classes.card}>
                 <a href={c.linkToUrl} className={classes.link}>
-                  <CardMedia
-                    className={classes.media}
-                    image={c.imageUrl}
-                  >
-                  </CardMedia>
-                  <CardContent className={classes.cardContent}>
-                    <Typography variant="subtitle1" className={classes.title}>
-                      {c.title}
-                    </Typography>
-                    <Typography variant='subheading' component='p' noWrap className={classes.time}>
-                      {formattedDate(c.dates.startDateTime)}
-                    </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                      {`${c.organization}`}
-                    </Typography>
-                    <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                      {location}
-                    </Typography>
-                  </CardContent>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      image={c.imageUrl}
+                      height="180"
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography className={classes.title}>
+                        {c.title}
+                      </Typography>
+                      <Typography className={classes.time} component="p">
+                        {formattedDate(c.dates.startDateTime)}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions className={classes.actions} disableActionSpacing>
+                    <div className={classes.tags}>
+                      {
+                        hasTags(c)
+                          ? c.tags.map((t, index) => (
+                            <Tag key={`t${index}`} label={t} />
+                          ))
+                          : null
+                      }
+                    </div>
+                  </CardActions>
                 </a>
-                <CardActions className={classes.actions} disableActionSpacing>
-                  <div className={classes.tags}>
-                    {
-                      hasTags(c)
-                        ? c.tags.map((t, index) => (
-                          <Tag key={`t${index}`} label={t} />
-                        ))
-                        : null
-                    }
-                  </div>
-
-                </CardActions>
               </Card>
             </Grid>
           )
@@ -94,7 +92,7 @@ const EventCards = (props) => {
   )
 }
 
-const styles = {
+const styles = theme => ({
   action: {
     border: 'none',
   },
@@ -109,7 +107,7 @@ const styles = {
   card: {
     minHeight: 0,
     minWidth: 0,
-    padding: '15px 5px 0 5px',
+    maxWidth: '345px'
   },
   cardContent: {
     padding: '5px 15px 5px 15px',
@@ -121,11 +119,11 @@ const styles = {
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
+    marginLeft: '.8em',
     overflow: 'hidden',
   },
   media: {
-    height: 0,
-    paddingTop: '60%',
+    objectFit: 'cover',
   },
   organization: {
     height: '33px',
@@ -140,18 +138,19 @@ const styles = {
     paddingBottom: '40px'
   },
   time: {
+    marginTop: '1em',
     overflow: 'hidden',
     paddingTop: '.4rem',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
   title: {
+    fontWeight: '600',
     height: '40px',
     letterSpacing: '0px',
     lineHeight: '19px',
     margin: 0,
     overflow: 'hidden',
-    paddingTop: '5px',
   },
   venue: {
     overflow: 'hidden',
@@ -160,6 +159,6 @@ const styles = {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-}
+})
 
 export default withStyles(styles)(EventCards)
