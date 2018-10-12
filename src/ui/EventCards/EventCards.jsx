@@ -69,6 +69,9 @@ const EventCards = (props) => {
                       <Typography className={classes.time} component="p">
                         {formattedDate(c.dates.startDateTime)}
                       </Typography>
+                      <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                        {location}
+                      </Typography>
                     </CardContent>
                   </CardActionArea>
                   <CardActions className={classes.actions} disableActionSpacing>
@@ -119,7 +122,7 @@ const styles = theme => ({
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
-    marginLeft: '.8em',
+    marginLeft: '.6em',
     overflow: 'hidden',
   },
   media: {
