@@ -9,7 +9,6 @@ const variant = 'display1'
 
 const Display1 = (props) => {
   const { children, classes, className } = props
-  greenl('Display4: props', props)
   return (
     <TypographyBase
       variant={variant}

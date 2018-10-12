@@ -1,17 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { getAllEvents } from 'store/selectors/events-selectors'
-import EventCards from './EventCards'
+import EventCards from 'ui/EventCards'
 
+/* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
-class EventCardsContainer extends React.Component {
-
-  componentDidMount() {
-    // this.props.eventsReadRequest()
-  }
+class SearchEventsContainer extends React.Component {
 
   render() {
     return (
@@ -20,15 +16,14 @@ class EventCardsContainer extends React.Component {
       />
     )
   }
-
 }
 
-const mstp = (state, ownProps) => {
+const mstp = (state) => {
   return {
     events: getAllEvents(state),
   }
 }
 
 export default connect(
-    mstp
-)(EventCardsContainer)
+  mstp,
+)(SearchEventsContainer)

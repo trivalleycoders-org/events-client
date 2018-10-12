@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Route,
-  Switch ,
+  Switch,
   withRouter
 } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -12,7 +12,7 @@ import jwt from 'jsonwebtoken'
 
 // Store
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
-import { userValidateRequest, userValidateRequestKey} from 'store/actions/auth-actions'
+import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
 // import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
@@ -32,10 +32,11 @@ import AppBar from 'ui/AppBar'
 // import AppDrawer from 'ui/AppDrawer'
 
 // New
-import EventCardsContainer from 'ui/EventCardsContainer/EventCardsContainer'
+import EventsContainer from 'ui/EventsContainer'
 import MyEventsContainer from 'ui/MyEventsContainer'
 import EventFormContainer from 'ui/EventFormContainer'
 import EventDetailsContainer from 'ui/EventDetailsContainer'
+import SearchEventsContainer from 'ui/SearchEventsContainer'
 import Footer from 'ui/Footer'
 
 // Delete
@@ -51,7 +52,7 @@ import Footer from 'ui/Footer'
 import { green, yellow, orange, red } from 'logger'
 
 const componentName = 'App'
-const log = true
+const log = false
 
 class App extends React.Component {
   constructor(props) {
@@ -71,9 +72,9 @@ class App extends React.Component {
       this.state = {
         userId: user.id,
       }
-      green(`${componentName} - cookie found with userId`, user.id)
+      // green(`${componentName} - cookie found with userId`, user.id)
     } else {
-      green(`${componentName} - cookie NOT found`)
+      // green(`${componentName} - cookie NOT found`)
       this.state = {
         userId: undefined,
       }
@@ -84,34 +85,35 @@ class App extends React.Component {
   }
 
   loadData = async (from, prevProps = undefined) => {
-    red('loadData', from)
+    green('props', this.props)
+    // red('loadData', from)
     const { userId } = this.state
     const { eventsReadRequest, eventsForUserReadRequest } = this.props
     const currPath = this.props.location.pathname
     let prevPath = undefined
     if (prevProps !== undefined) {
       prevPath = prevProps.location.pathname
-      green(`${componentName} - loadData: prevPath`, prevPath)
+      // green(`${componentName} - loadData: prevPath`, prevPath)
     }
-    green(`${componentName} - loadData: currPath`, currPath)
+    // green(`${componentName} - loadData: currPath`, currPath)
 
-    if (userId === undefined) {
-      red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    } else {
-      green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    }
-    if ( currPath !== prevPath) {
+    // if (userId === undefined) {
+    //   red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // } else {
+    //   green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // }
+    if (currPath !== prevPath) {
       switch (currPath) {
         case '/':
-          green(`${componentName} - case /`)
+          // green(`${componentName} - case /`)
           await eventsReadRequest()
           break
         case '/my-events':
-          green(`${componentName} - case /my-events`)
+          // green(`${componentName} - case /my-events`)
           await eventsForUserReadRequest(userId)
           break
         default:
-          red('default - oh no!')
+          red(`App.loadData: unknown route path ${currPath}`)
       }
     }
   }
@@ -144,9 +146,10 @@ class App extends React.Component {
           <div className={classes.wrapper}>
             <div className={classes.body}>
               <Switch>
-                <Route exact path='/' component={EventCardsContainer} />
+                <Route exact path='/' component={EventsContainer} />
                 <Route exact path='/my-events' component={MyEventsContainer} />
                 <Route exact path='/create-event' component={EventFormContainer} />
+                <Route exact path='/search-events/:text' component={SearchEventsContainer} />
                 <Route exact path='/edit-event/:id' component={EventFormContainer} />
                 <Route exact path='/event-details/:id' component={EventDetailsContainer} />
                 <Route exact path='/login' component={LoginForm} />
@@ -183,11 +186,11 @@ const styles = theme => ({
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions}
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions }
 
 const mapStateToProps = (state) => {
   return {
-    userValidateRequestStatus:  requestSelectors.getRequest(state, userValidateRequestKey),
+    userValidateRequestStatus: requestSelectors.getRequest(state, userValidateRequestKey),
     // currentUserId: getUserId(state), // getting it from state set in constructor
   }
 }

@@ -35,7 +35,7 @@ export class SearchEvent extends React.Component {
                 color='secondary'
                 // color='orange'
                 // className={classes.searchButton}
-                // disabled={searchText.length < 3}
+                disabled={searchText.length < 3}
                 variant='contained'
               >
                 Search
@@ -49,7 +49,6 @@ export class SearchEvent extends React.Component {
 
 
 const styles = theme => {
-  const unit = theme.spacing.unit
   return (
     {
       wrapper: {

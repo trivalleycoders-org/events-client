@@ -2,7 +2,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
 import AccountMenu from './AccountMenu'
-import Body2 from 'ui/ui-elements/typography/Body2'
 
 /* Dev */
 // eslint-disable-next-line

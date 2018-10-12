@@ -6,12 +6,10 @@ import {
 } from '@material-ui/core'
 // import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 // import SearchBox from 'ui/SearchBox'
-import Display4 from 'ui/ui-elements/typography/Display4'
 import iHero from './media/hero4.jpg'
 import SearchBox from 'ui/SearchBox'
 
 const Hero = ({ classes, location }) => {
-  console.log('iHero', iHero)
   const background = {
     backgroundImage: `url(${iHero})`,
     backgroundSize: 'cover',
@@ -30,7 +28,6 @@ const Hero = ({ classes, location }) => {
 }
 
 const styles = theme => {
-  const unit = theme.spacing.unit
   return ({
     background: {
       height: '100%',
