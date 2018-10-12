@@ -8,13 +8,15 @@ import { green as greenl } from 'logger'
 const variant = 'display1'
 
 const Display1 = (props) => {
-  const { children, classes } = props
+  const { children, classes, className } = props
+  greenl('Display4: props', props)
   return (
     <TypographyBase
       variant={variant}
       classes={{
         root: classes.root
       }}
+      className={className}
       { ...props }
     >
       {children}
@@ -26,6 +28,7 @@ const styles = theme => {
   const originalSize = theme.typography[variant].fontSize
 
   return ({
+
     [variant]: {
       [theme.breakpoints.down('xs')]: {
         fontSize: fontSizeFromString(originalSize, 1),
