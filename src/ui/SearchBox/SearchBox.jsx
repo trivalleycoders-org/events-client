@@ -49,19 +49,22 @@ export class SearchEvent extends React.Component {
 
   render() {
     const { classes, searchText } = this.props
+
+
     return (
       <Paper className={classes.wrapper}>
         <TextField onChange={e => this.handleChange(e.target.value)} value={this.state.searchText} />
         {this.state.showSearchIcon
           ?
+          <Link to={`/search-events/${searchText}`}>
           <Button
-            color='green'
-            className={classes.searchIcon}
+            color='secondary'
             disabled={searchText.length < 3}
-            onClick={this.searchEvents}
+            variant='contained'
           >
             Search
-              </Button>
+          </Button>
+          </Link>
           :
           <CancelIcon
             className={classes.cancelIcon}
