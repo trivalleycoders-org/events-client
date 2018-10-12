@@ -9,6 +9,14 @@ import { green, red } from '@material-ui/core/colors'
 // eslint-disable-next-line
 import { green as grn } from 'logger'
 
+/*
+    - color: (primary|secondary)
+    - disabled: (true|false)
+    - smsall: (small|medium|large)
+
+*/
+
+
 const Button = (props) => {
   // grn('Button: props', props)
   const { classes, color, children, onClick } = props
@@ -24,7 +32,7 @@ const Button = (props) => {
   return (
     <Btn
         variant="contained"
-        color="primary"
+        color="secondary"
         className={classNames(classes.margin, getBtnClass())}
         onClick={onClick}
       >
@@ -60,6 +68,11 @@ const styles = theme => ({
       backgroundColor: red[700],
     },
   },
+  secondary: {
+    main: '#dc0747',
+      dark: '#a30021',
+
+  },
   margin: {
     margin: theme.spacing.unit,
   },
@@ -67,5 +80,5 @@ const styles = theme => ({
 
 export default withStyles(
   styles,
-  // { withTheme: true}
+  { withTheme: true}
 )(Button)
