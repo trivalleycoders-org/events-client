@@ -9,6 +9,7 @@ import { TextField, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 // import Button from 'ui/ui-elements/Button'
 import { Button } from '@material-ui/core'
+import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'

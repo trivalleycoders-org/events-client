@@ -50,7 +50,6 @@ import Footer from 'ui/Footer'
 
 // eslint-disable-next-line
 import { green, yellow, orange, red } from 'logger'
-import SearchBox from '../SearchBox/SearchBox'
 
 const componentName = 'App'
 const log = false
@@ -98,11 +97,11 @@ class App extends React.Component {
     }
     // green(`${componentName} - loadData: currPath`, currPath)
 
-    if (userId === undefined) {
-      red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    } else {
-      green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    }
+    // if (userId === undefined) {
+    //   red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // } else {
+    //   green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
+    // }
     if (currPath !== prevPath) {
       switch (currPath) {
         case '/':
@@ -140,23 +139,17 @@ class App extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <div className={classes.wrapper}>
-        <AppBar />
-        <Breakpoints />
-        <PageMessage></PageMessage>
-        <Hero />
-        <SearchBox />
         <div className={classes.wrapper}>
           <AppBar />
-          <Breakpoints />
           <PageMessage></PageMessage>
           <Hero />
           <div className={classes.wrapper}>
             <div className={classes.body}>
               <Switch>
-                <Route exact path='/' component={EventCardsContainer} />
+                <Route exact path='/' component={EventsContainer} />
                 <Route exact path='/my-events' component={MyEventsContainer} />
                 <Route exact path='/create-event' component={EventFormContainer} />
+                <Route exact path='/search-events/:text' component={SearchEventsContainer} />
                 <Route exact path='/edit-event/:id' component={EventFormContainer} />
                 <Route exact path='/event-details/:id' component={EventDetailsContainer} />
                 <Route exact path='/login' component={LoginForm} />
@@ -167,7 +160,6 @@ class App extends React.Component {
           </div>
           <Footer />
         </div>
-      </div>
     )
   }
 }
