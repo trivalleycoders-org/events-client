@@ -5,8 +5,10 @@ import classNames from 'classnames'
 import {
   withStyles,
   Grid,
+  Paper,
 } from '@material-ui/core'
 import Body1 from 'ui/ui-elements/typography/Body1'
+
 import A from 'ui/ui-elements/A'
 import iExpress from './media/express.svg'
 import iMongodb from './media/mongodb.svg'
@@ -16,17 +18,45 @@ import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 
 const TVCLinks = ({ classes }) => {
   return (
-    <div className={classes.wrapper}>
-      <Body1
-          color='white'
-      >
-        MERN Stack Experts
-      </Body1>
-      <ResponsiveImage src={iMongodb} className={classes.logo} alt='mongo db' />
-      <ResponsiveImage src={iExpress} className={classNames(classes.logo, classes.express)} alt='express js' />
-      <ResponsiveImage src={iReact} className={classes.logo} alt='react js' />
-      <ResponsiveImage src={iNode} className={classes.logo} alt='node js' />
-    </div>
+      <div>
+        <div className={classes.top}>
+          <Body1
+            align='center'
+            color='white'
+            className={classes.title}
+          >
+            MERN Stack Experts
+          </Body1>
+        </div>
+        <div>
+        <Grid container xs={12} direction='row' spacing={16}>
+          <Grid item xs={3} className={classes.item} alignContent='stretch'>
+            <Paper className={classes.paper} elevation={0}>
+              <ResponsiveImage src={iMongodb} className={classes.logo} alt='mongo db' />
+            </Paper>
+          </Grid>
+          <Grid item xs={3} className={classes.item} alignItems='center'>
+            <Paper className={classes.paper} elevation={0}>
+              <ResponsiveImage src={iExpress} className={classNames(classes.logo, classes.express)} alt='express js' />
+            </Paper>
+          </Grid>
+          <Grid item xs={3} className={classes.item}>
+            <Paper className={classes.paper} elevation={0}>
+              <ResponsiveImage src={iReact} className={classes.logo} alt='react js' />
+            </Paper>
+          </Grid>
+          <Grid item xs={3} className={classes.item}>
+            <Paper className={classes.paper} elevation={0}>
+              <ResponsiveImage src={iNode} className={classes.logo} alt='node js' />
+            </Paper>
+          </Grid>
+        </Grid>
+        </div>
+      </div>
+
+
+
+
   )
 }
 
@@ -35,13 +65,24 @@ const styles = theme => {
   const topBottomMargin = theme.spacing.unit * 4
   const logoMargin = `${topBottomMargin}px ${leftRightMargin}px ${topBottomMargin}px ${leftRightMargin}px`
   return ({
+    top: {
+      backgroundColor: 'red'
+    },
+    title: {
+      backgroundColor: 'purple',
+      marginBottom: 20,
+    },
+    item: {
+      backgroundColor: 'rgb(100, 100, 100)',
+      // height: '100%',
+    },
     wrapper: {
       // backgroundColor: 'green',
       // backgroundColor: 'green',
-      display: 'flex',
-      flexFlow: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
+      // display: 'flex',
+      // flexFlow: 'column',
+      // justifyContent: 'flex-start',
+      // alignItems: 'flex-start',
       // flexflow: 'row wrap',
     },
     logo: {
@@ -51,9 +92,16 @@ const styles = theme => {
     },
     express: {
       // padding: '5px 0 5px 0',
-      paddingTop: 2,
-      paddingBottom: 2,
+      // paddingTop: 2,
+      // paddingBottom: 2,
       // minWidth: 100,
+      // width: 40,
+    },
+    paper: {
+      backgroundColor: 'transparent',
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'center',
     }
     // meetup: {
     //   color: '#f64060',

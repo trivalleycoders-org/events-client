@@ -13,8 +13,6 @@ import iNode from './media/nodejs.svg'
 import TVCLinks from './TVCLinks.jsx'
 import classNames from 'classnames'
 import Display1 from 'ui/ui-elements/typography/Display1'
-import Body2 from 'ui/ui-elements/typography/Body2'
-import Mern from './Mern'
 // const titleVariant = 'h4'
 
 const Title = ({classes, children}) => (
@@ -43,13 +41,68 @@ const Footer = ({ classes }) => {
       <Grid container spacing={24}>
         <Grid item sm={4}>
           <ItemPaper classes={classes}>
-            <Body2 color='white'>Made with pride by</Body2>
-            <img src={iTVC} alt='tri valley coders' />
+            <Grid container spacing={16} direction='column'>
+              <Grid item>
+                <Title classes={classes}>Made with pride by</Title>
+
+              </Grid>
+              <Grid item>
+                <img
+                  src={iTVC}
+                  className={classes.img}
+                  alt='tri valley coders'
+                />
+              </Grid>
+            </Grid>
           </ItemPaper>
         </Grid>
-        <Grid item sm={6} className={classes.line}>
+        <Grid item sm={4}>
           <ItemPaper classes={classes}>
-            <Mern />
+            <Grid container spacing={16} direction='column'>
+              <Grid item>
+                <Title classes={classes}>MERN Stack Experts</Title>
+              </Grid>
+              <Grid item>
+                <img
+                  src={iMongo}
+                  className={classNames(classes.img, classes.mernItem)}
+                  alt='mongo db'
+                />
+              </Grid>
+              <Grid item>
+                <img
+                  src={iExpress}
+                  className={classNames(classes.img, classes.expressItem)}
+                  alt='express js'
+                />
+              </Grid>
+              <Grid item>
+                <img
+                  src={iReact}
+                  className={classNames(classes.img, classes.mernItem)}
+                  alt='react js'
+                />
+              </Grid>
+              <Grid item>
+                <img
+                  src={iNode}
+                  className={classNames(classes.img, classes.mernItem)}
+                  alt='node js'
+                />
+              </Grid>
+            </Grid>
+          </ItemPaper>
+        </Grid>
+        <Grid item sm={4}>
+          <ItemPaper classes={classes}>
+            <Grid container spacing={8} direction='column'>
+              <Grid item>
+                <Title classes={classes}>More About Us</Title>
+              </Grid>
+              <Grid item>
+                <TVCLinks />
+              </Grid>
+            </Grid>
           </ItemPaper>
         </Grid>
       </Grid>
@@ -58,9 +111,6 @@ const Footer = ({ classes }) => {
 }
 
 const styles = theme => ({
-  line: {
-    borderLeft: '1px solid white',
-  },
   wrapper: {
     flexGrow: 1,
     padding: '5% 10% 5% 10%',
