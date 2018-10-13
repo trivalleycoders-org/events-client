@@ -11,7 +11,7 @@ import Body1 from 'ui/ui-elements/typography/Body1'
 
 import A from 'ui/ui-elements/A'
 import iExpress from './media/express.svg'
-import iMongodb from './media/mongodb.svg'
+import iMongodb from './media/mongodb.boxed2.png'
 import iNode from './media/nodejs.svg'
 import iReact from './media/react-word.svg'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
