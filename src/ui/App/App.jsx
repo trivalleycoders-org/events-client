@@ -142,9 +142,11 @@ class App extends React.Component {
         <div className={classes.wrapper}>
           <AppBar />
           <PageMessage></PageMessage>
+
           <Hero />
           <div className={classes.wrapper}>
             <div className={classes.body}>
+              {/* <Breakpoints /> */}
               <Switch>
                 <Route exact path='/' component={EventsContainer} />
                 <Route exact path='/my-events' component={MyEventsContainer} />

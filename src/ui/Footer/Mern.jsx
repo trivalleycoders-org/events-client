@@ -1,129 +1,131 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faMeetup, faGithub, faSlack, faReact } from '@fortawesome/free-brands-svg-icons'
-import classNames from 'classnames'
-import {
-  withStyles,
-  Grid,
-  Paper,
-} from '@material-ui/core'
-import Body1 from 'ui/ui-elements/typography/Body1'
-
-import A from 'ui/ui-elements/A'
-import iExpress from './media/express.svg'
-import iMongodb from './media/mongodb.boxed2.png'
-import iNode from './media/nodejs.svg'
-import iReact from './media/react-word.svg'
+import { withStyles } from '@material-ui/core/styles'
+import { Grid, Paper } from '@material-ui/core'
+import Title from 'ui/ui-elements/typography/Title'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
+import iMongo from './media/mongodb.boxed.svg'
+import iExpress from './media/express.boxed.svg'
+import iReact from './media/react.boxed.1.svg'
+import iNode from './media/nodejs.boxed.svg'
 
-const TVCLinks = ({ classes }) => {
+const Mern = ({ classes }) => {
+
   return (
-      <div>
-        <div className={classes.top}>
-          <Body1
-            align='center'
-            color='white'
-            className={classes.title}
-          >
-            MERN Stack Experts
-          </Body1>
-        </div>
-        <div>
-        <Grid container xs={12} direction='row' spacing={16}>
-          <Grid item xs={3} className={classes.item} alignContent='stretch'>
-            <Paper className={classes.paper} elevation={0}>
-              <ResponsiveImage src={iMongodb} className={classes.logo} alt='mongo db' />
-            </Paper>
-          </Grid>
-          <Grid item xs={3} className={classes.item} alignItems='center'>
-            <Paper className={classes.paper} elevation={0}>
-              <ResponsiveImage src={iExpress} className={classNames(classes.logo, classes.express)} alt='express js' />
-            </Paper>
-          </Grid>
-          <Grid item xs={3} className={classes.item}>
-            <Paper className={classes.paper} elevation={0}>
-              <ResponsiveImage src={iReact} className={classes.logo} alt='react js' />
-            </Paper>
-          </Grid>
-          <Grid item xs={3} className={classes.item}>
-            <Paper className={classes.paper} elevation={0}>
-              <ResponsiveImage src={iNode} className={classes.logo} alt='node js' />
-            </Paper>
-          </Grid>
-        </Grid>
-        </div>
+    <div id='Mern' className={classes.container}>
+      <div className={classes.row1}>
+        <Paper className={classes.titlePaper} square elevation={0}>
+          <Title align='center' color='white'>MERN Stack Experts</Title>
+        </Paper>
       </div>
-
-
-
-
+      <div className={classes.row2}>
+        <Paper className={classes.paper} square elevation={0}>
+          <Grid
+            container
+            justify='space-evenly'
+            direction='row'
+            spacing={8}
+          >
+            <Grid
+              item
+              className={classes.item}
+              xs={6}
+              md={6}
+              lg={3}
+            >
+              <Paper className={classes.logoPaper} elevation={0}>
+                <ResponsiveImage src={iMongo} alt='mongo db' />
+              </Paper>
+            </Grid>
+            <Grid
+              item
+              className={classes.item}
+              xs={6}
+              md={6}
+              lg={3}
+            >
+              <Paper className={classes.logoPaper} elevation={0}>
+                <ResponsiveImage src={iExpress} alt='express js' />
+              </Paper>
+            </Grid>
+            <Grid
+              item
+              className={classes.item}
+              xs={6}
+              md={6}
+              lg={3}
+            >
+              <Paper className={classes.logoPaper} elevation={0}>
+                <ResponsiveImage src={iReact} alt='react' />
+              </Paper>
+            </Grid>
+            <Grid
+              item
+              className={classes.item}
+              xs={6}
+              md={6}
+              lg={3}
+            >
+              <Paper className={classes.logoPaper} elevation={0}>
+                <ResponsiveImage src={iNode} alt='node js' />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Paper>
+      </div>
+    </div>
   )
 }
 
-const styles = theme => {
-  const leftRightMargin = theme.spacing.unit * 4
-  const topBottomMargin = theme.spacing.unit * 4
-  const logoMargin = `${topBottomMargin}px ${leftRightMargin}px ${topBottomMargin}px ${leftRightMargin}px`
-  return ({
-    top: {
-      backgroundColor: 'red'
-    },
-    title: {
-      backgroundColor: 'purple',
-      marginBottom: 20,
-    },
-    item: {
-      backgroundColor: 'rgb(100, 100, 100)',
-      // height: '100%',
-    },
-    wrapper: {
-      // backgroundColor: 'green',
-      // backgroundColor: 'green',
-      // display: 'flex',
-      // flexFlow: 'column',
-      // justifyContent: 'flex-start',
-      // alignItems: 'flex-start',
-      // flexflow: 'row wrap',
-    },
-    logo: {
-      maxHeight: 35,
-      // paddingRight: theme.spacing.unit,
-      // paddingLeft: theme.spacing.unit,
-    },
-    express: {
-      // padding: '5px 0 5px 0',
-      // paddingTop: 2,
-      // paddingBottom: 2,
-      // minWidth: 100,
-      // width: 40,
-    },
-    paper: {
-      backgroundColor: 'transparent',
-      display: 'flex',
-      height: '100%',
-      justifyContent: 'center',
-    }
-    // meetup: {
-    //   color: '#f64060',
-    //   fontSize: '3em',
-    //   margin: logoMargin
-    // },
-    // github: {
-    //   color: 'white',
-    //   fontSize: '3em',
-    //   margin: logoMargin
-    // },
-    // slack: {
-    //   color: 'white',
-    //   fontSize: '3em',
-    //   margin: logoMargin
-    // },
-    // facebook: {
-    //   color: '#3e5b99',
-    //   fontSize: '3em',
-    //   margin: logoMargin
-    // },
-  })
-}
+const styles = theme => ({
+  item: {
+    textAlign: 'center',
+  },
+  container: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    // justifyContent: 'center',
+    // alignItems: 'center',
 
-export default withStyles(styles)(TVCLinks)
+
+    [theme.breakpoints.up('md')]: {
+      width: '100%',
+      height: '100%',
+    },
+  },
+  row1: {
+    height: '33.333333333333%',
+  },
+  row2: {
+    height: '66.666666666666%',
+  },
+  titlePaper: {
+    display: 'flex',
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    marginBottom: theme.spacing.unit * 2,
+
+    [theme.breakpoints.up('md')]: {
+      // alignItems: 'flex-start',
+      height: '100%',
+      // alignItems: 'flex-end',
+      alignItems: 'center',
+    },
+  },
+  paper: {
+    backgroundColor: 'transparent',
+    display: 'flex',
+    alignItems: 'center',
+    // padding: theme.spacing.unit * 2,
+    height: '100%',
+  },
+  logoPaper: {
+    backgroundColor: 'transparent',
+  },
+})
+
+export default withStyles(styles)(Mern)
+
+/*
+
+
+*/
