@@ -139,6 +139,11 @@ class App extends React.Component {
             // green(`${componentName} - case /my-events`)
             await eventsForUserReadRequest(userId)
             break
+          case '/create-event':
+          case '/login':
+          case '/register':
+          case '/settings':
+            break
           default:
             red(`App.loadData: unknown route path ${currPath}`)
         }
