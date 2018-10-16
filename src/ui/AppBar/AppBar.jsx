@@ -31,24 +31,22 @@ class AppBar extends React.Component {
     const { classes, isLoggedIn, width } = this.props
 
     return (
-      <div id='AppBar' className={classes.wrapper}>
-        <MuiAppBar position='fixed' className={classes.appBar}>
-          <Toolbar>
-            <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='title' color='inherit' className={classes.flex}>
-              <span className={classes.drone}>Drone</span> <span className={classes.madness}>Madness</span>
-            </Typography>
-            {width !== 'xs'
-              ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
-              : null
-              // true ? <LoggedIn /> : <LoggedOut />
-            }
+      <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
+        <Toolbar>
+          <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='title' color='inherit' className={classes.flex}>
+            <span className={classes.drone}>Drone</span> <span className={classes.madness}>Madness</span>
+          </Typography>
+          {width !== 'xs'
+            ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
+            : null
+            // true ? <LoggedIn /> : <LoggedOut />
+          }
 
-          </Toolbar>
-        </MuiAppBar>
-      </div>
+        </Toolbar>
+      </MuiAppBar>
     )
   }
 }
@@ -57,19 +55,11 @@ const styles = theme => ({
   drone: {
     fontWeight: 600,
   },
-  madness: {
-    // color: theme.palette.secondary.main,
-    // fontWeight: 400,
-
-  },
   appBar: {
     height: 100,
     display: 'flex',
     justifyContent: 'center',
     // backgroundColor: theme.palette.background.default,
-  },
-  wrapper: {
-    // display: 'flex',
   },
   flex: {
     flex: 1,

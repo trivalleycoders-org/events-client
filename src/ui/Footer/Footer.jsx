@@ -23,7 +23,9 @@ const styles = theme => ({
 
   footer: {
     // backgroundColor: 'rgba(255, 150, 255, 0.4)',
-    backgroundColor: 'rgb(22, 22, 22)',
+    // borderTop: '3px red solid',
+    // borderBottom: '3px red solid',
+    // backgroundColor: 'rgb(22, 22, 22)',
     display: 'flex',
     flexFlow: 'column nowrap',
 

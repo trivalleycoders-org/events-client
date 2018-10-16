@@ -38,6 +38,8 @@ const styles = theme => {
       alignItems: 'center',
     },
     wrapper: {
+      // borderTop: '3px solid green',
+      // borderBottom: '3px solid green',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'center',
@@ -46,6 +48,7 @@ const styles = theme => {
       // marginBottom: theme.spacing.unit * 4,
       // height: '500px',
       height: 383,
+
     },
     title: {
       // paddingTop: unit * 4,

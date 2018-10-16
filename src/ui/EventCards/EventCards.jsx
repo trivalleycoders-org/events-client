@@ -60,7 +60,7 @@ const EventCards = (props) => {
       >
         {numEventsMsg}
       </Body2>
-      <Grid container spacing={Number(32)} className={classes.outer} >
+      <Grid container spacing={Number(32)}>
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
           return (
@@ -147,9 +147,6 @@ const styles = theme => ({
     paddingBottom: '4px',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-  },
-  outer: {
-      paddingBottom: '40px'
   },
   time: {
       // fontSize: '1.3em',

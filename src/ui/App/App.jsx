@@ -171,8 +171,8 @@ class App extends React.Component {
         <div id='App'>
           <AppBar />
           <PageMessage></PageMessage>
-          <Hero />
           <div id='App-wrapper' className={classes.wrapper}>
+            <Hero />
             <div id='App-wrapper-body' className={classes.body}>
               {/* <Breakpoints /> */}
               <Switch>
@@ -201,12 +201,16 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 0,
-    backgroundColor: 'green',
-    borderTop: '3px orange solid',
-    borderBottom: '3px orange solid',
+    marginTop: 100,
+    // backgroundColor: 'green',
+    // borderTop: '3px orange solid',
+    // borderBottom: '3px orange solid',
   },
   body: {
+    // borderTop: '3px orange dashed',
+    // border: '3px orange dashed',
+    paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit * 5,
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
