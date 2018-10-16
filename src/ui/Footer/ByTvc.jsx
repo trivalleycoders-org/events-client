@@ -1,6 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
 import { Paper } from '@material-ui/core'
 import Body1 from 'ui/ui-elements/typography/Body1'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'

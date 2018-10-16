@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
+import { getSearchText } from 'store/selectors/search-selectors'
 import EventCards from 'ui/EventCards'
 
 /* Dev */
@@ -10,10 +11,11 @@ import { green } from 'logger'
 class SearchEventsContainer extends React.Component {
 
   render() {
-    const { events } = this.props
+    const { events, searchText } = this.props
     return (
       <EventCards
-        events={this.props.events}
+        events={events}
+        searchText={searchText}
       />
     )
   }
@@ -22,6 +24,7 @@ class SearchEventsContainer extends React.Component {
 const mstp = (state) => {
   return {
     events: getAllEvents(state),
+    searchText: getSearchText(state),
   }
 }
 

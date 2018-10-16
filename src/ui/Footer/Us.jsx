@@ -8,7 +8,6 @@ import iSlack from './media/slack.svg'
 import iFacebook from './media/facebook.svg'
 import iGithub from './media/github-octocat.svg'
 
-const colors = ['red', 'green', 'blue']
 
 const Us = ({ classes }) => {
   return (

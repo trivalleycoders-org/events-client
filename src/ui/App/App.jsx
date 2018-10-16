@@ -17,7 +17,7 @@ import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-
 // import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
-import { eventsSearchReadRequest } from 'store/actions/search-actions'
+import { eventsSearchReadRequest, searchTextSet, searchTextUnset } from 'store/actions/search-actions'
 
 // User
 
@@ -89,9 +89,9 @@ class App extends React.Component {
     log && orange(`${componentName} - Constructor - END`)
   }
 
-  loadData = async (from, prevProps ) => {
-    green('loadData: from:', from)
-
+  loadData = async (from, prevProps = undefined ) => {
+    // green('loadData: from:', from)
+    // console.log('*** prev === ', typeof prevProps)
     const { userId } = this.state
     const {
       eventsReadRequest,
@@ -101,45 +101,42 @@ class App extends React.Component {
 
     const currPath = this.props.location.pathname
 
-
-    let prevPath = undefined
-    if (!prevProps === undefined) {
-      prevPath = prevProps.location.pathname
-    }
-    // green('currPath', currPath)
-    // green('prevPath', prevPath)
-
-
-
     if (/^\/search-events\//.test(currPath)) {
-      green('** search')
-      const currParams = new URLSearchParams(this.props.location.search)
-      const currSearchString = currParams.get('searchString')
-
-      let prevParams
-      let prevSearchString
-      if (!prevProps === undefined) {
-        prevParams = new URLSearchParams(this.prevProps.location.search)
-        prevSearchString = prevParams.get('searchString')
+      let prevSearch
+      // console.log('*** props.location.search', this.props.location.search)
+      const currSearch = this.props.location.search
+      if (prevProps !== undefined) {
+        // console.log('*** prevProps.location.search', prevProps.location.search)
+        prevSearch = prevProps.location.search
+      } else {
+        // console.log('*** prevProps.location.search', undefined)
+        prevSearch = undefined
 
       }
-      green('currSearchString', currSearchString)
-      green('prevSearchString', prevSearchString)
-      if (currSearchString !== prevSearchString) {
-        await eventsSearchReadRequest(currSearchString)
+      green('** search')
+      const params = new URLSearchParams(this.props.location.search)
+      const searchString = params.get('searchString')
+      this.props.searchTextSet(searchString)
+      green('currSearchString', searchString)
+      if (prevSearch !== currSearch) {
+        await eventsSearchReadRequest(searchString)
       }
 
     } else {
-
+      this.props.searchTextUnset()
+      let prevPath = undefined
+      if (!prevProps === undefined) {
+        prevPath = prevProps.location.pathname
+      }
       if (currPath !== prevPath) {
         switch (currPath) {
           case '/':
-            green('** getting all events')
-            green(`${componentName} - case /`)
+            // green('** getting all events')
+            // green(`${componentName} - case /`)
             await eventsReadRequest()
             break
           case '/my-events':
-            green(`${componentName} - case /my-events`)
+            // green(`${componentName} - case /my-events`)
             await eventsForUserReadRequest(userId)
             break
           default:
@@ -206,7 +203,7 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 100,
+    marginTop: 30,
   },
   body: {
     width: 'auto',
@@ -221,7 +218,7 @@ const styles = theme => ({
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, ...pageMessageActions }
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset, ...pageMessageActions }
 
 const mapStateToProps = (state) => {
   return {
