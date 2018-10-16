@@ -1,69 +1,80 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+// import { connect } from 'react-redux'
+// import { compose } from 'recompose'
 import { Link } from 'react-router-dom'
-import { searchTextSet, searchTextUnset, eventsSearchReadRequest } from 'store/actions/search-actions'
-import { eventsReadRequest } from 'store/actions/event-actions'
-import * as searchSelectors from 'store/selectors/search-selectors'
+// import { searchTextSet, searchTextUnset, eventsSearchReadRequest } from 'store/actions/search-actions'
+// import { eventsReadRequest } from 'store/actions/event-actions'
+// import * as searchSelectors from 'store/selectors/search-selectors'
 import { TextField, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 // import Button from 'ui/ui-elements/Button'
-import { Button } from '@material-ui/core'
+// import { Button } from '@material-ui/core'
+import Button from 'ui/ui-elements/Button'
 import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
-export class SearchEvent extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      showSearchIcon: true,
-      searchText: ''
-    }
+export class SearchBox extends React.Component {
+  state = {
+    showSearchIcon: true,
+    searchString: ''
   }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     showSearchIcon: true,
+  //     searchString: ''
+  //   }
+  // }
 
   handleChange = (value) => {
-    this.setState((props) => ({
-      searchText: value
-    }))
+    // green('handleChange: value', value)
+    this.setState({
+      searchString: value
+    })
   }
 
-  searchEvents = () => {
-    this.props.searchTextSet(this.state.searchText)
-    this.setState((prevState, props) => ({
-      showSearchIcon: !prevState.showSearchIcon
-    }))
-    this.props.eventsSearchReadRequest(this.state.searchText)
-  }
+  // searchEvents = () => {
+  //   this.setState((prevState) => ({
+  //     showSearchIcon: !prevState.showSearchIcon
+  //   }))
+  //   this.props.eventsSearchReadRequest(this.state.searchString)
+  // }
 
   clearSearchResults = () => {
     this.setState((prevState, props) => ({
       showSearchIcon: !prevState.showSearchIcon,
       searchText: ''
     }))
-    this.props.searchTextUnset()
+    // this.props.searchTextUnset()
+    // ??? Should this be a link?
     this.props.eventsReadRequest()
   }
 
   render() {
-    const { classes, searchText } = this.props
-
+    const { classes } = this.props
+    const { searchString, showSearchIcon } = this.state
 
     return (
       <Paper className={classes.wrapper}>
-        <TextField onChange={e => this.handleChange(e.target.value)} value={this.state.searchText} />
-        {this.state.showSearchIcon
+        <TextField onChange={e => this.handleChange(e.target.value)} value={searchString} />
+        {showSearchIcon
           ?
-          <Link to={`/search-events/${searchText}`}>
-          <Button
-            color='secondary'
-            disabled={searchText.length < 3}
-            variant='contained'
+          <Link
+            to={{
+              pathname: '/search-events/',
+              search: `?searchString=${searchString}`,
+            }}
+
           >
-            Search
-          </Button>
+            <Button
+              color='primary'
+              disabled={searchString.length < 3}
+              // variant='contained'
+            >
+              Search
+            </Button>
           </Link>
           :
           <CancelIcon
@@ -83,25 +94,24 @@ const styles = theme => {
     {
       wrapper: {
         backgroundColor: 'transparent',
-        // border: '1px solid #2196f3',
         border: `1px solid ${theme.palette.secondary.main}`,
         padding: theme.spacing.unit
-
-        // padding: `${unit * 2}px ${unit * 8}px ${unit * 2}px ${unit * 8}px`
       }
     }
   )
 }
 
-const actions = { searchTextSet, searchTextUnset, eventsSearchReadRequest, eventsReadRequest }
+// const actions = { searchTextSet, searchTextUnset, eventsSearchReadRequest, eventsReadRequest }
 
-const mapStateToProps = (state) => ({
-  searchText: searchSelectors.getSearchText(state),
-})
+// const mapStateToProps = (state) => ({
+//   searchText: searchSelectors.getSearchText(state),
+// })
 
-export default compose(
-  withStyles(styles),
-  connect(mapStateToProps, actions)
-)(SearchEvent)
+export default withStyles(styles)(SearchBox)
+
+// export default compose(
+//   withStyles(styles),
+//   connect(mapStateToProps, actions)
+// )(SearchBox)
 
 

@@ -20,7 +20,6 @@ const TypographyBase = ({
   const style = {
     color: color,
   }
-  greenl('TypographyBase: align', align)
 
   return (
     <Typography

@@ -9,6 +9,7 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import { parse } from '../../api/cookie-parser'
 import jwt from 'jsonwebtoken'
+import 'url-search-params-polyfill'
 
 // Store
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
@@ -16,9 +17,10 @@ import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-
 // import { getUserId } from 'store/selectors/auth-selectors'
 import * as pageMessageActions from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
+import { eventsSearchReadRequest } from 'store/actions/search-actions'
 
 // User
-import Breakpoints from 'ui/ui-elements/Breakpoints'
+
 import Hero from 'ui/Hero'
 import LoginForm from 'ui/Auth/LoginForm'
 import PageMessage from 'ui/ui-elements/PageMessage'
@@ -46,10 +48,16 @@ import Footer from 'ui/Footer'
 // import TypographyGuide from 'ui/ui-design/TypographyGuide'
 // import EventsController from 'ui/EventsController'
 
+// Design
 // import Palette from 'ui/ui-design/Palette'
 
+// Dev
 // eslint-disable-next-line
+import Breakpoints from 'ui/ui-elements/Breakpoints'
 import { green, yellow, orange, red } from 'logger'
+import { registerDecorator } from 'handlebars';
+
+
 
 const componentName = 'App'
 const log = false
@@ -85,37 +93,73 @@ class App extends React.Component {
   }
 
   loadData = async (from, prevProps = undefined) => {
-    green('props', this.props)
-    // red('loadData', from)
-    const { userId } = this.state
-    const { eventsReadRequest, eventsForUserReadRequest } = this.props
-    const currPath = this.props.location.pathname
-    let prevPath = undefined
-    if (prevProps !== undefined) {
-      prevPath = prevProps.location.pathname
-      // green(`${componentName} - loadData: prevPath`, prevPath)
-    }
-    // green(`${componentName} - loadData: currPath`, currPath)
+    green('loadData: from:', from)
 
-    // if (userId === undefined) {
-    //   red('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    // } else {
-    //   green('loadData', `from: ${from}, path: ${this.props.location.pathname}`)
-    // }
-    if (currPath !== prevPath) {
-      switch (currPath) {
-        case '/':
-          // green(`${componentName} - case /`)
-          await eventsReadRequest()
-          break
-        case '/my-events':
-          // green(`${componentName} - case /my-events`)
-          await eventsForUserReadRequest(userId)
-          break
-        default:
-          red(`App.loadData: unknown route path ${currPath}`)
+    // green('loadData.props.location.search:', this.props.location.search)
+    // green('match.params', this.props.match.params)
+    // green('props', this.props)
+    const { userId } = this.state
+    const {
+      eventsReadRequest,
+      eventsForUserReadRequest,
+      eventsSearchReadRequest
+    } = this.props
+
+
+
+
+    const currPath = this.props.location.pathname
+    green('currPath', currPath)
+    const prevPath = prevProps === undefined
+        ? undefined
+        : prevProps.location.pathname
+    green('prevPath', prevPath)
+
+
+
+    if (/^\/search-events\//.test(currPath)) {
+      const currParams = new URLSearchParams(this.props.location.search)
+      const currSearchString = currParams.get('searchString')
+      green('currSearchString', currSearchString)
+      const prevParams = prevProps === undefined
+        ? undefined
+        : new URLSearchParams(this.prevProps.location.search)
+      const prevSearchString = prevProps === undefined
+        ? undefined
+        : prevParams.get('searchString')
+      green('prevSearchString', prevSearchString)
+      if (currSearchString !== prevSearchString) {
+        await eventsSearchReadRequest(currSearchString)
+      }
+
+    } else {
+      red('** it is NOT /searcn-events')
+
+      // let prevPath = undefined
+      // if (prevProps !== undefined) {
+      //   prevPath = prevProps.location.pathname
+      // }
+      const prevPath = prevProps === undefined
+        ? undefined
+        : prevProps.location.pathname
+      if (currPath !== prevPath) {
+        switch (currPath) {
+          case '/':
+            green('** getting all events')
+            // green(`${componentName} - case /`)
+            await eventsReadRequest()
+            break
+          case '/my-events':
+            green('** getting all my-events')
+            // green(`${componentName} - case /my-events`)
+            await eventsForUserReadRequest(userId)
+            break
+          default:
+            red(`App.loadData: unknown route path ${currPath}`)
+        }
       }
     }
+
   }
 
   componentDidMount() {
@@ -131,7 +175,8 @@ class App extends React.Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     log && orange(`${componentName} - Update - START`)
-    // this.loadData('update', prevProps)
+    // green('update.prevProps', prevProps)
+
     await this.loadData('update', prevProps)
     log && orange(`${componentName} - Update - END`)
   }
@@ -149,11 +194,11 @@ class App extends React.Component {
               {/* <Breakpoints /> */}
               <Switch>
                 <Route exact path='/' component={EventsContainer} />
-                <Route exact path='/my-events' component={MyEventsContainer} />
-                <Route exact path='/create-event' component={EventFormContainer} />
-                <Route exact path='/search-events/:text' component={SearchEventsContainer} />
-                <Route exact path='/edit-event/:id' component={EventFormContainer} />
-                <Route exact path='/event-details/:id' component={EventDetailsContainer} />
+                <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
+                <PrivateRoute exact path='/create-event' component={EventFormContainer} />
+                <Route path='/search-events' component={SearchEventsContainer} />
+                <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
+                <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
                 <Route exact path='/login' component={LoginForm} />
                 <Route exact path='/register' component={RegisterForm} />
                 <PrivateRoute exact path='/settings' component={SettingsForm} />
@@ -188,7 +233,7 @@ const styles = theme => ({
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, ...pageMessageActions }
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, ...pageMessageActions }
 
 const mapStateToProps = (state) => {
   return {
