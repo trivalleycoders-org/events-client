@@ -43,7 +43,7 @@ class LoginForm extends React.PureComponent {
       )
     } else {
       return (
-        <div className={classes.pageWrapper}>
+        <div id='LoginForm' className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>
           <form>
             <TextFieldRedux

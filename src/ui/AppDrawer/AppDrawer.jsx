@@ -14,7 +14,7 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-class AppMenu extends React.Component {
+class AppDrawer extends React.Component {
   state = {
     top: false,
     left: false,
@@ -40,7 +40,7 @@ class AppMenu extends React.Component {
     )
 
     return (
-      <div>
+      <div id='AppDrawer'>
         <Drawer open={this.props.appMenuState} onClose= {this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}
@@ -54,10 +54,6 @@ class AppMenu extends React.Component {
       </div>
     )
   }
-}
-
-AppMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
 }
 
 const styles = {
@@ -74,5 +70,5 @@ const mapStateToProps = (state) => ({
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, appMenuActions),
-)(AppMenu)
+)(AppDrawer)
 

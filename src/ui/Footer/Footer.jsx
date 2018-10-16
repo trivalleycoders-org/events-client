@@ -5,7 +5,7 @@ import ByTvc from './ByTvc'
 
 const Footer = ({ classes }) => {
   return (
-    <footer className={classes.footer}>
+    <footer id='footer' className={classes.footer}>
       <div className={classes.left}>
         <ByTvc />
       </div>

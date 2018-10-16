@@ -14,7 +14,7 @@ import { green } from 'logger'
 const MyEvents = ({ classes, events }) => {
 
   return (
-    <div className={classes.wrapper}>
+    <div id='MyEvents' className={classes.wrapper}>
       <Grid container spacing={Number(8)}>
         {events.map(e => {
           return (

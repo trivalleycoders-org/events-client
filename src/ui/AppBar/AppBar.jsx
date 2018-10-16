@@ -4,7 +4,7 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
-  AppBar,
+  AppBar as MuiAppBar,
   Toolbar,
   Typography,
   IconButton,
@@ -20,7 +20,7 @@ import LoggedOut from './LoggedOut'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-class MainAppBar extends React.Component {
+class AppBar extends React.Component {
 
   toggleDraw = () => {
     this.props.appMenuToggle()
@@ -31,8 +31,8 @@ class MainAppBar extends React.Component {
     const { classes, isLoggedIn, width } = this.props
 
     return (
-      <div className={classes.wrapper}>
-        <AppBar position='fixed' className={classes.appBar}>
+      <div id='AppBar' className={classes.wrapper}>
+        <MuiAppBar position='fixed' className={classes.appBar}>
           <Toolbar>
             <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
               <MenuIcon />
@@ -47,14 +47,10 @@ class MainAppBar extends React.Component {
             }
 
           </Toolbar>
-        </AppBar>
+        </MuiAppBar>
       </div>
     )
   }
-}
-
-MainAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
 }
 
 const styles = theme => ({
@@ -92,4 +88,4 @@ export default compose(
   withWidth(),
   withStyles(styles),
   connect(mapStateToProps, appMenuActions),
-)(MainAppBar)
+)(AppBar)

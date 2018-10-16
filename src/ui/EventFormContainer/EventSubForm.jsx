@@ -33,7 +33,7 @@ const EventSubForm = (props) => {
   } = props
 
   return (
-    <div className={classes.pageWrapper}>
+    <div id='EventSubForm' className={classes.pageWrapper}>
       <MuiPickersUtilsProvider
         utils={DateFnsUtils}
       >

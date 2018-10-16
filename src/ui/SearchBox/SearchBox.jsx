@@ -57,7 +57,7 @@ export class SearchBox extends React.Component {
     const { searchString, showSearchIcon } = this.state
 
     return (
-      <Paper className={classes.wrapper}>
+      <Paper id='SearchBox' className={classes.wrapper}>
         <TextField onChange={e => this.handleChange(e.target.value)} value={searchString} />
         {showSearchIcon
           ?

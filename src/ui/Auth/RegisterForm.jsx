@@ -41,7 +41,7 @@ class RegisterForm extends React.Component {
       )
     } else {
       return (
-        <div className={classes.pageWrapper}>
+        <div id='RegisterForm' className={classes.pageWrapper}>
           <div className={classes.display1} >Register Form</div>
           <form>
             <TextFieldRedux

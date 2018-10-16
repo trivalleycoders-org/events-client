@@ -41,15 +41,9 @@ import EventDetailsContainer from 'ui/EventDetailsContainer'
 import SearchEventsContainer from 'ui/SearchEventsContainer'
 import Footer from 'ui/Footer'
 
-// Delete
-
-// import SearchEvents from 'ui/SearchEvents'
-// import RouteNotfound from 'ui/RouteNotFound'
-// import TypographyGuide from 'ui/ui-design/TypographyGuide'
-// import EventsController from 'ui/EventsController'
-
 // Design
 // import Palette from 'ui/ui-design/Palette'
+// import TypographyGuide from 'ui/ui-design/TypographyGuide'
 
 // Dev
 // eslint-disable-next-line
@@ -174,13 +168,12 @@ class App extends React.Component {
   render() {
     const { classes } = this.props
     return (
-        <div className={classes.wrapper}>
+        <div id='App'>
           <AppBar />
           <PageMessage></PageMessage>
-
           <Hero />
-          <div className={classes.wrapper}>
-            <div className={classes.body}>
+          <div id='App-wrapper' className={classes.wrapper}>
+            <div id='App-wrapper-body' className={classes.body}>
               {/* <Breakpoints /> */}
               <Switch>
                 <Route exact path='/' component={EventsContainer} />
@@ -208,7 +201,10 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 30,
+    marginTop: 0,
+    backgroundColor: 'green',
+    borderTop: '3px orange solid',
+    borderBottom: '3px orange solid',
   },
   body: {
     width: 'auto',

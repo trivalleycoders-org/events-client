@@ -11,7 +11,7 @@ const EventDetails = ({ event }) => {
 
   // }
   return (
-    <div>
+    <div id='EventDetails'>
       <div>
         <p><b>title:</b> {event.title}</p>
         <p><b>id:</b> {event._id}</p>

@@ -19,7 +19,7 @@ const Hero = ({ classes, location }) => {
   const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/'
   return showHero
-    ? <Paper className={classes.wrapper}  style={background}>
+    ? <Paper id='Hero' className={classes.wrapper}  style={background}>
         <div className={classes.background}>
           <SearchBox />
         </div>
@@ -43,7 +43,7 @@ const styles = theme => {
       alignItems: 'center',
       // backgroundColor: theme.palette.grey[800],
       color: theme.palette.common.white,
-      marginBottom: theme.spacing.unit * 4,
+      // marginBottom: theme.spacing.unit * 4,
       // height: '500px',
       height: 383,
     },

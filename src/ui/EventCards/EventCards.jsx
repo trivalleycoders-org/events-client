@@ -53,7 +53,7 @@ const EventCards = (props) => {
     ? `${events.length} events for search: ${searchText}`
     : `${events.length} events`
   return (
-    <React.Fragment>
+    <div id='EventCards'>
       <Body2
         align='center'
         className={classes.numEventsMsg}
@@ -102,7 +102,7 @@ const EventCards = (props) => {
           )
         })}
       </Grid>
-    </React.Fragment>
+    </div>
   )
 }
 

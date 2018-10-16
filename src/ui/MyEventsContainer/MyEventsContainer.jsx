@@ -41,7 +41,7 @@ class MyEventsContainer extends React.Component {
     //   msg: `events.length should be 9 but is ${events.length}`
     // })
     return (
-      <div>
+      <div id='MyEventsContainer'>
         <p>number of events is {events.length}</p>
         <MyEvents
           events={events}

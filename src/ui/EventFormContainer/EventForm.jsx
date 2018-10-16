@@ -73,7 +73,7 @@ class EventForm extends React.Component {
     // green('EventForm: event', event)
 
     return (
-      <div>
+      <div id='EventForm'>
         <AreYouSure open={areYouSure} close={this.closeModal} />
         {/* <PastEvent
           event={event}
