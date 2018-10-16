@@ -26,7 +26,7 @@ export const userLogoutRequest = createRequestThunk({
 export const userValidateKey = 'userValidateKey'
 
 export const userValidate = (user) => {
-  orange('authActions.userValidate: user', user)
+  // orange('authActions.userValidate: user', user)
   return ({
     type: userValidateKey,
     payload: user

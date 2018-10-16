@@ -11,7 +11,6 @@ class SearchEventsContainer extends React.Component {
 
   render() {
     const { events } = this.props
-    green('SearchEventsContainer: events', events)
     return (
       <EventCards
         events={this.props.events}

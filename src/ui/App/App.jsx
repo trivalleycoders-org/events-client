@@ -55,9 +55,6 @@ import Footer from 'ui/Footer'
 // eslint-disable-next-line
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 import { green, yellow, orange, red } from 'logger'
-import { registerDecorator } from 'handlebars';
-
-
 
 const componentName = 'App'
 const log = false
@@ -92,12 +89,9 @@ class App extends React.Component {
     log && orange(`${componentName} - Constructor - END`)
   }
 
-  loadData = async (from, prevProps = undefined) => {
+  loadData = async (from, prevProps ) => {
     green('loadData: from:', from)
 
-    // green('loadData.props.location.search:', this.props.location.search)
-    // green('match.params', this.props.match.params)
-    // green('props', this.props)
     const { userId } = this.state
     const {
       eventsReadRequest,
@@ -105,53 +99,47 @@ class App extends React.Component {
       eventsSearchReadRequest
     } = this.props
 
-
-
-
     const currPath = this.props.location.pathname
-    green('currPath', currPath)
-    const prevPath = prevProps === undefined
-        ? undefined
-        : prevProps.location.pathname
-    green('prevPath', prevPath)
+
+
+    let prevPath = undefined
+    if (!prevProps === undefined) {
+      prevPath = prevProps.location.pathname
+    }
+    // green('currPath', currPath)
+    // green('prevPath', prevPath)
 
 
 
     if (/^\/search-events\//.test(currPath)) {
+      green('** search')
       const currParams = new URLSearchParams(this.props.location.search)
       const currSearchString = currParams.get('searchString')
+
+      let prevParams
+      let prevSearchString
+      if (!prevProps === undefined) {
+        prevParams = new URLSearchParams(this.prevProps.location.search)
+        prevSearchString = prevParams.get('searchString')
+
+      }
       green('currSearchString', currSearchString)
-      const prevParams = prevProps === undefined
-        ? undefined
-        : new URLSearchParams(this.prevProps.location.search)
-      const prevSearchString = prevProps === undefined
-        ? undefined
-        : prevParams.get('searchString')
       green('prevSearchString', prevSearchString)
       if (currSearchString !== prevSearchString) {
         await eventsSearchReadRequest(currSearchString)
       }
 
     } else {
-      red('** it is NOT /searcn-events')
 
-      // let prevPath = undefined
-      // if (prevProps !== undefined) {
-      //   prevPath = prevProps.location.pathname
-      // }
-      const prevPath = prevProps === undefined
-        ? undefined
-        : prevProps.location.pathname
       if (currPath !== prevPath) {
         switch (currPath) {
           case '/':
             green('** getting all events')
-            // green(`${componentName} - case /`)
+            green(`${componentName} - case /`)
             await eventsReadRequest()
             break
           case '/my-events':
-            green('** getting all my-events')
-            // green(`${componentName} - case /my-events`)
+            green(`${componentName} - case /my-events`)
             await eventsForUserReadRequest(userId)
             break
           default:
