@@ -14,7 +14,7 @@ const Hero = ({ classes, location }) => {
     backgroundImage: `url(${iHero})`,
     backgroundSize: 'cover',
     // backgroundRepeat: 'no-repeat',
-    // backgroundPosition: 'center',
+    backgroundPosition: 'center',
   }
   const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/'
