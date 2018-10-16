@@ -145,7 +145,7 @@ export default {
       // pink('api.events.forUserRead: userId', userId)
       try {
         const data = await fetchJson(
-          `/events/user/${userId}`,
+          `/api/events/user/${userId}`,
           {
             method: 'GET',
           }
@@ -154,7 +154,7 @@ export default {
         return data.data
       }
       catch (e) {
-        red('api.events.foruserRead', e)
+        red('api.events.forUserRead', e)
       }
     },
     async patch(event) {
