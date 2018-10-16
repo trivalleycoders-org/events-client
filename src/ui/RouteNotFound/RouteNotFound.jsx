@@ -1,7 +1,8 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 
-const RouteNotFound = () => {
+const RouteNotFound = ({ match }) => {
+  console.log('match: ', match)
   return (
     <Typography variant='display4' color='error'>
       No component found for that route

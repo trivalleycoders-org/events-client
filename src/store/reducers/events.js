@@ -34,12 +34,14 @@ const deleteEvent = (state, payload) => {
 }
 
 export const events = (state = [], { type, payload }) => {
+
   try {
     switch (type) {
       case eventCreateOneKey:
         return append(payload.event[0], state)
       case eventsForUserReadKey:
       case eventsReadKey:
+        blue('reducers.events: payload', payload)
         return payload.events
       case eventUpdateOneKey:
         return updateEvent(state, payload.event)

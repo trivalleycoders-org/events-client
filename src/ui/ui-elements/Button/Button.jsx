@@ -10,31 +10,45 @@ import { green, red } from '@material-ui/core/colors'
 import { green as grn } from 'logger'
 
 /*
-    - color: (primary|secondary)
+    - color: (primary|secondary|green|red)
     - disabled: (true|false)
-    - smsall: (small|medium|large)
+    - size: (small|medium|large)
 
 */
 
 
 const Button = (props) => {
   // grn('Button: props', props)
-  const { classes, color, children, onClick } = props
-  // const btnStyle = {
-  //   color: theme.palette.getContrastText(green[500]),
-  //   backgroundColor: green,
-  // }
+  const { classes, color, children, onClick, disabled } = props
+
   const getBtnClass = () => {
-    return color === 'green'
-      ? classes.btnGreen
-      : classes.btnRed
+    if (color === 'green') {
+      return classes.btnGreen
+    } else if ( color === 'red') {
+      return classes.btnRed
+    } else if ( color === 'primary') {
+      return classes.btnPrimary
+    } else if ( color === 'secondary') {
+      return classes.btnSecondary
+    }
+
+  }
+  const getMUIColor = () => {
+    if (color === 'primary') {
+      return 'primary'
+    } else if (color === 'secondary') {
+      return 'secondary'
+    } else {
+      return ''
+    }
   }
   return (
     <Btn
-        variant="contained"
-        color="secondary"
+        variant='contained'
+        color={getMUIColor()}
         className={classNames(classes.margin, getBtnClass())}
         onClick={onClick}
+        disabled={disabled}
       >
         {children}
       </Btn>
@@ -54,6 +68,18 @@ const styles = theme => ({
   //   color: theme.palette.getContrastText(green[500]),
   //   backgroundColor: green,
   // },
+  btnPrimary: {
+    '&:disabled': {
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.primary.contrastText,
+    }
+  },
+  btnSecondary: {
+    '&:disabled': {
+      backgroundColor: theme.palette.secondary.light,
+      color: theme.palette.secondary.contrastText,
+    }
+  },
   btnGreen: {
     color: theme.palette.getContrastText(green[500]),
     backgroundColor: green[500],
@@ -68,11 +94,11 @@ const styles = theme => ({
       backgroundColor: red[700],
     },
   },
-  secondary: {
-    main: '#dc0747',
-      dark: '#a30021',
+  // secondary: {
+  //   main: '#dc0747',
+  //     dark: '#a30021',
 
-  },
+  // },
   margin: {
     margin: theme.spacing.unit,
   },
