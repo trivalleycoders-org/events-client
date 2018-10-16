@@ -104,12 +104,13 @@ const theme = createMuiTheme({
       color: 'rgba(0, 0, 0, 0.54)',
     },
     display1: {
-      fontSize: '2.125rem',
+      // fontSize: '2.125rem',
+      fontSize: '1.125rem',
       fontWeight: 400,
       // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
       lineHeight: '1.20588em',
-      color: 'rgba(0, 0, 0, 0.54)',
+      color: 'rgba(0, 0, 0)',
     },
     headline: {
       fontSize: '1.5rem',
