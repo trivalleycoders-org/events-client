@@ -33,7 +33,7 @@ export default {
       // pink('api.users.register: ', user)
       try {
         const data = await fetchJson(
-          '/users',
+          '/api/users',
           {
             method: 'POST',
             body: JSON.stringify(user)
@@ -52,7 +52,7 @@ export default {
       // pink('api.users.login: ', user)
       try {
         const data = await fetchJson(
-          '/users/login',
+          '/api/users/login',
           {
             method: 'POST',
             body: JSON.stringify(user)
@@ -81,7 +81,7 @@ export default {
       // pink('api.users.update: ', password)
       try {
         const data = await fetchJson(
-          '/user',
+          '/api/user',
           {
             method: 'PUT',
             body: JSON.stringify(password)
@@ -111,7 +111,7 @@ export default {
       // pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
-          '/events',
+          '/api/events',
           {
             method: 'POST',
             body: JSON.stringify(event)
@@ -129,7 +129,7 @@ export default {
       // pink('api.events.read: data', 'start')
       try {
         const data = await fetchJson(
-          '/events',
+          '/api/events',
           {
             method: 'GET',
           }
@@ -162,7 +162,7 @@ export default {
         // pink('api.patch: event', event)
         const _id = event._id
         const data = await fetchJson(
-          `/events/${_id}`,
+          `/api/events/${_id}`,
           {
             method: 'PATCH',
             body: JSON.stringify(event)
@@ -179,7 +179,7 @@ export default {
       // pink('api.delete: id', id)
       try {
         const data = await fetchJson(
-          `/events/${id}`,
+          `/api/events/${id}`,
           {
             method: 'DELETE'
           }
@@ -193,7 +193,7 @@ export default {
     },
     async search(searchText) {
       // pink('api.events.search: searchText', searchText)
-      const searchUrl = '/search?searchTerm=' + JSON.stringify(searchText)
+      const searchUrl = '/api/search?searchTerm=' + JSON.stringify(searchText)
       const data = await fetchJson(
         searchUrl,
         {
@@ -208,7 +208,7 @@ export default {
     create(formData) {
       // pink('api.images: formData', formData)
       return fetchUploadImage(
-        '/images',
+        '/api/images',
         {
           method: 'POST',
           body: formData
