@@ -11,7 +11,10 @@ import {
 } from '@material-ui/core'
 import { has } from 'ramda'
 import Body2 from 'ui/ui-elements/typography/Body2'
-
+import Display1 from 'ui/ui-elements/typography/Display1'
+import Title from 'ui/ui-elements/typography/Title'
+import Subheading from 'ui/ui-elements/typography/Subheading'
+import Body1 from 'ui/ui-elements/typography/Body1'
 /* User */
 import Tag from './Tag'
 
@@ -71,15 +74,15 @@ const EventCards = (props) => {
                       height='180'
                     />
                     <CardContent>
-                      <Typography className={classes.title}>
+                      <Title className={classes.title}>
                         {c.title}
-                      </Typography>
-                      <Typography className={classes.time} component="p">
+                      </Title>
+                      <Subheading>
                         {formattedDate(c.dates.startDateTime)}
-                      </Typography>
-                      <Typography variant='caption' component='p' noWrap className={classes.venue}>
+                      </Subheading>
+                      <Body1>
                         {location}
-                      </Typography>
+                      </Body1>
                     </CardContent>
                   </CardActionArea>
                 </a>
@@ -149,7 +152,7 @@ const styles = theme => ({
       paddingBottom: '40px'
   },
   time: {
-      fontSize: '1.3em',
+      // fontSize: '1.3em',
       marginTop: '1em',
       overflow: 'hidden',
       paddingTop: '.4rem',
@@ -157,16 +160,16 @@ const styles = theme => ({
       textOverflow: 'ellipsis',
   },
   title: {
-      fontSize: '1.4em',
-      fontWeight: '600',
+      // fontSize: '1.4em',
+      // fontWeight: '600',
       height: '40px',
-      letterSpacing: '0px',
+      // letterSpacing: '0px',
       lineHeight: '19px',
       margin: 0,
       overflow: 'hidden',
   },
   venue: {
-      fontSize: '1.3em',
+      // fontSize: '1.3em',
       overflow: 'hidden',
       paddingTop: '7px',
       paddingBottom: '4px',
