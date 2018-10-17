@@ -13,7 +13,7 @@ const Display1 = (props) => {
     <TypographyBase
       variant={variant}
       classes={{
-        root: classes.root
+        root: classes.variant
       }}
       className={className}
       { ...props }
