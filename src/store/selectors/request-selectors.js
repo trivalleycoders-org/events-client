@@ -14,12 +14,12 @@ export const getRequest = (state, key) => {
 }
 
 // ** Don't think this is used or eneded?
-// export const getRequestStatus = (state, key) => {
-//   if (state.requests.hasOwnProperty(key)) {
-//     return state.requests[key].status
-//   }
-//   return ''
-// }
+export const getRequestStatus = (state, key) => {
+  if (state.requests.hasOwnProperty(key)) {
+    return state.requests[key].status
+  }
+  return ''
+}
 
 export const getRequests = (state) => {
 

@@ -14,9 +14,8 @@ import 'url-search-params-polyfill'
 // Store
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
 import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
-// import { getUserId } from 'store/selectors/auth-selectors'
-import * as pageMessageActions from 'store/actions/page-message-actions'
-import * as requestSelectors from 'store/selectors/request-selectors'
+import { getLoggedIn } from 'store/selectors/auth-selectors'
+import { getRequest } from 'store/selectors/request-selectors'
 import { eventsSearchReadRequest, searchTextSet, searchTextUnset } from 'store/actions/search-actions'
 
 // User
@@ -85,7 +84,6 @@ class App extends React.Component {
 
   loadData = async (from, prevProps = undefined ) => {
     // green('loadData: from:', from)
-    // console.log('*** prev === ', typeof prevProps)
     const { userId } = this.state
     const {
       eventsReadRequest,
@@ -97,25 +95,18 @@ class App extends React.Component {
 
     if (/^\/search-events\//.test(currPath)) {
       let prevSearch
-      // console.log('*** props.location.search', this.props.location.search)
       const currSearch = this.props.location.search
       if (prevProps !== undefined) {
-        // console.log('*** prevProps.location.search', prevProps.location.search)
         prevSearch = prevProps.location.search
       } else {
-        // console.log('*** prevProps.location.search', undefined)
         prevSearch = undefined
-
       }
-      green('** search')
       const params = new URLSearchParams(this.props.location.search)
       const searchString = params.get('searchString')
       this.props.searchTextSet(searchString)
-      green('currSearchString', searchString)
       if (prevSearch !== currSearch) {
         await eventsSearchReadRequest(searchString)
       }
-
     } else {
       this.props.searchTextUnset()
       let prevPath = undefined
@@ -166,7 +157,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, loggedIn, userValidateRequestStatus } = this.props
+
+    if (!loggedIn && userValidateRequestStatus !== 'success') {
+      return null
+    }
+
     return (
         <div id='App'>
           <AppBar />
@@ -198,7 +194,6 @@ class App extends React.Component {
 <Route exact path='/palette' component={Palette} />
 <Route exact path='/typography' component={TypographyGuide} />
 */
-// <Route exact path='/search-events/:searchValue' component={SearchEvents} />
 
 const styles = theme => ({
   wrapper: {
@@ -224,12 +219,12 @@ const styles = theme => ({
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset, ...pageMessageActions }
+const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset }
 
 const mapStateToProps = (state) => {
   return {
-    userValidateRequestStatus: requestSelectors.getRequest(state, userValidateRequestKey),
-    // currentUserId: getUserId(state), // getting it from state set in constructor
+    userValidateRequestStatus: getRequest(state, userValidateRequestKey),
+    loggedIn: getLoggedIn(state)
   }
 }
 
@@ -239,6 +234,3 @@ export default compose(
   connect(mapStateToProps, actions),
   withRoot
 )(App)
-
-
-

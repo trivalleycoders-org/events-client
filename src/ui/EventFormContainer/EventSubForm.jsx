@@ -141,7 +141,8 @@ const EventSubForm = (props) => {
 
 const styles = {
   pageWrapper: {
-    padding: '20px',
+    backgroundColor: 'green',
+    // padding: '20px',
   },
 }
 
