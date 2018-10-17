@@ -197,7 +197,7 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 100,
+    marginTop: 64,
     // backgroundColor: 'green',
     // borderTop: '3px orange solid',
     // borderBottom: '3px orange solid',

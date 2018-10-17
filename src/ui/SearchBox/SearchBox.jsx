@@ -18,15 +18,9 @@ import { green } from 'logger'
 export class SearchBox extends React.Component {
   state = {
     showSearchIcon: true,
-    searchString: ''
+    searchString: '',
+    mouseOver: false,
   }
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     showSearchIcon: true,
-  //     searchString: ''
-  //   }
-  // }
 
   handleChange = (value) => {
     // green('handleChange: value', value)
@@ -35,30 +29,57 @@ export class SearchBox extends React.Component {
     })
   }
 
-  // searchEvents = () => {
-  //   this.setState((prevState) => ({
-  //     showSearchIcon: !prevState.showSearchIcon
-  //   }))
-  //   this.props.eventsSearchReadRequest(this.state.searchString)
-  // }
-
   clearSearchResults = () => {
     this.setState((prevState, props) => ({
       showSearchIcon: !prevState.showSearchIcon,
       searchText: ''
     }))
-    // this.props.searchTextUnset()
-    // ??? Should this be a link?
     this.props.eventsReadRequest()
   }
+
+  handleMouseEnter = () => {
+    green('mouseEnter')
+    this.setState({
+      mouseOver: true,
+    })
+  }
+  handleMouseOut = () => {
+    green('mouseOut')
+    this.setState({
+      mouseOver: false,
+    })
+  }
+
 
   render() {
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
-
+    const paperStyle = {
+      backgroundColor: this.state.mouseOver ? 'white' : 'transparent'
+    }
+    green('mouseOver', this.state.mouseOver)
     return (
-      <Paper id='SearchBox' className={classes.wrapper}>
-        <TextField onChange={e => this.handleChange(e.target.value)} value={searchString} />
+      <Paper
+        id='SearchBox'
+        className={classes.wrapper}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseOut={this.handleMouseOut}
+        style={paperStyle}
+      >
+        <TextField
+          // className={classes.textField}
+          onChange={e => this.handleChange(e.target.value)}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseOut={this.handleMouseOut}
+          value={searchString}
+          Input={{
+            root: classes.textField
+          }}
+          classes={{
+            root: classes.textField
+          }}
+
+        />
         {showSearchIcon
           ?
           <Link
@@ -89,29 +110,20 @@ export class SearchBox extends React.Component {
 }
 
 
-const styles = theme => {
-  return (
-    {
-      wrapper: {
-        backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.secondary.main}`,
-        padding: theme.spacing.unit
-      }
-    }
-  )
-}
+const styles = theme => ({
+  wrapper: {
+    // backgroundColor: 'transparent',
+    border: `1px solid ${theme.palette.secondary.main}`,
+    padding: theme.spacing.unit,
+  },
+  textField: {
+    color: 'orange',
+    // backgroundColor: 'blue',
+    // '&hover': {
+    //   backgroundColor: 'white'
+    // }
+  },
 
-// const actions = { searchTextSet, searchTextUnset, eventsSearchReadRequest, eventsReadRequest }
-
-// const mapStateToProps = (state) => ({
-//   searchText: searchSelectors.getSearchText(state),
-// })
+})
 
 export default withStyles(styles)(SearchBox)
-
-// export default compose(
-//   withStyles(styles),
-//   connect(mapStateToProps, actions)
-// )(SearchBox)
-
-

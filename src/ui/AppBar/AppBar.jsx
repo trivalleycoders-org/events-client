@@ -33,7 +33,12 @@ class AppBar extends React.Component {
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
-          <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
+        <IconButton
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='Menu'
+            onClick={this.toggleDraw}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant='title' color='inherit' className={classes.flex}>
@@ -44,19 +49,26 @@ class AppBar extends React.Component {
             : null
             // true ? <LoggedIn /> : <LoggedOut />
           }
-
         </Toolbar>
       </MuiAppBar>
     )
   }
 }
 
+/*
+
+
+
+
+
+
+*/
+
 const styles = theme => ({
   drone: {
     fontWeight: 600,
   },
   appBar: {
-    height: 100,
     display: 'flex',
     justifyContent: 'center',
     // backgroundColor: theme.palette.background.default,
