@@ -6,7 +6,7 @@ import Headline from 'ui/ui-elements/typography/Headline'
 import * as pageMessageSelectors from 'store/selectors/page-message-selectors'
 import { Paper } from '@material-ui/core'
 
-const PageError = ({ classes, message = '', variant }) => {
+const PageMessage = ({ classes, message = '', variant }) => {
   return message === ''
     ? null
     : (
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
 export default compose(
   withStyles(styles),
   connect(mapStateToProps)
-)(PageError)
+)(PageMessage)
