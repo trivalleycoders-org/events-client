@@ -25,7 +25,8 @@ const styles = theme => ({
     // backgroundColor: 'rgba(255, 150, 255, 0.4)',
     // borderTop: '3px red solid',
     // borderBottom: '3px red solid',
-    // backgroundColor: 'rgb(22, 22, 22)',
+
+    backgroundColor: '#303030',
     display: 'flex',
     flexFlow: 'column nowrap',
 
@@ -36,6 +37,7 @@ const styles = theme => ({
     },
   },
   left: {
+
     // backgroundColor: 'orange',
 
 
