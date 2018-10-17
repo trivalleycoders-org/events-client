@@ -54,12 +54,6 @@ const EventCards = (props) => {
     : `${events.length} events`
   return (
     <div id='EventCards'>
-      <Body2
-        align='center'
-        className={classes.numEventsMsg}
-      >
-        {numEventsMsg}
-      </Body2>
       <Grid container spacing={Number(32)}>
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`

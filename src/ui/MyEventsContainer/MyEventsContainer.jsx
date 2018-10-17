@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
 // import { getUserId } from 'store/selectors/auth-selectors'
 import MyEvents from './MyEvents'
+import ContentNotice from 'ui/ui-elements/ContentNotice'
 
 // eslint-disable-next-line
 import { green, orange, red } from 'logger'
@@ -42,7 +43,9 @@ class MyEventsContainer extends React.Component {
     // })
     return (
       <div id='MyEventsContainer'>
-        <p>number of events is {events.length}</p>
+        <ContentNotice>
+          {`${events.length} Events`}
+        </ContentNotice>
         <MyEvents
           events={events}
         />
