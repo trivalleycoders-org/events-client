@@ -5,7 +5,6 @@ import { Paper } from '@material-ui/core'
 
 const ContentNotice = (props) => {
   const { classes, children } = props
-  console.log('props', props)
     return (
       <Paper className={classes.root} elevation={0}>
         <Body2>
