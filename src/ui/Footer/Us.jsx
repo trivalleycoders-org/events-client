@@ -14,14 +14,13 @@ const Us = ({ classes }) => {
     <Grid
       container
       id='Us'
-      // spacing={16}
       className={classes.container}
       alignItems='stretch'
       direction='row'
       justify='center'
     >
 
-      <Grid item xs={12} md={4} spacing={8}>
+      <Grid item xs={12} md={4}>
         <Paper
           className={classes.itemPaper}
           // style={{ backgroundColor: colors[0] }}
