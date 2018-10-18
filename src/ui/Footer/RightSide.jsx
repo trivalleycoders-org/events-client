@@ -22,7 +22,6 @@ const RightSide = ({ classes }) => {
 
 const styles = theme => ({
   container: {
-    // backgroundColor: 'grey',
     display: 'flex',
     flexFlow: 'column',
     [theme.breakpoints.up('md')]: {
@@ -30,19 +29,18 @@ const styles = theme => ({
     },
   },
   rightTop: {
-    // backgroundColor: 'red',
     paddingTop: theme.spacing.unit * 3,
     paddingBottom: theme.spacing.unit * 3,
 
     [theme.breakpoints.up('md')]: {
-      // paddingBottom: theme.spacing.unit * 2,
       flexBasis: '50%',
       paddingTop: theme.spacing.unit * 3,
       paddingBottom: theme.spacing.unit * 3,
+      // paddingRight: theme.spacing.unit * 20,
+      // paddingLeft: theme.spacing.unit * 20,
     },
   },
   rightBottom: {
-    // backgroundColor: 'orange',
     [theme.breakpoints.up('md')]: {
       flexBasis: '50%',
     },

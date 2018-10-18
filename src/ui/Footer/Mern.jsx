@@ -83,9 +83,9 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexFlow: 'column nowrap',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-
+    [theme.breakpoints.up('sm')]: {
+      alignItems: 'center',
+    },
 
     [theme.breakpoints.up('md')]: {
       width: '100%',
@@ -105,9 +105,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
 
     [theme.breakpoints.up('md')]: {
-      // alignItems: 'flex-start',
       height: '100%',
-      // alignItems: 'flex-end',
       alignItems: 'center',
     },
   },
@@ -115,7 +113,6 @@ const styles = theme => ({
     backgroundColor: 'transparent',
     display: 'flex',
     alignItems: 'center',
-    // padding: theme.spacing.unit * 2,
     height: '100%',
   },
   logoPaper: {
@@ -124,8 +121,3 @@ const styles = theme => ({
 })
 
 export default withStyles(styles)(Mern)
-
-/*
-
-
-*/
