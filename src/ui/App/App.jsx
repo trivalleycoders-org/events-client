@@ -46,8 +46,8 @@ import Footer from 'ui/Footer'
 
 // Dev
 // eslint-disable-next-line
-import Breakpoints from 'ui/ui-elements/Breakpoints'
 import { green, yellow, orange, red } from 'logger'
+// import Breakpoints from 'ui/ui-elements/Breakpoints'
 
 const componentName = 'App'
 const log = false
@@ -156,19 +156,18 @@ class App extends React.Component {
   }
 
   render() {
-    const { classes, loggedIn, userValidateRequestStatus } = this.props
-    green('App: loggedIn', loggedIn)
-    green('App: userValidateRequestStatus', userValidateRequestStatus)
-    green('App: userId', this.state.userId)
 
-    // if ((!loggedIn && userValidateRequestStatus !== 'success')) {
-    //   return null
-    // }
+    const { classes, userId, userValidateRequestStatus } = this.props
+
+    if (!userId === undefined) {
+      if (userValidateRequestStatus !== 'success') {
+        return null
+      }
+    }
 
     return (
         <div id='App'>
           <AppBar />
-
           <div id='App-wrapper' className={classes.wrapper}>
             <Hero />
             <div id='App-wrapper-body' className={classes.body}>
