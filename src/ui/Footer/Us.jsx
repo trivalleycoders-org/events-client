@@ -21,7 +21,7 @@ const Us = ({ classes }) => {
       justify='center'
     >
 
-      <Grid item xs={12} md={4} className={classes.gridItemL2}>
+      <Grid item xs={12} md={4} spacing={8}>
         <Paper
           className={classes.itemPaper}
           // style={{ backgroundColor: colors[0] }}
@@ -37,7 +37,7 @@ const Us = ({ classes }) => {
           </div>
         </Paper>
       </Grid>
-      <Grid item xs={12} md={4} className={classes.gridItemL2}>
+      <Grid item xs={12} md={4}>
         <Paper
           className={classes.itemPaper}
           // style={{ backgroundColor: colors[1] }}
@@ -53,7 +53,7 @@ const Us = ({ classes }) => {
           </div>
         </Paper>
       </Grid>
-      <Grid item xs={12} md={4} className={classes.gridItemL2}>
+      <Grid item xs={12} md={4}>
         <Paper
           className={classes.itemPaper}
           // style={{ backgroundColor: colors[2] }}
@@ -75,11 +75,8 @@ const Us = ({ classes }) => {
 
 const styles = theme => ({
   container: {
-    // backgroundColor: 'rgb(50, 250, 50)',
     display: 'flex',
     height: '100%',
-    // maxWidth: 400,
-    // justifyContent: 'center',
     paddingTop: theme.spacing.unit * 3,
     paddingBottom: theme.spacing.unit * 3,
     [theme.breakpoints.up('md')]: {
@@ -96,15 +93,20 @@ const styles = theme => ({
     height: '100%',
     color: theme.palette.text.secondary,
   },
-  gridItemL2: {
-    // backgroundColor: 'rgb(75, 75, 75)'
-  },
   logoImg: {
     maxHeight: 50,
   },
   logoGroup: {
     display: 'flex',
     justifyContent: 'space-around',
+    [theme.breakpoints.up('sm')]: {
+      paddingRight: theme.spacing.unit * 15,
+      paddingLeft: theme.spacing.unit * 15,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
   },
   body1: {
     marginBottom: 30
