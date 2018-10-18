@@ -78,7 +78,6 @@ class App extends React.Component {
       }
     }
 
-
     log && orange(`${componentName} - Constructor - END`)
   }
 
@@ -158,10 +157,13 @@ class App extends React.Component {
 
   render() {
     const { classes, loggedIn, userValidateRequestStatus } = this.props
+    green('App: loggedIn', loggedIn)
+    green('App: userValidateRequestStatus', userValidateRequestStatus)
+    green('App: userId', this.state.userId)
 
-    if (!loggedIn && userValidateRequestStatus !== 'success') {
-      return null
-    }
+    // if ((!loggedIn && userValidateRequestStatus !== 'success')) {
+    //   return null
+    // }
 
     return (
         <div id='App'>
