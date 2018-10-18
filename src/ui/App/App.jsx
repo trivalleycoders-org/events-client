@@ -201,6 +201,9 @@ const styles = theme => ({
     // backgroundColor: 'green',
     // borderTop: '3px orange solid',
     // borderBottom: '3px orange solid',
+    [theme.breakpoints.up('xs')]: {
+      marginTop: 56,
+    }
   },
   body: {
     // borderTop: '3px orange dashed',
