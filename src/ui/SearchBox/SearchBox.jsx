@@ -12,7 +12,6 @@ export class SearchBox extends React.Component {
   state = {
     showSearchIcon: true,
     searchString: '',
-    mouseOver: false,
 
   }
 
@@ -31,36 +30,14 @@ export class SearchBox extends React.Component {
     this.props.eventsReadRequest()
   }
 
-  handleMouseEnter = () => {
-    green('mouseEnter')
-    this.setState({
-      mouseOver: true,
-    })
-  }
-  handleMouseOut = () => {
-    green('mouseOut')
-    this.setState({
-      mouseOver: false,
-    })
-  }
-
 
   render() {
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
-    const paperStyle = {
-      // backgroundColor: this.state.mouseOver ? 'white' : 'transparent'
-    }
-    green('mouseOver', this.state.mouseOver)
     return (
       <Paper
         id='SearchBox'
         className={classes.wrapper}
-        // onMouseEnter={this.handleMouseEnter}
-        // onMouseOut={this.handleMouseOut}
-        // style={paperStyle}
-        // elevation={this.state.mouseOver ? 2 : 0}
-        // elevation={2}
       >
         <Input className={classes.input} value={this.state.searchString} onChange={this.handleChange} />
         {showSearchIcon
