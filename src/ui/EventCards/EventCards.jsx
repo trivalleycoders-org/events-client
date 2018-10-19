@@ -151,10 +151,8 @@ const styles = theme => ({
     textOverflow: 'ellipsis',
   },
   title: {
-    // fontSize: '1.4em',
     fontWeight: '600',
     height: '40px',
-    lineHeight: '19px',
   },
   venue: {
     // fontSize: '1.3em',
