@@ -75,14 +75,15 @@ const EventCards = (props) => {
                   </CardActionArea>
                 </a>
                 <CardActions className={classes.actions} disableActionSpacing>
-
-                  {
-                    hasTags(c)
-                      ? c.tags.map((t, index) => (
-                        <Tag key={`t${index}`} label={t} />
-                      ))
-                      : null
-                  }
+                  <div className={classes.tags}>
+                    {
+                      hasTags(c)
+                        ? c.tags.map((t, index) => (
+                          <Tag key={`t${index}`} label={t} />
+                        ))
+                        : null
+                    }
+                  </div>
                 </CardActions>
               </Card>
             </Grid>
@@ -123,7 +124,11 @@ const styles = theme => ({
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
+    marginLeft: '.6em',
     overflow: 'hidden',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '0',
+    }
   },
   media: {
     objectFit: 'cover',

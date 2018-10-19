@@ -28,6 +28,12 @@ const styles = theme => ({
     lineHeight: '40px',
     textDecoration: 'none',
     textTransform: 'capitalize',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '14px',
+    }
   }
 })
 

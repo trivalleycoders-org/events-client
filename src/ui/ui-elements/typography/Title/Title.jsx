@@ -33,7 +33,7 @@ const styles = theme => {
       },
       [theme.breakpoints.up('sm')]: {
         fontSize: fontSizeFromString(originalSize, 0.7),
-        marginBottom: '1.5em',
+        marginBottom: '-0.8rem',
       },
       [theme.breakpoints.up('md')]: {
         fontSize: originalSize,
