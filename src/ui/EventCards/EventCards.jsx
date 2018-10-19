@@ -65,25 +65,24 @@ const EventCards = (props) => {
                       <Title className={classes.title}>
                         {c.title}
                       </Title>
-                      <Subheading>
+                      <Subheading className={classes.time}>
                         {formattedDate(c.dates.startDateTime)}
                       </Subheading>
-                      <Body1>
+                      <Body1 className={classes.location}>
                         {location}
                       </Body1>
                     </CardContent>
                   </CardActionArea>
                 </a>
                 <CardActions className={classes.actions} disableActionSpacing>
-                  <div className={classes.tags}>
-                    {
-                      hasTags(c)
-                        ? c.tags.map((t, index) => (
-                          <Tag key={`t${index}`} label={t} />
-                        ))
+
+                  {
+                    hasTags(c)
+                      ? c.tags.map((t, index) => (
+                        <Tag key={`t${index}`} label={t} />
+                      ))
                       : null
-                    }
-                  </div>
+                  }
                 </CardActions>
               </Card>
             </Grid>
@@ -118,10 +117,12 @@ const styles = theme => ({
   link: {
     textDecoration: 'none',
   },
+  location: {
+    color: 'rgba(0, 0, 0, 0.7)',
+  },
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
-    marginLeft: '.6em',
     overflow: 'hidden',
   },
   media: {
@@ -137,29 +138,26 @@ const styles = theme => ({
     textOverflow: 'ellipsis',
   },
   time: {
-      // fontSize: '1.3em',
-      marginTop: '1em',
-      overflow: 'hidden',
-      paddingTop: '.4rem',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+    color: theme.palette.primary.main,
+    marginTop: '1em',
+    overflow: 'hidden',
+    paddingTop: '.4rem',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   title: {
-      // fontSize: '1.4em',
-      // fontWeight: '600',
-      height: '40px',
-      // letterSpacing: '0px',
-      lineHeight: '19px',
-      margin: 0,
-      overflow: 'hidden',
+    // fontSize: '1.4em',
+    fontWeight: '600',
+    height: '40px',
+    lineHeight: '19px',
   },
   venue: {
-      // fontSize: '1.3em',
-      overflow: 'hidden',
-      paddingTop: '7px',
-      paddingBottom: '4px',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+    // fontSize: '1.3em',
+    overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   numEventsMsg: {
     marginBottom: 30,
