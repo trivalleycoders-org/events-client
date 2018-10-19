@@ -47,9 +47,8 @@ import Footer from 'ui/Footer'
 // Dev
 // eslint-disable-next-line
 import { green, yellow, orange, red } from 'logger'
-// import Breakpoints from 'ui/ui-elements/Breakpoints'
+import Breakpoints from 'ui/ui-elements/Breakpoints'
 
-import BreakBottom from 'ui/ui-elements/BreakBottom'
 
 const componentName = 'App'
 const log = false
@@ -174,7 +173,7 @@ class App extends React.Component {
             <Hero />
             <div id='App-wrapper-body' className={classes.body}>
               <PageMessage />
-              <BreakBottom />
+              <Breakpoints />
               <Switch>
                 <Route exact path='/' component={EventsContainer} />
                 <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
