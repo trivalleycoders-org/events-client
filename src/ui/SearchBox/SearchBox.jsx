@@ -12,7 +12,6 @@ export class SearchBox extends React.Component {
   state = {
     showSearchIcon: true,
     searchString: '',
-
   }
 
   handleChange = (e) => {
@@ -30,7 +29,6 @@ export class SearchBox extends React.Component {
     this.props.eventsReadRequest()
   }
 
-
   render() {
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
@@ -47,7 +45,6 @@ export class SearchBox extends React.Component {
               pathname: '/search-events/',
               search: `?searchString=${searchString}`,
             }}
-
           >
             <Button
               color='primary'
