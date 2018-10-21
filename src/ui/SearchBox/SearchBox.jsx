@@ -45,6 +45,7 @@ export class SearchBox extends React.Component {
               pathname: '/search-events/',
               search: `?searchString=${searchString}`,
             }}
+            className={classes.link}
           >
             <Button
               color='primary'
@@ -68,7 +69,7 @@ export class SearchBox extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: '#fff',
     // backgroundColor: 'lightgrey',
     // border: `1px solid ${theme.palette.secondary.main}`,
     padding: theme.spacing.unit,
@@ -76,6 +77,9 @@ const styles = theme => ({
   input: {
     color: 'white',
   },
+  link: {
+    textDecoration: 'none'
+  }
 })
 
 export default withStyles(styles)(SearchBox)

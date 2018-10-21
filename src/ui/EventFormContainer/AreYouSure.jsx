@@ -30,7 +30,7 @@ class AreYouSure extends React.Component {
   render() {
     const { classes, open, close } = this.props
     return (
-      <div id='AreYouSure'>
+      <div>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

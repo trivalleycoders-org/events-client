@@ -19,15 +19,21 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: theme.palette.primary.main,
+    color: 'rgba(0, 0, 0, 0.9)',
+    fontSize: '16px',
     // eslint-disable-next-line
-    fontFamily: "'Roboto Condensed', sans-serif",
-    fontSize: 14,
-    fontWeight: 600,
+    fontFamily: 'Roboto, Condensed, sans-serif',
+    fontWeight: 500,
     letterSpacing: '0.5px',
     lineHeight: '40px',
     textDecoration: 'none',
     textTransform: 'capitalize',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '14px',
+    }
   }
 })
 
