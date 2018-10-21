@@ -1,46 +1,48 @@
 import React from 'react'
-import {
-  withStyles,
-} from '@material-ui/core'
-import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
+import { withStyles } from '@material-ui/core/styles'
+import { Paper } from '@material-ui/core'
 import Body1 from 'ui/ui-elements/typography/Body1'
-import A from 'ui/ui-elements/A'
+import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
+import iTVC from './media/tvc-wordmark-2.svg'
 
 const ByTvc = ({ classes }) => {
   return (
-    <div className={classes.wrapper}>
-      <Body1
-        color='white'
-      >
-          Made with pride by
-      </Body1>
-      <A href='http://trivalleycoders.org'>
-        <ResponsiveImage
-          src='https://s3-us-west-2.amazonaws.com/tvc-events/media/logo.svg'
-          alt='trivalley coders logo'
-          className={classes.tvcLogo}
-        />
-      </A>
+    <div id='ByTvc' className={classes.container}>
+      <Paper className={classes.item} square elevation={0}>
+        <Body1 align='center' color='white' className={classes.title}>Made with pride by</Body1>
+        <ResponsiveImage src={iTVC} alt='tri valley coders' />
+      </Paper>
     </div>
   )
 }
 
 const styles = theme => ({
-  wrapper: {
+  container: {
+    // backgroundColor: 'rgb(25, 25, 25)',
+
     display: 'flex',
     flexFlow: 'column nowrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 150,
-    // backgroundColor: 'orange',
+
+
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'center',
+      alignContent: 'stretch',
+      height: '100%',
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+
   },
-  tvcLogo: {
-    maxWidth: '325px',
+  item: {
+    backgroundColor: 'transparent',
+    // backgroundColor: 'rgb(50, 50, 50)',
+    textAlign: 'center',
   },
-  body1: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-  },
+  title:{
+    marginBottom: theme.spacing.unit * 2
+  }
 })
 
 export default withStyles(styles)(ByTvc)

@@ -9,6 +9,7 @@ import { orange } from 'logger'
 
 export const searchTextSetKey = 'searchTextSetKey'
 export const searchTextSet = (text) => {
+  orange('searchText', text)
   return (
     {
       type: searchTextSetKey,

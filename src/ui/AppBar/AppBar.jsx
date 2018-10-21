@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
-  AppBar,
+  AppBar as MuiAppBar,
   Toolbar,
   Typography,
   IconButton,
@@ -20,7 +19,7 @@ import LoggedOut from './LoggedOut'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-class MainAppBar extends React.Component {
+class AppBar extends React.Component {
 
   toggleDraw = () => {
     this.props.appMenuToggle()
@@ -31,38 +30,38 @@ class MainAppBar extends React.Component {
     const { classes, isLoggedIn, width } = this.props
 
     return (
-      <div className={classes.root}>
-        <AppBar position='fixed'>
-          <Toolbar>
-            <IconButton className={classes.menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDraw}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='title' color='inherit' className={classes.flex}>
-              Drone Events
-            </Typography>
-            {width !== 'xs'
-              ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
-              : null
-              // true ? <LoggedIn /> : <LoggedOut />
-            }
-
-          </Toolbar>
-        </AppBar>
-      </div>
+      <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
+        <Toolbar>
+        <IconButton
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='Menu'
+            onClick={this.toggleDraw}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='title' color='inherit' className={classes.flex}>
+            <span className={classes.drone}>Drone</span> <span className={classes.madness}>Madness</span>
+          </Typography>
+          {width !== 'xs'
+            ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
+            : null
+            // true ? <LoggedIn /> : <LoggedOut />
+          }
+        </Toolbar>
+      </MuiAppBar>
     )
   }
 }
 
-MainAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
-
 const styles = theme => ({
-  root: {
-    display: 'flex',
+  drone: {
+    fontWeight: 600,
   },
-  paper: {
-    marginRight: theme.spacing.unit * 2
+  appBar: {
+    display: 'flex',
+    justifyContent: 'center',
+    // backgroundColor: theme.palette.background.default,
   },
   flex: {
     flex: 1,
@@ -81,4 +80,4 @@ export default compose(
   withWidth(),
   withStyles(styles),
   connect(mapStateToProps, appMenuActions),
-)(MainAppBar)
+)(AppBar)

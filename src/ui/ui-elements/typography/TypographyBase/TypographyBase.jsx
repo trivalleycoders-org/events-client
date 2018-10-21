@@ -20,8 +20,6 @@ const TypographyBase = ({
   const style = {
     color: color,
   }
-
-
   return (
     <Typography
       align={align}
@@ -30,6 +28,7 @@ const TypographyBase = ({
       noWrap={noWrap}
       variant={variant}
       gutterBottom={gutterBottom}
+      className={className}
     >
       {children}
     </Typography>

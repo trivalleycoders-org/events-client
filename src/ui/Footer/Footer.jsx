@@ -1,48 +1,83 @@
 import React from 'react'
-import {
-  withStyles,
-} from '@material-ui/core'
-
-/* User */
-import Body2 from 'ui/ui-elements/typography/Body2'
+import { withStyles } from '@material-ui/core/styles'
+import RightSide from './RightSide'
 import ByTvc from './ByTvc'
-import TVCLinks from './TVCLinks'
-import TvcCopyright from './TvcCopyright'
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
 
 const Footer = ({ classes }) => {
   return (
-    <div className={classes.wrapper}>
-      <ByTvc />
-      <TVCLinks />
-      <TvcCopyright />
-    </div>
-
+    <footer id='footer' className={classes.footer}>
+      <div className={classes.left}>
+        <ByTvc />
+      </div>
+      <div className={classes.dividerContainer}>
+        <div className={classes.divider}></div>
+      </div>
+      <div className={classes.right}>
+        <RightSide />
+      </div>
+    </footer>
   )
 }
 
-
 const styles = theme => ({
 
-  wrapper: {
+  footer: {
+    // backgroundColor: 'rgba(255, 150, 255, 0.4)',
+    // borderTop: '3px red solid',
+    // borderBottom: '3px red solid',
+
+    backgroundColor: '#303030',
     display: 'flex',
     flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgb(22, 22, 22)',
 
+    [theme.breakpoints.up('md')]: {
+      // backgroundColor: 'rgba(255, 150, 255, 1)',
+      height: 350,
+      flexFlow: 'row nowrap',
+    },
   },
+  left: {
 
-  body1: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    color: 'white',
-  },
-  body2: {
-    color: 'white',
-  },
+    // backgroundColor: 'orange',
 
+
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+      flexBasis: '33.33333333%',
+    },
+  },
+  right: {
+    // backgroundColor: 'yellow',
+
+
+    [theme.breakpoints.up('md')]: {
+      // width: 300,
+      height: '100%',
+      flexBasis: '66.66666666%',
+    },
+  },
+  dividerContainer: {
+    // backgroundColor: 'grey',
+    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit *2,
+    //
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 0,
+      paddingLeft: 0,
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2,
+    },
+  },
+  divider: {
+    backgroundColor: 'grey',
+    height: 1,
+    // width: '100%',
+
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+      width: 1
+    },
+  },
 })
+
 export default withStyles(styles)(Footer)

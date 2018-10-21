@@ -20,16 +20,22 @@ const theme = createMuiTheme({
       white: '#fff',
     },
     primary: {
-      light: '#fff',
-      main: '#fff',
-      dark: '#ccc',
-      contrastText: '#000',
-    },
-    secondary: {
       light: '#ff5572',
       main: '#dc0747',
       dark: '#a30021',
       contrastText: '#fff',
+    },
+    // secondary: {
+    //   light: '#64b5f6',
+    //   main: '#2196f3',
+    //   dark: '#1976d2',
+    //   contrastText: '#000',
+    // },
+    secondary: {
+      light: '#64b5f6',
+      main: '#fff',
+      dark: '#1976d2',
+      contrastText: '#000',
     },
     error: {
       light: '#e57373',
@@ -48,10 +54,10 @@ const theme = createMuiTheme({
     //   hint: 'rgba(0, 0, 0, 0.38)',
     // },
     // divider: 'rgba(0, 0, 0, 0.12)',
-    // background: {
-    //   paper: '#fff',
-    //   default: '#fafafa'
-    // },
+    background: {
+      paper: '#fff',
+      default: '#fafafa'
+    },
     // action: {
     //   active: 'rgba(0, 0, 0, 0.54)',
     //   hover: 'rgba(0, 0, 0, 0.08)',
@@ -98,12 +104,13 @@ const theme = createMuiTheme({
       color: 'rgba(0, 0, 0, 0.54)',
     },
     display1: {
-      fontSize: '2.125rem',
+      // fontSize: '2.125rem',
+      fontSize: '1.125rem',
       fontWeight: 400,
       // eslint-disable-next-line
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
       lineHeight: '1.20588em',
-      color: 'rgba(0, 0, 0, 0.54)',
+      color: 'rgba(0, 0, 0)',
     },
     headline: {
       fontSize: '1.5rem',

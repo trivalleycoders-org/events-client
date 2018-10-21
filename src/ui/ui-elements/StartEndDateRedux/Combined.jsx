@@ -58,6 +58,7 @@ class Combined extends React.Component {
             label='Start Date / Time'
             format={this.props.format}
             fullWidth
+            className={classes.dateTimePicker}
             InputProps={{
               endAdornment: (
                 <InputAdornment position='end' className={classes.adornment}>
@@ -84,6 +85,7 @@ class Combined extends React.Component {
               }}
             label='End Date / Time'
             fullWidth
+            className={classes.dateTimePicker}
             minDate={startDateTime || new Date()}
             minDateMessage='End date must be after start date'
             onChange={(date) => this.localOnChange(date, 'endDateTime')}
@@ -103,6 +105,9 @@ const styles = theme => ({
   datesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap'
+  },
+  dateTimePicker: {
+    paddingBottom: 20,
   },
   wrapper: {
     display: 'flex',

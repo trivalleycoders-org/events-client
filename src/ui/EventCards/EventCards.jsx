@@ -2,14 +2,16 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Grid,
-  Typography,
   Card,
   CardActions,
   CardMedia,
   CardContent,
+  CardActionArea,
 } from '@material-ui/core'
 import { has } from 'ramda'
-
+import Title from 'ui/ui-elements/typography/Title'
+import Subheading from 'ui/ui-elements/typography/Subheading'
+import Body1 from 'ui/ui-elements/typography/Body1'
 /* User */
 import Tag from './Tag'
 
@@ -19,15 +21,18 @@ import { green } from 'logger'
 
 const hourAmPm = (date) => {
   const h = date.getHours()
-  const m = date.getMinutes()
+  const tempMin = date.getMinutes()
+  const m = (tempMin < 10) ? `0${tempMin}` : tempMin
   return (h > 12)
-    ? `${h-12}:${m} PM`
+    ? `${h - 12}:${m} PM`
     : `${h}:${m} AM`
 }
 
 const formattedDate = (isoDateString) => {
-  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  // const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  // const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const d = new Date(isoDateString)
   const MMM = monthNames[d.getMonth()]
   const DDD = dayNames[d.getDay()]
@@ -38,62 +43,61 @@ const formattedDate = (isoDateString) => {
 
 const hasTags = has('tags')
 
-const EventGrid = (props) => {
+const EventCards = (props) => {
   const { classes, events } = props
 
   return (
-    <Grid container spacing={Number(32)} className={classes.outer} >
-      {events.map(c => {
-        const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
-        return (
-          <Grid key={c._id} item xs={12} sm={6} md={4} >
-            <Card className={classes.card}>
-              <a href={c.linkToUrl} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image={c.imageUrl}
-
-                  >
-                </CardMedia>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant='caption' component='p' noWrap className={classes.time}>
-                    {formattedDate(c.dates.startDateTime)}
-                  </Typography>
-                  <Typography variant='subheading' component='p' className={classes.title}>
-                    {c.title}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.organization}>
-                    {`by: ${c.organization}`}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {c.venueName}
-                  </Typography>
-                  <Typography variant='caption' component='p' noWrap className={classes.venue}>
-                    {location}
-                  </Typography>
-                </CardContent>
-              </a>
-              <CardActions className={classes.actions} disableActionSpacing>
-                <div className={classes.tags}>
-                  {
-                    hasTags(c)
-                      ? c.tags.map((t, index) => (
+    <div id='EventCards'>
+      <Grid
+        container
+        spacing={32}
+      >
+        {events.map(c => {
+          const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
+          return (
+            <Grid key={c._id} item xs={12} sm={6} md={4} >
+              <Card className={classes.card}>
+                <a href={c.linkToUrl} className={classes.link}>
+                  <CardActionArea>
+                    <CardMedia
+                      component='img'
+                      image={c.imageUrl}
+                      height='180'
+                    />
+                    <CardContent>
+                      <Title className={classes.title}>
+                        {c.title}
+                      </Title>
+                      <Subheading>
+                        {formattedDate(c.dates.startDateTime)}
+                      </Subheading>
+                      <Body1>
+                        {location}
+                      </Body1>
+                    </CardContent>
+                  </CardActionArea>
+                </a>
+                <CardActions className={classes.actions} disableActionSpacing>
+                  <div className={classes.tags}>
+                    {
+                      hasTags(c)
+                        ? c.tags.map((t, index) => (
                           <Tag key={`t${index}`} label={t} />
                         ))
                       : null
-                  }
-                </div>
-
-              </CardActions>
-            </Card>
-          </Grid>
-        )
-      })}
-    </Grid>
+                    }
+                  </div>
+                </CardActions>
+              </Card>
+            </Grid>
+          )
+        })}
+      </Grid>
+    </div>
   )
 }
 
-const styles = {
+const styles = theme => ({
   action: {
     border: 'none',
   },
@@ -107,8 +111,7 @@ const styles = {
   },
   card: {
     minHeight: 0,
-    minWidth: 0,
-    padding: '15px 5px 0 5px',
+    maxWidth: 345
   },
   cardContent: {
     padding: '5px 15px 5px 15px',
@@ -120,11 +123,11 @@ const styles = {
   tags: {
     display: 'flex',
     flexFlow: 'row nowrap',
+    marginLeft: '.6em',
     overflow: 'hidden',
   },
   media: {
-    height: 0,
-    paddingTop: '50%',
+    objectFit: 'cover',
   },
   organization: {
     height: '33px',
@@ -135,30 +138,34 @@ const styles = {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  outer: {
-    paddingBottom: '40px'
-  },
   time: {
-    overflow: 'hidden',
-    paddingTop: '.4rem',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
+      // fontSize: '1.3em',
+      marginTop: '1em',
+      overflow: 'hidden',
+      paddingTop: '.4rem',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
   },
   title: {
-    height: '40px',
-    letterSpacing: '0px',
-    lineHeight: '19px',
-    margin: 0,
-    overflow: 'hidden',
-    paddingTop: '5px',
+      // fontSize: '1.4em',
+      // fontWeight: '600',
+      height: '40px',
+      // letterSpacing: '0px',
+      lineHeight: '19px',
+      margin: 0,
+      overflow: 'hidden',
   },
   venue: {
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
+      // fontSize: '1.3em',
+      overflow: 'hidden',
+      paddingTop: '7px',
+      paddingBottom: '4px',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
   },
-}
+  numEventsMsg: {
+    marginBottom: 30,
+  },
+})
 
-export default withStyles(styles)(EventGrid)
+export default withStyles(styles)(EventCards)

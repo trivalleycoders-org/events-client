@@ -60,8 +60,12 @@ class AccountMenu extends React.Component {
           className={classes.label}
         >
           <div className={classes.content}>
-            <div id='circle'><AccountCircle /></div>
-            <div id='name'>{emailName}</div>
+            <div id='circle'>
+              <AccountCircle className={classes.accountCircle}/>
+            </div>
+            <div id='name' className={classes.emailName}>
+              {emailName}
+            </div>
           </div>
         </Button>
         <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
@@ -74,8 +78,12 @@ class AccountMenu extends React.Component {
               <Paper>
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}><Link to='/settings' style={linkStyle}>Settings</Link></MenuItem>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}><Link to='/events' style={linkStyle}>Logout</Link></MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}>
+                      <Link to='/settings' className={classes.link} style={linkStyle}>Settings</Link>
+                    </MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'logout')}>
+                      <Link to='/' style={linkStyle} className={classes.link}>Logout</Link>
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -88,17 +96,23 @@ class AccountMenu extends React.Component {
 
 }
 
-const styles = {
+const styles = theme => ({
+  link: {
+    color: 'black',
+  },
+  emailName: {
+    color: theme.palette.primary.contrastText,
+  },
+  accountCircle: {
+    color: theme.palette.primary.contrastText,
+  },
   content: {
     display: 'flex',
     flexFlow: 'column nowrap',
     justtifyContent: 'center',
     alignItems: 'space-between',
   },
-  label: {
-    color: 'white',
-  }
-}
+})
 
 const mapStateToProps = (state) => ({
   emailName: nameFromEmail(authSelectors.getEmailName(state))

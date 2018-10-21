@@ -1,70 +1,81 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
 import { Link } from 'react-router-dom'
-import * as searchActions from 'store/actions/search-actions'
-import * as searchSelectors from 'store/selectors/search-selectors'
-import { TextField, Paper } from '@material-ui/core'
+import { Input, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Button from 'ui/ui-elements/Button'
+import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
-export class SearchEvent extends React.Component {
-
-  constructor(props) {
-  super(props)
-    this.state = {
-      showSearchIcon: true,
-    }
+export class SearchBox extends React.Component {
+  state = {
+    showSearchIcon: true,
+    searchString: '',
   }
 
-  handleChange = (value) => {
-    this.props.searchTextSet(value)
+  handleChange = (e) => {
+    // green('handleChange: value', value)
+    this.setState({
+      searchString: e.target.value
+    })
+  }
+
+  clearSearchResults = () => {
+    this.setState((prevState, props) => ({
+      showSearchIcon: !prevState.showSearchIcon,
+      searchString: ''
+    }))
+    this.props.eventsReadRequest()
   }
 
   render() {
-    const { classes, searchText } = this.props
-      return (
-        <Paper className={classes.wrapper}>
-          <TextField onChange={e => this.handleChange(e.target.value)} value={searchText} />
-            <Link to={`/search-events/${searchText}`}>
-              <Button
-                color='green'
-                className={classes.searchIcon}
-                disabled={searchText.length < 3}
-              >
-                Search
-              </Button>
-            </Link>
-        </Paper>
-      )
+    const { classes } = this.props
+    const { searchString, showSearchIcon } = this.state
+    return (
+      <Paper
+        id='SearchBox'
+        className={classes.wrapper}
+      >
+        <Input className={classes.input} value={this.state.searchString} onChange={this.handleChange} />
+        {showSearchIcon
+          ?
+          <Link
+            to={{
+              pathname: '/search-events/',
+              search: `?searchString=${searchString}`,
+            }}
+          >
+            <Button
+              color='primary'
+              disabled={searchString.length < 3}
+              // variant='contained'
+            >
+              Search
+            </Button>
+          </Link>
+          :
+          <CancelIcon
+            className={classes.cancelIcon}
+            onClick={this.clearSearchResults}
+          />
+        }
+      </Paper>
+    )
   }
 
 }
 
-
-const styles = theme => {
-  const unit = theme.spacing.unit
-  return (
-    {
-      wrapper: {
-        backgroundColor: 'white',
-        padding: `${unit * 4}px ${unit * 8}px ${unit * 4}px ${unit * 8}px`
-      }
-    }
-  )
-
-}
-
-const mapStateToProps = (state) => ({
-  searchText: searchSelectors.getSearchText(state)
+const styles = theme => ({
+  wrapper: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    // backgroundColor: 'lightgrey',
+    // border: `1px solid ${theme.palette.secondary.main}`,
+    padding: theme.spacing.unit,
+  },
+  input: {
+    color: 'white',
+  },
 })
 
-export default compose(
-  withStyles(styles),
-  connect(mapStateToProps, searchActions)
-)(SearchEvent)
-
-
+export default withStyles(styles)(SearchBox)

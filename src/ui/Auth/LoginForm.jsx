@@ -1,5 +1,4 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
@@ -10,10 +9,9 @@ import TextFieldRedux from '../ui-elements/TextFieldRedux'
 import styles from './styles'
 
 // actions, selectors
-import * as authActions from '../../store/actions/auth-actions'
-import * as pageMessageActions from 'store/actions/page-message-actions'
+import { pageMessage } from 'store/actions/page-message-actions'
 import * as requestSelectors from 'store/selectors/request-selectors'
-import { userLoginRequestKey } from 'store/actions/auth-actions'
+import { userLoginRequest, userLoginRequestKey } from 'store/actions/auth-actions'
 import * as authSelectors from 'store/selectors/auth-selectors'
 
 import validate from './validate'
@@ -21,11 +19,15 @@ import validate from './validate'
 import { green } from 'logger'
 // import { request } from 'https'
 
-class LoginForm extends React.Component {
+class LoginForm extends React.PureComponent {
 
   constructor(props) {
     super(props)
     this.props.pageMessage('')
+  }
+
+  componentDidMount() {
+    green('** LoginForm Mount')
   }
 
   onSubmit = (values) => {
@@ -39,11 +41,11 @@ class LoginForm extends React.Component {
 
     if (logInUserRequest.status === 'success' && loggedIn) {
       return (
-        <Redirect to='/events' />
+        <Redirect to='/' />
       )
     } else {
       return (
-        <div className={classes.pageWrapper}>
+        <div id='LoginForm' className={classes.pageWrapper}>
           <div className={classes.display1} >Login</div>
           <form>
             <TextFieldRedux
@@ -82,13 +84,11 @@ const mapStateToProps = (state) => ({
   loggedIn: authSelectors.getLoggedIn(state),
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Object.assign({}, authActions, pageMessageActions), dispatch)
-}
+const actions = { userLoginRequest, pageMessage }
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, actions),
   reduxForm({
     form: 'LoginForm',
     validate,

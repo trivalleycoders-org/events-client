@@ -13,7 +13,7 @@ const Body1 = (props) => {
     <TypographyBase
       variant={variant}
       classes={{
-        root: classes.root
+        root: classes.variant
       }}
       { ...props }
     >

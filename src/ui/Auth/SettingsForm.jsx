@@ -31,10 +31,10 @@ class SettingsForm extends React.Component {
   render() {
     const { classes, handleSubmit, pristine, submitting, userPasswordUpdateStatus } = this.props
     if (userPasswordUpdateStatus.status === 'success') {
-      return <Redirect to='/events' />
+      return <Redirect to='/' />
     } else {
       return (
-        <div className={classes.pageWrapper}>
+        <div id='SettingsForm' className={classes.pageWrapper}>
           <div className={classes.display1} >Change Password</div>
           <form>
             <TextFieldRedux

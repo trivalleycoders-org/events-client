@@ -13,6 +13,9 @@ export const getUserId = (state) => {
 }
 
 export const getLoggedIn = (state) => {
+  // yellow('hasProp: loggedIn', hasProp('loggedIn', state.auth))
+  // yellow('selector.loggedIn:', state.auth.loggedIn)
+
   if (hasProp('loggedIn', state.auth)) {
     return state.auth.loggedIn
   } else {

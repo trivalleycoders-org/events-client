@@ -8,7 +8,6 @@ import Title from 'ui/ui-elements/typography/Title'
 import { green } from 'logger'
 
 export const Palette = ({ theme }) => {
-  green('theme', theme)
   return (
     <div>
       <Display4>Palette</Display4>

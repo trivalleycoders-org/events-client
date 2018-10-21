@@ -33,7 +33,7 @@ export default {
       // pink('api.users.register: ', user)
       try {
         const data = await fetchJson(
-          '/users',
+          '/api/users',
           {
             method: 'POST',
             body: JSON.stringify(user)
@@ -52,7 +52,7 @@ export default {
       // pink('api.users.login: ', user)
       try {
         const data = await fetchJson(
-          '/users/login',
+          '/api/users/login',
           {
             method: 'POST',
             body: JSON.stringify(user)
@@ -81,7 +81,7 @@ export default {
       // pink('api.users.update: ', password)
       try {
         const data = await fetchJson(
-          '/user',
+          '/api/user',
           {
             method: 'PUT',
             body: JSON.stringify(password)
@@ -99,19 +99,21 @@ export default {
   },
   postalCodes: {
     read: async (searchString) => {
-      const a = await fetchPostalCodes(searchString)
-      if (a === undefined) {
+      pink('api.postalCodes.read: ', searchString)
+      const data = await fetchPostalCodes(searchString)
+      if (data === undefined) {
         return []
       }
-      return a
+      pink('api.postalCodes.read', searchString)
+      return data
     }
   },
   events: {
-    async create(event) {
+    async createOne(event) {
       // pink('api.events.create: event', event)
       try {
         const data = await fetchJson(
-          '/events',
+          '/api/events',
           {
             method: 'POST',
             body: JSON.stringify(event)
@@ -126,9 +128,10 @@ export default {
 
     },
     async read(user) {
+      // pink('api.events.read: data', 'start')
       try {
         const data = await fetchJson(
-          '/events',
+          '/api/events',
           {
             method: 'GET',
           }
@@ -140,12 +143,28 @@ export default {
         red('api.events.read', e)
       }
     },
+    async forUserRead(userId) {
+      // pink('api.events.forUserRead: userId', userId)
+      try {
+        const data = await fetchJson(
+          `/api/events/user/${userId}`,
+          {
+            method: 'GET',
+          }
+        )
+        // pink('api.events.forUserRead: data', data)
+        return data.data
+      }
+      catch (e) {
+        red('api.events.forUserRead', e)
+      }
+    },
     async patch(event) {
       try {
         // pink('api.patch: event', event)
         const _id = event._id
         const data = await fetchJson(
-          `/events/${_id}`,
+          `/api/events/${_id}`,
           {
             method: 'PATCH',
             body: JSON.stringify(event)
@@ -162,7 +181,7 @@ export default {
       // pink('api.delete: id', id)
       try {
         const data = await fetchJson(
-          `/events/${id}`,
+          `/api/events/${id}`,
           {
             method: 'DELETE'
           }
@@ -176,14 +195,14 @@ export default {
     },
     async search(searchText) {
       // pink('api.events.search: searchText', searchText)
-      const searchUrl = '/search?searchTerm=' + JSON.stringify(searchText)
+      const searchUrl = '/api/search?searchTerm=' + JSON.stringify(searchText)
       const data = await fetchJson(
         searchUrl,
         {
           method: 'GET',
         }
       )
-      // pink('api.search: data', data.data)
+      pink('api.search: data', data.data)
       return data.data
     },
   },
@@ -191,7 +210,7 @@ export default {
     create(formData) {
       // pink('api.images: formData', formData)
       return fetchUploadImage(
-        '/images',
+        '/api/images',
         {
           method: 'POST',
           body: formData
