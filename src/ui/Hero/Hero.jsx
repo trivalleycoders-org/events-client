@@ -13,13 +13,12 @@ const Hero = ({ classes, location }) => {
   const background = {
     backgroundImage: `url(${iHero})`,
     backgroundSize: 'cover',
-    // backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   }
   const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/'
   return showHero
-    ? <Paper id='Hero' className={classes.wrapper}  style={background}>
+    ? <Paper id='Hero' className={classes.wrapper} style={background}>
         <div className={classes.background}>
           <SearchBox />
         </div>
@@ -47,7 +46,18 @@ const styles = theme => {
       color: theme.palette.common.white,
       // marginBottom: theme.spacing.unit * 4,
       // height: '500px',
-      height: 383,
+      height: 200,
+
+      [theme.breakpoints.only('sm')]: {
+        height: 300,
+      },
+      [theme.breakpoints.only('md')]: {
+        height: 350,
+      },
+      [theme.breakpoints.up('lg')]: {
+        height: 380,
+      },
+
 
     },
     title: {

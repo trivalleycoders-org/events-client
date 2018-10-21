@@ -99,11 +99,13 @@ export default {
   },
   postalCodes: {
     read: async (searchString) => {
-      const a = await fetchPostalCodes(searchString)
-      if (a === undefined) {
+      pink('api.postalCodes.read: ', searchString)
+      const data = await fetchPostalCodes(searchString)
+      if (data === undefined) {
         return []
       }
-      return a
+      pink('api.postalCodes.read', searchString)
+      return data
     }
   },
   events: {

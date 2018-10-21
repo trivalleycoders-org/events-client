@@ -1,6 +1,8 @@
 import React from 'react'
 import ChipInput from 'material-ui-chip-input'
 import { append, without } from 'ramda'
+import { withStyles } from '@material-ui/core/styles'
+
 // eslint-disable-next-line
 import { green } from 'logger'
 
@@ -49,26 +51,34 @@ class Chips extends React.Component {
     this.props.onChange(newState)
   }
   render() {
-    const { label } = this.props
+    const { classes, label } = this.props
     return (
-      <ChipInput
-        value={this.state.chips}
-        newChipKeyCodes={keyCodes}
-        label={label}
-        onBeforeAdd={(chip) => this.onBeforeAdd(chip)}
-        onAdd={(chip) => this.onLocalChange(chip, 'add')}
-        onDelete={(chip) => this.onLocalChange(chip, 'delete')}
-        onBlur={(event) => {
-          if (this.props.addOnBlur && event.target.value) {
-            this.handleAdd(event.target.value)
-          }
-        }}
-        fullWidth
-      />
+      <div className={classes.chipInput}>
+        <ChipInput
+          value={this.state.chips}
+          newChipKeyCodes={keyCodes}
+          label={label}
+          onBeforeAdd={(chip) => this.onBeforeAdd(chip)}
+          onAdd={(chip) => this.onLocalChange(chip, 'add')}
+          onDelete={(chip) => this.onLocalChange(chip, 'delete')}
+          onBlur={(event) => {
+            if (this.props.addOnBlur && event.target.value) {
+              this.handleAdd(event.target.value)
+            }
+          }}
+          fullWidth
+        />
+      </div>
     )
 
 
   }
 }
 
-export default Chips
+const styles = theme => ({
+  chipInput: {
+    paddingBottom: theme.spacing.unit * 2
+  }
+})
+
+export default withStyles(styles)(Chips)

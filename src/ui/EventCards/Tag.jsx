@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 const Tag = ({ classes, label }) => {
   return (
     <div className={classes.tagWrapper}>
-      <a href='#' className={classes.tag}>#{label}</a>
+      <div className={classes.tag}>#{label}</div>
     </div>
   )
 }
@@ -20,9 +20,8 @@ const styles = theme => ({
   },
   tag: {
     color: theme.palette.primary.main,
-    /* eslint-disable */
+    // eslint-disable-next-line
     fontFamily: "'Roboto Condensed', sans-serif",
-    /* eslint-disable */
     fontSize: 14,
     fontWeight: 600,
     letterSpacing: '0.5px',

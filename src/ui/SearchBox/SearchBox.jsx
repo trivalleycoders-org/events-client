@@ -1,14 +1,7 @@
 import React from 'react'
-// import { connect } from 'react-redux'
-// import { compose } from 'recompose'
 import { Link } from 'react-router-dom'
-// import { searchTextSet, searchTextUnset, eventsSearchReadRequest } from 'store/actions/search-actions'
-// import { eventsReadRequest } from 'store/actions/event-actions'
-// import * as searchSelectors from 'store/selectors/search-selectors'
-import { TextField, Paper } from '@material-ui/core'
+import { Input, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-// import Button from 'ui/ui-elements/Button'
-// import { Button } from '@material-ui/core'
 import Button from 'ui/ui-elements/Button'
 import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
@@ -18,47 +11,33 @@ import { green } from 'logger'
 export class SearchBox extends React.Component {
   state = {
     showSearchIcon: true,
-    searchString: ''
+    searchString: '',
   }
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     showSearchIcon: true,
-  //     searchString: ''
-  //   }
-  // }
 
-  handleChange = (value) => {
+  handleChange = (e) => {
     // green('handleChange: value', value)
     this.setState({
-      searchString: value
+      searchString: e.target.value
     })
   }
-
-  // searchEvents = () => {
-  //   this.setState((prevState) => ({
-  //     showSearchIcon: !prevState.showSearchIcon
-  //   }))
-  //   this.props.eventsSearchReadRequest(this.state.searchString)
-  // }
 
   clearSearchResults = () => {
     this.setState((prevState, props) => ({
       showSearchIcon: !prevState.showSearchIcon,
-      searchText: ''
+      searchString: ''
     }))
-    // this.props.searchTextUnset()
-    // ??? Should this be a link?
     this.props.eventsReadRequest()
   }
 
   render() {
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
-
     return (
-      <Paper id='SearchBox' className={classes.wrapper}>
-        <TextField onChange={e => this.handleChange(e.target.value)} value={searchString} />
+      <Paper
+        id='SearchBox'
+        className={classes.wrapper}
+      >
+        <Input className={classes.input} value={this.state.searchString} onChange={this.handleChange} />
         {showSearchIcon
           ?
           <Link
@@ -66,7 +45,6 @@ export class SearchBox extends React.Component {
               pathname: '/search-events/',
               search: `?searchString=${searchString}`,
             }}
-
           >
             <Button
               color='primary'
@@ -88,30 +66,16 @@ export class SearchBox extends React.Component {
 
 }
 
-
-const styles = theme => {
-  return (
-    {
-      wrapper: {
-        backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.secondary.main}`,
-        padding: theme.spacing.unit
-      }
-    }
-  )
-}
-
-// const actions = { searchTextSet, searchTextUnset, eventsSearchReadRequest, eventsReadRequest }
-
-// const mapStateToProps = (state) => ({
-//   searchText: searchSelectors.getSearchText(state),
-// })
+const styles = theme => ({
+  wrapper: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    // backgroundColor: 'lightgrey',
+    // border: `1px solid ${theme.palette.secondary.main}`,
+    padding: theme.spacing.unit,
+  },
+  input: {
+    color: 'white',
+  },
+})
 
 export default withStyles(styles)(SearchBox)
-
-// export default compose(
-//   withStyles(styles),
-//   connect(mapStateToProps, actions)
-// )(SearchBox)
-
-

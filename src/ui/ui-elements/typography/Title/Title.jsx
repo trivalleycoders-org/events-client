@@ -13,7 +13,7 @@ const Title = (props) => {
     <TypographyBase
       variant={variant}
       classes={{
-        root: classes.root
+        root: classes.variant
       }}
       { ...props }
     >
@@ -28,7 +28,7 @@ const styles = theme => {
   return ({
     [variant]: {
       [theme.breakpoints.down('xs')]: {
-        fontSize: fontSizeFromString(originalSize, 1),
+        fontSize: fontSizeFromString(originalSize, 0.7),
       },
       [theme.breakpoints.up('sm')]: {
         fontSize: fontSizeFromString(originalSize, 1),

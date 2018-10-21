@@ -30,7 +30,7 @@ import SettingsForm from 'ui/Auth/SettingsForm'
 import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 // import Snackbars from 'ui/Snackbars'
-// import AppDrawer from 'ui/AppDrawer'
+import AppDrawer from 'ui/AppDrawer'
 
 // New
 import EventsContainer from 'ui/EventsContainer'
@@ -46,8 +46,9 @@ import Footer from 'ui/Footer'
 
 // Dev
 // eslint-disable-next-line
-import Breakpoints from 'ui/ui-elements/Breakpoints'
 import { green, yellow, orange, red } from 'logger'
+import Breakpoints from 'ui/ui-elements/Breakpoints'
+
 
 const componentName = 'App'
 const log = false
@@ -77,7 +78,6 @@ class App extends React.Component {
         userId: undefined,
       }
     }
-
 
     log && orange(`${componentName} - Constructor - END`)
   }
@@ -150,28 +150,30 @@ class App extends React.Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     log && orange(`${componentName} - Update - START`)
-    // green('update.prevProps', prevProps)
-
     await this.loadData('update', prevProps)
     log && orange(`${componentName} - Update - END`)
   }
 
   render() {
-    const { classes, loggedIn, userValidateRequestStatus } = this.props
 
-    if (!loggedIn && userValidateRequestStatus !== 'success') {
-      return null
+    const { classes, userValidateRequestStatus } = this.props
+    const { userId } = this.state
+
+    if (!userId === undefined) {
+      if (userValidateRequestStatus !== 'success') {
+        return null
+      }
     }
 
     return (
         <div id='App'>
           <AppBar />
-
           <div id='App-wrapper' className={classes.wrapper}>
             <Hero />
             <div id='App-wrapper-body' className={classes.body}>
               <PageMessage />
-              {/* <Breakpoints /> */}
+              <AppDrawer />
+              <Breakpoints />
               <Switch>
                 <Route exact path='/' component={EventsContainer} />
                 <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
@@ -197,19 +199,29 @@ class App extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    marginTop: 100,
+    marginTop: 64,
     // backgroundColor: 'green',
     // borderTop: '3px orange solid',
     // borderBottom: '3px orange solid',
+    [theme.breakpoints.up('xs')]: {
+      marginTop: 56,
+    }
   },
   body: {
     // borderTop: '3px orange dashed',
     // border: '3px orange dashed',
+    // backgroundColor: 'orange',
+
     paddingTop: theme.spacing.unit * 5,
     paddingBottom: theme.spacing.unit * 5,
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+    },
+
     [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
       width: 1100,
       marginLeft: 'auto',

@@ -24,8 +24,8 @@ const styles = theme => ({
     flexFlow: 'column nowrap',
 
 
-    paddingTop: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
     [theme.breakpoints.up('md')]: {
       justifyContent: 'center',
       alignContent: 'stretch',

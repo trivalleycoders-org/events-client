@@ -2,7 +2,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Grid,
-  Typography,
   Card,
   CardActions,
   CardMedia,
@@ -10,8 +9,6 @@ import {
   CardActionArea,
 } from '@material-ui/core'
 import { has } from 'ramda'
-import Body2 from 'ui/ui-elements/typography/Body2'
-import Display1 from 'ui/ui-elements/typography/Display1'
 import Title from 'ui/ui-elements/typography/Title'
 import Subheading from 'ui/ui-elements/typography/Subheading'
 import Body1 from 'ui/ui-elements/typography/Body1'
@@ -47,14 +44,14 @@ const formattedDate = (isoDateString) => {
 const hasTags = has('tags')
 
 const EventCards = (props) => {
-  const { classes, events, searchText } = props
+  const { classes, events } = props
 
-  const numEventsMsg = searchText !== undefined
-    ? `${events.length} events for search: ${searchText}`
-    : `${events.length} events`
   return (
     <div id='EventCards'>
-      <Grid container spacing={Number(32)}>
+      <Grid
+        container
+        spacing={32}
+      >
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
           return (
@@ -114,8 +111,7 @@ const styles = theme => ({
   },
   card: {
     minHeight: 0,
-    minWidth: 0,
-    maxWidth: '345px'
+    maxWidth: 345
   },
   cardContent: {
     padding: '5px 15px 5px 15px',

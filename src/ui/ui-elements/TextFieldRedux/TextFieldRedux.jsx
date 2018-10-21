@@ -31,7 +31,7 @@ class TextFieldRedux extends React.Component {
       rows,
       type,
       enableEdit,
-      ...rest,
+      ...rest
     } = props
     const { error } = meta
     const isError = error ? true : false
