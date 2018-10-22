@@ -28,16 +28,16 @@ class Breakpoints extends React.Component {
       [this.props.classes.positionFixedTop]: this.state.position === 'top',
       [this.props.classes.positionFixedBottom]: this.state.position === 'bottom',
     })
-  return (
-    <Paper square elevation={4} className={className}>
-      <div className={classes.width}>
-        <span className={classes.widthSize}>{width.toUpperCase()}</span>
-      </div>
-      <div className={classes.buttons}>
-        <button name='top' className={classes.button} onClick={this.positionClick}>Top</button>
-        <button name='bottom' className={classes.button} onClick={this.positionClick}>Bottom</button>
-      </div>
-    </Paper>
+    return (
+      <Paper square elevation={4} className={className}>
+        <div className={classes.width}>
+          <span className={classes.widthSize}>{width.toUpperCase()}</span>
+        </div>
+        <div className={classes.buttons}>
+          <button name='top' className={classes.button} onClick={this.positionClick}>Top</button>
+          <button name='bottom' className={classes.button} onClick={this.positionClick}>Bottom</button>
+        </div>
+      </Paper>
     )
   }
 
@@ -85,7 +85,7 @@ export const styles = theme => {
       right: 0,
     },
     width: {
-      flexBasis: '80%',
+      flexBasis: '10%',
     },
     button: {
       marginRight: 8,

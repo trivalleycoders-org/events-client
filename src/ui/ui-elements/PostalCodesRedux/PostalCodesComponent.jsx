@@ -94,6 +94,8 @@ class PostalCodesRedux extends React.Component {
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    marginTop: 16,
+    paddingBottom: 20,
   },
   container: {
     flexGrow: 1,

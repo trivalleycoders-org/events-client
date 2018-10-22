@@ -51,12 +51,12 @@ export const menuLoggedIn = (
         <ListItemText primary='Home' />
       </ListItem>
     </Link>
-    <Link to='/new-event' style={linkStyle}>
+    <Link to='/create-event' style={linkStyle}>
       <ListItem button>
         <ListItemIcon>
           <Event />
         </ListItemIcon>
-        <ListItemText primary='New Event' />
+        <ListItemText primary='Create Event' />
       </ListItem>
     </Link>
     <Link to='/my-events' style={linkStyle}>

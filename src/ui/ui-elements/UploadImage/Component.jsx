@@ -68,47 +68,43 @@ class UploadImage extends React.Component {
   render() {
     const { classes, enableEdit } = this.props
     return (
-      <div className={classes.wrapper}>
-        <div className={classes.p1}>
-          <Paper className={classes.p2}>
-            {
-              this.state.imageUrl
-                ? <div className={classes.imageDiv}>
-                    <MediaCard src={this.state.imageUrl} />
-                    {enableEdit
-                      ? <Button
-                          mini
-                          variant="fab"
-                          color='secondary'
-                          aria-label="Delete"
-                          className={classes.fab}
-                          onClick={this.removeImage}
-                        >
-                          <DeleteIcon />
-                        </Button>
-                      : null
-                    }
+      <Paper className={classes.paper}>
+        {
+          this.state.imageUrl
+            ? <div className={classes.imageDiv}>
+                <MediaCard src={this.state.imageUrl} />
+                {enableEdit
+                  ? <Button
+                      mini
+                      variant="fab"
+                      color='secondary'
+                      aria-label="Delete"
+                      className={classes.fab}
+                      onClick={this.removeImage}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  : null
+                }
 
-                  </div>
-                : <Dropzone
-                    style={style}
-                    acceptStyle={acceptStyle}
-                    rejectStyle={rejectStyle}
-                    accept="image/jpeg, image/png"
-                    onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
-                  >
-                    {(props) => {
-                      if (props.isDragActive) {
-                        return props.isDragAccept ? dropZoneDefault : dropZoneReject
-                      } else {
-                        return dropZoneDefault
-                      }
-                  }}
-                  </Dropzone>
-            }
-          </Paper>
-        </div>
-      </div>
+              </div>
+            : <Dropzone
+                style={style}
+                acceptStyle={acceptStyle}
+                rejectStyle={rejectStyle}
+                accept="image/jpeg, image/png"
+                onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
+              >
+                {(props) => {
+                  if (props.isDragActive) {
+                    return props.isDragAccept ? dropZoneDefault : dropZoneReject
+                  } else {
+                    return dropZoneDefault
+                  }
+              }}
+              </Dropzone>
+        }
+      </Paper>
     )
   }
 }
@@ -131,25 +127,6 @@ const rejectStyle = {
 }
 
 const styles = theme => ({
-  card: {
-    maxWidth: 345,
-  },
-  dropZoneMessage: {
-    color: 'lightgray',
-    textAlign: 'center',
-
-  },
-  dropZoneMessages: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexFlow: 'column nowrap',
-    flexBasis: '70%',
-    fontSize: '5px !important'
-  },
-  dropZoneControls: {
-    flexBasis: '30%',
-  },
   fab: {
     position: 'absolute',
     bottom: theme.spacing.unit * 2,
@@ -161,22 +138,11 @@ const styles = theme => ({
     position: 'relative',
     zIndex: '0',
   },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  p1: {
-    padding: 10,
-
-  },
-  p2: {
+  paper: {
     maxWidth: '100%',
     height: 'auto',
     alignItems: 'stretch',
     justifyContent: 'stretch'
-  },
-  wrapper: {
-    margin: 0,
   },
 })
 

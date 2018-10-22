@@ -48,7 +48,10 @@ const EventCards = (props) => {
 
   return (
     <div id='EventCards'>
-      <Grid container spacing={Number(32)}>
+      <Grid
+        container
+        spacing={32}
+      >
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
           return (

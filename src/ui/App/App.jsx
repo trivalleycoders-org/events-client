@@ -30,7 +30,7 @@ import SettingsForm from 'ui/Auth/SettingsForm'
 import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 // import Snackbars from 'ui/Snackbars'
-// import AppDrawer from 'ui/AppDrawer'
+import AppDrawer from 'ui/AppDrawer'
 
 // New
 import EventsContainer from 'ui/EventsContainer'
@@ -82,7 +82,7 @@ class App extends React.Component {
     log && orange(`${componentName} - Constructor - END`)
   }
 
-  loadData = async (from, prevProps = undefined ) => {
+  loadData = async (from, prevProps = undefined) => {
     // green('loadData: from:', from)
     const { userId } = this.state
     const {
@@ -150,15 +150,14 @@ class App extends React.Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     log && orange(`${componentName} - Update - START`)
-    // green('update.prevProps', prevProps)
-
     await this.loadData('update', prevProps)
     log && orange(`${componentName} - Update - END`)
   }
 
   render() {
 
-    const { classes, userId, userValidateRequestStatus } = this.props
+    const { classes, userValidateRequestStatus } = this.props
+    const { userId } = this.state
 
     if (!userId === undefined) {
       if (userValidateRequestStatus !== 'success') {
@@ -167,28 +166,29 @@ class App extends React.Component {
     }
 
     return (
-        <div id='App'>
-          <AppBar />
-          <div id='App-wrapper' className={classes.wrapper}>
-            <Hero />
-            <div id='App-wrapper-body' className={classes.body}>
-              <PageMessage />
-              <Breakpoints />
-              <Switch>
-                <Route exact path='/' component={EventsContainer} />
-                <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
-                <PrivateRoute exact path='/create-event' component={EventFormContainer} />
-                <Route path='/search-events' component={SearchEventsContainer} />
-                <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
-                <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
-                <Route exact path='/login' component={LoginForm} />
-                <Route exact path='/register' component={RegisterForm} />
-                <PrivateRoute exact path='/settings' component={SettingsForm} />
-              </Switch>
-            </div>
+      <div id='App'>
+        <AppBar />
+        <div id='App-wrapper' className={classes.wrapper}>
+          <Hero />
+          <div id='App-wrapper-body' className={classes.body}>
+            <PageMessage />
+            <AppDrawer />
+            <Breakpoints />
+            <Switch>
+              <Route exact path='/' component={EventsContainer} />
+              <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
+              <PrivateRoute exact path='/create-event' component={EventFormContainer} />
+              <Route path='/search-events' component={SearchEventsContainer} />
+              <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
+              <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
+              <Route exact path='/login' component={LoginForm} />
+              <Route exact path='/register' component={RegisterForm} />
+              <PrivateRoute exact path='/settings' component={SettingsForm} />
+            </Switch>
           </div>
-          <Footer />
         </div>
+        <Footer />
+      </div>
     )
   }
 }
@@ -210,11 +210,18 @@ const styles = theme => ({
   body: {
     // borderTop: '3px orange dashed',
     // border: '3px orange dashed',
+    // backgroundColor: 'orange',
+
     paddingTop: theme.spacing.unit * 5,
     paddingBottom: theme.spacing.unit * 5,
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+    },
+
     [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
       width: 1100,
       marginLeft: 'auto',
