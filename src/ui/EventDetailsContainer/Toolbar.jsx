@@ -4,6 +4,7 @@ import {
   Toolbar as MuiToolbar,
   IconButton,
   Paper,
+  Typography,
 } from '@material-ui/core'
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
@@ -12,20 +13,26 @@ import IconButtonLink from 'ui/ui-elements/IconButtonLink'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-export const Toolbar = ({ classes, handleDeleteClick, id }) => {
+export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
+  console.log('event title: ', title)
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.wrapper}>
-        <IconButtonLink to={`/edit-event/${id}`}>
-          <Edit
-            className={classes.editBtnIcon}
-          />
-        </IconButtonLink>
-        <IconButton onClick={handleDeleteClick}>
-          <DeleteForever
-            className={classes.deleteBtnIcon}
-          />
-        </IconButton>
+        <Typography variant='title' color='inherit'>
+          <span className={classes.drone}>{title}</span>
+        </Typography>
+        <div>
+          <IconButtonLink to={`/edit-event/${id}`}>
+            <Edit
+              className={classes.editBtnIcon}
+            />
+          </IconButtonLink>
+          <IconButton onClick={handleDeleteClick}>
+            <DeleteForever
+              className={classes.deleteBtnIcon}
+            />
+          </IconButton>
+        </div>
       </MuiToolbar>
     </Paper>
   )
@@ -34,7 +41,7 @@ export const Toolbar = ({ classes, handleDeleteClick, id }) => {
 const styles = {
   wrapper: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   editBtnIcon: {
     color: 'blue',
