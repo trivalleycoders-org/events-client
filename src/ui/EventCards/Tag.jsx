@@ -19,11 +19,11 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: 'rgba(0, 0, 0, 0.9)',
+    color: 'rgba(0, 0, 0, 0.75)',
     fontSize: '16px',
     // eslint-disable-next-line
     fontFamily: 'Roboto, Condensed, sans-serif',
-    fontWeight: 500,
+    fontWeight: 600,
     letterSpacing: '0.5px',
     lineHeight: '40px',
     textDecoration: 'none',
