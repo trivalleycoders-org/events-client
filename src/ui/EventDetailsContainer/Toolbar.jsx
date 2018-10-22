@@ -19,7 +19,7 @@ export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
     <Paper>
       <MuiToolbar variant='dense' className={classes.wrapper}>
         <Typography variant='title' color='inherit'>
-          <span className={classes.drone}>{title}</span>
+          <span className={classes.title}>{title}</span>
         </Typography>
         <div>
           <IconButtonLink to={`/edit-event/${id}`}>
@@ -42,6 +42,9 @@ const styles = {
   wrapper: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  title: {
+    color: '#dc0747',
   },
   editBtnIcon: {
     color: 'blue',
