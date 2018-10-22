@@ -156,7 +156,6 @@ const styles = theme => ({
   title: {
     fontWeight: '600',
     height: '40px',
-    lineHeight: '19px',
   },
   venue: {
     // fontSize: '1.3em',

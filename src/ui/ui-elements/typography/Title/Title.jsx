@@ -28,23 +28,26 @@ const styles = theme => {
   return ({
     [variant]: {
       [theme.breakpoints.down('xs')]: {
-        fontSize: fontSizeFromString(originalSize, 0.7),
-        marginBottom: '-0.8rem',
+        fontSize: fontSizeFromString(originalSize, 0.6),
+        marginBottom: '-1em',
       },
       [theme.breakpoints.up('sm')]: {
-        fontSize: fontSizeFromString(originalSize, 0.7),
-        marginBottom: '-0.8rem',
+        fontSize: fontSizeFromString(originalSize, 0.6),
+        marginBottom: '1em',
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: originalSize,
+        fontSize: fontSizeFromString(originalSize, 0.9),
+        lineHeight: '19px',
         marginBottom: '1.5em',
       },
       [theme.breakpoints.up('lg')]: {
         fontSize: originalSize,
+        lineHeight: '25px',
         marginBottom: '1.5em',
       },
       [theme.breakpoints.up('xl')]: {
         fontSize: originalSize,
+        lineHeight: '25px',
         marginBottom: '1.5em',
       },
     }
