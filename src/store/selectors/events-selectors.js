@@ -11,7 +11,8 @@ export const getEventById = (state, eventId) => {
 }
 
 export const getEventsForUserId = (state, id) => {
-  return state.events.filter(e => e.userId === id)
+  const r = state.events.filter(e => e.userId === id)
+  return r[0]
 }
 
 
