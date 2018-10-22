@@ -58,7 +58,6 @@ class MyEventsContainer extends React.Component {
 const mstp = (state, ownProps) => {
   return {
     events: getAllEvents(state),
-    // currentUserId: getUserId(state)
   }
 }
 
