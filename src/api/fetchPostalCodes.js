@@ -11,7 +11,7 @@ const fetchPostalCodes = debounce(
   async (searchString) => {
     try {
       const data = await fetchJson(
-        `/location/postal-code/${searchString}`,
+        `/api/location/postal-code/${searchString}`,
         {
           method: 'GET',
         }
