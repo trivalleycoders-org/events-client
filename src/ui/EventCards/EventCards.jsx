@@ -58,12 +58,11 @@ const EventCards = (props) => {
             <Grid key={c._id} item xs={12} sm={6} md={4} >
               <Card className={classes.card}>
                 <a href={c.linkToUrl} className={classes.link}>
+                  <CardMedia
+                    className={classes.media}
+                    image={c.imageUrl}
+                  />
                   <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      image={c.imageUrl}
-                      height='180'
-                    />
                     <CardContent>
                       <Title className={classes.title}>
                         {c.title}
@@ -134,7 +133,8 @@ const styles = theme => ({
     }
   },
   media: {
-    objectFit: 'cover',
+    height: 0,
+    paddingTop: '50%',
   },
   organization: {
     height: '33px',
