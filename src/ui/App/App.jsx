@@ -34,11 +34,6 @@ import Footer from 'ui/Footer'
 import { green, yellow, orange, red } from 'logger'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 
-
-const componentName = 'App'
-const log = false
-
-// class App extends React.Component {
 const App = ({ classes }) => {
 
     return (

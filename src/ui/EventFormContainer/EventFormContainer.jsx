@@ -20,7 +20,6 @@ const shapeEditDataIn = (event) => {
     // initialValues: event,
     ...event
   }
-  // green('EventFormContainer.shapeEditDataIn: r', r)
   return r
 }
 
@@ -36,7 +35,7 @@ class EventFormContainer extends React.Component {
 
   eventCreate = (formValues) => {
     const data = shapeEditDataOut(formValues, this.props.userId)
-    green('EventformContainer.eventCreate: data', data)
+    // green('EventformContainer.eventCreate: data', data)
     this.props.eventCreateOneRequest(data)
     this.goBack()
   }
