@@ -82,7 +82,7 @@ const styles = theme => ({
   body: {
     // borderTop: '3px orange dashed',
     // border: '3px orange dashed',
-    backgroundColor: 'orange',
+    // backgroundColor: 'orange',
 
     // paddingTop: theme.spacing.unit * 5,
     // paddingBottom: theme.spacing.unit * 5,
