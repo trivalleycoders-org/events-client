@@ -16,10 +16,10 @@ class EventDetailsContainer extends React.Component {
   }
   render() {
     const { event } = this.props
+    console.log('event in container: ', event)
     return (
       <div id='EventDetailsContainer'>
-        <h1>Event Details</h1>
-        <Toolbar id={event._id} />
+        <Toolbar id={event._id} title={event.title} />
         <EventDetails
           event={event}
         />
