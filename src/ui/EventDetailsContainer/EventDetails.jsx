@@ -34,7 +34,7 @@ const formattedDate = (isoDateString) => {
 }
 
 const EventDetails = ({ classes, event }) => {
-  const price = event.price ? `${event.price}` : 'Free'
+  const price = event.price ? `$${event.price}` : 'Free'
 
   return (
     <div id='EventDetails'>
@@ -97,6 +97,8 @@ const styles = theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
+    margin: 'auto',
+    width: '60%',
   },
   row: {
     display: 'flex',

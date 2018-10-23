@@ -1,5 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
+import { Paper } from '@material-ui/core'
+import { compose } from 'recompose'
+
 import { getEventById } from 'store/selectors/events-selectors'
 import { eventDeleteOneRequest } from 'store/actions/event-actions'
 import EventDetails from './EventDetails'
@@ -15,10 +19,10 @@ class EventDetailsContainer extends React.Component {
     this.props.eventDeleteOneRequest(id)
   }
   render() {
-    const { event } = this.props
+    const { classes, event } = this.props
     console.log('event in container: ', event)
     return (
-      <div id='EventDetailsContainer'>
+      <div className={classes.wrapper}>
         <Toolbar id={event._id} title={event.title} />
         <EventDetails
           event={event}
@@ -28,6 +32,12 @@ class EventDetailsContainer extends React.Component {
   }
 }
 
+const styles = theme => ({
+  wrapper: {
+    marginTop: '1em',
+  }
+})
+
 const mstp = (state, ownProps) => {
   const eventId = ownProps.match.params.id
   return {
@@ -35,7 +45,7 @@ const mstp = (state, ownProps) => {
   }
 }
 
-export default connect(
-  mstp,
-  { eventDeleteOneRequest }
+export default compose(
+  withStyles(styles),
+  connect(mstp, { eventDeleteOneRequest }),
 )(EventDetailsContainer)
