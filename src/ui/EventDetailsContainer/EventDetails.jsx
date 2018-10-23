@@ -1,10 +1,13 @@
 import React from 'react'
-import { Paper } from '@material-ui/core'
+import { Paper, Chip } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
+import A from 'ui/ui-elements/A'
 import Title from 'ui/ui-elements/typography/Title'
 import Body1 from 'ui/ui-elements/typography/Body1'
+import Subheading from 'ui/ui-elements/typography/Subheading'
 
 /* Dev */
 // eslint-disable-next-line
@@ -20,8 +23,6 @@ const hourAmPm = (date) => {
 }
 
 const formattedDate = (isoDateString) => {
-  // const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-  // const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const d = new Date(isoDateString)
@@ -33,29 +34,29 @@ const formattedDate = (isoDateString) => {
 }
 
 const EventDetails = ({ classes, event }) => {
-  // const handleDeleteClick = () => {
+  const price = event.price ? `${event.price}` : 'Free'
 
-  // }
   return (
     <div id='EventDetails'>
       <Paper className={classes.wrapper}>
-        <div className={classes.row}>
-          <div>
-            <Title>Date And Time</Title>
-            <Body1>{formattedDate(event.dates.startDateTime)}</Body1>
-            <Body1>{formattedDate(event.dates.endDateTime)}</Body1>
+        <div className={classNames(classes.row, classes.topRow)}>
+          <div className={classes.cell}>
+            <img src={event.imageUrl} className={classes.image} alt={event.tile}></img>
           </div>
-          <div>
-            <Title>Price</Title>
-            <Body1>{event.price}</Body1>
+          <div className={classes.cell}>
+            <Title>{formattedDate(event.dates.startDateTime)}</Title>
+            <Subheading>{price}</Subheading>
           </div>
         </div>
         <div className={classes.row}>
-          <div>
-            <Title>Organization</Title>
-            <Body1>{event.organization}</Body1>
+          <div className={classes.cell}>
+            <Title>Date And Time</Title>
+            <Subheading>Start Time</Subheading>
+            <Body1>{formattedDate(event.dates.startDateTime)}</Body1>
+            <Subheading>End Time</Subheading>
+            <Body1>{formattedDate(event.dates.endDateTime)}</Body1>
           </div>
-          <div>
+          <div className={classes.cell}>
             <Title>Location</Title>
             <Body1>{event.venueName}</Body1>
             <Body1>{event.location.cityName}</Body1>
@@ -64,17 +65,23 @@ const EventDetails = ({ classes, event }) => {
           </div>
         </div>
         <div className={classes.row}>
-          <div>
-            <Title>URL</Title>
-            <Body1>{event.linkToUrl}</Body1>
+          <div className={classes.cell}>
+            <Title>Organization</Title>
+            <Body1>{event.organization}</Body1>
           </div>
         </div>
         <div className={classes.row}>
-          <div>
+          <div className={classes.cell}>
+            <Title>URL</Title>
+            <A>{event.linkToUrl}</A>
+          </div>
+        </div>
+        <div className={classes.row}>
+          <div className={classes.cell}>
             <Title>Tags</Title>
             {event.tags.map((t, index) => {
               return (
-                <Body1 key={`t${index}`}>{t}</Body1>
+                <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
               )
             })
             }
@@ -92,57 +99,27 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   row: {
-    borderBottom: '1px solid rgba(0,0,0,0.1)',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '1em',
+  },
+  topRow: {
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
+  },
+  image: {
+    height: '150px',
+    width: '300px',
+  },
+  cell: {
+    width: '100%',
+  },
+  cellRight: {
+    width: '40%',
+  },
+  chip: {
+    margin: theme.spacing.unit / 2,
   }
 })
 
 export default withStyles(styles)(EventDetails)
-
-
-// return (
-//   <div id='EventDetails'>
-//     <Paper className={classes.wrapper}>
-//       <div className={classes.row}>
-//         <div>
-//           <Title>Date And Time</Title>
-//           <p>{formattedDate(event.dates.startDateTime)}</p>
-//           <p>{formattedDate(event.dates.endDateTime)}</p>
-//         </div>
-//         <div>
-//           <Title>Price</Title>
-//           <p>{event.price}</p>
-//         </div>
-//       </div>
-//       <div className={classes.row}>
-//         <div>
-//           <Title>Organization</Title>
-//           <p>{event.organization}</p>
-//         </div>
-//         <div>
-//           <Title>Location</Title>
-//           <p>{event.venueName}</p>
-//           <p>{event.location.cityName}</p>
-//           <p>{event.location.stateCode}</p>
-//           <p>{event.location.postalCode}</p>
-//         </div>
-//       </div>
-//       <div>
-//         <Title>URL</Title>
-//         <p>{event.linkToUrl}</p>
-//       </div>
-//       <div>
-//         <Title>Tags</Title>
-//         {event.tags.map((t, index) => {
-//           return (
-//             <p key={`t${index}`}>{t}</p>
-//           )
-//         })
-//         }
-//       </div>
-//     </Paper>
-//   </div>
-// )
