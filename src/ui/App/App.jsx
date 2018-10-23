@@ -71,6 +71,7 @@ const App = ({ classes }) => {
 const styles = theme => ({
   wrapper: {
     marginTop: 64,
+    backgroundColor: 'rgb(225, 225, 225)',
     // backgroundColor: 'green',
     // borderTop: '3px orange solid',
     // borderBottom: '3px orange solid',
@@ -81,10 +82,10 @@ const styles = theme => ({
   body: {
     // borderTop: '3px orange dashed',
     // border: '3px orange dashed',
-    // backgroundColor: 'orange',
+    backgroundColor: 'orange',
 
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5,
+    // paddingTop: theme.spacing.unit * 5,
+    // paddingBottom: theme.spacing.unit * 5,
     width: 'auto',
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
