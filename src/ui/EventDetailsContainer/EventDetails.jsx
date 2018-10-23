@@ -1,6 +1,11 @@
 import React from 'react'
 import { Paper, Chip } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import DateRangeIcon from '@material-ui/icons/DateRange'
+import LocationIcon from '@material-ui/icons/LocationOn'
+import BusinessIcon from '@material-ui/icons/Business'
+import LinkIcon from '@material-ui/icons/Link'
+import LabelIcon from '@material-ui/icons/Label'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
@@ -34,7 +39,7 @@ const formattedDate = (isoDateString) => {
 }
 
 const EventDetails = ({ classes, event }) => {
-  const price = event.price ? `${event.price}` : 'Free'
+  const price = event.price ? `$${event.price}` : 'Free'
 
   return (
     <div id='EventDetails'>
@@ -50,14 +55,16 @@ const EventDetails = ({ classes, event }) => {
         </div>
         <div className={classes.row}>
           <div className={classes.cell}>
-            <Title>Date And Time</Title>
+            <DateRangeIcon
+            />
             <Subheading>Start Time</Subheading>
             <Body1>{formattedDate(event.dates.startDateTime)}</Body1>
             <Subheading>End Time</Subheading>
             <Body1>{formattedDate(event.dates.endDateTime)}</Body1>
           </div>
           <div className={classes.cell}>
-            <Title>Location</Title>
+            <LocationIcon
+            />
             <Body1>{event.venueName}</Body1>
             <Body1>{event.location.cityName}</Body1>
             <Body1>{event.location.stateCode}</Body1>
@@ -66,25 +73,30 @@ const EventDetails = ({ classes, event }) => {
         </div>
         <div className={classes.row}>
           <div className={classes.cell}>
-            <Title>Organization</Title>
+            <BusinessIcon
+            />
             <Body1>{event.organization}</Body1>
           </div>
         </div>
         <div className={classes.row}>
           <div className={classes.cell}>
-            <Title>URL</Title>
+            <LinkIcon
+            />
             <A>{event.linkToUrl}</A>
           </div>
         </div>
         <div className={classes.row}>
           <div className={classes.cell}>
-            <Title>Tags</Title>
-            {event.tags.map((t, index) => {
-              return (
-                <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
-              )
-            })
-            }
+            <LabelIcon
+            />
+            <div className={classes.cell}>
+              {event.tags.map((t, index) => {
+                return (
+                  <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
+                )
+              })
+              }
+            </div>
           </div>
         </div>
       </Paper>
@@ -97,6 +109,8 @@ const styles = theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
+    margin: 'auto',
+    width: '60%',
   },
   row: {
     display: 'flex',
