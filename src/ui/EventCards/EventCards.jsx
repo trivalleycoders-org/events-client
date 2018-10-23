@@ -47,10 +47,15 @@ const EventCards = (props) => {
   const { classes, events } = props
 
   return (
-    <div id='EventCards'>
+    <div id='EventCards' className={classes.wrapper}>
       <Grid
         container
-        spacing={32}
+        // spacing={32}
+        direction='row'
+        alignItems='center'
+        justify='center'
+        alignContent='center'
+        className={classes.grid}
       >
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
@@ -117,11 +122,29 @@ const styles = theme => ({
     padding: '5px 15px 5px 15px',
     borderBottom: 'solid 0.5px gray',
   },
+  grid: {
+    width: '100%',
+  },
   link: {
     textDecoration: 'none',
   },
+  media: {
+    height: 0,
+    paddingTop: '50%',
+  },
   location: {
     color: 'rgba(0, 0, 0, 0.7)',
+  },
+
+
+  organization: {
+    height: '33px',
+    lineHeight: '16.5px',
+    overflow: 'hidden',
+    paddingTop: '7px',
+    paddingBottom: '4px',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   tags: {
     display: 'flex',
@@ -131,19 +154,6 @@ const styles = theme => ({
     [theme.breakpoints.down('xs')]: {
       marginLeft: '0',
     }
-  },
-  media: {
-    height: 0,
-    paddingTop: '50%',
-  },
-  organization: {
-    height: '33px',
-    lineHeight: '16.5px',
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
   },
   time: {
     color: theme.palette.primary.main,
@@ -165,8 +175,13 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
   },
-  numEventsMsg: {
-    marginBottom: 30,
+  wrapper: {
+    backgroundColor: 'green',
+    width: '100%',
+    // display: 'flex',
+    paddingTop: theme.spacing.unit *3,
+    paddingBottom: theme.spacing.unit *3,
+
   },
 })
 

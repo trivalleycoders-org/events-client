@@ -174,6 +174,27 @@ const EventSubForm = (props) => {
 }
 
 const styles = theme => ({
+  actions: {
+    marginTop: 30,
+  },
+  dropZone: {
+    marginTop: 22,
+  },
+  form: {
+    backgroundColor: 'rgb(225, 225, 225)',
+    paddingTop: theme.spacing.unit,
+  },
+  free: {
+    flexBasis: '30%',
+  },
+  price: {
+    flexBasis: '70%',
+    paddingRight: 20,
+  },
+  priceFields: {
+    // backgroundColor: 'green',
+    display: 'flex',
+  },
   paper: {
     paddingTop: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
@@ -187,9 +208,10 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
     marginTop: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
     // [theme.breakpoints.up('sm')]: {
     //   padding: '0 10% 40px 10%',
@@ -197,26 +219,6 @@ const styles = theme => ({
     // [theme.breakpoints.up('md')]: {
     //   padding: '0 15% 40px 15%',
     // },
-  },
-  dropZone: {
-    marginTop: 22,
-  },
-  form: {
-    // backgroundColor: 'pink',
-  },
-  actions: {
-    marginTop: 30,
-  },
-  priceFields: {
-    // backgroundColor: 'green',
-    display: 'flex',
-  },
-  price: {
-    flexBasis: '70%',
-    paddingRight: 20,
-  },
-  free: {
-    flexBasis: '30%',
   },
 })
 
