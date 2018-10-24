@@ -7,10 +7,10 @@ const theme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 480, // 480
-      md: 800, // 320 default: 800, diff:320
-      lg: 1280, // default:1280, diff:480
-      xl: 1920, // 640
+      sm: 680, // default:   480
+      md: 800, //  default:  800, diff:320
+      lg: 1280, // default: 1280, diff:480
+      xl: 1920, // default: 1920
     }
   },
   palette: {

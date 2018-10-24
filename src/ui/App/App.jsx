@@ -37,13 +37,14 @@ import Breakpoints from 'ui/ui-elements/Breakpoints'
 const App = ({ classes }) => {
 
     return (
-      <div id='App'>
-        <AppBar />
-        <div id='App-wrapper' className={classes.wrapper}>
-          <Hero />
-          <div id='App-wrapper-body' className={classes.body}>
+      <div id='App' className={classes.app}>
+        {/* <AppBar /> */}
+
+        <div id='AppWrapper' className={classes.appWrapper}>
+          {/* <Hero /> */}
+          <div id='AppBody' className={classes.appBody}>
             <PageMessage />
-            <AppDrawer />
+            {/* <AppDrawer /> */}
             <Breakpoints />
             <Switch>
               <Route exact path='/' component={EventsContainer} />
@@ -58,7 +59,7 @@ const App = ({ classes }) => {
             </Switch>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
@@ -69,26 +70,36 @@ const App = ({ classes }) => {
 */
 
 const styles = theme => ({
-  wrapper: {
-    marginTop: 64,
-    backgroundColor: 'rgb(225, 225, 225)',
-    // backgroundColor: 'green',
-    // borderTop: '3px orange solid',
-    // borderBottom: '3px orange solid',
-    [theme.breakpoints.up('xs')]: {
-      marginTop: 56,
-    }
+  app: {
+    // Tmp
+    backgroundColor: 'rgba(255, 0, 0, 0.5)',
+    border: '3px red dashed',
+    height: '100vh',
+    width: '100vw',
+    // Tmp
   },
-  body: {
-    // borderTop: '3px orange dashed',
-    // border: '3px orange dashed',
-    // backgroundColor: 'orange',
+  appWrapper: {
+    marginTop: 56,
+    // ** backgroundColor: 'rgb(225, 225, 225)',
+    // ** [theme.breakpoints.up('xs')]: {
+    //   marginTop: 56,
+    // }
 
-    // paddingTop: theme.spacing.unit * 5,
-    // paddingBottom: theme.spacing.unit * 5,
+    // Tmp
+    backgroundColor: 'rgba(0, 255, 0, 0.5)',
+    border: '3px green dashed',
+    // Tmp
+
+  },
+  appBody: {
     width: 'auto',
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    [theme.breakpoints.up('md')]: {
+      // marginLeft: theme.spacing.unit,
+      // marginRight: theme.spacing.unit,
+      marginLeft: '2%',
+      marginRight: '2%',
+    },
+
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing.unit * 3,
       marginRight: theme.spacing.unit * 3,
@@ -99,10 +110,17 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+
+    // Tmp
+       backgroundColor: 'rgba(0, 0, 255, 0.5)',
+       border: '3px blue dashed',
+    // paddingTop: theme.spacing.unit * 5,
+    // paddingBottom: theme.spacing.unit * 5,
+    // Tmp;
+
   },
 
 })
-
 
 export default compose(
   withStyles(styles),

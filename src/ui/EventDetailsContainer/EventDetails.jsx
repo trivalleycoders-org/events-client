@@ -38,7 +38,7 @@ const EventDetails = ({ classes, event }) => {
 
   return (
     <div id='EventDetails'>
-      <Paper className={classes.wrapper}>
+      <Paper id='EventDetailsPaper' className={classes.wrapper}>
         <div className={classNames(classes.row, classes.topRow)}>
           <div className={classes.cell}>
             <img src={event.imageUrl} className={classes.image} alt={event.tile}></img>
