@@ -71,7 +71,9 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     // backgroundColor: theme.palette.background.default,
-    backgroundColor: 'transparent',
+    // Tmp
+    // backgroundColor: 'transparent',
+    // Tmp
   },
   flex: {
     flex: 1,

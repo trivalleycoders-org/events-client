@@ -39,7 +39,7 @@ const App = ({ classes }) => {
 
     return (
       <div id='App' className={classes.app}>
-        {/* <AppBar /> */}
+        <AppBar />
 
         <div id='AppWrapper' className={classes.appWrapper}>
           {/* <Hero /> */}
@@ -80,7 +80,8 @@ const styles = theme => ({
     // Tmp
   },
   appWrapper: {
-    marginTop: 56,
+    marginTop: 63,
+
     // ** backgroundColor: 'rgb(225, 225, 225)',
     // ** [theme.breakpoints.up('xs')]: {
     //   marginTop: 56,
