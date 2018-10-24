@@ -76,7 +76,8 @@ const styles = theme => ({
   card: {
     minHeight: 0,
     minWidth: 0,
-    maxWidth: 390,
+
+    maxWidth: 250,
     margin: '0 auto 0 auto',
   },
   link: {

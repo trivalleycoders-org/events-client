@@ -37,7 +37,7 @@ const EventCards = (props) => {
             <Grid
               key={c._id}
               item
-              xs={12} sm={6} md={6} lg={4}
+              xs={12} sm={6} md={4} lg={4}
               className={classes.gridItem}
             >
               <EventCard
@@ -64,6 +64,7 @@ const styles = theme => ({
   },
   wrapper: {
     padding: 20,
+    // overflowX: 'hidden',
   },
 })
 
