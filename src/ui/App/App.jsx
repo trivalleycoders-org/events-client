@@ -34,6 +34,7 @@ import Footer from 'ui/Footer'
 import { green, yellow, orange, red } from 'logger'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 
+
 const App = ({ classes }) => {
 
     return (
@@ -86,6 +87,7 @@ const styles = theme => ({
     // }
 
     // Tmp
+    padding: '0 200px 0 200px',
     backgroundColor: 'rgba(0, 255, 0, 0.5)',
     border: '3px green dashed',
     // Tmp
@@ -93,25 +95,21 @@ const styles = theme => ({
   },
   appBody: {
     width: 'auto',
-    [theme.breakpoints.up('md')]: {
-      // marginLeft: theme.spacing.unit,
-      // marginRight: theme.spacing.unit,
-      marginLeft: '2%',
-      marginRight: '2%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [theme.breakpoints.up(464)]: {
+      // marginLeft: '1%',
+      // marginRight: '1%',
     },
 
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing.unit * 3,
-      marginRight: theme.spacing.unit * 3,
-    },
-
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+    // [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+    //   width: 1100,
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto',
+    // },
 
     // Tmp
+       // padding: '0 295.25px 0 295.25px',
        backgroundColor: 'rgba(0, 0, 255, 0.5)',
        border: '3px blue dashed',
     // paddingTop: theme.spacing.unit * 5,
@@ -125,3 +123,18 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
 )(App)
+
+/*
+
+[theme.breakpoints.up('md')]: {
+      // marginLeft: theme.spacing.unit,
+      // marginRight: theme.spacing.unit,
+      // marginLeft: '2%',
+      // marginRight: '2%',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      // marginLeft: theme.spacing.unit * 3,
+      // marginRight: theme.spacing.unit * 3,
+    },
+*/
