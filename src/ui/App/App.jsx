@@ -87,7 +87,7 @@ const styles = theme => ({
     // }
 
     // Tmp
-    padding: '0 200px 0 200px',
+    // padding: '0 200px 0 200px',
     backgroundColor: 'rgba(0, 255, 0, 0.5)',
     border: '3px green dashed',
     // Tmp

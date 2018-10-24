@@ -77,43 +77,8 @@ const styles = theme => ({
     // backgroundColor: 'blue',
     minHeight: 0,
     minWidth: 0,
-    // margin: '3%'
-
-    /* xs */
-    // xs1 0
-    // margin: 0,
-    // // xs2 136
-    // [theme.breakpoints.up(136)]: {
-    //   // margin: '1%',
-    // },
-    // // xs3 272
-    // [theme.breakpoints.up(272)]: {
-    //   // margin: '2%',
-    // },
-    // // xs4 408
-    // [theme.breakpoints.up(408)]: {
-    //   // margin: '4%',
-    // },
-    // // xs5 544
-    // [theme.breakpoints.up(544)]: {
-    //   margin: '5%',
-    // },
-    // /* md */
-    // [theme.breakpoints.up(560)]: {
-    //   margin: '4%',
-    // },
-    // [theme.breakpoints.up(920)]: {
-    //   margin: '5%',
-    // },
-    // [theme.breakpoints.up(1040)]: {
-    //   margin: '10%',
-    // },
-    // [theme.breakpoints.up(1160)]: {
-    //   margin: '12%',
-    // },
-    // [theme.breakpoints.up('lg')]: {
-    //   margin: 0,
-    // },
+    maxWidth: 390,
+    margin: '0 auto 0 auto',
   },
   link: {
     textDecoration: 'none',

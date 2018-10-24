@@ -24,7 +24,7 @@ const EventCards = (props) => {
         container
         spacing={40}
         // direction='row'
-        // alignItems='center'
+        alignItems='space-around'
 
         // justify='center'
         // alignContent='center'
