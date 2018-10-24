@@ -37,8 +37,6 @@ const styles = theme => {
       alignItems: 'center',
     },
     wrapper: {
-      borderTop: '3px solid pink',
-      borderBottom: '3px solid pink',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'center',
@@ -57,7 +55,11 @@ const styles = theme => {
       [theme.breakpoints.up('lg')]: {
         height: 380,
       },
+      // Tmp
+      borderTop: '3px solid pink',
+      borderBottom: '3px solid pink',
 
+      // Tmp
 
     },
     title: {

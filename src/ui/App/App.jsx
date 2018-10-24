@@ -42,10 +42,10 @@ const App = ({ classes }) => {
         <AppBar />
 
         <div id='AppWrapper' className={classes.appWrapper}>
-          {/* <Hero /> */}
+          <Hero />
           <div id='AppBody' className={classes.appBody}>
             <PageMessage />
-            {/* <AppDrawer /> */}
+            <AppDrawer />
             <Breakpoints />
             <Switch>
               <Route exact path='/' component={EventsContainer} />
@@ -60,7 +60,7 @@ const App = ({ classes }) => {
             </Switch>
           </div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     )
   }
