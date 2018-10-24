@@ -54,15 +54,6 @@ class AppBar extends React.Component {
   }
 }
 
-/*
-
-
-
-
-
-
-*/
-
 const styles = theme => ({
   drone: {
     fontWeight: 600,
@@ -70,10 +61,6 @@ const styles = theme => ({
   appBar: {
     display: 'flex',
     justifyContent: 'center',
-
-    // Tmp
-    // backgroundColor: 'transparent',
-    // Tmp
   },
   flex: {
     flex: 1,

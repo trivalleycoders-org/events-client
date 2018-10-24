@@ -40,10 +40,7 @@ const styles = theme => {
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'center',
-      // backgroundColor: theme.palette.grey[800],
       color: theme.palette.common.white,
-      // marginBottom: theme.spacing.unit * 4,
-      // height: '500px',
       height: 200,
 
       [theme.breakpoints.only('sm')]: {
@@ -55,15 +52,10 @@ const styles = theme => {
       [theme.breakpoints.up('lg')]: {
         height: 380,
       },
-      // Tmp
-      borderTop: '3px solid pink',
-      borderBottom: '3px solid pink',
-
-      // Tmp
-
+      //
+      // backgroundColor: 'green',
     },
     title: {
-      // paddingTop: unit * 4,
       display: 'flex',
       alignItems: 'center',
       flexBasis: '25%',

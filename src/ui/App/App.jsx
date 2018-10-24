@@ -65,58 +65,30 @@ const App = ({ classes }) => {
     )
   }
 
-/* Save these for now
-<Route exact path='/palette' component={Palette} />
-<Route exact path='/typography' component={TypographyGuide} />
-*/
-
 const styles = theme => ({
   app: {
-    // Tmp
-    backgroundColor: 'rgba(255, 0, 0, 0.5)',
-    border: '3px red dashed',
     height: '100vh',
     width: '100vw',
-    // Tmp
+
   },
   appWrapper: {
     marginTop: 63,
 
-    // ** backgroundColor: 'rgb(225, 225, 225)',
+    // backgroundColor: 'rgb(225, 225, 225)',
     // ** [theme.breakpoints.up('xs')]: {
     //   marginTop: 56,
     // }
-
-    // Tmp
-    // padding: '0 200px 0 200px',
-    backgroundColor: 'rgba(0, 255, 0, 0.5)',
-    border: '3px green dashed',
-    // Tmp
 
   },
   appBody: {
     width: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
-    [theme.breakpoints.up(464)]: {
-      // marginLeft: '1%',
-      // marginRight: '1%',
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: 1100,
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
-
-    // [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-    //   width: 1100,
-    //   marginLeft: 'auto',
-    //   marginRight: 'auto',
-    // },
-
-    // Tmp
-       // padding: '0 295.25px 0 295.25px',
-       backgroundColor: 'rgba(0, 0, 255, 0.5)',
-       border: '3px blue dashed',
-    // paddingTop: theme.spacing.unit * 5,
-    // paddingBottom: theme.spacing.unit * 5,
-    // Tmp;
-
   },
 
 })
@@ -124,6 +96,11 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
 )(App)
+
+/* Save these for now
+  <Route exact path='/palette' component={Palette} />
+  <Route exact path='/typography' component={TypographyGuide} />
+*/
 
 /*
 

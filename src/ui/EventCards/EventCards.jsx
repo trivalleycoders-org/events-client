@@ -61,13 +61,8 @@ const styles = theme => ({
   grid: {
   },
   gridItem: {
-    // backgroundColor: 'pink',
-    // margin: 1,
   },
   wrapper: {
-    // backgroundColor: 'green',
-    // paddingTop: theme.spacing.unit *3,
-    // paddingBottom: theme.spacing.unit *3,
     padding: 20,
   },
 })
