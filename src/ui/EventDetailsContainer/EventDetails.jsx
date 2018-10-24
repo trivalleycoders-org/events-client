@@ -13,6 +13,7 @@ import A from 'ui/ui-elements/A'
 import Title from 'ui/ui-elements/typography/Title'
 import Body1 from 'ui/ui-elements/typography/Body1'
 import Subheading from 'ui/ui-elements/typography/Subheading'
+import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 
 /* Dev */
 // eslint-disable-next-line
@@ -44,11 +45,11 @@ const EventDetails = ({ classes, event }) => {
   return (
     <div id='EventDetails'>
       <Paper className={classes.wrapper}>
-        <div className={classNames(classes.row, classes.topRow)}>
-          <div className={classes.cell}>
-            <img src={event.imageUrl} className={classes.image} alt={event.tile}></img>
+        <div className={classes.picDatePrice}>
+          <div className={classes.image}>
+            <ResponsiveImage src={event.imageUrl} />
           </div>
-          <div className={classes.cell}>
+          <div className={classes.datePrice}>
             <Title>{formattedDate(event.dates.startDateTime)}</Title>
             <Subheading>{price}</Subheading>
           </div>
@@ -121,9 +122,15 @@ const styles = theme => ({
   topRow: {
     borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
+  picDatePrice: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+  },
   image: {
-    height: '150px',
-    width: '300px',
+    flexBasis: '50%',
+  },
+  datePrice: {
+    flexBasis: '50%',
   },
   cell: {
     width: '100%',
