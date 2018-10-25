@@ -75,13 +75,12 @@ const styles = theme => ({
     height: '100vh',
     width: '100vw',
     // Tmp
-    backgroundColor: 'rgba(255, 0, 0, 0.5)',
-    border: '3px red dashed',
-
+    // backgroundColor: 'rgba(255, 0, 0, 0.5)',
+    // border: '3px red dashed',
     // Tmp
   },
   appWrapper: {
-    marginTop: 56, // was 63?
+    marginTop: 63, // was 56?
     // ** backgroundColor: 'rgb(225, 225, 225)',
     // ** [theme.breakpoints.up('xs')]: {
     //   marginTop: 56,
@@ -89,8 +88,8 @@ const styles = theme => ({
 
     // Tmp
     // padding: '0 200px 0 200px',
-    backgroundColor: 'rgba(0, 255, 0, 0.5)',
-    border: '3px green dashed',
+    // backgroundColor: 'rgba(0, 255, 0, 0.5)',
+    // border: '3px green dashed',
     // Tmp
 
   },
@@ -106,8 +105,8 @@ const styles = theme => ({
 
     // Tmp
        // padding: '0 295.25px 0 295.25px',
-       backgroundColor: 'rgba(0, 0, 255, 0.5)',
-       border: '3px blue dashed',
+      //  backgroundColor: 'rgba(0, 0, 255, 0.5)',
+      //  border: '3px blue dashed',
     // paddingTop: theme.spacing.unit * 5,
     // paddingBottom: theme.spacing.unit * 5,
     // Tmp;

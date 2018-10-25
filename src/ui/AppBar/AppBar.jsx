@@ -61,8 +61,9 @@ const styles = theme => ({
   appBar: {
     display: 'flex',
     justifyContent: 'center',
-    // backgroundColor: theme.palette.background.default,
-    backgroundColor: 'transparent',
+    // Tmp
+    // backgroundColor: 'transparent',
+    // Tmp
   },
   flex: {
     flex: 1,
