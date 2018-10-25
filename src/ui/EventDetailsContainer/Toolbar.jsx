@@ -16,7 +16,7 @@ import { green } from 'logger'
 export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
   console.log('event title: ', title)
   return (
-    <Paper className={classes.wrapper}>
+    <Paper className={classes.wrapper} elevation={0}>
       <MuiToolbar variant='dense' className={classes.toolbar}>
         <Typography variant='title' color='inherit'>
           <span className={classes.title}>{title}</span>
@@ -46,6 +46,8 @@ const styles = {
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
+    paddingLeft: '0',
+    paddingRight: '0',
   },
   title: {
     color: '#dc0747',
