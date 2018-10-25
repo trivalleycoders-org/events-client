@@ -43,7 +43,7 @@ export const events = (state = [], { type, payload }) => {
       case eventsReadKey:
         return payload.events
       case eventUpdateOneKey:
-        return updateEvent(state, payload.event)
+        return updateEvent(state, payload.event[0])
       case eventDeleteOneKey:
         return deleteEvent(state, payload.event)
       default:

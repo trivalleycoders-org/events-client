@@ -12,6 +12,7 @@ const Tag = ({ classes, label }) => {
 }
 
 const styles = theme => ({
+
   tagWrapper: {
     marginRight: '10px',
     overflow: 'hidden',
@@ -19,21 +20,30 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
-    color: 'rgba(0, 0, 0, 0.9)',
-    fontSize: '16px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '12px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '12px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '16px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '16px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '16px',
+    },
+    color: 'rgba(0, 0, 0, 0.75)',
+
     // eslint-disable-next-line
     fontFamily: 'Roboto, Condensed, sans-serif',
-    fontWeight: 500,
+    fontWeight: 600,
     letterSpacing: '0.5px',
     lineHeight: '40px',
     textDecoration: 'none',
     textTransform: 'capitalize',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '14px',
-    }
   }
 })
 

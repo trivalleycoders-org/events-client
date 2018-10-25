@@ -50,7 +50,7 @@ export class SearchBox extends React.Component {
             <Button
               color='primary'
               disabled={searchString.length < 3}
-              // variant='contained'
+            // variant='contained'
             >
               Search
             </Button>

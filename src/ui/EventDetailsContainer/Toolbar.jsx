@@ -21,7 +21,7 @@ export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
         <Typography variant='title' color='inherit'>
           <span className={classes.title}>{title}</span>
         </Typography>
-        <div>
+        <div id='ToobarButtons'>
           <IconButtonLink to={`/edit-event/${id}`}>
             <Edit
               className={classes.editBtnIcon}

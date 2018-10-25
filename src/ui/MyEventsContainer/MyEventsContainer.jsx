@@ -9,7 +9,7 @@ import ContentNotice from 'ui/ui-elements/ContentNotice'
 import { green, orange, red } from 'logger'
 
 const componentName = 'MyEventsContainer'
-const log = true
+const log = false
 
 class MyEventsContainer extends React.Component {
 
@@ -58,7 +58,6 @@ class MyEventsContainer extends React.Component {
 const mstp = (state, ownProps) => {
   return {
     events: getAllEvents(state),
-    // currentUserId: getUserId(state)
   }
 }
 
