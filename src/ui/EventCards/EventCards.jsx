@@ -37,7 +37,7 @@ const EventCards = (props) => {
             <Grid
               key={c._id}
               item
-              xs={12} sm={6} md={4} lg={4}
+              xs={12} sm={6} md={6} lg={4}
               className={classes.gridItem}
             >
               <EventCard
@@ -61,8 +61,13 @@ const styles = theme => ({
   grid: {
   },
   gridItem: {
+    // backgroundColor: 'pink',
+    // margin: 1,
   },
   wrapper: {
+    // backgroundColor: 'green',
+    // paddingTop: theme.spacing.unit *3,
+    // paddingBottom: theme.spacing.unit *3,
     padding: 20,
     // overflowX: 'hidden',
   },
