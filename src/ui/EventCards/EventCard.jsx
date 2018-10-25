@@ -24,9 +24,9 @@ const EventCard = ({
   location,
   hasTags,
   tags,
- }) => {
-   // green('imageUrl', imageUrl)
-   green('startDate', startDate)
+}) => {
+  // green('imageUrl', imageUrl)
+  green('startDate', startDate)
   return (
     <Card className={classes.card}>
       <a href={linkToUrl} className={classes.link}>
@@ -60,7 +60,6 @@ const EventCard = ({
         </div>
       </CardActions>
     </Card>
-
   )
 }
 
@@ -99,6 +98,24 @@ const styles = theme => ({
   title: {
     fontWeight: '600',
     height: '40px',
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '-1em',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: '1em',
+    },
+    [theme.breakpoints.up('md')]: {
+      lineHeight: '19px',
+      marginBottom: '1.5em',
+    },
+    [theme.breakpoints.up('lg')]: {
+      lineHeight: '25px',
+      marginBottom: '1.5em',
+    },
+    [theme.breakpoints.up('xl')]: {
+      lineHeight: '25px',
+      marginBottom: '1.5em',
+    },
   },
   time: {
     color: theme.palette.primary.main,
