@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 import A from 'ui/ui-elements/A'
 import Title from 'ui/ui-elements/typography/Title'
-import Body1 from 'ui/ui-elements/typography/Body1'
+import Caption from 'ui/ui-elements/typography/Caption'
 import Subheading from 'ui/ui-elements/typography/Subheading'
 import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
 
@@ -32,85 +32,60 @@ const formattedDate = (isoDateString) => {
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const d = new Date(isoDateString)
+  const YYY = d.getFullYear()
   const MMM = monthNames[d.getMonth()]
   const DDD = dayNames[d.getDay()]
   const dd = d.getDate()
   const hour = hourAmPm(d)
-  return `${DDD}, ${MMM} ${dd} ${hour}`
+  return `${DDD}, ${MMM} ${dd} ${YYY} ${hour}`
 }
 
 const EventDetails = ({ classes, event }) => {
   const price = event.price ? `$${event.price}` : 'Free'
 
   return (
-    <div id='EventDetails'>
-      <Paper className={classes.wrapper}>
-        <div className={classes.picDatePrice}>
-          <div className={classes.image}>
-            <ResponsiveImage src={event.imageUrl} />
+    <React.Fragment>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.picturePriceDate}>
+          <div className={classes.imgContainer}>
+            <ResponsiveImage src={event.imageUrl} className={classes.img} />
           </div>
           <div className={classes.datePrice}>
-            <Title>{formattedDate(event.dates.startDateTime)}</Title>
-            <Subheading>{price}</Subheading>
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.cell}>
-            <DateRangeIcon
-            />
-            <Subheading>Start Time</Subheading>
-            <Body1>{formattedDate(event.dates.startDateTime)}</Body1>
-            <Subheading>End Time</Subheading>
-            <Body1>{formattedDate(event.dates.endDateTime)}</Body1>
-          </div>
-          <div className={classes.cell}>
-            <LocationIcon
-            />
-            <Body1>{event.venueName}</Body1>
-            <Body1>{event.location.cityName}</Body1>
-            <Body1>{event.location.stateCode}</Body1>
-            <Body1>{event.location.postalCode}</Body1>
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.cell}>
-            <BusinessIcon
-            />
-            <Body1>{event.organization}</Body1>
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.cell}>
-            <LinkIcon
-            />
-            <A>{event.linkToUrl}</A>
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.cell}>
-            <LabelIcon
-            />
-            <div className={classes.cell}>
-              {event.tags.map((t, index) => {
-                return (
-                  <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
-                )
-              })
-              }
+            <div className={classes.dateOrg}>
+              <Title className={classes.date}>{formattedDate(event.dates.startDateTime)}</Title>
+              <Caption>{event.organization}</Caption>
+            </div>
+            <div>
+              <Subheading className={classes.price}>{price}</Subheading>
             </div>
           </div>
         </div>
       </Paper>
-    </div>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.leftCell}>
+          <DateRangeIcon
+          />
+          <Title>Start Time</Title>
+          <Subheading className={classes.dateTime}>{formattedDate(event.dates.startDateTime)}</Subheading>
+          <Title>End Time</Title>
+          <Subheading className={classes.dateTime}>{formattedDate(event.dates.endDateTime)}</Subheading>
+        </div>
+        <div className={classes.rightCell}>
+          <LocationIcon
+          />
+          <Title className={classes.venue}>{event.venueName}</Title>
+          <Subheading>{event.location.cityName}</Subheading>
+          <Subheading>{event.location.stateCode}-{event.location.postalCode}</Subheading>
+        </div>
+      </Paper>
+    </React.Fragment>
   )
-
 }
 
 const styles = theme => ({
   wrapper: {
     display: 'flex',
-    flexDirection: 'column',
-    margin: 'auto',
+    margin: '10px auto',
     width: '60%',
   },
   row: {
@@ -122,21 +97,46 @@ const styles = theme => ({
   topRow: {
     borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
-  picDatePrice: {
+  picturePriceDate: {
     display: 'flex',
-    flexFlow: 'column nowrap',
+    flexFlow: 'row nowrap',
   },
-  image: {
+  imgContainer: {
     flexBasis: '50%',
+  },
+  img: {
+    minHeight: '100px',
+    minWidth: '200px',
+    objectFit: 'cover',
   },
   datePrice: {
+    display: 'flex',
+    flexBasis: '50%',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    marginLeft: '1em',
+  },
+  date: {
+    marginBottom: '0',
+  },
+  dateOrg: {
+    justifyContent: 'flex-start',
+  },
+  price: {
+    fontWeight: '600',
+  },
+  venue: {
+    marginBottom: '0',
+  },
+  leftCell: {
     flexBasis: '50%',
   },
-  cell: {
-    width: '100%',
-  },
   cellRight: {
-    width: '40%',
+    flexBasis: '50%',
+  },
+  dateTime: {
+    marginTop: '-1em',
+    marginBottom: '1em',
   },
   chip: {
     margin: theme.spacing.unit / 2,
