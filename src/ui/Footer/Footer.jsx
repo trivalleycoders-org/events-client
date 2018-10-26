@@ -25,6 +25,8 @@ const Footer = ({ classes }) => {
 const styles = theme => ({
 
   footer: {
+
+    width: '100%',
     // backgroundColor: 'rgba(255, 150, 255, 0.4)',
     // borderTop: '3px red solid',
     // borderBottom: '3px red solid',
@@ -38,6 +40,7 @@ const styles = theme => ({
       height: 350,
       flexFlow: 'row nowrap',
     },
+    flexShrink: 0,
   },
   left: {
 

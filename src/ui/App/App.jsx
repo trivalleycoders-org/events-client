@@ -38,7 +38,7 @@ const App = (props) => {
   const { classes } = props
   purple('App - render')
   return (
-    <div id='App' className={classes.app}>
+    <div id='App' className={classes.wrapper}>
       <AppBar />
       <div id='AppWrapper' className={classes.appWrapper}>
         <Hero />
@@ -76,13 +76,18 @@ const styles = theme => ({
   log: {
     flexBasis: '30%',
   },
-  app: {
-    height: '100vh',
-    width: '100vw',
+  wrapper: {
+
+    height: '100%',
+
+    // width: '100vw',
+    width: '100%',
     // Tmp
     // backgroundColor: 'rgba(255, 0, 0, 0.5)',
     // border: '3px red dashed',
     // Tmp
+    display: 'flex',
+    flexDirection: 'column',
   },
   appWrapper: {
     marginTop: 63, // was 56?
@@ -99,9 +104,12 @@ const styles = theme => ({
 
   },
   appBody: {
+
     width: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
+    height: '100%',
+    flex: '1 0 auto',
     // [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
     //   width: 1100,
     //   marginLeft: 'auto',
