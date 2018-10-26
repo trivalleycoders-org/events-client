@@ -18,7 +18,7 @@ const Hero = ({ classes, location }) => {
   const showHero = location.pathname.startsWith('/search-events')
       || location.pathname === '/'
   return showHero
-    ? <Paper id='Hero' className={classes.wrapper} style={background}>
+    ? <Paper id='Hero' className={classes.wrapper} style={background} square elevation={0}>
         <div className={classes.background}>
           <SearchBox />
         </div>
@@ -37,8 +37,8 @@ const styles = theme => {
       alignItems: 'center',
     },
     wrapper: {
-      // borderTop: '3px solid green',
-      // borderBottom: '3px solid green',
+      borderTop: '3px solid pink',
+      borderBottom: '3px solid pink',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'center',
@@ -57,11 +57,8 @@ const styles = theme => {
       [theme.breakpoints.up('lg')]: {
         height: 380,
       },
-
-
     },
     title: {
-      // paddingTop: unit * 4,
       display: 'flex',
       alignItems: 'center',
       flexBasis: '25%',

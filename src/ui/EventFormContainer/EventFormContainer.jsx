@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { eventCreateOneRequest, eventUpdateOneRequest } from 'store/actions/event-actions'
 import { getEventById } from 'store/selectors/events-selectors'
+import { getUserId } from 'store/selectors/auth-selectors'
 import { mergeAll, path } from 'ramda'
 import { hasProp } from 'lib/hasProp'
 import EventForm from './EventForm'
@@ -19,7 +20,6 @@ const shapeEditDataIn = (event) => {
     // initialValues: event,
     ...event
   }
-  // green('EventFormContainer.shapeEditDataIn: r', r)
   return r
 }
 
@@ -34,7 +34,8 @@ const shapeEditDataOut = (formValues, currentUserId) => {
 class EventFormContainer extends React.Component {
 
   eventCreate = (formValues) => {
-    const data = shapeEditDataOut(formValues)
+    const data = shapeEditDataOut(formValues, this.props.userId)
+    // green('EventformContainer.eventCreate: data', data)
     this.props.eventCreateOneRequest(data)
     this.goBack()
   }
@@ -73,6 +74,7 @@ const mstp = (state, ownProps) => {
   const eventId = ownProps.match.params.id
   return {
     event: getEventById(state, eventId),
+    userId: getUserId(state),
     eventId,
   }
 }

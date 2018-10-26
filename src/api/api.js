@@ -170,7 +170,7 @@ export default {
             body: JSON.stringify(event)
           }
         )
-        // pink('api.patch: data', data)
+        // pink('api.patch: data', data.data)
         return data.data
       }
       catch (e) {

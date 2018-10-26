@@ -48,12 +48,12 @@ const EventDetails = ({ classes, event }) => {
       <Paper className={classes.wrapper} elevation={0}>
         <div className={classes.picturePriceDate}>
           <div className={classes.imgContainer}>
-            <ResponsiveImage src={event.imageUrl} className={classes.img} />
+            <ResponsiveImage alt='Drone Image' src={event.imageUrl} className={classes.img} />
           </div>
           <div className={classes.datePrice}>
             <div className={classes.dateOrg}>
               <Title className={classes.date}>{formattedDate(event.dates.startDateTime)}</Title>
-              <Caption>{event.organization}</Caption>
+              <Caption>by {event.organization}</Caption>
             </div>
             <div>
               <Subheading className={classes.price}>{price}</Subheading>
@@ -75,7 +75,35 @@ const EventDetails = ({ classes, event }) => {
           />
           <Title className={classes.venue}>{event.venueName}</Title>
           <Subheading>{event.location.cityName}</Subheading>
-          <Subheading>{event.location.stateCode}-{event.location.postalCode}</Subheading>
+          <Subheading>{event.location.stateCode} {event.location.postalCode}</Subheading>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div>
+          <BusinessIcon
+          />
+          <Subheading>{event.organization}</Subheading>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div>
+          <LinkIcon
+          />
+          <A>{event.linkToUrl}</A>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.cell}>
+          <LabelIcon
+          />
+          <div className={classes.chipbox}>
+            {event.tags.map((t, index) => {
+              return (
+                <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
+              )
+            })
+            }
+          </div>
         </div>
       </Paper>
     </React.Fragment>
@@ -88,33 +116,26 @@ const styles = theme => ({
     margin: '10px auto',
     width: '60%',
   },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: '1em',
-  },
-  topRow: {
-    borderBottom: '1px solid rgba(0,0,0,0.1)',
-  },
   picturePriceDate: {
     display: 'flex',
     flexFlow: 'row nowrap',
+    width: '100%',
   },
   imgContainer: {
     flexBasis: '50%',
   },
   img: {
-    minHeight: '100px',
-    minWidth: '200px',
+    height: '100%',
     objectFit: 'cover',
+    width: '100%',
   },
   datePrice: {
+    backgroundColor: 'rgba(0,0,0,0.04)',
     display: 'flex',
     flexBasis: '50%',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginLeft: '1em',
+    paddingLeft: theme.spacing.unit * 4,
   },
   date: {
     marginBottom: '0',
@@ -123,10 +144,13 @@ const styles = theme => ({
     justifyContent: 'flex-start',
   },
   price: {
-    fontWeight: '600',
+    // fontWeight: '600',
   },
   venue: {
     marginBottom: '0',
+  },
+  cell: {
+    flexBasis: '100%',
   },
   leftCell: {
     flexBasis: '50%',
@@ -135,11 +159,15 @@ const styles = theme => ({
     flexBasis: '50%',
   },
   dateTime: {
-    marginTop: '-1em',
+    // marginTop: '-1em',
     marginBottom: '1em',
   },
   chip: {
     margin: theme.spacing.unit / 2,
+  },
+  chipBox: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   }
 })
 

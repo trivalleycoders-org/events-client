@@ -2,32 +2,17 @@ import React from 'react'
 import {
   Route,
   Switch,
-  withRouter
 } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-import { parse } from '../../api/cookie-parser'
-import jwt from 'jsonwebtoken'
-import 'url-search-params-polyfill'
-
-// Store
-import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
-import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
-import { getLoggedIn } from 'store/selectors/auth-selectors'
-import { getRequest } from 'store/selectors/request-selectors'
-import { eventsSearchReadRequest, searchTextSet, searchTextUnset } from 'store/actions/search-actions'
 
 // User
-
 import Hero from 'ui/Hero'
 import LoginForm from 'ui/Auth/LoginForm'
 import PageMessage from 'ui/ui-elements/PageMessage'
-
 import PrivateRoute from 'ui/PrivateRoute'
 import RegisterForm from 'ui/Auth/RegisterForm'
 import SettingsForm from 'ui/Auth/SettingsForm'
-import withRoot from 'ui/withRoot'
 import AppBar from 'ui/AppBar'
 // import Snackbars from 'ui/Snackbars'
 import AppDrawer from 'ui/AppDrawer'
@@ -50,127 +35,15 @@ import { green, yellow, orange, red } from 'logger'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 
 
-const componentName = 'App'
-const log = false
-
-class App extends React.Component {
-  constructor(props) {
-    log && orange(`${componentName} - Constructor - START`)
-    super(props)
-    let user
-    if (document.cookie) {
-      const tokenObj = parse(document.cookie)
-      const decoded = jwt.decode(tokenObj.token, { complete: true })
-      user = {
-        id: decoded.payload.id,
-        email: decoded.payload.email,
-        token: tokenObj.token
-      }
-      this.props.userValidateRequest(user)
-
-      this.state = {
-        userId: user.id,
-      }
-      // green(`${componentName} - cookie found with userId`, user.id)
-    } else {
-      // green(`${componentName} - cookie NOT found`)
-      this.state = {
-        userId: undefined,
-      }
-    }
-
-    log && orange(`${componentName} - Constructor - END`)
-  }
-
-  loadData = async (from, prevProps = undefined) => {
-    // green('loadData: from:', from)
-    const { userId } = this.state
-    const {
-      eventsReadRequest,
-      eventsForUserReadRequest,
-      eventsSearchReadRequest
-    } = this.props
-
-    const currPath = this.props.location.pathname
-
-    if (/^\/search-events\//.test(currPath)) {
-      let prevSearch
-      const currSearch = this.props.location.search
-      if (prevProps !== undefined) {
-        prevSearch = prevProps.location.search
-      } else {
-        prevSearch = undefined
-      }
-      const params = new URLSearchParams(this.props.location.search)
-      const searchString = params.get('searchString')
-      this.props.searchTextSet(searchString)
-      if (prevSearch !== currSearch) {
-        await eventsSearchReadRequest(searchString)
-      }
-    } else {
-      this.props.searchTextUnset()
-      let prevPath = undefined
-      if (!prevProps === undefined) {
-        prevPath = prevProps.location.pathname
-      }
-      if (currPath !== prevPath) {
-        switch (currPath) {
-          case '/':
-            // green('** getting all events')
-            // green(`${componentName} - case /`)
-            await eventsReadRequest()
-            break
-          case '/my-events':
-            // green(`${componentName} - case /my-events`)
-            await eventsForUserReadRequest(userId)
-            break
-          case '/create-event':
-          case '/login':
-          case '/register':
-          case '/settings':
-            break
-          default:
-            red(`App.loadData: unknown route path ${currPath}`)
-        }
-      }
-    }
-
-  }
-
-  componentDidMount() {
-    log && orange(`${componentName} - Mount - START`)
-    // green('load data', this.loadData)
-    // this.loadData('mount')
-
-    // this.someFun('hi')
-    this.loadData('mount')
-
-    log && orange(`${componentName} - Mount - END`)
-  }
-
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    log && orange(`${componentName} - Update - START`)
-    await this.loadData('update', prevProps)
-    log && orange(`${componentName} - Update - END`)
-  }
-
-  render() {
-
-    const { classes, userValidateRequestStatus } = this.props
-    const { userId } = this.state
-
-    if (!userId === undefined) {
-      if (userValidateRequestStatus !== 'success') {
-        return null
-      }
-    }
+const App = ({ classes }) => {
 
     return (
-      <div id='App'>
+      <div id='App' className={classes.app}>
         <AppBar />
-        <div id='App-wrapper' className={classes.wrapper}>
+
+        <div id='AppWrapper' className={classes.appWrapper}>
           <Hero />
-          <div id='App-wrapper-body' className={classes.body}>
+          <div id='AppBody' className={classes.appBody}>
             <PageMessage />
             <AppDrawer />
             <Breakpoints />
@@ -191,58 +64,77 @@ class App extends React.Component {
       </div>
     )
   }
-}
+
 /* Save these for now
 <Route exact path='/palette' component={Palette} />
 <Route exact path='/typography' component={TypographyGuide} />
 */
 
 const styles = theme => ({
-  wrapper: {
-    marginTop: 64,
-    // backgroundColor: 'green',
-    // borderTop: '3px orange solid',
-    // borderBottom: '3px orange solid',
-    [theme.breakpoints.up('xs')]: {
-      marginTop: 56,
-    }
+  app: {
+    height: '100vh',
+    width: '100vw',
+    // Tmp
+    // backgroundColor: 'rgba(255, 0, 0, 0.5)',
+    // border: '3px red dashed',
+    // Tmp
   },
-  body: {
-    // borderTop: '3px orange dashed',
-    // border: '3px orange dashed',
-    // backgroundColor: 'orange',
+  appWrapper: {
+    marginTop: 63, // was 56?
+    // ** backgroundColor: 'rgb(225, 225, 225)',
+    // ** [theme.breakpoints.up('xs')]: {
+    //   marginTop: 56,
+    // }
 
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5,
+    // Tmp
+    // padding: '0 200px 0 200px',
+    // backgroundColor: 'rgba(0, 255, 0, 0.5)',
+    // border: '3px green dashed',
+    // Tmp
+
+  },
+  appBody: {
     width: 'auto',
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing.unit * 3,
-      marginRight: theme.spacing.unit * 3,
-    },
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    // [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+    //   width: 1100,
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto',
+    // },
 
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+    // Tmp
+       // padding: '0 295.25px 0 295.25px',
+      //  backgroundColor: 'rgba(0, 0, 255, 0.5)',
+      //  border: '3px blue dashed',
+    // paddingTop: theme.spacing.unit * 5,
+    // paddingBottom: theme.spacing.unit * 5,
+    // Tmp;
+
   },
 
 })
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset }
-
-const mapStateToProps = (state) => {
-  return {
-    userValidateRequestStatus: getRequest(state, userValidateRequestKey),
-    loggedIn: getLoggedIn(state)
-  }
-}
-
 export default compose(
-  withRouter,
   withStyles(styles),
-  connect(mapStateToProps, actions),
-  withRoot
 )(App)
+
+/* Save these for now
+  <Route exact path='/palette' component={Palette} />
+  <Route exact path='/typography' component={TypographyGuide} />
+*/
+
+/*
+
+[theme.breakpoints.up('md')]: {
+      // marginLeft: theme.spacing.unit,
+      // marginRight: theme.spacing.unit,
+      // marginLeft: '2%',
+      // marginRight: '2%',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      // marginLeft: theme.spacing.unit * 3,
+      // marginRight: theme.spacing.unit * 3,
+    },
+*/

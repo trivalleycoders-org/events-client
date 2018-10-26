@@ -14,7 +14,7 @@ import grey from '@material-ui/core/colors/grey'
 class Breakpoints extends React.Component {
 
   state = {
-    position: 'bottom',
+    position: 'top',
   }
 
   positionClick = (e) => {
