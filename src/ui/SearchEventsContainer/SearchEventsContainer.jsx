@@ -6,11 +6,14 @@ import EventCards from 'ui/EventCards'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 class SearchEventsContainer extends React.Component {
 
   render() {
+
+    purple('SearchEventsContainer - render')
+
     const { events, searchText } = this.props
     return (
       <EventCards

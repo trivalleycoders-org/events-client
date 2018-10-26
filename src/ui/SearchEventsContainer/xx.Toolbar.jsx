@@ -10,9 +10,12 @@ import Edit from '@material-ui/icons/Edit'
 import IconButtonLink from 'ui/ui-elements/IconButtonLink'
 
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 export const Toolbar = ({ classes, handleDeleteClick, id }) => {
+
+  purple('Toolbar (SearchEvents) - render')
+
   return (
     <Paper>
       <MuiToolbar variant='dense' className={classes.wrapper}>

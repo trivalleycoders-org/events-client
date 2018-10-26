@@ -22,5 +22,5 @@ export default combineReducers({
   search,
   pageMessage,
   form: formReducer,
-  auth
+  auth,
 })

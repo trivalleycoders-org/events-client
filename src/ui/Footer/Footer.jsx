@@ -2,8 +2,11 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import RightSide from './RightSide'
 import ByTvc from './ByTvc'
+// esline-disable-next-line
+import { purple } from 'logger'
 
 const Footer = ({ classes }) => {
+  purple('Footer - render')
   return (
     <footer id='footer' className={classes.footer}>
       <div className={classes.left}>

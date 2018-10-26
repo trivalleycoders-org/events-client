@@ -31,39 +31,38 @@ import Footer from 'ui/Footer'
 
 // Dev
 // eslint-disable-next-line
-import { green, yellow, orange, red } from 'logger'
+import { green, yellow, orange, red, purple } from 'logger'
 import Breakpoints from 'ui/ui-elements/Breakpoints'
 
-
-const App = ({ classes }) => {
-
-    return (
-      <div id='App' className={classes.app}>
-        <AppBar />
-
-        <div id='AppWrapper' className={classes.appWrapper}>
-          <Hero />
-          <div id='AppBody' className={classes.appBody}>
-            <PageMessage />
-            <AppDrawer />
-            <Breakpoints />
-            <Switch>
-              <Route exact path='/' component={EventsContainer} />
-              <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
-              <PrivateRoute exact path='/create-event' component={EventFormContainer} />
-              <Route path='/search-events' component={SearchEventsContainer} />
-              <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
-              <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
-              <Route exact path='/login' component={LoginForm} />
-              <Route exact path='/register' component={RegisterForm} />
-              <PrivateRoute exact path='/settings' component={SettingsForm} />
-            </Switch>
-          </div>
+const App = (props) => {
+  const { classes } = props
+  purple('App - render')
+  return (
+    <div id='App' className={classes.app}>
+      <AppBar />
+      <div id='AppWrapper' className={classes.appWrapper}>
+        <Hero />
+        <div id='AppBody' className={classes.appBody}>
+          <PageMessage />
+          <AppDrawer />
+          <Breakpoints />
+          <Switch>
+            <Route exact path='/' component={EventsContainer} />
+            <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
+            <PrivateRoute exact path='/create-event' component={EventFormContainer} />
+            <Route path='/search-events' component={SearchEventsContainer} />
+            <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
+            <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
+            <Route exact path='/login' component={LoginForm} />
+            <Route exact path='/register' component={RegisterForm} />
+            <PrivateRoute exact path='/settings' component={SettingsForm} />
+          </Switch>
         </div>
-        <Footer />
       </div>
-    )
-  }
+      <Footer />
+    </div>
+  )
+}
 
 /* Save these for now
 <Route exact path='/palette' component={Palette} />
@@ -71,6 +70,12 @@ const App = ({ classes }) => {
 */
 
 const styles = theme => ({
+  eventLog: {
+    display: 'flex',
+  },
+  log: {
+    flexBasis: '30%',
+  },
   app: {
     height: '100vh',
     width: '100vw',

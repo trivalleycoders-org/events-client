@@ -11,13 +11,13 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import * as authSelectors from 'store/selectors/auth-selectors'
-import * as appMenuActions from 'store/actions/app-menu-actions'
+import { appMenuToggle } from 'store/actions/app-menu-actions'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 class AppBar extends React.Component {
 
@@ -26,9 +26,8 @@ class AppBar extends React.Component {
   }
 
   render() {
-
+    purple('AppBar - render')
     const { classes, isLoggedIn, width } = this.props
-
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -74,6 +73,8 @@ const styles = theme => ({
   },
 })
 
+const actions = { appMenuToggle }
+
 const mapStateToProps = (state) => ({
   isLoggedIn: authSelectors.getLoggedIn(state)
 })
@@ -81,5 +82,5 @@ const mapStateToProps = (state) => ({
 export default compose(
   withWidth(),
   withStyles(styles),
-  connect(mapStateToProps, appMenuActions),
+  connect(mapStateToProps, actions),
 )(AppBar)

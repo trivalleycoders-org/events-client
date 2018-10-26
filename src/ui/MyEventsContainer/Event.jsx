@@ -14,9 +14,10 @@ import Title from 'ui/ui-elements/typography/Title'
 import ButtonFit from 'ui/ui-elements/ButtonFit'
 import Chevron5 from './Chevron5'
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const Event = ({ classes, event, handleItemClick }) => {
+  purple('Event (MyEvents) - render')
   return (
     <Paper className={classes.wrapper}>
       <Grid container>

@@ -26,6 +26,11 @@ const styleYellow = [
   'color: #ffd700',
   'font-weight: bold',
 ].join(';')
+const stylePurple = [
+  'color: #885ead', // 551a8b
+  'font-weight: bold',
+].join(';')
+
 
 const getStyle = (styleName) => {
   let color
@@ -47,6 +52,9 @@ const getStyle = (styleName) => {
       break
     case 'yellow':
       color = styleYellow
+      break
+    case 'purple':
+      color = stylePurple
       break
     default:
       color = ''
@@ -83,6 +91,10 @@ export const orange = (message = '', value = '', indent = 0) => {
 
 export const pink = (message = '', value = '') => {
   makeMessage(message, value, 'pink')
+}
+
+export const purple = (message = '', value = '') => {
+  makeMessage(message, value, 'purple')
 }
 
 export const log = (message = '', value = '', color = '', indent = false) => {

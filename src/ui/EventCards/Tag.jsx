@@ -1,9 +1,10 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 // eslint-disable-next-line
-// import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const Tag = ({ classes, label }) => {
+  purple('Tag - render')
   return (
     <div className={classes.tagWrapper}>
       <div className={classes.tag}>#{label}</div>

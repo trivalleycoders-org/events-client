@@ -13,7 +13,7 @@ import withRoot from 'ui/withRoot'
 import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
 import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
 import { getLoggedIn } from 'store/selectors/auth-selectors'
-import { getRequest, areRequestsPending } from 'store/selectors/request-selectors'
+import { getRequest } from 'store/selectors/request-selectors'
 import { eventsSearchReadRequest, searchTextSet, searchTextUnset } from 'store/actions/search-actions'
 
 // User
@@ -21,15 +21,11 @@ import App from './App'
 
 // Dev
 // eslint-disable-next-line
-import { green, yellow, orange, red } from 'logger'
-
-const componentName = 'AppContainer'
-const log = false
+import { green, red, purple } from 'logger'
 
 class AppContainer extends React.Component {
 
   constructor(props) {
-    log && orange(`${componentName} - Constructor - START`)
     super(props)
     let user
     if (document.cookie) {
@@ -52,8 +48,6 @@ class AppContainer extends React.Component {
         userId: undefined,
       }
     }
-
-    log && orange(`${componentName} - Constructor - END`)
   }
 
   loadData = async (from, prevProps = undefined) => {
@@ -116,20 +110,17 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-    log && orange(`${componentName} - Mount - START`)
-
     this.loadData('mount')
-
-    log && orange(`${componentName} - Mount - END`)
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    log && orange(`${componentName} - Update - START`)
     await this.loadData('update', prevProps)
-    log && orange(`${componentName} - Update - END`)
   }
 
   render() {
+
+    purple('AppContainer - render')
+
     const { userValidateRequestStatus } = this.props
     const { userId } = this.state
 
@@ -141,7 +132,10 @@ class AppContainer extends React.Component {
 
     return (
       <Route render={props => (
-          <App userId={userId}/>
+          <App
+            userId={userId}
+            logEvent={this.props.logEvent}
+          />
       )}/>
     )
   }
@@ -153,7 +147,6 @@ const mapStateToProps = (state) => {
   return {
     userValidateRequestStatus: getRequest(state, userValidateRequestKey),
     loggedIn: getLoggedIn(state),
-    requestsPending: areRequestsPending(state),
   }
 }
 

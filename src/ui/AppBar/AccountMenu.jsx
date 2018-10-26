@@ -19,7 +19,7 @@ import {
 import { nameFromEmail } from 'lib/nameFromEmail'
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 
 const linkStyle = {
@@ -46,6 +46,7 @@ class AccountMenu extends React.Component {
   }
 
   render() {
+    purple('AccountMenu - render')
     const { open } = this.state
     const { classes, emailName } = this.props
     return (

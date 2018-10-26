@@ -13,7 +13,7 @@ import Subheading from 'ui/ui-elements/typography/Subheading'
 import Body1 from 'ui/ui-elements/typography/Body1'
 import Tag from './Tag'
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const EventCard = ({
   classes,
@@ -25,8 +25,7 @@ const EventCard = ({
   hasTags,
   tags,
  }) => {
-   // green('imageUrl', imageUrl)
-   green('startDate', startDate)
+  purple('EventCard - render')
   return (
     <Card className={classes.card}>
       <a href={linkToUrl} className={classes.link}>

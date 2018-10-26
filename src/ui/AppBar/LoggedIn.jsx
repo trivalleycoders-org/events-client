@@ -5,10 +5,10 @@ import AccountMenu from './AccountMenu'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const  LoggedIn = () => {
-
+  purple('LoggedIn - render')
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>

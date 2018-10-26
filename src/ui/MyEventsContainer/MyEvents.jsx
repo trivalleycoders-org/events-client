@@ -8,9 +8,11 @@ import Event from './Event'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const MyEvents = ({ classes, events }) => {
+
+  purple('MyEvents - render')
 
   return (
     <div id='MyEvents' className={classes.wrapper}>
