@@ -18,7 +18,7 @@ export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
   return (
     <Paper id='Toolbar'>
       <MuiToolbar id='MuiToolbar' variant='dense' className={classes.wrapper}>
-        <Typography variant='title' color='inherit'>
+        <Typography variant='h5' color='inherit'>
           <span className={classes.title}>{title}</span>
         </Typography>
         <div id='ToobarButtons'>
