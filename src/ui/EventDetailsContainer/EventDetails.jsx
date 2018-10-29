@@ -44,24 +44,75 @@ const EventDetails = ({ classes, event }) => {
   const price = event.price ? `$${event.price}` : 'Free'
 
   return (
-    <Paper className={classes.wrapper} elevation={0}>
-      <div className={classes.picturePriceDate}>
-        <div className={classes.imgContainer}>
-          <ResponsiveImage alt='Drone Image' src={event.imageUrl} className={classes.img} />
-        </div>
-        <div className={classes.datePrice}>
-          <div className={classes.dateOrg}>
-            <Typography variant='h5'>
-              {formattedDate(event.dates.startDateTime)}
-            </Typography>
-            <Typography variant='caption'>by {event.organization}</Typography>
+    <React.Fragment>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.picturePriceDate}>
+          <div className={classes.imgContainer}>
+            <ResponsiveImage alt='Drone Image' src={event.imageUrl} className={classes.img} />
           </div>
-          <div>
-            <Typography variant='subtitle1'>{price}</Typography>
+          <div className={classes.datePrice}>
+            <div className={classes.dateOrg}>
+              <Typography variant='h5'>
+                {formattedDate(event.dates.startDateTime)}
+              </Typography>
+              <Typography variant='caption'>by {event.organization}</Typography>
+            </div>
+            <div>
+              <Typography variant='subtitle1'>{price}</Typography>
+            </div>
           </div>
         </div>
-      </div>
-    </Paper>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.leftCell}>
+          <div className={classes.innerLeftCell}>
+            <DateRangeIcon
+            />
+          </div>
+          <div className={classes.innerRightCell}>
+            <Typography variant='h6'>Start Time</Typography>
+            <Typography variant='subtitle2'>{formattedDate(event.dates.startDateTime)}</Typography>
+            <Typography variant='h6'>End Time</Typography>
+            <Typography variant='subtitle2'>{formattedDate(event.dates.endDateTime)}</Typography>
+          </div>
+        </div>
+        <div className={classes.rightCell}>
+          <div className={classes.innerLeftCell}>
+            <LocationIcon
+            />
+          </div>
+          <div className={classes.innerRightCell}>
+            <Typography variant='subtitle1'>{event.venueName}</Typography>
+            <Typography variant='subtitle2'>{event.location.cityName}</Typography>
+            <Typography variant='subtitle2'>{event.location.stateCode} {event.location.postalCode}</Typography>
+          </div>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.leftCell}>
+          <div className={classes.innerLeftCell}>
+            <BusinessIcon
+            />
+          </div>
+          <div className={classes.innerRightCell}>
+            <Typography variant='subtitle1'>{event.organization}</Typography>
+          </div>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.leftCell}>
+          <div className={classes.innerLeftCell}>
+            <LinkIcon
+            />
+          </div>
+          <div className={classes.innerRightCell}>
+            <a href={event.linkToUrl}>
+              <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
+            </a>
+          </div>
+        </div>
+      </Paper>
+    </React.Fragment >
   )
 }
 
@@ -126,10 +177,18 @@ const styles = theme => ({
     flexBasis: '100%',
   },
   leftCell: {
+    display: 'flex',
     flexBasis: '50%',
   },
-  cellRight: {
+  rightCell: {
+    display: 'flex',
     flexBasis: '50%',
+  },
+  innerLeftCell: {
+    flexBasis: '10%',
+  },
+  innerRightCell: {
+    flexBasis: '90%',
   },
   dateTime: {
     // marginTop: '-1em',
