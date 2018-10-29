@@ -9,9 +9,9 @@ import {
   IconButton,
   withWidth,
 } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
 import * as authSelectors from 'store/selectors/auth-selectors'
 import { appMenuToggle } from 'store/actions/app-menu-actions'
+import MenuIcon from '@material-ui/icons/Menu'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
