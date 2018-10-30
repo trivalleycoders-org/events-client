@@ -79,7 +79,7 @@ const styles = theme => ({
     border: '2px dashed white',
     flex: '1 0 auto',
     maxWidth: 1024,
-    margin: '0 auto',
+    margin: '40px auto 40px auto',
   },
   footer: {
     // border: '2px dashed black',
