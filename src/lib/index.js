@@ -1,1 +1,1 @@
-export { hasProp } from './hasProp'
+// export { hasProp } from './hasProp'
