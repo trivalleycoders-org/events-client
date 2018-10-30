@@ -7,11 +7,11 @@ import { withStyles } from '@material-ui/core/styles'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const IconButtonLink = ({classes, children, color, to, variant}) => {
+const IconButtonLink = ({ classes, children, color, to, variant }) => {
   const LinkComponent = props => <Link
-      to={to}
-      {...props}
-    />
+    to={to}
+    {...props}
+  />
   return (
     <IconButton
       component={LinkComponent}
@@ -26,7 +26,7 @@ const IconButtonLink = ({classes, children, color, to, variant}) => {
 
 const styles = theme => ({
   root: {
-    color: theme.palette.primary.contrastText,
+    //color: theme.palette.primary.contrastText,
   },
 })
 

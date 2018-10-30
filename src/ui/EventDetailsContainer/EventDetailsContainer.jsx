@@ -27,7 +27,6 @@ class EventDetailsContainer extends React.Component {
         <PageTitle>
           Event Details
         </PageTitle>
-        <Toolbar id={event._id} title={event.title} />
         <EventDetails
           event={event}
         />
@@ -35,6 +34,8 @@ class EventDetailsContainer extends React.Component {
     )
   }
 }
+
+// <Toolbar id={event._id} title={event.title} />
 
 const styles = theme => ({
   wrapper: {

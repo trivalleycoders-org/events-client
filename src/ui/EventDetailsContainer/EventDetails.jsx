@@ -1,14 +1,17 @@
 import React from 'react'
-import { Paper, Typography, Chip } from '@material-ui/core'
+import { Paper, Typography, Chip, IconButton } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import DateRangeIcon from '@material-ui/icons/DateRange'
 import LocationIcon from '@material-ui/icons/LocationOn'
 import BusinessIcon from '@material-ui/icons/Business'
+import DeleteForever from '@material-ui/icons/DeleteForever'
+import Edit from '@material-ui/icons/Edit'
 import LinkIcon from '@material-ui/icons/Link'
 import LabelIcon from '@material-ui/icons/Label'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
+import IconButtonLink from 'ui/elements/IconButtonLink'
 // import A from 'ui/ui-elements/A'
 // import Title from 'ui/ui-elements/typography/Title'
 // import Caption from 'ui/ui-elements/typography/Caption'
@@ -45,6 +48,29 @@ const EventDetails = ({ classes, event }) => {
 
   return (
     <React.Fragment>
+      <Paper className={classes.toolbar} elevation={0}>
+        <div className={classes.title}>
+          <Typography variant='h5' color='inherit'>
+            {event.title}
+          </Typography>
+        </div>
+        <div id='ToobarButtons' className={classes.actionButtons}>
+          <IconButton>
+            <IconButtonLink to={`/edit-event/${event._id}`}>
+              <Edit
+                className={classes.editBtnIcon}
+              />
+            </IconButtonLink>
+          </IconButton>
+          <IconButton>
+            <IconButtonLink to={`/edit-event/${event._id}`}>
+              <DeleteForever
+                className={classes.deleteBtnIcon}
+              />
+            </IconButtonLink>
+          </IconButton>
+        </div>
+      </Paper>
       <Paper className={classes.wrapper} elevation={0}>
         <div className={classes.picturePriceDate}>
           <div className={classes.imgContainer}>
@@ -52,7 +78,7 @@ const EventDetails = ({ classes, event }) => {
           </div>
           <div className={classes.datePrice}>
             <div className={classes.dateOrg}>
-              <Typography variant='h5'>
+              <Typography variant='h6'>
                 {formattedDate(event.dates.startDateTime)}
               </Typography>
               <Typography variant='caption'>by {event.organization}</Typography>
@@ -130,11 +156,25 @@ const EventDetails = ({ classes, event }) => {
           </div>
         </div>
       </Paper>
-    </React.Fragment >
+    </React.Fragment>
   )
 }
 
 const styles = theme => ({
+  toolbar: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.04)',
+    display: 'flex',
+    margin: '10px auto',
+    justifyContent: 'space-between',
+  },
+  title: {
+    justifyContent: 'flex-start',
+  },
+  actionButtons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
   wrapper: {
     display: 'flex',
     margin: '10px auto',
@@ -154,10 +194,12 @@ const styles = theme => ({
     margin: '0 auto 0 auto',
     // maxWidth: 390, // was 250?
     [theme.breakpoints.up('xs')]: {
+      flexBasis: '100%',
       minHeight: '150px',
       minWidth: '300px',
     },
     [theme.breakpoints.up('sm')]: {
+      flexBasis: '100%',
       minHeight: '150px',
       minWidth: '300px',
     },
