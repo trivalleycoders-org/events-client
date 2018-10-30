@@ -10,9 +10,10 @@ import iHero from './media/hero4.jpg'
 import SearchBox from 'ui/SearchBox'
 // eslint-disable-next-line
 import { purple } from 'logger'
+import { logRender } from 'logging'
 
 const Hero = ({ classes, location }) => {
-  purple('Hero - render')
+  logRender && purple('Hero - render')
   const background = {
     backgroundImage: `url(${iHero})`,
     backgroundSize: 'cover',

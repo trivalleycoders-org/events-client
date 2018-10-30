@@ -8,6 +8,7 @@ import Button from 'ui/elements/Button'
 /* Dev */
 // eslint-disable-next-line
 import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const getModalStyle = () => {
   const top = 50
@@ -24,7 +25,7 @@ class AreYouSure extends React.Component {
 
   render() {
 
-    purple('AreYourSure - render')
+    logRender && purple('AreYourSure - render')
 
     const { classes, open, close } = this.props
     return (

@@ -16,7 +16,6 @@ class EventDetailsContainer extends React.Component {
   }
   render() {
     const { event } = this.props
-    console.log('event in container: ', event)
     return (
       <div id='EventDetailsContainer'>
         <Toolbar id={event._id} title={event.title} />

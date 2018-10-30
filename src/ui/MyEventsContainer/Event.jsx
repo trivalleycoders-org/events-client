@@ -11,12 +11,13 @@ import { dateFormat } from './helpers'
 import { Typography } from '@material-ui/core'
 import ButtonFit from 'ui/elements/ButtonFit'
 import Chevron5 from './Chevron5'
-
+// Dev
 // eslint-disable-next-line
 import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const Event = ({ classes, event, handleItemClick }) => {
-  purple('Event (MyEvents) - render')
+  logRender && purple('Event (MyEvents) - render')
   return (
     <Paper className={classes.wrapper}>
       <Grid container>

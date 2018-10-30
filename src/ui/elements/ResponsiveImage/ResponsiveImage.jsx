@@ -6,7 +6,6 @@ import classNames from 'classnames'
 
 
 const ResponsiveImage = ({ alt, classes, src, className, maxHeight = undefined, minHeight=0}) => {
-  console.log('maxHeight', maxHeight)
   const styles = {
 
       // height: 'auto',
