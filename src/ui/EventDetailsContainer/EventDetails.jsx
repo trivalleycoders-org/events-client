@@ -100,15 +100,33 @@ const EventDetails = ({ classes, event }) => {
         </div>
       </Paper>
       <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.leftCell}>
-          <div className={classes.innerLeftCell}>
+        <div className={classes.row}>
+          <div className={classes.linkIconCell}>
             <LinkIcon
             />
           </div>
-          <div className={classes.innerRightCell}>
+          <div className={classes.linkUrlCell}>
             <a href={event.linkToUrl}>
               <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
             </a>
+          </div>
+        </div>
+      </Paper>
+      <Paper className={classes.wrapper} elevation={0}>
+        <div className={classes.leftCell}>
+          <div className={classes.innerLeftCell}>
+            <LabelIcon
+            />
+          </div>
+          <div className={classes.innerRightCell}>
+            <div className={classes.chipbox}>
+              {event.tags.map((t, index) => {
+                return (
+                  <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
+                )
+              })
+              }
+            </div>
           </div>
         </div>
       </Paper>
@@ -173,7 +191,8 @@ const styles = theme => ({
   venue: {
     marginBottom: '0',
   },
-  cell: {
+  row: {
+    display: 'flex',
     flexBasis: '100%',
   },
   leftCell: {
@@ -189,6 +208,12 @@ const styles = theme => ({
   },
   innerRightCell: {
     flexBasis: '90%',
+  },
+  linkIconCell: {
+    flexBasis: '5%',
+  },
+  linkUrlCell: {
+    flexBasis: '95%',
   },
   dateTime: {
     // marginTop: '-1em',

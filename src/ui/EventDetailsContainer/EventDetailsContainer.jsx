@@ -25,7 +25,7 @@ class EventDetailsContainer extends React.Component {
     return (
       <div className={classes.wrapper}>
         <PageTitle>
-          Your Events
+          Event Details
         </PageTitle>
         <Toolbar id={event._id} title={event.title} />
         <EventDetails
