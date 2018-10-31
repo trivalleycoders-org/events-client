@@ -69,13 +69,12 @@ class UploadImage extends React.Component {
   render() {
     const { classes, enableEdit } = this.props
     return (
-      <Paper id='xxxxxxxxxxxxxxxxx' className={classes.paper}>
+      <Paper id='UploadImage-wrapper' className={classes.wrapper}>
         {
           this.state.imageUrl
             ? <div className={classes.imageDiv}>
                 <ResponsiveImage
-                  // src={this.state.imageUrl}
-                  maxHeight={100}
+                  src={this.state.imageUrl}
                   // className={classes.media}
                 />
                 {enableEdit
@@ -146,7 +145,7 @@ const styles = theme => ({
     position: 'relative',
     zIndex: '0',
   },
-  paper: {
+  wrapper: {
     maxWidth: '100%',
     height: 'auto',
     alignItems: 'stretch',

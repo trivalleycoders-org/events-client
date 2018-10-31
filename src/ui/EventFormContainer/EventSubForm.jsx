@@ -80,7 +80,10 @@ const EventSubForm = (props) => {
               enableEdit={true}
             />
           </Paper>
-          <Paper id='aaaaaaaa' className={classes.uploadPaper} elevation={0}>
+
+
+
+          <Paper id='aaaaaaaa' className={classes.paper} elevation={0}>
             <Typography variant='h6'>EVENT IMAGE</Typography>
             <div id='bbbbbbbbbbbbbb' className={classes.dropZone}>
               <UploadImage
@@ -90,6 +93,8 @@ const EventSubForm = (props) => {
               />
             </div>
           </Paper>
+
+
           {/* <Paper className={classes.uploadPaper} elevation={0}>
           <MediaCard />
           </Paper> */}
@@ -149,17 +154,17 @@ const EventSubForm = (props) => {
           <div className={classes.actions}>
             <Button
               type='button'
-              onClick={() => onCancel(pristine)}
-              disabled={submitting}
-            >
-              Cancel
-            </Button>
-            <Button
-              type='button'
               onClick={handleSubmit(onSubmit)}
               disabled={pristine || submitting}
             >
               Save
+            </Button>
+            <Button
+              type='button'
+              onClick={() => onCancel(pristine)}
+              disabled={submitting}
+            >
+              Cancel
             </Button>
             {/* <Button
               type='button'
@@ -177,61 +182,61 @@ const EventSubForm = (props) => {
   )
 }
 
-const styles = theme => ({
-  actions: {
-    marginTop: 30,
-  },
-  dropZone: {
-    marginTop: 22,
-
-  },
-  form: {
-    backgroundColor: 'rgb(225, 225, 225)',
-    paddingTop: theme.spacing.unit,
-  },
-  free: {
-    flexBasis: '30%',
-  },
-  price: {
-    flexBasis: '70%',
-    paddingRight: 20,
-  },
-  priceFields: {
-    // backgroundColor: 'green',
-    display: 'flex',
-  },
-  paper: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2,
-    marginTop: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit * 2,
-  },
-  uploadPaper: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    marginTop: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit * 2,
-
-    // ?
-    [theme.breakpoints.up('sm')]: {
-      padding: '0 10% 40px 10%',
+const styles = theme => {
+  const space = theme.spacing.unit
+  return ({
+    actions: {
+      marginTop: space * 4,
+      paddingBottom: space,
     },
-    [theme.breakpoints.up('md')]: {
-      padding: '0 15% 40px 15%',
+    dropZone: {
+      margin: '22px auto',
+      // padding: '0 30px 30px 30px',
+      maxWidth: 400,
+      paddingBottom: 32,
+
     },
-    // maxHeight: 100,
-    // ?
+    form: {
+      backgroundColor: 'rgb(225, 225, 225)',
+      paddingTop: space,
+    },
+    free: {
+      flexBasis: '30%',
+    },
+    price: {
+      flexBasis: '70%',
+      paddingRight: 20,
+    },
+    priceFields: {
+      // backgroundColor: 'green',
+      display: 'flex',
+    },
+    paper: {
+      paddingTop: space * 2,
+      paddingRight: space * 2,
+      paddingLeft: space * 2,
+      margin: space * 2,
+    },
+    uploadPaper: {
+      // paddingTop: space * 2,
+      // paddingRight: space * 2,
+      // paddingLeft: space * 2,
+      // paddingBottom: space * 2,
+      // margin: space * 2,
 
 
-  },
-})
+      // ?
+      [theme.breakpoints.up('sm')]: {
+        // padding: '0 10% 40px 10%',
+      },
+      [theme.breakpoints.up('md')]: {
+        // padding: '0 15% 40px 15%',
+      },
+
+
+    },
+  })
+}
 
 export default compose(
   withStyles(styles),

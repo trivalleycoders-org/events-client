@@ -7,11 +7,9 @@ import classNames from 'classnames'
 
 const ResponsiveImage = ({ alt, classes, src, className, maxHeight = undefined, minHeight=0}) => {
   const styles = {
-
-      // height: 'auto',
+      maxWidth: '100%',
       maxHeight: maxHeight ? maxHeight : 'auto',
-      minHeight: minHeight ? minHeight : 0,
-      // maxHeight: 10,
+      minHeight: minHeight ? minHeight : '100%',
   }
   return (
     <img src={src} alt={alt} style={styles} />
