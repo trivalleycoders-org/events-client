@@ -18,8 +18,8 @@ const A = ({ classes, children, color}) => {
 
 const styles = theme => ({
   heading: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 3,
+    paddingBottom: theme.spacing.unit * 3,
 
   }
 })

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
-import { Button, Typography } from '@material-ui/core'
+import { Button, Paper } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import TextFieldRedux from 'ui/elements/TextFieldRedux'
@@ -46,10 +46,15 @@ class LoginForm extends React.PureComponent {
     } else {
       return (
         <div id='LoginForm' className={classes.pageWrapper}>
-          <PageTitle>
-            Login
-          </PageTitle>
-          <form>
+          <Paper
+            className={classes.paper}
+            elevation={0}
+          >
+            <PageTitle color='inherit'>
+              Login
+            </PageTitle>
+          </Paper>
+          <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
               fieldLabel='Email'
@@ -67,12 +72,14 @@ class LoginForm extends React.PureComponent {
               error={true}
               enableEdit={true}
             />
-            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-              Submit
-          </Button>
-            <Button type='button' disabled={pristine || submitting} onClick={reset}>
-              Clear Values
-          </Button>
+            <div className={classes.actions}>
+              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+                Login
+              </Button>
+                <Button type='button' disabled={pristine || submitting} onClick={reset}>
+                  Cancel
+              </Button>
+            </div>
           </form>
         </div>
       )
