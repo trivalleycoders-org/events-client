@@ -12,8 +12,7 @@ import Edit from '@material-ui/icons/Edit'
 import LinkIcon from '@material-ui/icons/Link'
 import LabelIcon from '@material-ui/icons/Label'
 
-import { formattedDate } from 'lib/formattedDate'
-import fontSizeFromString from 'lib/fontSizeFromString'
+// import { formattedDate } from 'lib/formattedDate'
 import IconButtonLink from 'ui/elements/IconButtonLink'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
 import ConfirmDialog from 'ui/ConfirmDialog'
@@ -22,6 +21,26 @@ import ConfirmDialog from 'ui/ConfirmDialog'
 // eslint-disable-next-line
 import { green } from 'logger'
 
+const hourAmPm = (date) => {
+  const h = date.getHours()
+  const tempMin = date.getMinutes()
+  const m = (tempMin < 10) ? `0${tempMin}` : tempMin
+  return (h > 12)
+    ? `${h - 12}:${m} PM`
+    : `${h}:${m} AM`
+}
+
+const formattedDate = (isoDateString) => {
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const d = new Date(isoDateString)
+  const YYY = d.getFullYear()
+  const MMM = monthNames[d.getMonth()]
+  const DDD = dayNames[d.getDay()]
+  const dd = d.getDate()
+  const hour = hourAmPm(d)
+  return `${DDD}, ${MMM} ${dd} ${YYY} ${hour}`
+}
 class EventDetails extends React.Component {
 
   state = {
@@ -32,12 +51,13 @@ class EventDetails extends React.Component {
     this.setState({ open: true })
   };
 
-  handleClose = (value) => {
+  handleClose = (option) => {
     this.setState({ open: false })
+    this.props.deleteEvent(this.props.event._id, option)
   };
 
   render() {
-
+    console.log('this.props: ', this.props)
     const { classes, event } = this.props
     const price = event.price ? `$${event.price}` : 'Free'
 
@@ -52,7 +72,7 @@ class EventDetails extends React.Component {
           </Typography>
           <div className={classes.content}>
             <Typography variant='caption'>by {event.organization}</Typography>
-            {formattedDate(event.dates.startDateTime)}
+            <Typography variant='h6'>{formattedDate(event.dates.startDateTime)}</Typography>
           </div>
           <div className={classes.footer}>
             <div className={classes.price}>
