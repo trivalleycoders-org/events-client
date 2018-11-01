@@ -51,6 +51,7 @@ const EventDetails = ({ classes, event }) => {
           </div>
         </div>
       </div>
+
       <div className={classes.dateLocation}>
         <div className={classes.date}>
           <div className={classes.dateIcon}>
@@ -157,6 +158,9 @@ const styles = theme => ({
   mediaImg: {
     marginRight: '1em',
     gridArea: 'img',
+    [theme.breakpoints.down('sm')]: {
+      borderBottom: '1px solid rgb(225,225,225)',
+    }
   },
   img: {
     maxWidth: '100%',
@@ -180,25 +184,12 @@ const styles = theme => ({
   link: {
     padding: 0,
   },
-  editButton: {
-    // bottom: theme.spacing.unit * 2,
-    left: '500px',
-    margin: theme.spacing.unit,
-    paddingBottom: '0',
-    position: 'relative',
-    top: '35px',
-  },
-  delButton: {
-    // bottom: theme.spacing.unit * 2,
-    left: '310px',
-    margin: theme.spacing.unit,
-    paddingBottom: '0',
-    position: 'relative',
-    top: '35px',
-  },
   dateLocation: {
     display: 'grid',
     gridTemplateColumns: '2fr 3fr',
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '1fr',
+    }
   },
   date: {
     display: 'grid',
