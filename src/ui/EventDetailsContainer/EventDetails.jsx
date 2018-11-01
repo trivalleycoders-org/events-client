@@ -131,11 +131,12 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 10% 40px 10%',
+    [theme.breakpoints.down('sm')]: {
+      // margin: '0 10% 40px 10%',
+      gridTemplateColumns: '1fr',
     },
     [theme.breakpoints.up('md')]: {
-      margin: '0 15% 40px 15%',
+      // margin: '0 15% 40px 15%',
     },
   },
   media: {
@@ -147,6 +148,7 @@ const styles = theme => ({
     gridTemplateAreas: '\'img title\' \'img body\' \'img footer\'',
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
+      gridTemplateAreas: '\'img\' \'title\' \'body\' \'footer\'',
     }
   },
   title: {
