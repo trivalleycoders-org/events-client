@@ -7,13 +7,13 @@ import * as pageMessageSelectors from 'store/selectors/page-message-selectors'
 import { Paper } from '@material-ui/core'
 
 const PageMessage = ({ classes, message = '', variant }) => {
-  return message === ''
-    ? null
-    : (
-      <Paper className={classes.root}>
-        <Headline className={classes.headline}>{message}</Headline>
-      </Paper>
-    )
+  return message !== ''
+    ? (
+        <Paper className={classes.root}>
+          <Headline className={classes.headline}>{message}</Headline>
+        </Paper>
+      )
+    : null
 }
 
 const styles = theme => ({

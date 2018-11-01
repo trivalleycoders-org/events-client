@@ -7,6 +7,7 @@ import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
 // eslint-disable-next-line
 import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 export class SearchBox extends React.Component {
   state = {
@@ -31,7 +32,7 @@ export class SearchBox extends React.Component {
 
   render() {
 
-    purple('SearchBox - render')
+    logRender && purple('SearchBox - render')
 
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state

@@ -1,1 +1,1 @@
-export { default } from './A'
+export { default } from './PageTitle'

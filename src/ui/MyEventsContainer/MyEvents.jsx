@@ -11,10 +11,11 @@ import PageTitle from 'ui/elements/PageTitle'
 /* Dev */
 // eslint-disable-next-line
 import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const MyEvents = ({ classes, events }) => {
 
-  purple('MyEvents - render')
+  logRender && purple('MyEvents - render')
 
   return (
     <div id='MyEvents' className={classes.wrapper}>

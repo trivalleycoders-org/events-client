@@ -96,26 +96,8 @@ const styles = theme => ({
     }
   },
   title: {
-    // fontWeight: '600',
-    height: '40px',
-    [theme.breakpoints.down('xs')]: {
-      marginBottom: '-1em',
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginBottom: '1em',
-    },
-    [theme.breakpoints.up('md')]: {
-      lineHeight: '19px',
-      marginBottom: '1.5em',
-    },
-    [theme.breakpoints.up('lg')]: {
-      lineHeight: '25px',
-      marginBottom: '1.5em',
-    },
-    [theme.breakpoints.up('xl')]: {
-      lineHeight: '25px',
-      marginBottom: '1.5em',
-    },
+    height: '57px',
+    overflow: 'hidden',
   },
   time: {
     // color: theme.palette.primary.main,

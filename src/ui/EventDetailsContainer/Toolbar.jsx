@@ -15,7 +15,6 @@ import { green } from 'logger'
 import Title from '../ui-elements/typography/Title/Title';
 
 export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
-  console.log('event title: ', title)
   return (
     <Paper className={classes.wrapper} elevation={0}>
       <MuiToolbar variant='dense' className={classes.toolbar}>
