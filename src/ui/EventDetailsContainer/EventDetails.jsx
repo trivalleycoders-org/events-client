@@ -2,318 +2,229 @@ import React from 'react'
 import { Paper, Typography, Chip, IconButton } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import DateRangeIcon from '@material-ui/icons/DateRange'
+import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
+import Icon from '@material-ui/core/Icon'
 import LocationIcon from '@material-ui/icons/LocationOn'
 import BusinessIcon from '@material-ui/icons/Business'
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
 import LinkIcon from '@material-ui/icons/Link'
 import LabelIcon from '@material-ui/icons/Label'
-import classNames from 'classnames'
-import { Link } from 'react-router-dom'
 
+import { formattedDate } from 'lib/formattedDate'
+import fontSizeFromString from 'lib/fontSizeFromString'
 import IconButtonLink from 'ui/elements/IconButtonLink'
-// import A from 'ui/ui-elements/A'
-// import Title from 'ui/ui-elements/typography/Title'
-// import Caption from 'ui/ui-elements/typography/Caption'
-//import Subheading from 'ui/elements/typography/Subheading'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
 
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const hourAmPm = (date) => {
-  const h = date.getHours()
-  const tempMin = date.getMinutes()
-  const m = (tempMin < 10) ? `0${tempMin}` : tempMin
-  return (h > 12)
-    ? `${h - 12}:${m} PM`
-    : `${h}:${m} AM`
-}
-
-const formattedDate = (isoDateString) => {
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  const d = new Date(isoDateString)
-  const YYY = d.getFullYear()
-  const MMM = monthNames[d.getMonth()]
-  const DDD = dayNames[d.getDay()]
-  const dd = d.getDate()
-  const hour = hourAmPm(d)
-  return `${DDD}, ${MMM} ${dd} ${YYY} ${hour}`
-}
-
 const EventDetails = ({ classes, event }) => {
   const price = event.price ? `$${event.price}` : 'Free'
 
   return (
-    <React.Fragment>
-      <Paper className={classes.toolbar} elevation={0}>
-        <div className={classes.title}>
-          <Typography variant='h5' color='inherit'>
-            {event.title}
-          </Typography>
+    <Paper className={classes.wrapper}>
+      <div className={classes.media}>
+        <div className={classes.mediaImg}>
+          <ResponsiveImage alt='Drone Image' src={event.imageUrl} />
         </div>
-        <div id='ToobarButtons' className={classes.actionButtons}>
-          <IconButton>
-            <IconButtonLink to={`/edit-event/${event._id}`}>
-              <Edit
-                className={classes.editBtnIcon}
-              />
-            </IconButtonLink>
-          </IconButton>
-          <IconButton>
-            <IconButtonLink to={`/edit-event/${event._id}`}>
-              <DeleteForever
-                className={classes.deleteBtnIcon}
-              />
-            </IconButtonLink>
-          </IconButton>
+        <Typography variant='h5' color='inherit' className={classes.title}>
+          {event.title}
+        </Typography>
+        <div className={classes.content}>
+          <Typography variant='caption'>by {event.organization}</Typography>
+          {formattedDate(event.dates.startDateTime)}
         </div>
-      </Paper>
-      <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.picturePriceDate}>
-          <div className={classes.imgContainer}>
-            <ResponsiveImage alt='Drone Image' src={event.imageUrl} className={classes.img} />
+        <div className={classes.footer}>
+          <div className={classes.price}>
+            <Typography variant='subtitle1'>{price}</Typography>
           </div>
-          <div className={classes.datePrice}>
-            <div className={classes.dateOrg}>
-              <Typography variant='h6'>
-                {formattedDate(event.dates.startDateTime)}
-              </Typography>
-              <Typography variant='caption'>by {event.organization}</Typography>
-            </div>
-            <div>
-              <Typography variant='subtitle1'>{price}</Typography>
-            </div>
+          <div className={classes.buttonBox}>
+            <Button>
+              <Edit />
+            </Button>
+            <Button>
+              <DeleteForever />
+            </Button>
           </div>
         </div>
-      </Paper>
-      <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.leftCell}>
-          <div className={classes.innerLeftCell}>
+      </div>
+      <div className={classes.dateLocation}>
+        <div className={classes.date}>
+          <div className={classes.dateIcon}>
             <DateRangeIcon
             />
           </div>
-          <div className={classes.innerRightCell}>
+          <div className={classes.dateValue}>
             <Typography variant='h6'>Start Time</Typography>
             <Typography variant='subtitle2'>{formattedDate(event.dates.startDateTime)}</Typography>
             <Typography variant='h6'>End Time</Typography>
             <Typography variant='subtitle2'>{formattedDate(event.dates.endDateTime)}</Typography>
           </div>
         </div>
-        <div className={classes.rightCell}>
-          <div className={classes.innerLeftCell}>
+        <div className={classes.location}>
+          <div className={classes.locationIcon}>
             <LocationIcon
             />
           </div>
-          <div className={classes.innerRightCell}>
+          <div className={classes.locationValue}>
             <Typography variant='subtitle1'>{event.venueName}</Typography>
             <Typography variant='subtitle2'>{event.location.cityName}</Typography>
             <Typography variant='subtitle2'>{event.location.stateCode} {event.location.postalCode}</Typography>
           </div>
         </div>
-      </Paper>
-      <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.leftCell}>
-          <div className={classes.innerLeftCell}>
-            <BusinessIcon
-            />
-          </div>
-          <div className={classes.innerRightCell}>
-            <Typography variant='subtitle1'>{event.organization}</Typography>
+      </div>
+
+      <div className={classes.organization}>
+        <div className={classes.orgIcon}>
+          <BusinessIcon
+          />
+        </div>
+        <div className={classes.orgValue}>
+          <Typography variant='subtitle1'>{event.organization}</Typography>
+        </div>
+      </div>
+
+      <div className={classes.url}>
+        <div className={classes.urlIcon}>
+          <LinkIcon
+          />
+        </div>
+        <div className={classes.urlValue}>
+          <a href={event.linkToUrl}>
+            <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
+          </a>
+        </div>
+      </div>
+
+      <div className={classes.tag}>
+        <div className={classes.tagIcon}>
+          <LabelIcon
+          />
+        </div>
+        <div className={classes.tagValue}>
+          <div className={classes.chipbox}>
+            {event.tags.map((t, index) => {
+              return (
+                <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
+              )
+            })
+            }
           </div>
         </div>
-      </Paper>
-      <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.row}>
-          <div className={classes.linkIconCell}>
-            <LinkIcon
-            />
-          </div>
-          <div className={classes.linkUrlCell}>
-            <a href={event.linkToUrl}>
-              <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
-            </a>
-          </div>
-        </div>
-      </Paper>
-      <Paper className={classes.wrapper} elevation={0}>
-        <div className={classes.leftCell}>
-          <div className={classes.innerLeftCell}>
-            <LabelIcon
-            />
-          </div>
-          <div className={classes.innerRightCell}>
-            <div className={classes.chipbox}>
-              {event.tags.map((t, index) => {
-                return (
-                  <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
-                )
-              })
-              }
-            </div>
-          </div>
-        </div>
-      </Paper>
-    </React.Fragment>
+      </div>
+    </Paper>
   )
 }
 
 const styles = theme => ({
-  toolbar: {
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.04)',
-    display: 'flex',
-    margin: '10px auto',
-    justifyContent: 'space-between',
-  },
-  title: {
-    justifyContent: 'flex-start',
-  },
-  actionButtons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
   wrapper: {
-    display: 'flex',
-    margin: '10px auto',
-  },
-  picturePriceDate: {
-    display: 'flex',
-    width: '100%',
-    [theme.breakpoints.up('xs')]: {
-      flexFlow: 'row wrap',
-    },
-    [theme.breakpoints.up('lg')]: {
-      flexFlow: 'row nowrap',
-    },
-  },
-  imgContainer: {
-    flexBasis: '50%',
-    margin: '0 auto 0 auto',
-    // maxWidth: 390, // was 250?
-    [theme.breakpoints.up('xs')]: {
-      flexBasis: '100%',
-      minHeight: '150px',
-      minWidth: '300px',
-    },
+    display: 'grid',
+    gridRowGap: '1em',
+    paddingTop: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+    marginLeft: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
-      flexBasis: '100%',
-      minHeight: '150px',
-      minWidth: '300px',
+      margin: '0 10% 40px 10%',
     },
     [theme.breakpoints.up('md')]: {
-      minHeight: '225px',
-      minWidth: '450px',
+      margin: '0 15% 40px 15%',
     },
   },
+  media: {
+    borderBottom: '1px solid rgb(225,225,225)',
+    display: 'grid',
+    gridColumnGap: '1em',
+    gridTemplateColumns: 'minmax(150px, 2fr) 3fr',
+    gridTemplateRows: 'auto 1fr',
+    gridTemplateAreas: '\'img title\' \'img body\' \'img footer\'',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: '1fr',
+    }
+  },
+  title: {
+    gridArea: 'title',
+  },
+  mediaImg: {
+    marginRight: '1em',
+    gridArea: 'img',
+  },
   img: {
-    height: '100%',
-    objectFit: 'cover',
-    width: '100%',
+    maxWidth: '100%',
   },
-  datePrice: {
-    backgroundColor: 'rgba(0,0,0,0.04)',
-    display: 'flex',
-    flexBasis: '50%',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingLeft: theme.spacing.unit * 4,
+  content: {
+    gridArea: 'body',
   },
-  date: {
-    marginBottom: '0',
-  },
-  dateOrg: {
-    justifyContent: 'flex-start',
+  footer: {
+    alignItems: 'flex-end',
+    display: 'grid',
+    gridArea: 'footer',
+    gridTemplateColumns: '1fr 1fr',
+    paddingTop: '1em',
   },
   price: {
-    // fontWeight: '600',
+    justifySelf: 'flex-start',
   },
-  venue: {
-    marginBottom: '0',
+  buttonBox: {
+    justifySelf: 'flex-end',
   },
-  row: {
-    display: 'flex',
-    flexBasis: '100%',
+  link: {
+    padding: 0,
   },
-  leftCell: {
-    display: 'flex',
-    flexBasis: '50%',
+  editButton: {
+    // bottom: theme.spacing.unit * 2,
+    left: '500px',
+    margin: theme.spacing.unit,
+    paddingBottom: '0',
+    position: 'relative',
+    top: '35px',
   },
-  rightCell: {
-    display: 'flex',
-    flexBasis: '50%',
+  delButton: {
+    // bottom: theme.spacing.unit * 2,
+    left: '310px',
+    margin: theme.spacing.unit,
+    paddingBottom: '0',
+    position: 'relative',
+    top: '35px',
   },
-  innerLeftCell: {
-    flexBasis: '10%',
+  dateLocation: {
+    display: 'grid',
+    gridTemplateColumns: '2fr 3fr',
   },
-  innerRightCell: {
-    flexBasis: '90%',
+  date: {
+    display: 'grid',
+    gridTemplateColumns: '48px 1fr',
   },
-  linkIconCell: {
-    flexBasis: '5%',
+  location: {
+    display: 'grid',
+    gridTemplateColumns: '48px 1fr',
   },
-  linkUrlCell: {
-    flexBasis: '95%',
+  organization: {
+    display: 'grid',
+    gridTemplateColumns: '48px 1fr',
   },
-  dateTime: {
-    // marginTop: '-1em',
-    marginBottom: '1em',
+  url: {
+    display: 'grid',
+    gridTemplateColumns: '48px 1fr',
+  },
+  tag: {
+    display: 'grid',
+    gridTemplateColumns: '48px 1fr',
   },
   chip: {
-    margin: theme.spacing.unit / 2,
+    marginRight: theme.spacing.unit / 2,
   },
   chipBox: {
     display: 'flex',
     justifyContent: 'space-evenly',
   }
 })
-
-// <Paper className={classes.wrapper} elevation={0}>
-// <div className={classes.leftCell}>
-//   <DateRangeIcon
-//   />
-//   <Title>Start Time</Title>
-//   <Subheading className={classes.dateTime}>{formattedDate(event.dates.startDateTime)}</Subheading>
-//   <Title>End Time</Title>
-//   <Subheading className={classes.dateTime}>{formattedDate(event.dates.endDateTime)}</Subheading>
-// </div>
-// <div className={classes.rightCell}>
-//   <LocationIcon
-//   />
-//   <Title className={classes.venue}>{event.venueName}</Title>
-//   <Subheading>{event.location.cityName}</Subheading>
-//   <Subheading>{event.location.stateCode} {event.location.postalCode}</Subheading>
-// </div>
-// </Paper>
-// <Paper className={classes.wrapper} elevation={0}>
-// <div>
-//   <BusinessIcon
-//   />
-//   <Subheading>{event.organization}</Subheading>
-// </div>
-// </Paper>
-// <Paper className={classes.wrapper} elevation={0}>
-// <div>
-//   <LinkIcon
-//   />
-//   <A>{event.linkToUrl}</A>
-// </div>
-// </Paper>
-// <Paper className={classes.wrapper} elevation={0}>
-// <div className={classes.cell}>
-//   <LabelIcon
-//   />
-//   <div className={classes.chipbox}>
-//     {event.tags.map((t, index) => {
-//       return (
-//         <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
-//       )
-//     })
-//     }
-//   </div>
-// </div>
-// </Paper>
 
 export default withStyles(styles)(EventDetails)

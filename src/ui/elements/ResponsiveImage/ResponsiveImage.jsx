@@ -6,7 +6,7 @@ import classNames from 'classnames'
 const styles = {
   imgFluid: {
     maxWidth: '100%',
-    height: 'auto',
+    // height: 'auto',
   },
 }
 
