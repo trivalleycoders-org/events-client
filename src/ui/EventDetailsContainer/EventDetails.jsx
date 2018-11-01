@@ -16,108 +16,127 @@ import { formattedDate } from 'lib/formattedDate'
 import fontSizeFromString from 'lib/fontSizeFromString'
 import IconButtonLink from 'ui/elements/IconButtonLink'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
+import ConfirmDialog from 'ui/ConfirmDialog'
 
 /* Dev */
 // eslint-disable-next-line
 import { green } from 'logger'
 
-const EventDetails = ({ classes, event }) => {
-  const price = event.price ? `$${event.price}` : 'Free'
+class EventDetails extends React.Component {
 
-  return (
-    <Paper className={classes.wrapper}>
-      <div className={classes.media}>
-        <div className={classes.mediaImg}>
-          <ResponsiveImage alt='Drone Image' src={event.imageUrl} />
-        </div>
-        <Typography variant='h5' color='inherit' className={classes.title}>
-          {event.title}
-        </Typography>
-        <div className={classes.content}>
-          <Typography variant='caption'>by {event.organization}</Typography>
-          {formattedDate(event.dates.startDateTime)}
-        </div>
-        <div className={classes.footer}>
-          <div className={classes.price}>
-            <Typography variant='subtitle1'>{price}</Typography>
-          </div>
-          <div className={classes.buttonBox}>
-            <Button>
-              <Edit />
-            </Button>
-            <Button>
-              <DeleteForever />
-            </Button>
-          </div>
-        </div>
-      </div>
+  state = {
+    open: false,
+  };
 
-      <div className={classes.dateLocation}>
-        <div className={classes.date}>
-          <div className={classes.dateIcon}>
-            <DateRangeIcon
+  handleClickOpen = () => {
+    this.setState({ open: true })
+  };
+
+  handleClose = (value) => {
+    this.setState({ open: false })
+  };
+
+  render() {
+
+    const { classes, event } = this.props
+    const price = event.price ? `$${event.price}` : 'Free'
+
+    return (
+      <Paper className={classes.wrapper}>
+        <div className={classes.media}>
+          <div className={classes.mediaImg}>
+            <ResponsiveImage alt='Drone Image' src={event.imageUrl} />
+          </div>
+          <Typography variant='h5' className={classes.title} color='primary'>
+            {event.title}
+          </Typography>
+          <div className={classes.content}>
+            <Typography variant='caption'>by {event.organization}</Typography>
+            {formattedDate(event.dates.startDateTime)}
+          </div>
+          <div className={classes.footer}>
+            <div className={classes.price}>
+              <Typography variant='subtitle1'>{price}</Typography>
+            </div>
+            <div className={classes.buttonBox}>
+              <IconButtonLink to={`/edit-event/${event._id}`}>
+                <Edit />
+              </IconButtonLink>
+              <Button color='primary'>
+                <DeleteForever onClick={this.handleClickOpen} />
+                <ConfirmDialog open={this.state.open} handleOpen={this.handleOpen} handleClose={this.handleClose} />
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className={classes.dateLocation}>
+          <div className={classes.date}>
+            <div className={classes.dateIcon}>
+              <DateRangeIcon
+              />
+            </div>
+            <div className={classes.dateValue}>
+              <Typography variant='h6'>Start Time</Typography>
+              <Typography variant='subtitle2'>{formattedDate(event.dates.startDateTime)}</Typography>
+              <Typography variant='h6'>End Time</Typography>
+              <Typography variant='subtitle2'>{formattedDate(event.dates.endDateTime)}</Typography>
+            </div>
+          </div>
+          <div className={classes.location}>
+            <div className={classes.locationIcon}>
+              <LocationIcon
+              />
+            </div>
+            <div className={classes.locationValue}>
+              <Typography variant='subtitle1'>{event.venueName}</Typography>
+              <Typography variant='subtitle2'>{event.location.cityName}</Typography>
+              <Typography variant='subtitle2'>{event.location.stateCode} {event.location.postalCode}</Typography>
+            </div>
+          </div>
+        </div>
+
+        <div className={classes.organization}>
+          <div className={classes.orgIcon}>
+            <BusinessIcon
             />
           </div>
-          <div className={classes.dateValue}>
-            <Typography variant='h6'>Start Time</Typography>
-            <Typography variant='subtitle2'>{formattedDate(event.dates.startDateTime)}</Typography>
-            <Typography variant='h6'>End Time</Typography>
-            <Typography variant='subtitle2'>{formattedDate(event.dates.endDateTime)}</Typography>
+          <div className={classes.orgValue}>
+            <Typography variant='subtitle1'>{event.organization}</Typography>
           </div>
         </div>
-        <div className={classes.location}>
-          <div className={classes.locationIcon}>
-            <LocationIcon
+
+        <div className={classes.url}>
+          <div className={classes.urlIcon}>
+            <LinkIcon
             />
           </div>
-          <div className={classes.locationValue}>
-            <Typography variant='subtitle1'>{event.venueName}</Typography>
-            <Typography variant='subtitle2'>{event.location.cityName}</Typography>
-            <Typography variant='subtitle2'>{event.location.stateCode} {event.location.postalCode}</Typography>
+          <div className={classes.urlValue}>
+            <a href={event.linkToUrl}>
+              <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
+            </a>
           </div>
         </div>
-      </div>
 
-      <div className={classes.organization}>
-        <div className={classes.orgIcon}>
-          <BusinessIcon
-          />
-        </div>
-        <div className={classes.orgValue}>
-          <Typography variant='subtitle1'>{event.organization}</Typography>
-        </div>
-      </div>
-
-      <div className={classes.url}>
-        <div className={classes.urlIcon}>
-          <LinkIcon
-          />
-        </div>
-        <div className={classes.urlValue}>
-          <a href={event.linkToUrl}>
-            <Typography variant='subtitle1'>{event.linkToUrl}</Typography>
-          </a>
-        </div>
-      </div>
-
-      <div className={classes.tag}>
-        <div className={classes.tagIcon}>
-          <LabelIcon
-          />
-        </div>
-        <div className={classes.tagValue}>
-          <div className={classes.chipbox}>
-            {event.tags.map((t, index) => {
-              return (
-                <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
-              )
-            })
-            }
+        <div className={classes.tag}>
+          <div className={classes.tagIcon}>
+            <LabelIcon
+            />
+          </div>
+          <div className={classes.tagValue}>
+            <div className={classes.chipbox}>
+              {event.tags.map((t, index) => {
+                return (
+                  <Chip className={classes.chip} key={`t${index}`} label={`#${t}`} />
+                )
+              })
+              }
+            </div>
           </div>
         </div>
-      </div>
-    </Paper>
-  )
+      </Paper>
+    )
+  }
 }
 
 const styles = theme => ({
