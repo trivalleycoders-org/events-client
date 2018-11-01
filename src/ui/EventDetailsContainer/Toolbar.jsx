@@ -12,14 +12,14 @@ import IconButtonLink from 'ui/elements/IconButtonLink'
 
 // eslint-disable-next-line
 import { green } from 'logger'
-import Title from '../ui-elements/typography/Title/Title';
 
 export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
   return (
-    <Paper className={classes.wrapper} elevation={0}>
-      <MuiToolbar variant='dense' className={classes.toolbar}>
-        <Title className={classes.title}>{title}
-        </Title>
+    <Paper id='Toolbar'>
+      <MuiToolbar id='MuiToolbar' variant='dense' className={classes.wrapper}>
+        <Typography variant='title' color='inherit'>
+          <span className={classes.title}>{title}</span>
+        </Typography>
         <div id='ToobarButtons'>
           <IconButtonLink to={`/edit-event/${id}`}>
             <Edit
@@ -37,21 +37,10 @@ export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
   )
 }
 
-// <Typography variant='title' color='inherit'>
-//   <span className={classes.title}>{title}</span>
-// </Typography>
-
-
 const styles = {
   wrapper: {
-    margin: 'auto',
-    width: '60%',
-  },
-  toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingLeft: '0',
-    paddingRight: '0',
   },
   title: {
     color: '#dc0747',
