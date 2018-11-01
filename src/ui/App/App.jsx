@@ -20,6 +20,7 @@ import EventFormContainer from 'ui/EventFormContainer'
 import SearchEventsContainer from 'ui/SearchEventsContainer'
 import AppDrawer from 'ui/AppDrawer'
 import Footer from 'ui/Footer'
+import Hero from 'ui/Hero'
 // Dev
 // eslint-disable-next-line
 import { green, yellow, orange, red, purple } from 'logger'
@@ -33,6 +34,7 @@ const App = (props) => {
       {/* <Breakpoints /> */}
       <div id='App-appbar' className={classes.appbar}>
         <AppBarContainer />
+        <Hero />
         <AppDrawer />
       </div>
       <div id='App-content' className={classes.content}>
