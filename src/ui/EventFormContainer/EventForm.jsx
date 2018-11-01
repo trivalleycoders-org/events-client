@@ -6,6 +6,7 @@ import EventSubForm from './EventSubForm'
 // fix?
 // import styles from './styles'
 import AreYouSure from './AreYouSure'
+import PageTitle from 'ui/elements/PageTitle'
 
 /* Dev */
 // eslint-disable-next-line
@@ -61,6 +62,9 @@ class EventForm extends React.Component {
         {/* <PastEvent
           event={event}
         /> */}
+        <PageTitle>
+          Create Event
+        </PageTitle>
         <EventSubForm
           initialValues={event}
           freeClick={this.freeClick}

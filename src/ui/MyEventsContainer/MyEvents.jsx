@@ -2,18 +2,25 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Grid,
+  Typography,
 } from '@material-ui/core'
 /* User */
 import Event from './Event'
+import PageTitle from 'ui/elements/PageTitle'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const MyEvents = ({ classes, events }) => {
 
+  purple('MyEvents - render')
+
   return (
     <div id='MyEvents' className={classes.wrapper}>
+      <PageTitle>
+        Your Events
+      </PageTitle>
       <Grid container spacing={Number(8)}>
         {events.map(e => {
           return (

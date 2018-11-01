@@ -3,16 +3,11 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
-import Button from 'ui/ui-elements/Button'
+import Button from 'ui/elements/Button'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
-
-// const rand () {
-//   style={getModalStyle()}
-//   return Math.round(Math.random() * 20) - 10
-// }
+import { green, purple } from 'logger'
 
 const getModalStyle = () => {
   const top = 50
@@ -28,6 +23,9 @@ const getModalStyle = () => {
 class AreYouSure extends React.Component {
 
   render() {
+
+    purple('AreYourSure - render')
+
     const { classes, open, close } = this.props
     return (
       <div>

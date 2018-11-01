@@ -1,18 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import { menuLoggedIn, menuLoggedOut } from './appDrawerData'
-import * as appMenuActions from 'store/actions/app-menu-actions'
+import { appMenuToggle } from 'store/actions/app-menu-actions'
 import * as appMenuSelectors from 'store/selectors/app-menu-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 class AppDrawer extends React.Component {
   state = {
@@ -27,6 +26,9 @@ class AppDrawer extends React.Component {
   }
 
   render() {
+
+    purple('AppDrawer - render')
+
     const { classes, isLoggedIn } = this.props
 
     const menuItems = isLoggedIn
@@ -67,8 +69,10 @@ const mapStateToProps = (state) => ({
   isLoggedIn: authSelectors.getLoggedIn(state),
 })
 
+const actions = { appMenuToggle }
+
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, appMenuActions),
+  connect(mapStateToProps, actions),
 )(AppDrawer)
 

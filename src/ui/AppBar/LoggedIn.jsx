@@ -1,14 +1,15 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import ButtonNavLink from 'ui/ui-elements/ButtonNavLink'
+import ButtonNavLink from 'ui/elements/ButtonNavLink'
 import AccountMenu from './AccountMenu'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const  LoggedIn = () => {
-
+  logRender && purple('LoggedIn - render')
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>

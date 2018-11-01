@@ -1,9 +1,5 @@
 import React from 'react'
 import { compose } from 'recompose'
-import { connect } from 'react-redux'
-import * as authActions from 'store/actions/auth-actions'
-import * as authSelectors from 'store/selectors/auth-selectors'
-
 import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
@@ -19,7 +15,8 @@ import {
 import { nameFromEmail } from 'lib/nameFromEmail'
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 
 const linkStyle = {
@@ -36,16 +33,10 @@ class AccountMenu extends React.Component {
   }
 
   handleClose = (event, action) => {
-    if (this.anchorEl.contains(event.target)) {
-      return
-    }
-    this.setState({ open: false })
-    if (action === 'logout') {
-      this.props.userLogoutRequest()
-    }
   }
 
   render() {
+    logRender && purple('AccountMenu - render')
     const { open } = this.state
     const { classes, emailName } = this.props
     return (
@@ -114,11 +105,6 @@ const styles = theme => ({
   },
 })
 
-const mapStateToProps = (state) => ({
-  emailName: nameFromEmail(authSelectors.getEmailName(state))
-})
-
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, authActions),
 )(AccountMenu)

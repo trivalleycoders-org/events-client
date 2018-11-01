@@ -8,15 +8,15 @@ import {
 } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
 import { dateFormat } from './helpers'
-import Body1 from 'ui/ui-elements/typography/Body1'
-import Body2 from 'ui/ui-elements/typography/Body2'
-import Title from 'ui/ui-elements/typography/Title'
-import ButtonFit from 'ui/ui-elements/ButtonFit'
+import { Typography } from '@material-ui/core'
+import ButtonFit from 'ui/elements/ButtonFit'
 import Chevron5 from './Chevron5'
+
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 const Event = ({ classes, event, handleItemClick }) => {
+  purple('Event (MyEvents) - render')
   return (
     <Paper className={classes.wrapper}>
       <Grid container>
@@ -25,15 +25,15 @@ const Event = ({ classes, event, handleItemClick }) => {
           xs={3}
           className={classes.date}
         >
-          <Title align='center' gutterBottom color='white'>
+          <Typography variant='h5' align='center' gutterBottom color='inherit'>
             {dateFormat(event.dates.startDateTime, 'day')}
-          </Title>
-          <Body1 align='center' color='white'>
+          </Typography>
+          <Typography variant='subtitle1' align='center' color='inherit'>
             {dateFormat(event.dates.startDateTime, 'moYr')}
-          </Body1>
-          <Body1 align='center' color='white'>
+          </Typography>
+          <Typography variant='subtitle2' align='center' color='inherit'>
             {dateFormat(event.dates.startDateTime, 'time')}
-          </Body1>
+          </Typography>
         </Grid>
 
         <Grid
@@ -41,12 +41,12 @@ const Event = ({ classes, event, handleItemClick }) => {
           xs={8}
           className={classes.detail}
         >
-          <Body2>
+          <Typography variant='h5'>
             {event.title}
-          </Body2>
-          <Body1>
+          </Typography>
+          <Typography variant='subtitle1'>
             {event.location.cityName}, {event.location.stateCode}
-          </Body1>
+          </Typography>
         </Grid>
 
         <Grid
@@ -72,10 +72,11 @@ const Event = ({ classes, event, handleItemClick }) => {
 }
 
 const styles = theme => {
+
   return ({
     svg: {
       width: 10,
-      color: 'blue',
+      color: theme.palette.primary.main,
     },
     detail: {
       padding: theme.spacing.unit,
@@ -85,7 +86,7 @@ const styles = theme => {
       display: 'flex',
       flexFlow: 'column',
       justifyContent: 'center',
-      backgroundColor: blue[500],
+      backgroundColor: theme.palette.primary.main,
       color: 'white',
     },
     wrapper: {

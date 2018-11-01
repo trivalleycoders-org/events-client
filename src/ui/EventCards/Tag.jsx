@@ -1,15 +1,22 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
+import grey from '@material-ui/core/colors/grey'
+// Dev
 // eslint-disable-next-line
-// import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const Tag = ({ classes, label }) => {
+  logRender && purple('Tag - render')
   return (
     <div className={classes.tagWrapper}>
-      <div className={classes.tag}>#{label}</div>
+      <Typography variant='caption' className={classes.tag}>#{label}</Typography>
     </div>
   )
 }
+
+//
 
 const styles = theme => ({
 
@@ -20,6 +27,9 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   tag: {
+    color: grey[700]
+  },
+  xxtag: {
     [theme.breakpoints.down('xs')]: {
       fontSize: '12px',
     },

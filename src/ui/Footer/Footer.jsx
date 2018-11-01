@@ -1,83 +1,102 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import RightSide from './RightSide'
-import ByTvc from './ByTvc'
+import { Typography } from '@material-ui/core'
+import ResponsiveImage from 'ui/elements/ResponsiveImage'
+import iTVC from './media/tvc-wordmark-2.svg'
+import Divider from './Divider'
+import Mern from './Mern'
+import Us from './Us'
 
-const Footer = ({ classes }) => {
+const Footer = (props) => {
+  const { classes } = props
+
   return (
-    <footer id='footer' className={classes.footer}>
-      <div className={classes.left}>
-        <ByTvc />
+    <div id='Footer-wrapper' className={classes.wrapper}>
+      <div id='Footer-left' className={classes.left}>
+        <Typography variant='h6' align='center' color='inherit' className={classes.madeByTitle}>
+          Made with pride by
+        </Typography>
+        <ResponsiveImage src={iTVC} alt='tri valley coders logo' minHeight={50}/>
       </div>
-      <div className={classes.dividerContainer}>
-        <div className={classes.divider}></div>
+      <div id='Footer-right' className={classes.right}>
+        <div className={classes.rightTop}>
+          <Mern />
+        </div>
+        <Divider direction='horizontal' />
+        <div className={classes.rightBottom}>
+          <Us />
+        </div>
       </div>
-      <div className={classes.right}>
-        <RightSide />
-      </div>
-    </footer>
+    </div>
   )
 }
 
-const styles = theme => ({
-
-  footer: {
-    // backgroundColor: 'rgba(255, 150, 255, 0.4)',
-    // borderTop: '3px red solid',
-    // borderBottom: '3px red solid',
-
-    backgroundColor: '#303030',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-
-    [theme.breakpoints.up('md')]: {
-      // backgroundColor: 'rgba(255, 150, 255, 1)',
-      height: 350,
-      flexFlow: 'row nowrap',
+const styles = theme => {
+  const spaceUnit = theme.spacing.unit
+  return ({
+    rightTop: {
+      flexBasis: '50%',
+      paddingTop: spaceUnit * 4,
+      paddingBottom: spaceUnit * 2,
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        alignItems: 'space-between',
+      },
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }
     },
-  },
-  left: {
-
-    // backgroundColor: 'orange',
-
-
-    [theme.breakpoints.up('md')]: {
-      height: '100%',
-      flexBasis: '33.33333333%',
+    wrapper: {
+      color: 'white',
+      [theme.breakpoints.up('xs')]: {
+        paddingTop: spaceUnit * 3,
+      },
+      [theme.breakpoints.up('md')]: {
+        height: 480,
+        display: 'flex',
+        paddingTop: spaceUnit * 3,
+        paddingBottom: spaceUnit * 3,
+      },
     },
-  },
-  right: {
-    // backgroundColor: 'yellow',
-
-
-    [theme.breakpoints.up('md')]: {
-      // width: 300,
-      height: '100%',
-      flexBasis: '66.66666666%',
+    left: {
+      display: 'flex',
+      flexDirection: 'column',
+      paddingBottom: spaceUnit * 4,
+      [theme.breakpoints.up('md')]: {
+        flexBasis: '33.333333%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     },
-  },
-  dividerContainer: {
-    // backgroundColor: 'grey',
-    paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit *2,
-    //
-    [theme.breakpoints.up('md')]: {
-      paddingRight: 0,
-      paddingLeft: 0,
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+    right: {
+      flexBasis: '66.666666%',
+      display: 'flex',
+      flexDirection: 'column',
     },
-  },
-  divider: {
-    backgroundColor: 'grey',
-    height: 1,
-    // width: '100%',
-
-    [theme.breakpoints.up('md')]: {
-      height: '100%',
-      width: 1
+    madeByTitle: {
+      marginBottom: spaceUnit * 2,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 32,
+      }
     },
-  },
-})
+    rightBottom: {
+      flexDirection: 'column',
+      flexBasis: '50%',
+      display: 'flex',
+      paddingTop: spaceUnit * 4,
+      paddingBottom: spaceUnit * 4,
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      },
+    },
+  })
+}
 
 export default withStyles(styles)(Footer)

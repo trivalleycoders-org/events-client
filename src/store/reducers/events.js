@@ -66,4 +66,3 @@ export const eventsUi = (state = {}, { type, payload }) => {
   }
 }
 
-export default { events, eventsUi }

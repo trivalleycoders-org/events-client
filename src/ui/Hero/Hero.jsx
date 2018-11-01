@@ -4,12 +4,15 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Paper
 } from '@material-ui/core'
-// import ResponsiveImage from 'ui/ui-elements/ResponsiveImage'
+// import ResponsiveImage from 'ui/elements/ResponsiveImage'
 // import SearchBox from 'ui/SearchBox'
 import iHero from './media/hero4.jpg'
 import SearchBox from 'ui/SearchBox'
+// eslint-disable-next-line
+import { purple } from 'logger'
 
 const Hero = ({ classes, location }) => {
+  purple('Hero - render')
   const background = {
     backgroundImage: `url(${iHero})`,
     backgroundSize: 'cover',

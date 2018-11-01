@@ -35,14 +35,14 @@ MongoDB, MongoDB Compass, Yarn, Chrome &/or Firefox Developer Edition
 **Install MongoDB**
 - Install MongoDB locally. MongoDB's installation instructions are excellent
   - [Linux](https://docs.mongodb.com/manual/administration/install-enterprise-linux/)
-  - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)  
+  - [MacOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-os-x/)
   - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-windows/)
 
 **Install MongoDB Compass**
 - Install [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
 
 **Install Yarn**
-Using npm on a project maintained with Yarn causes versioning conflicts. 
+Using npm on a project maintained with Yarn causes versioning conflicts.
 - [Install Yarn](https://yarnpkg.com/en/docs/install#windows-stable)
 
 **Browser Extensions**
@@ -75,11 +75,11 @@ Using MongoDB Compass
 **Import Dev Data**
 Use Compass to import the [data collections](https://github.com/trivalleycoders-org/event-doc-and-admin/tree/master/data-collections):
 
-|Collection Name|File to Import        
+|Collection Name|File to Import
 |---------------|----------------------
 |events         |events-collection.json
-|postalCodes    |postalCodes.json      
-|users          |users.json   
+|postalCodes    |postalCodes.json
+|users          |users.json
 
 If you have problems importing Postal Codes, use the following command from the command line(not mongo shell) to import (Make sure directory where MongoDb is installed is in the Path).
 

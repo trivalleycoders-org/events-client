@@ -7,27 +7,21 @@ import {
 import EventCard from './EventCard'
 import { has } from 'ramda'
 
-
-
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 const hasTags = has('tags')
 
 const EventCards = (props) => {
+  logRender && purple('EventCard(s) - render')
   const { classes, events } = props
-
   return (
     <div id='EventCards' className={classes.wrapper}>
       <Grid
         container
         spacing={40}
-        // direction='row'
-        alignItems='space-around'
-
-        // justify='center'
-        // alignContent='center'
         className={classes.grid}
       >
         {events.map(c => {

@@ -7,134 +7,96 @@ import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 
 // User
-import Hero from 'ui/Hero'
-import LoginForm from 'ui/Auth/LoginForm'
-import PageMessage from 'ui/ui-elements/PageMessage'
-import PrivateRoute from 'ui/PrivateRoute'
-import RegisterForm from 'ui/Auth/RegisterForm'
-import SettingsForm from 'ui/Auth/SettingsForm'
+import PrivateRoute from 'ui/auth/PrivateRoute'
+import LoginForm from 'ui/auth/LoginForm'
+import RegisterForm from 'ui/auth/RegisterForm'
+import SettingsForm from 'ui/auth/SettingsForm'
 import AppBar from 'ui/AppBar'
-// import Snackbars from 'ui/Snackbars'
-import AppDrawer from 'ui/AppDrawer'
 
-// New
 import EventsContainer from 'ui/EventsContainer'
 import MyEventsContainer from 'ui/MyEventsContainer'
-import EventFormContainer from 'ui/EventFormContainer'
 import EventDetailsContainer from 'ui/EventDetailsContainer'
+import EventFormContainer from 'ui/EventFormContainer'
 import SearchEventsContainer from 'ui/SearchEventsContainer'
+import AppDrawer from 'ui/AppDrawer'
 import Footer from 'ui/Footer'
-
-// Design
-// import Palette from 'ui/ui-design/Palette'
-// import TypographyGuide from 'ui/ui-design/TypographyGuide'
-
 // Dev
 // eslint-disable-next-line
-import { green, yellow, orange, red } from 'logger'
-import Breakpoints from 'ui/ui-elements/Breakpoints'
+import { green, yellow, orange, red, purple } from 'logger'
+import Breakpoints from 'ui/elements/Breakpoints'
+// import ContentFiller from './ContentFiller'
 
-
-const App = ({ classes }) => {
-
-    return (
-      <div id='App' className={classes.app}>
+const App = (props) => {
+  const { classes } = props
+  return (
+    <div id='App-wrapper' className={classes.wrapper}>
+      {/* <Breakpoints /> */}
+      <div id='App-appbar' className={classes.appbar}>
         <AppBar />
-
-        <div id='AppWrapper' className={classes.appWrapper}>
-          <Hero />
-          <div id='AppBody' className={classes.appBody}>
-            <PageMessage />
-            <AppDrawer />
-            <Breakpoints />
-            <Switch>
-              <Route exact path='/' component={EventsContainer} />
-              <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
-              <PrivateRoute exact path='/create-event' component={EventFormContainer} />
-              <Route path='/search-events' component={SearchEventsContainer} />
-              <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
-              <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
-              <Route exact path='/login' component={LoginForm} />
-              <Route exact path='/register' component={RegisterForm} />
-              <PrivateRoute exact path='/settings' component={SettingsForm} />
-            </Switch>
-          </div>
-        </div>
-        <Footer />
+        <AppDrawer />
       </div>
-    )
-  }
+      <div id='App-content' className={classes.content}>
+        <Switch>
+          <Route exact path='/' component={EventsContainer} />
+            <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
+            <PrivateRoute exact path='/create-event' component={EventFormContainer} />
+            <Route path='/search-events' component={SearchEventsContainer} />
+            <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
+            <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
+            <Route exact path='/login' component={LoginForm} />
+            <Route exact path='/register' component={RegisterForm} />
+            <PrivateRoute exact path='/settings' component={SettingsForm} />
+        </Switch>
+      </div>
+      <footer id='App-footer' className={classes.footer}>
+        <Footer />
+      </footer>
+    </div>
+  )
+}
 
-/* Save these for now
-<Route exact path='/palette' component={Palette} />
-<Route exact path='/typography' component={TypographyGuide} />
+/*
+<div className={classes.fakeContent}>
+          <Typography variant='h6' align='center'>
+            Footer
+          </Typography>
+        </div>
+
 */
 
 const styles = theme => ({
-  app: {
-    height: '100vh',
-    width: '100vw',
-    // Tmp
-    // backgroundColor: 'rgba(255, 0, 0, 0.5)',
-    // border: '3px red dashed',
-    // Tmp
+  fakeContent: {
+    height: 400,
   },
-  appWrapper: {
-    marginTop: 63, // was 56?
-    // ** backgroundColor: 'rgb(225, 225, 225)',
-    // ** [theme.breakpoints.up('xs')]: {
-    //   marginTop: 56,
-    // }
-
-    // Tmp
-    // padding: '0 200px 0 200px',
-    // backgroundColor: 'rgba(0, 255, 0, 0.5)',
-    // border: '3px green dashed',
-    // Tmp
-
+  wrapper: {
+    backgroundColor: 'white',
+    // height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    // alignItems: 'center',
   },
-  appBody: {
-    width: 'auto',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    // [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-    //   width: 1100,
-    //   marginLeft: 'auto',
-    //   marginRight: 'auto',
-    // },
-
-    // Tmp
-       // padding: '0 295.25px 0 295.25px',
-      //  backgroundColor: 'rgba(0, 0, 255, 0.5)',
-      //  border: '3px blue dashed',
-    // paddingTop: theme.spacing.unit * 5,
-    // paddingBottom: theme.spacing.unit * 5,
-    // Tmp;
+  content: {
+    border: '2px dashed white',
+    flex: '1 0 auto',
+    maxWidth: 1024,
+    margin: '0 auto',
+  },
+  footer: {
+    // border: '2px dashed black',
+    // backgroundColor: 'darkgrey',
+    backgroundColor: '#2b3137',
+    flexShrink: 0,
+    flexGrow: 0,
+  },
+  appbar: {
+    paddingTop: 56,
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 64,
+    },
 
   },
-
 })
 
 export default compose(
   withStyles(styles),
 )(App)
-
-/* Save these for now
-  <Route exact path='/palette' component={Palette} />
-  <Route exact path='/typography' component={TypographyGuide} />
-*/
-
-/*
-
-[theme.breakpoints.up('md')]: {
-      // marginLeft: theme.spacing.unit,
-      // marginRight: theme.spacing.unit,
-      // marginLeft: '2%',
-      // marginRight: '2%',
-    },
-
-    [theme.breakpoints.up('md')]: {
-      // marginLeft: theme.spacing.unit * 3,
-      // marginRight: theme.spacing.unit * 3,
-    },
-*/

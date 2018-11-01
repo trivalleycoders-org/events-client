@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
-import IconButtonLink from 'ui/ui-elements/IconButtonLink'
+import IconButtonLink from 'ui/elements/IconButtonLink'
 
 // eslint-disable-next-line
 import { green } from 'logger'

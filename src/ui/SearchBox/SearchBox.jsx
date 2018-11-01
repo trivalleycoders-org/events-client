@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Input, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import Button from 'ui/ui-elements/Button'
+import Button from 'ui/elements/Button'
 import CancelIcon from '@material-ui/icons/Cancel'
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
 
 export class SearchBox extends React.Component {
   state = {
@@ -30,6 +30,9 @@ export class SearchBox extends React.Component {
   }
 
   render() {
+
+    purple('SearchBox - render')
+
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
     return (

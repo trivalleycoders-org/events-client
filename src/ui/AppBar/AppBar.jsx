@@ -9,26 +9,26 @@ import {
   IconButton,
   withWidth,
 } from '@material-ui/core'
+import { getLoggedIn } from 'store/selectors/auth-selectors'
+import { appMenuToggle } from 'store/actions/app-menu-actions'
 import MenuIcon from '@material-ui/icons/Menu'
-import * as authSelectors from 'store/selectors/auth-selectors'
-import * as appMenuActions from 'store/actions/app-menu-actions'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
 /* Dev */
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
 
 class AppBar extends React.Component {
 
-  toggleDraw = () => {
+  toggleDrawer = () => {
     this.props.appMenuToggle()
   }
 
   render() {
-
+    logRender && purple('AppBar - render')
     const { classes, isLoggedIn, width } = this.props
-
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -36,12 +36,12 @@ class AppBar extends React.Component {
             className={classes.menuButton}
             color='inherit'
             aria-label='Menu'
-            onClick={this.toggleDraw}
+            onClick={this.toggleDrawer}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='title' color='inherit' className={classes.flex}>
-            <span className={classes.drone}>Drone</span> <span className={classes.madness}>Madness</span>
+          <Typography variant='h5' color='inherit' className={classes.flex}>
+            Drone Madness
           </Typography>
           {width !== 'xs'
             ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
@@ -74,12 +74,14 @@ const styles = theme => ({
   },
 })
 
+const actions = { appMenuToggle }
+
 const mapStateToProps = (state) => ({
-  isLoggedIn: authSelectors.getLoggedIn(state)
+  isLoggedIn: getLoggedIn(state)
 })
 
 export default compose(
   withWidth(),
   withStyles(styles),
-  connect(mapStateToProps, appMenuActions),
+  connect(mapStateToProps, actions),
 )(AppBar)

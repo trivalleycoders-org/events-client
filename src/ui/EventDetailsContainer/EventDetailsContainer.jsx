@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core'
 import { compose } from 'recompose'
 
+<<<<<<< HEAD
+=======
+import PageTitle from 'ui/elements/PageTitle'
+>>>>>>> rebuilt
 import { getEventById } from 'store/selectors/events-selectors'
 import { eventDeleteOneRequest } from 'store/actions/event-actions'
 import EventDetails from './EventDetails'
@@ -23,7 +27,9 @@ class EventDetailsContainer extends React.Component {
     console.log('event in container: ', event)
     return (
       <div className={classes.wrapper}>
-        <Toolbar id={event._id} title={event.title} />
+        <PageTitle>
+          Event Details
+        </PageTitle>
         <EventDetails
           event={event}
         />

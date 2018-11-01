@@ -6,14 +6,14 @@ import {
   CardMedia,
   CardContent,
   CardActionArea,
+  Divider,
 } from '@material-ui/core'
 import { formattedDate } from 'lib/formattedDate'
-import Title from 'ui/ui-elements/typography/Title'
-import Subheading from 'ui/ui-elements/typography/Subheading'
-import Body1 from 'ui/ui-elements/typography/Body1'
 import Tag from './Tag'
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, purple } from 'logger'
+import { logRender } from 'logging'
+import { Typography } from '@material-ui/core'
 
 const EventCard = ({
   classes,
@@ -25,8 +25,7 @@ const EventCard = ({
   hasTags,
   tags,
 }) => {
-  // green('imageUrl', imageUrl)
-  green('startDate', startDate)
+  logRender && purple('EventCard - render')
   return (
     <Card className={classes.card}>
       <a href={linkToUrl} className={classes.link}>
@@ -34,17 +33,18 @@ const EventCard = ({
           className={classes.media}
           image={imageUrl}
         />
+        <Divider />
         <CardActionArea>
           <CardContent>
-            <Title className={classes.title}>
+            <Typography variant='h5' color='primary' className={classes.title}>
               {title}
-            </Title>
-            <Subheading className={classes.time}>
+            </Typography>
+            <Typography variant='h6' className={classes.time}>
               {formattedDate(startDate)}
-            </Subheading>
-            <Body1 className={classes.location}>
+            </Typography>
+            <Typography variant='subtitle1'>
               {location}
-            </Body1>
+            </Typography>
           </CardContent>
         </CardActionArea>
       </a>
@@ -96,7 +96,7 @@ const styles = theme => ({
     }
   },
   title: {
-    fontWeight: '600',
+    // fontWeight: '600',
     height: '40px',
     [theme.breakpoints.down('xs')]: {
       marginBottom: '-1em',
@@ -118,15 +118,12 @@ const styles = theme => ({
     },
   },
   time: {
-    color: theme.palette.primary.main,
+    // color: theme.palette.primary.main,
     marginTop: '1em',
     overflow: 'hidden',
     paddingTop: '.4rem',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-  },
-  location: {
-    color: 'rgba(0, 0, 0, 0.7)',
   },
 })
 

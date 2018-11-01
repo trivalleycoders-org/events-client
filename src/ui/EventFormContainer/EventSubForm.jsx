@@ -5,18 +5,19 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Button,
   Paper,
+  Typography
 } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 // User
-import ChipRedux from 'ui/ui-elements/ChipRedux'
-import TextFieldRedux from 'ui/ui-elements/TextFieldRedux'
-import StartEndDateRedux from 'ui/ui-elements/StartEndDateRedux'
-import CheckboxRedux from 'ui/ui-elements/CheckboxRedux'
-import UploadImage from 'ui/ui-elements/UploadImage'
-import PostalCodesRedux from 'ui/ui-elements/PostalCodesRedux'
-import Title from 'ui/ui-elements/typography/Title'
+import ChipRedux from 'ui/elements/ChipRedux'
+import TextFieldRedux from 'ui/elements/TextFieldRedux'
+import StartEndDateRedux from 'ui/elements/StartEndDateRedux'
+import CheckboxRedux from 'ui/elements/CheckboxRedux'
+import UploadImage from 'ui/elements/UploadImage'
+import PostalCodesRedux from 'ui/elements/PostalCodesRedux'
 
+// Dev
 // eslint-disable-next-line
 import { green } from 'logger'
 
@@ -41,7 +42,7 @@ const EventSubForm = (props) => {
       >
         <form className={classes.form}>
           <Paper className={classes.paper} elevation={0}>
-            <Title>TITLE</Title>
+            <Typography variant='h6'>TITLE</Typography>
             <TextFieldRedux
               fieldName='title'
               fieldLabel='Event title'
@@ -53,7 +54,7 @@ const EventSubForm = (props) => {
             />
           </Paper>
           <Paper className={classes.paper} elevation={0}>
-            <Title>WHEN</Title>
+            <Typography variant='h6'>WHEN</Typography>
             <StartEndDateRedux
               disablePast
               fieldName='dates'
@@ -64,7 +65,7 @@ const EventSubForm = (props) => {
             />
           </Paper>
           <Paper className={classes.paper} elevation={0}>
-            <Title>WHERE</Title>
+            <Typography variant='h6'>WHERE</Typography>
             <TextFieldRedux
               fullWidth
               fieldLabel='Venue Name'
@@ -79,9 +80,9 @@ const EventSubForm = (props) => {
               enableEdit={true}
             />
           </Paper>
-          <Paper className={classes.uploadPaper} elevation={0}>
-            <Title>EVENT IMAGE</Title>
-            <div className={classes.dropZone}>
+          <Paper id='aaaaaaaa' className={classes.uploadPaper} elevation={0}>
+            <Typography variant='h6'>EVENT IMAGE</Typography>
+            <div id='bbbbbbbbbbbbbb' className={classes.dropZone}>
               <UploadImage
                 fieldName='imageUrl'
                 fieldLabel='Upload Image'
@@ -89,8 +90,11 @@ const EventSubForm = (props) => {
               />
             </div>
           </Paper>
+          {/* <Paper className={classes.uploadPaper} elevation={0}>
+          <MediaCard />
+          </Paper> */}
           <Paper className={classes.paper} elevation={0}>
-            <Title>TICKETING</Title>
+            <Typography variant='h6'>TICKETING</Typography>
             <TextFieldRedux
               fullWidth
               fieldLabel='Link to Url'
@@ -100,7 +104,7 @@ const EventSubForm = (props) => {
             />
           </Paper>
           <Paper className={classes.paper} elevation={0}>
-            <Title>WHO</Title>
+            <Typography variant='h6'>WHO</Typography>
             <TextFieldRedux
               fullWidth
               fieldLabel='Organization'
@@ -109,7 +113,7 @@ const EventSubForm = (props) => {
             />
           </Paper>
           <Paper className={classes.paper} elevation={0}>
-            <Title>HOW MUCH</Title>
+            <Typography variant='h6'>HOW MUCH</Typography>
             <div className={classes.priceFields}>
               <div className={classes.price}>
                 {
@@ -135,7 +139,7 @@ const EventSubForm = (props) => {
             </div>
           </Paper>
           <Paper className={classes.paper} elevation={0}>
-            <Title>TAGS</Title>
+            <Typography variant='h6'>TAGS</Typography>
             <ChipRedux
               fieldLabel='Tags'
               fieldName='tags'
@@ -179,6 +183,7 @@ const styles = theme => ({
   },
   dropZone: {
     marginTop: 22,
+
   },
   form: {
     backgroundColor: 'rgb(225, 225, 225)',
@@ -213,12 +218,18 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
-    // [theme.breakpoints.up('sm')]: {
-    //   padding: '0 10% 40px 10%',
-    // },
-    // [theme.breakpoints.up('md')]: {
-    //   padding: '0 15% 40px 15%',
-    // },
+
+    // ?
+    [theme.breakpoints.up('sm')]: {
+      padding: '0 10% 40px 10%',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '0 15% 40px 15%',
+    },
+    // maxHeight: 100,
+    // ?
+
+
   },
 })
 
