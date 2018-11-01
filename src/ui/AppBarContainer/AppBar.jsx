@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -23,6 +24,10 @@ class AppBar extends React.Component {
     this.props.appMenuToggle()
   }
 
+  logout = () => {
+    this.props.userLogout()
+  }
+
   render() {
     logRender && purple('AppBar - render')
     const { classes, emailName, isLoggedIn, width } = this.props
@@ -41,7 +46,12 @@ class AppBar extends React.Component {
             Drone Madness
           </Typography>
           {width !== 'xs'
-            ? isLoggedIn ? <LoggedIn emailName={emailName} /> : <LoggedOut />
+            ? isLoggedIn
+              ? <LoggedIn
+                  emailName={emailName}
+                  logout={this.logout}
+                />
+              : <LoggedOut />
             : null
           }
         </Toolbar>
@@ -71,3 +81,11 @@ export default compose(
   withWidth(),
   withStyles(styles),
 )(AppBar)
+
+
+AppBar.propTypes = {
+  emailName: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  appMenuToggle: PropTypes.func.isRequired,
+  handleMenuClick: PropTypes.func.isRequired
+}

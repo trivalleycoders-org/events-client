@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 import ButtonNavLink from 'ui/elements/ButtonNavLink'
 import AccountMenu from './AccountMenu'
 
@@ -8,8 +8,9 @@ import AccountMenu from './AccountMenu'
 import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
-const  LoggedIn = ({ emailName }) => {
+const  LoggedIn = ({ emailName, logout }) => {
   logRender && purple('LoggedIn - render')
+
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>
@@ -21,11 +22,17 @@ const  LoggedIn = ({ emailName }) => {
       <ButtonNavLink to='/my-events'>
         My Events
       </ButtonNavLink>
-      <AccountMenu emailName={emailName} />
+      <AccountMenu
+        emailName={emailName}
+        logout={logout}
+      />
     </React.Fragment>
   )
 }
 
-const styles = {}
+export default LoggedIn
 
-export default withStyles(styles)(LoggedIn)
+AccountMenu.propTypes = {
+  emailName: PropTypes.string.isRequired,
+  handleMenuClick: PropTypes.func.isRequired,
+}
