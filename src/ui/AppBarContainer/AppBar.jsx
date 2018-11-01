@@ -1,6 +1,5 @@
 import React from 'react'
 import { compose } from 'recompose'
-import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
   AppBar as MuiAppBar,
@@ -9,8 +8,6 @@ import {
   IconButton,
   withWidth,
 } from '@material-ui/core'
-import { getLoggedIn } from 'store/selectors/auth-selectors'
-import { appMenuToggle } from 'store/actions/app-menu-actions'
 import MenuIcon from '@material-ui/icons/Menu'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
@@ -28,7 +25,7 @@ class AppBar extends React.Component {
 
   render() {
     logRender && purple('AppBar - render')
-    const { classes, isLoggedIn, width } = this.props
+    const { classes, emailName, isLoggedIn, width } = this.props
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -44,9 +41,8 @@ class AppBar extends React.Component {
             Drone Madness
           </Typography>
           {width !== 'xs'
-            ? isLoggedIn ? <LoggedIn /> : <LoggedOut />
+            ? isLoggedIn ? <LoggedIn emailName={emailName} /> : <LoggedOut />
             : null
-            // true ? <LoggedIn /> : <LoggedOut />
           }
         </Toolbar>
       </MuiAppBar>
@@ -61,9 +57,6 @@ const styles = theme => ({
   appBar: {
     display: 'flex',
     justifyContent: 'center',
-    // Tmp
-    // backgroundColor: 'transparent',
-    // Tmp
   },
   flex: {
     flex: 1,
@@ -74,14 +67,7 @@ const styles = theme => ({
   },
 })
 
-const actions = { appMenuToggle }
-
-const mapStateToProps = (state) => ({
-  isLoggedIn: getLoggedIn(state)
-})
-
 export default compose(
   withWidth(),
   withStyles(styles),
-  connect(mapStateToProps, actions),
 )(AppBar)

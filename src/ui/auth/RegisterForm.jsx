@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { Redirect } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { Button, Paper } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 // actions, selectors
@@ -44,10 +44,15 @@ class RegisterForm extends React.Component {
     } else {
       return (
         <div id='RegisterForm' className={classes.pageWrapper}>
-          <PageTitle>
-            Register
-          </PageTitle>
-          <form>
+        <Paper
+            className={classes.paper}
+            elevation={0}
+          >
+            <PageTitle color='inherit'>
+              Register
+            </PageTitle>
+          </Paper>
+          <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
               fieldLabel='Email'
@@ -65,12 +70,14 @@ class RegisterForm extends React.Component {
               error={true}
               enableEdit={true}
             />
-        <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-              Submit
-        </Button>
-        <Button type='button' disabled={pristine || submitting} onClick={reset}>
-              Clear Values
-        </Button>
+            <div className={classes.actions}>
+              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+                    Register
+              </Button>
+              <Button type='button' disabled={pristine || submitting} onClick={reset}>
+                    Cancel
+              </Button>
+            </div>
           </form>
         </div>
       )

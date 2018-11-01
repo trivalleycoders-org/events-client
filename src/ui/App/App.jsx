@@ -11,7 +11,7 @@ import PrivateRoute from 'ui/auth/PrivateRoute'
 import LoginForm from 'ui/auth/LoginForm'
 import RegisterForm from 'ui/auth/RegisterForm'
 import SettingsForm from 'ui/auth/SettingsForm'
-import AppBar from 'ui/AppBar'
+import AppBarContainer from 'ui/AppBarContainer'
 
 import EventsContainer from 'ui/EventsContainer'
 import MyEventsContainer from 'ui/MyEventsContainer'
@@ -32,7 +32,7 @@ const App = (props) => {
     <div id='App-wrapper' className={classes.wrapper}>
       {/* <Breakpoints /> */}
       <div id='App-appbar' className={classes.appbar}>
-        <AppBar />
+        <AppBarContainer />
         <AppDrawer />
       </div>
       <div id='App-content' className={classes.content}>
@@ -79,7 +79,7 @@ const styles = theme => ({
     border: '2px dashed white',
     flex: '1 0 auto',
     maxWidth: 1024,
-    margin: '0 auto',
+    margin: '40px auto 40px auto',
   },
   footer: {
     // border: '2px dashed black',

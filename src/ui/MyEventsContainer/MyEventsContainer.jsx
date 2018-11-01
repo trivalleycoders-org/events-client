@@ -6,13 +6,13 @@ import ContentNotice from 'ui/elements/ContentNotice'
 
 // eslint-disable-next-line
 import { green, orange, red, purple } from 'logger'
-
+import { logRender } from 'logging'
 
 class MyEventsContainer extends React.Component {
 
   render() {
 
-    purple('MyEventsContainer - render')
+    logRender && purple('MyEventsContainer - render')
 
     const { events } = this.props
     return (

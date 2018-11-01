@@ -97,8 +97,8 @@ const styles = theme => ({
     }
   },
   title: {
-    // fontWeight: '600',
-    height: '40px',
+    height: '57px',
+    overflow: 'hidden',
   },
   time: {
     // color: theme.palette.primary.main,

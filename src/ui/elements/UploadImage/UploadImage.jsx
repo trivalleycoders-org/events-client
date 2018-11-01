@@ -13,7 +13,12 @@ class UploadImage extends React.Component {
     const { onChange } = props.input
     const { initial } = props.meta
     return (
-      <div style={{padding: 20, backgroundColor: 'green'}}>Hello</div>
+
+      <Component
+        onChange={onChange}
+        initial={initial}
+        enableEdit={enableEdit}
+      />
 
 
     )
@@ -32,11 +37,7 @@ class UploadImage extends React.Component {
     )
   }
 }
-/* <Component
-        onChange={onChange}
-        initial={initial}
-        enableEdit={enableEdit}
-      /> */
+/* <div style={{padding: 20, backgroundColor: 'green'}}>Hello</div> */
 
 export default UploadImage
 
