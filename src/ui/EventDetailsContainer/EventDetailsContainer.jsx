@@ -19,9 +19,19 @@ import { green } from 'logger'
 
 class EventDetailsContainer extends React.Component {
 
-  deleteEvent = (id) => {
-    this.props.eventDeleteOneRequest(id)
+
+  goBack = () => {
+    this.props.history.goBack()
   }
+
+  deleteEvent = (id, option) => {
+    console.log('delete event id, option: ', id, option)
+    if (option === 'Yes') {
+      this.props.eventDeleteOneRequest(id)
+      this.goBack()
+    }
+  }
+
   render() {
     const { classes, event } = this.props
     console.log('event in container: ', event)
@@ -32,6 +42,7 @@ class EventDetailsContainer extends React.Component {
         </PageTitle>
         <EventDetails
           event={event}
+          deleteEvent={this.deleteEvent}
         />
       </div>
     )

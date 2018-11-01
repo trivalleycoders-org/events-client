@@ -190,7 +190,9 @@ export default {
         return data.data
       }
       catch (e) {
-        red('api.events.delete', e)
+        // red('api.events.delete', e)
+        const error = await e.error
+        throw error
       }
     },
     async search(searchText) {
