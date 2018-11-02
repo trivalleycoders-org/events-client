@@ -1,24 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import { Link, Redirect } from 'react-router-dom'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import {
-  Button,
   ClickAwayListener,
   Grow,
-  MenuItem,
-  MenuList,
   Paper,
   Popper,
+  MenuItem,
+  MenuList,
 } from '@material-ui/core'
 // import { nameFromEmail } from 'lib/nameFromEmail'
 /* Dev */
 // eslint-disable-next-line
 import { green, purple } from 'logger'
 import { logRender } from 'logging'
-import { red } from 'logger'
 
+
+const linkStyle = {
+  textDecoration: 'none'
+}
 
 class AccountMenu extends React.Component {
   state = {
@@ -29,29 +33,23 @@ class AccountMenu extends React.Component {
     this.setState(state => ({ open: !state.open }))
   }
 
-  handleClose = (event, menu) => {
-    if (this.anchorEl.contains(event.target)) {
-      return
-    }
-    this.setState({
-      open: false,
-    })
-  }
-
   render() {
     logRender && purple('AccountMenu - render')
-    const { open } = this.state
+    const { open, redirectToHome } = this.state
     const { classes, emailName } = this.props
-
+    if (redirectToHome) {
+      return <Redirect to='/' />
+    }
     return (
-      <div id='AccountMenu'>
+      <React.Fragment>
         <Button
           buttonRef={node => {
-            this.anchorEl = node;
+            this.anchorEl = node
           }}
-          aria-owns={open ? 'menu-list-grow' : undefined}
+          aria-owns={open ? 'menu-list-grow' : null}
           aria-haspopup="true"
           onClick={this.handleToggle}
+          className={classes.label}
         >
           <div className={classes.content}>
             <div id='circle'>
@@ -77,15 +75,20 @@ class AccountMenu extends React.Component {
               <Paper>
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}>Settings</MenuItem>
-                    <MenuItem name='logout' onClick={(event) => this.handleClose(event, 'logout')}>Logout</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}>
+                      <Link to='/settings' className={classes.link} style={linkStyle}>Settings</Link>
+                    </MenuItem>
+                    <MenuItem onClick={this.handleToggle}>
+                      {/* <Link to='/' style={linkStyle} className={classes.link} onClick={this.logoutClick}>Logout</Link> */}
+                      <Button style={linkStyle} className={classes.link}>Logout</Button>
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
             </Grow>
           )}
         </Popper>
-      </div>
+      </React.Fragment>
     )
   }
 
@@ -114,7 +117,7 @@ export default compose(
 )(AccountMenu)
 
 AccountMenu.propTypes = {
+  logout: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   emailName: PropTypes.string.isRequired,
-  handleMenuClick: PropTypes.func.isRequired
 }
