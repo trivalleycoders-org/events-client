@@ -8,7 +8,7 @@ import AccountMenu from './AccountMenu'
 import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
-const  LoggedIn = ({ emailName, logout }) => {
+const  LoggedIn = ({ emailName, handleMenuClick, logout }) => {
   logRender && purple('LoggedIn - render')
 
   return (
@@ -24,6 +24,7 @@ const  LoggedIn = ({ emailName, logout }) => {
       </ButtonNavLink>
       <AccountMenu
         emailName={emailName}
+        handleMenuClick={handleMenuClick}
         logout={logout}
       />
     </React.Fragment>
