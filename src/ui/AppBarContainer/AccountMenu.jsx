@@ -36,6 +36,7 @@ class AccountMenu extends React.Component {
     this.setState({
       open: false,
     })
+    this.props.handleMenuClick(event, menu)
   }
 
   render() {
@@ -116,5 +117,5 @@ export default compose(
 AccountMenu.propTypes = {
   classes: PropTypes.object.isRequired,
   emailName: PropTypes.string.isRequired,
-  handleMenuClick: PropTypes.func.isRequired
+  handleMenuClick: PropTypes.func.isRequired,
 }

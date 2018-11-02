@@ -68,6 +68,7 @@ export default {
       }
     },
     logout(user) {
+      pink('api.users.logout')
       return new Promise(function (resolve, reject) {
         resolve('Will call remove token in action creator')
       })
