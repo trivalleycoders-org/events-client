@@ -135,7 +135,6 @@ class AppContainer extends React.Component {
       <Route render={props => (
           <App
             userId={userId}
-            logEvent={this.props.logEvent}
           />
       )}/>
     )

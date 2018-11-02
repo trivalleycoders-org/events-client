@@ -51,7 +51,7 @@ class AppBarContainer extends React.Component {
     }
     return (
       <AppBar
-        emailName={nameFromEmail(emailName)}
+        emailName={nameFromEmail(emailName) || ''}
         isLoggedIn={isLoggedIn}
         appMenuToggle={appMenuToggle}
         handleMenuClick={this.handleMenuClick}

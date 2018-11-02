@@ -19,24 +19,30 @@ import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
 class AppBar extends React.Component {
-
+  componentWillUnmount() {
+    purple('appbar unmount')
+  }
   toggleDrawer = () => {
     this.props.appMenuToggle()
   }
 
   whichMenu = () => {
+
     const { emailName, handleMenuClick, isLoggedIn, width } = this.props
     green('width', width)
     if (width === 'xs') {
+      green('whichMenu- width === xs')
       return null
     }
     if (isLoggedIn) {
+      green('whichMenu - is logged in')
       return  <LoggedIn
                 emailName={emailName}
                 logout={this.logout}
                 handleMenuClick={handleMenuClick}
               />
     } else {
+      green('whichMenu - not logged in')
       return <LoggedOut />
     }
   }
