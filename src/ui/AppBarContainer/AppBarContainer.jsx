@@ -13,18 +13,17 @@ import { nameFromEmail } from 'lib/nameFromEmail'
 // eslint-disable-next-line
 import { green, red } from 'logger'
 
-class EventDetailsContainer extends React.Component {
+class AppBarContainer extends React.Component {
   state = {
     redirect: false,
     redirectTo: '/',
   }
 
-
   handleMenuClick = (event, menu) => {
 
     let to = undefined
 
-    green('event.target', menu)
+    green('handleMenuClick: menu', menu)
 
     if (menu === 'settings') {
       to = '/settings'
@@ -73,4 +72,4 @@ const actions = { appMenuToggle, userLogoutRequest }
 export default connect(
   mstp,
   actions
-)(EventDetailsContainer)
+)(AppBarContainer)
