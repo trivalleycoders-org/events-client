@@ -24,7 +24,7 @@ import Hero from 'ui/Hero'
 // Dev
 // eslint-disable-next-line
 import { green, yellow, orange, red, purple } from 'logger'
-import Breakpoints from 'ui/elements/Breakpoints'
+// import Breakpoints from 'ui/elements/Breakpoints'
 // import ContentFiller from './ContentFiller'
 
 const App = (props) => {

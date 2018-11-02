@@ -43,7 +43,7 @@ class AppBar extends React.Component {
 
   render() {
     logRender && purple('AppBar - render')
-    const { classes, isLoggedIn, width } = this.props
+    const { classes } = this.props
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>

@@ -17,8 +17,6 @@ import {
 // eslint-disable-next-line
 import { green, purple } from 'logger'
 import { logRender } from 'logging'
-import { red } from 'logger'
-
 
 class AccountMenu extends React.Component {
   state = {
@@ -48,7 +46,7 @@ class AccountMenu extends React.Component {
       <div id='AccountMenu'>
         <Button
           buttonRef={node => {
-            this.anchorEl = node;
+            this.anchorEl = node
           }}
           aria-owns={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"

@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { Paper } from '@material-ui/core'
 import { compose } from 'recompose'
 
 import PageTitle from 'ui/elements/PageTitle'
 import { getEventById } from 'store/selectors/events-selectors'
 import { eventDeleteOneRequest } from 'store/actions/event-actions'
 import EventDetails from './EventDetails'
-import Toolbar from './Toolbar'
 
 /* Dev */
 // eslint-disable-next-line

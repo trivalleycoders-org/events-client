@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone'
-import { Paper, Button, CardMedia } from '@material-ui/core'
+import { Paper, Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -11,7 +11,6 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import * as imageActions from 'store/actions/upload-actions'
 import * as uploadSelectors from 'store/selectors/upload-selectors'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
-import MediaCard from 'ui/elements/MediaCard'
 
 /* Dev */
 // eslint-disable-next-line
