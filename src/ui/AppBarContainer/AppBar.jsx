@@ -24,9 +24,26 @@ class AppBar extends React.Component {
     this.props.appMenuToggle()
   }
 
+  whichMenu = () => {
+    const { emailName, handleMenuClick, isLoggedIn, width } = this.props
+    green('width', width)
+    if (width === 'xs') {
+      return null
+    }
+    if (isLoggedIn) {
+      return  <LoggedIn
+                emailName={emailName}
+                logout={this.logout}
+                handleMenuClick={handleMenuClick}
+              />
+    } else {
+      return <LoggedOut />
+    }
+  }
+
   render() {
     logRender && purple('AppBar - render')
-    const { classes, emailName, handleMenuClick, isLoggedIn, width } = this.props
+    const { classes, isLoggedIn, width } = this.props
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -41,16 +58,7 @@ class AppBar extends React.Component {
           <Typography variant='h5' color='inherit' className={classes.flex}>
             Drone Madness
           </Typography>
-          {width !== 'xs'
-            ? isLoggedIn
-              ? <LoggedIn
-                  emailName={emailName}
-                  logout={this.logout}
-                  handleMenuClick={handleMenuClick}
-                />
-              : <LoggedOut />
-            : null
-          }
+          {this.whichMenu()}
         </Toolbar>
       </MuiAppBar>
     )
