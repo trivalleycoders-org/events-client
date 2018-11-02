@@ -24,13 +24,9 @@ class AppBar extends React.Component {
     this.props.appMenuToggle()
   }
 
-  logout = () => {
-    this.props.userLogout()
-  }
-
   render() {
     logRender && purple('AppBar - render')
-    const { classes, emailName, isLoggedIn, width } = this.props
+    const { classes, emailName, handleMenuClick, isLoggedIn, width } = this.props
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -50,6 +46,7 @@ class AppBar extends React.Component {
               ? <LoggedIn
                   emailName={emailName}
                   logout={this.logout}
+                  handleMenuClick={handleMenuClick}
                 />
               : <LoggedOut />
             : null
