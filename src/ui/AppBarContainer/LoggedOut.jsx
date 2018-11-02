@@ -1,10 +1,14 @@
 import React from 'react'
+import { compose } from 'recompose'
+import { withStyles } from '@material-ui/core/styles'
+
 import ButtonNavLink from 'ui/elements/ButtonNavLink'
 // Dev
 import { purple } from 'logger'
 import { logRender } from 'logging'
 
-const LoggedOut = () => {
+const LoggedOut = (props) => {
+  const { classes } = props
   logRender && purple('LogedOut - render')
   return (
     <React.Fragment>
@@ -17,11 +21,8 @@ const LoggedOut = () => {
       <ButtonNavLink
         to='/register'
         variant='outlined'
-        // variant='flat'
-        // variant='contained'
-        // variant=''
-        // color='secondary'
         color='secondary'
+        className={classes.regButton}
       >
         Register
       </ButtonNavLink>
@@ -29,4 +30,15 @@ const LoggedOut = () => {
   )
 }
 
-export default LoggedOut
+const styles = theme => ({
+  regButton: {
+    border: '1px solid #fff',
+    '&:hover': {
+      border: '1px solid #fff',
+    }
+  },
+})
+
+export default compose(
+  withStyles(styles),
+)(LoggedOut)
