@@ -9,6 +9,7 @@ import { orange } from 'logger'
 export const userLogoutKey = 'userLogoutKey'
 
 export const userLogout = (user) => {
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
     type: userLogoutKey
   })
