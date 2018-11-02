@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
@@ -34,7 +35,7 @@ class AppBar extends React.Component {
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
-        <IconButton
+          <IconButton
             className={classes.menuButton}
             color='inherit'
             aria-label='Menu'
@@ -42,15 +43,17 @@ class AppBar extends React.Component {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h5' color='inherit' className={classes.flex}>
-            Drone Madness
+          <Link to='/' className={classes.link}>
+            <Typography variant='h5' color='inherit'>
+              Drone Madness
           </Typography>
+          </Link>
           {width !== 'xs'
             ? isLoggedIn
               ? <LoggedIn
-                  emailName={emailName}
-                  logout={this.logout}
-                />
+                emailName={emailName}
+                logout={this.logout}
+              />
               : <LoggedOut />
             : null
           }
@@ -68,8 +71,10 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
   },
-  flex: {
+  link: {
+    color: '#fff',
     flex: 1,
+    textDecoration: 'none',
   },
   menuButton: {
     marginLeft: -12,
