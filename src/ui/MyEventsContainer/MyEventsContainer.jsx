@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
 import MyEvents from './MyEvents'
-import ContentNotice from 'ui/elements/ContentNotice'
 
 // eslint-disable-next-line
 import { green, orange, red, purple } from 'logger'

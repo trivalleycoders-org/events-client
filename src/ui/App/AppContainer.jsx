@@ -10,11 +10,26 @@ import 'url-search-params-polyfill'
 import withRoot from 'ui/withRoot'
 
 // Store
-import { eventsForUserReadRequest, eventsReadRequest } from 'store/actions/event-actions'
-import { userValidateRequest, userValidateRequestKey } from 'store/actions/auth-actions'
-import { getLoggedIn } from 'store/selectors/auth-selectors'
-import { getRequest } from 'store/selectors/request-selectors'
-import { eventsSearchReadRequest, searchTextSet, searchTextUnset } from 'store/actions/search-actions'
+import {
+  eventsForUserReadRequest,
+  eventsReadRequest
+} from 'store/actions/event-actions'
+import {
+  userValidateRequest,
+  userValidateRequestKey,
+} from 'store/actions/auth-actions'
+import {
+  getLoggedIn,
+  getEmailName
+} from 'store/selectors/auth-selectors'
+import {
+  getRequest,
+} from 'store/selectors/request-selectors'
+import {
+  eventsSearchReadRequest,
+  searchTextSet,
+  searchTextUnset
+} from 'store/actions/search-actions'
 
 // User
 import App from './App'
@@ -120,9 +135,9 @@ class AppContainer extends React.Component {
 
   render() {
 
-     logRender && purple('AppContainer - render')
+    logRender && purple('AppContainer - render')
 
-    const { userValidateRequestStatus } = this.props
+    const { emailName, isloggedIn, userValidateRequestStatus } = this.props
     const { userId } = this.state
 
     if (!(userId === undefined)) {
@@ -134,8 +149,9 @@ class AppContainer extends React.Component {
     return (
       <Route render={props => (
           <App
-            userId={userId}
-            logEvent={this.props.logEvent}
+            emailName={emailName || ''}
+            isloggedIn={isloggedIn || false}
+            userId={userId || ''}
           />
       )}/>
     )
@@ -146,8 +162,9 @@ const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadReque
 
 const mapStateToProps = (state) => {
   return {
+    emailName: getEmailName(state),
+    isloggedIn: getLoggedIn(state),
     userValidateRequestStatus: getRequest(state, userValidateRequestKey),
-    loggedIn: getLoggedIn(state),
   }
 }
 

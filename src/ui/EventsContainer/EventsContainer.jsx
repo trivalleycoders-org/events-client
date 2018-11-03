@@ -19,7 +19,6 @@ class EventCardsContainer extends React.Component {
 
         <EventCards
           events={events}
-          logEvent={this.props.logEvent}
         />
       </div>
     )
