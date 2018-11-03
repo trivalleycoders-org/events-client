@@ -22,6 +22,9 @@ class AppBar extends React.Component {
   componentWillUnmount() {
     purple('appbar unmount')
   }
+  componentDidUpdate() {
+    purple('appbar update')
+  }
   toggleDrawer = () => {
     this.props.appMenuToggle()
   }

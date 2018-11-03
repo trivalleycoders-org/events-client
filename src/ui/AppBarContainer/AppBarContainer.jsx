@@ -7,8 +7,6 @@ import { appMenuToggle } from 'store/actions/app-menu-actions'
 import AppBar from './AppBar'
 import { nameFromEmail } from 'lib/nameFromEmail'
 
-
-
 /* Dev */
 // eslint-disable-next-line
 import { green, red } from 'logger'
@@ -19,11 +17,22 @@ class AppBarContainer extends React.Component {
     redirectTo: '/',
   }
 
+  componentDidUpdate() {
+    // const { isLoggedIn } = this.props
+    const { redirect, redirectTo } = this.state
+    // green('isLoggedIn', isLoggedIn)
+    // green('redirect', redirect)
+    // green('redirectTo', redirectTo)
+    if (redirect) {
+      return <Redirect to={redirectTo} />
+    }
+  }
+
   handleMenuClick = (event, menu) => {
 
     let to = undefined
 
-    green('handleMenuClick: menu', menu)
+    // green('handleMenuClick: menu', menu)
 
     if (menu === 'settings') {
       to = '/settings'
@@ -41,14 +50,9 @@ class AppBarContainer extends React.Component {
 
   render() {
     const { emailName, isLoggedIn, appMenuToggle } = this.props
-    const { redirect, redirectTo } = this.state
+
     // green('emailName', emailName)
-    green('isLoggedIn', isLoggedIn)
-    green('redirect', redirect)
-    green('redirectTo', redirectTo)
-    if (redirect) {
-      return <Redirect to={redirectTo} />
-    }
+
     return (
       <AppBar
         emailName={nameFromEmail(emailName) || ''}

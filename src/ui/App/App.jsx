@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Route,
   Switch,
@@ -29,6 +30,7 @@ import { green, yellow, orange, red, purple } from 'logger'
 
 const App = (props) => {
   const { classes } = props
+  green('props', props)
   return (
     <div id='App-wrapper' className={classes.wrapper}>
       {/* <Breakpoints /> */}
@@ -102,3 +104,11 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
 )(App)
+
+
+App.propTypes = {
+  // appMenuToggle: PropTypes.func.isRequired,
+  emailName: PropTypes.string.isRequired,
+  isloggedIn: PropTypes.bool.isRequired,
+  userId: PropTypes.string.isRequired
+}
