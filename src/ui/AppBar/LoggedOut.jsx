@@ -1,14 +1,12 @@
 import React from 'react'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-
 import ButtonNavLink from 'ui/elements/ButtonNavLink'
 // Dev
 import { purple } from 'logger'
 import { logRender } from 'logging'
 
-const LoggedOut = (props) => {
-  const { classes } = props
+const LoggedOut = () => {
   logRender && purple('LogedOut - render')
   return (
     <React.Fragment>
@@ -39,6 +37,4 @@ const styles = theme => ({
   },
 })
 
-export default compose(
-  withStyles(styles),
-)(LoggedOut)
+export default withStyles(styles)(LoggedOut)
