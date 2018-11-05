@@ -16,9 +16,9 @@ export default (state = { loggedIn: false }, { type, payload }) => {
     case userSetLoggedInKey:
     case userValidateKey:
     case userLoginKey:
-      blue('reducer: userLogIn: state', state)
+      // blue('reducer: userLogIn: state', state)
       const r = merge(state, { loggedIn: true, currentUser: payload.user })
-      blue('reducer: userLogIn: r', r)
+      // blue('reducer: userLogIn: r', r)
       return r
     case userRegisterKey:
       return {

@@ -1,4 +1,7 @@
 import React from 'react'
+import { compose } from 'recompose'
+import { withRouter } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getEmailName, getLoggedIn } from 'store/selectors/auth-selectors'
 import { userLogout } from 'store/actions/auth-actions'
@@ -11,53 +14,43 @@ import { nameFromEmail } from 'lib/nameFromEmail'
 import { green, red, purple } from 'logger'
 
 class AppBarContainer extends React.Component {
-  state = {
-    redirect: false,
-    redirectTo: '/',
-  }
 
-  // componentDidUpdate() {
-    // purple('AppBarContainer - update')
-    // const { isLoggedIn, history } = this.props
-    // red('history', this.props)
-    // const { redirect, redirectTo } = this.state
-    // green('isLoggedIn', isLoggedIn)
-    // green('redirect', redirect)
-    // green('redirectTo', redirectTo)
-    // if (redirect) {
-    //   // return <Redirect to={redirectTo} />
-    //   // red('history', this.props.history)
-    //   history.push({ pathname: '/' })
-    //   this.setState({ redirect: false })
-    // }
-  // }
+
 
   handleMenuClick = (event, menu) => {
-
-    this.props.userLogout()
-
-    // let to = undefined
-    // // green('handleMenuClick: menu', menu)
-    // // red('AppBarContainer.handleMenuClick: props.history', this.props.history)
-    // if (menu === 'settings') {
-    //   to = '/settings'
-    // } else if (menu === 'logout') {
-    //   to = '/'
-    //   this.props.userLogoutRequest()
-    // } else {
-    //   red('AccountMenu.handleClose: unknown condition')
-    // }
-    // this.setState({
-    //   redirectTo: to,
-    //   redirect: true,
-    // })
+    // green('handleMenuClick: menu', menu)
+    if (menu === 'settings') {
+      this.props.history.push('/settings')
+      // this.setState({
+      //   redirect: true,
+      //   redirectTo: '/settings',
+      // })
+    } else if (menu === 'logout') {
+      this.props.userLogout()
+      this.props.history.push('/')
+      // this.setState({
+      //   redirect: true,
+      //   redirectTo: '/',
+      // })
+    } else {
+      red('AccountMenu.handleClose: unknown condition')
+    }
   }
 
   render() {
+    green('props', this.props)
+    green('context', this.context)
     const { emailName, isLoggedIn, appMenuToggle } = this.props
-
-    // green('emailName', emailName)
-
+    // const { redirect, redirectTo } = this.state
+    // if (redirect) {
+    //   if (redirectTo === '/settings') {
+    //     green('redirect to /settings')
+    //     return <Redirect to='/settings' />
+    //   }
+    //   if (redirectTo === '/') {
+    //     return <Redirect to='/' />
+    //   }
+    // }
     return (
       <AppBar
         emailName={nameFromEmail(emailName) || ''}
@@ -78,7 +71,8 @@ const mstp = (state, ownProps) => {
 
 const actions = { appMenuToggle, userLogout }
 
-export default connect(
-  mstp,
-  actions
+
+export default compose(
+  withRouter,
+  connect(mstp, actions)
 )(AppBarContainer)

@@ -32,15 +32,18 @@ const App = (props) => {
   purple('App - render')
   // green('App: props', props)
   // green('App: history.pathname', props.history.location.pathname)
+
   return (
     <div id='App-wrapper' className={classes.wrapper}>
       <div id='App-appbar' className={classes.appbar}>
-        <Route component={AppBar} />
-        <Hero />
-        <AppDrawer />
+        <AppBar />
+
       </div>
+      <Hero />
+      <AppDrawer />
       <div id='App-content' className={classes.content}>
         <Switch>
+          <PrivateRoute exact path='/settings' component={SettingsForm} />
           <Route exact path='/' component={Events} />
           <PrivateRoute exact path='/my-events' component={MyEvents} />
           <PrivateRoute exact path='/create-event' component={EventForm} />
@@ -49,7 +52,7 @@ const App = (props) => {
           <PrivateRoute exact path='/event-details/:id' component={EventDetails} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={RegisterForm} />
-          <PrivateRoute exact path='/settings' component={SettingsForm} />
+
         </Switch>
       </div>
       <footer id='App-footer' className={classes.footer}>

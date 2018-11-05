@@ -15,8 +15,9 @@ import {
   eventsReadRequest
 } from 'store/actions/event-actions'
 import {
-  getLoggedIn,
-  getEmailName
+  // getLoggedIn,
+  // getEmailName,
+  getUserId
 } from 'store/selectors/auth-selectors'
 import {
   eventsSearchReadRequest,
@@ -41,7 +42,6 @@ class AppContainer extends React.Component {
     let user
 
     if (document.cookie) {
-      green('constructor')
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
       user = {
@@ -49,24 +49,23 @@ class AppContainer extends React.Component {
         email: decoded.payload.email,
         token: tokenObj.token
       }
-      green('user', user)
       this.props.userSetLoggedIn(user)
-      this.state = {
-        userId: user.id,
-      }
+      // this.state = {
+      //   userId: user.id,
+      // }
     } else {
-      this.state = {
-        userId: undefined,
-      }
+      // this.state = {
+      //   userId: undefined,
+      // }
     }
   }
 
   loadData = async (from, prevProps = undefined) => {
-    const { userId } = this.state
     const {
       eventsReadRequest,
       eventsForUserReadRequest,
-      eventsSearchReadRequest
+      eventsSearchReadRequest,
+      userId,
     } = this.props
 
     const currPath = this.props.location.pathname
@@ -131,11 +130,11 @@ class AppContainer extends React.Component {
   render() {
 
     purple('AppContainer - render')
-    const { isLoggedIn } = this.props
+    // const { isLoggedIn } = this.props
     return (
-      isLoggedIn
-        ? <App />
-        : <h1 style={{color: 'red'}}>not logged in</h1>
+      // isLoggedIn
+        <App />
+        // : <h1 style={{color: 'red'}}>not logged in</h1>
 
     )
   }
@@ -145,8 +144,9 @@ const actions = { eventsForUserReadRequest, eventsReadRequest, eventsSearchReadR
 
 const mapStateToProps = (state) => {
   return {
-    emailName: getEmailName(state),
-    isLoggedIn: getLoggedIn(state),
+    // emailName: getEmailName(state),
+    // isLoggedIn: getLoggedIn(state),
+    userId: getUserId(state)
   }
 }
 
