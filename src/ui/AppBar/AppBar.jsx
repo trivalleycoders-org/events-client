@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+import { Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   AppBar as MuiAppBar,
@@ -19,33 +20,28 @@ import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
 class AppBar extends React.Component {
-  componentWillUnmount() {
-    purple('appbar unmount')
-  }
-  componentDidUpdate() {
-    purple('appbar update')
-  }
+  // componentWillUnmount() {
+  //   purple('appbar unmount')
+  // }
+  // componentDidUpdate() {
+  //   purple('appbar update')
+  // }
   toggleDrawer = () => {
     this.props.appMenuToggle()
   }
 
   whichMenu = () => {
-
     const { emailName, handleMenuClick, isLoggedIn, width } = this.props
-    green('width', width)
     if (width === 'xs') {
-      green('whichMenu- width === xs')
       return null
     }
     if (isLoggedIn) {
-      green('whichMenu - is logged in')
       return  <LoggedIn
                 emailName={emailName}
                 logout={this.logout}
                 handleMenuClick={handleMenuClick}
               />
     } else {
-      green('whichMenu - not logged in')
       return <LoggedOut />
     }
   }
@@ -53,6 +49,7 @@ class AppBar extends React.Component {
   render() {
     logRender && purple('AppBar - render')
     const { classes } = this.props
+
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -67,7 +64,10 @@ class AppBar extends React.Component {
           <Typography variant='h5' color='inherit' className={classes.flex}>
             Drone Madness
           </Typography>
-          {this.whichMenu()}
+          <Route render={() => (
+            this.whichMenu()
+
+          )}/>
         </Toolbar>
       </MuiAppBar>
     )

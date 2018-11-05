@@ -10,11 +10,11 @@ import { green, blue } from 'logger'
 
 const PrivateRoute = ({ component: Component, loggedIn, userValidateRequestStatus, ...rest }) => {
 
-  if (!loggedIn) {
-    if (userValidateRequestStatus !== 'success') {
-      return null
-    }
-  }
+  // if (!loggedIn) {
+  //   if (userValidateRequestStatus !== 'success') {
+  //     return null
+  //   }
+  // }
   return (
     <Route {...rest} render={(props) => (
       loggedIn
@@ -28,7 +28,5 @@ const mapStateToProps = (state) => ({
   userValidateRequestStatus: getRequest(state, userValidateRequestKey),
   loggedIn: getLoggedIn(state),
 })
-
-// const actions = userLoginRequestKey
 
 export default connect(mapStateToProps)(PrivateRoute)

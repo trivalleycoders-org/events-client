@@ -5,9 +5,23 @@ import { pageMessage } from './page-message-actions'
 // eslint-disable-next-line
 import { orange } from 'logger'
 
+export const userSetLoggedInKey = 'userSetLoggedInKey'
+export const userSetLoggedIn = (user) => {
+  return ({
+    type: userSetLoggedInKey,
+    payload: { user }
+  })
+}
+
+// export const userSetLoggedOutKey = 'userSetLoggedOutKey'
+// export const userSetLoggedOut = (user) => {
+//   return ({
+//     type: userSetLoggedOutKey,
+//   })
+// }
+
 // logout
 export const userLogoutKey = 'userLogoutKey'
-
 export const userLogout = (user) => {
   document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
   return ({
@@ -15,27 +29,24 @@ export const userLogout = (user) => {
   })
 }
 
-export const userLogoutRequestKey = 'userLogoutRequestKey'
-
-export const userLogoutRequest = createRequestThunk({
-  request: api.users.logout,
-  key: userLogoutRequestKey,
-  success: [userLogout],
-  failure: [(error) => pageMessage(error.error)]
-})
+// export const userLogoutRequestKey = 'userLogoutRequestKey'
+// export const userLogoutRequest = createRequestThunk({
+//   request: api.users.logout,
+//   key: userLogoutRequestKey,
+//   success: [userLogout],
+//   failure: [(error) => pageMessage(error.error)]
+// })
 
 export const userValidateKey = 'userValidateKey'
-
 export const userValidate = (user) => {
-  // orange('authActions.userValidate: user', user)
+  orange('authActions.userValidate: user', user)
   return ({
     type: userValidateKey,
-    payload: user
+    payload: { user }
   })
 }
 
 export const userValidateRequestKey = 'userValidateRequestKey'
-
 export const userValidateRequest = createRequestThunk({
   request: api.users.validate,
   key: userValidateRequestKey,
@@ -43,10 +54,28 @@ export const userValidateRequest = createRequestThunk({
   failure: [(error) => pageMessage(error.error)]
 })
 
+// NEW
+// export const tokenValidateKey = 'tokenValidateKey'
+// export const tokenValidate = (token) => {
+//   orange('authActions.tokenValidate: user', token)
+//   return ({
+//     type: tokenValidateKey,
+//     payload: { token }
+//   })
+// }
+
+// export const tokenValidateRequestKey = 'tokenValidateRequestKey'
+// export const tokenValidateRequest = createRequestThunk({
+//   request: api.users.validateToken,
+//   key: tokenValidateRequestKey,
+//   success: [tokenValidate],
+//   failure: [(error) => pageMessage(error.error)]
+// })
+// NEW
+
 
 // login
 export const userLoginKey = 'userLoginKey'
-
 const userLogin = (user) => {
   return ({
     type: userLoginKey,
@@ -55,7 +84,6 @@ const userLogin = (user) => {
 }
 
 export const loginFailedKey = 'loginFailedKey'
-
 const loginFailed = (error) => {
   return ({
     type: loginFailedKey,
@@ -64,7 +92,6 @@ const loginFailed = (error) => {
 }
 
 export const userLoginRequestKey = 'userLoginRequestKey'
-
 export const userLoginRequest = createRequestThunk({
   request: api.users.login,
   key: userLoginRequestKey,
@@ -74,7 +101,6 @@ export const userLoginRequest = createRequestThunk({
 
 // register
 export const userRegisterKey = 'userRegisterKey'
-
 const userRegister = (user) => {
   return ({
     type: userRegisterKey,
@@ -96,7 +122,6 @@ export const userRegisterRequest = createRequestThunk({
 
 // update password
 export const userPasswordUpdateKey = 'userUpdatePasswordKey'
-
 const passwordUpdate = (password) => {
   return ({
     type: userPasswordUpdateKey,
@@ -105,7 +130,6 @@ const passwordUpdate = (password) => {
 }
 
 export const userPasswordUpdateRequestKey = 'userPasswordUpdateRequestKey'
-
 export const passwordUpdateRequest = createRequestThunk({
   request: api.users.update,
   key: userPasswordUpdateRequestKey,
