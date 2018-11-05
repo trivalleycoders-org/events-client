@@ -2,7 +2,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Grid,
-  Typography,
 } from '@material-ui/core'
 /* User */
 import Event from './Event'
