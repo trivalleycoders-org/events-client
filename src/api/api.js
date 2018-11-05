@@ -28,14 +28,6 @@ export default {
     }
   },
   */
-  // token: {
-  //   validateToken(token) {
-  //     pink('api.users.validateToken: token', token)
-  //     try {
-
-  //     }
-  //   },
-  // },
   users: {
     async register(user) {
       // pink('api.users.register: ', user)
@@ -66,7 +58,7 @@ export default {
             body: JSON.stringify(user)
           }
         )
-        pink('api.users.login: data', data)
+        // pink('api.users.login: data', data)
         return data.data
       }
       catch (e) {

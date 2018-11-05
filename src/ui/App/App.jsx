@@ -25,16 +25,17 @@ import Hero from 'ui/Hero'
 // Dev
 // eslint-disable-next-line
 import { green, yellow, orange, red, purple } from 'logger'
+// import Breakpoints from 'ui/elements/Breakpoints'
+// import ContentFiller from './ContentFiller'
 
 const App = (props) => {
   const { classes } = props
 
   purple('App - render')
-  // green('App: props', props)
-  // green('App: history.pathname', props.history.location.pathname)
 
   return (
     <div id='App-wrapper' className={classes.wrapper}>
+      {/* <Breakpoints /> */}
       <div id='App-appbar' className={classes.appbar}>
         <AppBar />
 
@@ -96,11 +97,3 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
 )(App)
-
-
-App.propTypes = {
-  // appMenuToggle: PropTypes.func.isRequired,
-  // emailName: PropTypes.string.isRequired,
-  // isloggedIn: PropTypes.bool.isRequired,
-  // userId: PropTypes.string.isRequired
-}

@@ -39,7 +39,7 @@ export const userLogout = (user) => {
 
 export const userValidateKey = 'userValidateKey'
 export const userValidate = (user) => {
-  orange('authActions.userValidate: user', user)
+  // orange('authActions.userValidate: user', user)
   return ({
     type: userValidateKey,
     payload: { user }
@@ -53,26 +53,6 @@ export const userValidateRequest = createRequestThunk({
   success: [userValidate],
   failure: [(error) => pageMessage(error.error)]
 })
-
-// NEW
-// export const tokenValidateKey = 'tokenValidateKey'
-// export const tokenValidate = (token) => {
-//   orange('authActions.tokenValidate: user', token)
-//   return ({
-//     type: tokenValidateKey,
-//     payload: { token }
-//   })
-// }
-
-// export const tokenValidateRequestKey = 'tokenValidateRequestKey'
-// export const tokenValidateRequest = createRequestThunk({
-//   request: api.users.validateToken,
-//   key: tokenValidateRequestKey,
-//   success: [tokenValidate],
-//   failure: [(error) => pageMessage(error.error)]
-// })
-// NEW
-
 
 // login
 export const userLoginKey = 'userLoginKey'

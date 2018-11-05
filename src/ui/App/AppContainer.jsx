@@ -15,8 +15,6 @@ import {
   eventsReadRequest
 } from 'store/actions/event-actions'
 import {
-  // getLoggedIn,
-  // getEmailName,
   getUserId
 } from 'store/selectors/auth-selectors'
 import {
@@ -30,17 +28,14 @@ import App from './App'
 
 // Dev
 // eslint-disable-next-line
-import { green, red, purple, yellow } from 'logger'
-
-
-// const wait = ms => new Promise((r, j)=>setTimeout(r, ms))
+import { green, red, purple } from 'logger'
+import { logRender } from 'logging'
 
 class AppContainer extends React.Component {
 
   constructor(props) {
     super(props)
     let user
-
     if (document.cookie) {
       const tokenObj = parse(document.cookie)
       const decoded = jwt.decode(tokenObj.token, { complete: true })
@@ -50,14 +45,7 @@ class AppContainer extends React.Component {
         token: tokenObj.token
       }
       this.props.userSetLoggedIn(user)
-      // this.state = {
-      //   userId: user.id,
-      // }
-    } else {
-      // this.state = {
-      //   userId: undefined,
-      // }
-    }
+    } 
   }
 
   loadData = async (from, prevProps = undefined) => {
