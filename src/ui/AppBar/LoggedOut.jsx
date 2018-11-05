@@ -1,5 +1,4 @@
 import React from 'react'
-import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonNavLink from 'ui/elements/ButtonNavLink'
 // Dev
@@ -8,7 +7,7 @@ import { logRender } from 'logging'
 
 const LoggedOut = (props) => {
   logRender && purple('LogedOut - render')
-  const { classes } = this.props
+  const { classes } = props
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>
