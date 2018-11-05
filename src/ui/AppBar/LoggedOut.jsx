@@ -6,8 +6,9 @@ import ButtonNavLink from 'ui/elements/ButtonNavLink'
 import { purple } from 'logger'
 import { logRender } from 'logging'
 
-const LoggedOut = () => {
+const LoggedOut = (props) => {
   logRender && purple('LogedOut - render')
+  const { classes } = this.props
   return (
     <React.Fragment>
       <ButtonNavLink to='/'>

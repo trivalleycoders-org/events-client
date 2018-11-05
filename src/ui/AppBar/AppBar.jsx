@@ -21,12 +21,6 @@ import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
 class AppBar extends React.Component {
-  // componentWillUnmount() {
-  //   purple('appbar unmount')
-  // }
-  // componentDidUpdate() {
-  //   purple('appbar update')
-  // }
   toggleDrawer = () => {
     this.props.appMenuToggle()
   }
@@ -65,7 +59,8 @@ class AppBar extends React.Component {
           <Link to='/' className={classes.link}>
             <Typography variant='h5' color='inherit'>
               Drone Madness
-          </Typography>
+            </Typography>
+          </Link>
           <Route render={() => (
             this.whichMenu()
 
