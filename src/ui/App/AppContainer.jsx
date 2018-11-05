@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
-import {
-  Route,
-} from 'react-router-dom'
 import { parse } from '../../api/cookie-parser'
 import jwt from 'jsonwebtoken'
 import 'url-search-params-polyfill'
@@ -11,20 +8,15 @@ import withRoot from 'ui/withRoot'
 
 // Store
 import {
+  userSetLoggedIn,
+} from 'store/actions/auth-actions'
+import {
   eventsForUserReadRequest,
   eventsReadRequest
 } from 'store/actions/event-actions'
 import {
-  userValidateRequest,
-  userValidateRequestKey,
-} from 'store/actions/auth-actions'
-import {
-  getLoggedIn,
-  getEmailName
+  getUserId
 } from 'store/selectors/auth-selectors'
-import {
-  getRequest,
-} from 'store/selectors/request-selectors'
 import {
   eventsSearchReadRequest,
   searchTextSet,
@@ -52,26 +44,16 @@ class AppContainer extends React.Component {
         email: decoded.payload.email,
         token: tokenObj.token
       }
-      this.props.userValidateRequest(user)
-
-      this.state = {
-        userId: user.id,
-      }
-      // green(`${componentName} - cookie found with userId`, user.id)
-    } else {
-      // green(`${componentName} - cookie NOT found`)
-      this.state = {
-        userId: undefined,
-      }
-    }
+      this.props.userSetLoggedIn(user)
+    } 
   }
 
   loadData = async (from, prevProps = undefined) => {
-    const { userId } = this.state
     const {
       eventsReadRequest,
       eventsForUserReadRequest,
-      eventsSearchReadRequest
+      eventsSearchReadRequest,
+      userId,
     } = this.props
 
     const currPath = this.props.location.pathname
@@ -135,36 +117,24 @@ class AppContainer extends React.Component {
 
   render() {
 
-    logRender && purple('AppContainer - render')
-
-    const { emailName, isloggedIn, userValidateRequestStatus } = this.props
-    const { userId } = this.state
-
-    if (!(userId === undefined)) {
-      if (userValidateRequestStatus.status !== 'success') {
-        return <h1>Loading</h1>
-      }
-    }
-
+    purple('AppContainer - render')
+    // const { isLoggedIn } = this.props
     return (
-      <Route render={props => (
-          <App
-            emailName={emailName || ''}
-            isloggedIn={isloggedIn || false}
-            userId={userId || ''}
-          />
-      )}/>
+      // isLoggedIn
+        <App />
+        // : <h1 style={{color: 'red'}}>not logged in</h1>
+
     )
   }
 }
 
-const actions = { eventsForUserReadRequest, userValidateRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset }
+const actions = { eventsForUserReadRequest, eventsReadRequest, eventsSearchReadRequest, searchTextSet, searchTextUnset, userSetLoggedIn }
 
 const mapStateToProps = (state) => {
   return {
-    emailName: getEmailName(state),
-    isloggedIn: getLoggedIn(state),
-    userValidateRequestStatus: getRequest(state, userValidateRequestKey),
+    // emailName: getEmailName(state),
+    // isLoggedIn: getLoggedIn(state),
+    userId: getUserId(state)
   }
 }
 
