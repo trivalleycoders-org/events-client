@@ -1,7 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
-import ResponsiveImage from 'ui/elements/ResponsiveImage'
 import iMeetup from './media/meetup-swarm.svg'
 import iSlack from './media/slack.svg'
 import iFacebook from './media/facebook.svg'

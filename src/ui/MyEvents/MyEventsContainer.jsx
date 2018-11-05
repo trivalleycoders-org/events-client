@@ -1,25 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
-import EventCards from 'ui/EventCards'
+import MyEvents from './MyEvents'
 
 // eslint-disable-next-line
-import { green } from 'logger'
+import { green, orange, red, purple } from 'logger'
+import { logRender } from 'logging'
 
-class EventCardsContainer extends React.Component {
+class MyEventsContainer extends React.Component {
 
   render() {
-    const { events } = this.props
 
+    logRender && purple('MyEventsContainer - render')
+
+    const { events } = this.props
     return (
-      <div id='EventCardsContainer'>
+      <div id='MyEventsContainer'>
         {/* <ContentNotice>
           {`${events.length} Events`}
         </ContentNotice> */}
-
-        <EventCards
+        <MyEvents
           events={events}
-          logEvent={this.props.logEvent}
         />
       </div>
     )
@@ -27,12 +28,12 @@ class EventCardsContainer extends React.Component {
 
 }
 
-const mstp = (state) => {
+const mstp = (state, ownProps) => {
   return {
     events: getAllEvents(state),
   }
 }
 
 export default connect(
-    mstp
-)(EventCardsContainer)
+    mstp,
+)(MyEventsContainer)

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+import { Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import {
   AppBar as MuiAppBar,
@@ -20,14 +21,30 @@ import { green, purple } from 'logger'
 import { logRender } from 'logging'
 
 class AppBar extends React.Component {
-
   toggleDrawer = () => {
     this.props.appMenuToggle()
   }
 
+  whichMenu = () => {
+    const { emailName, handleMenuClick, isLoggedIn, width } = this.props
+    if (width === 'xs') {
+      return null
+    }
+    if (isLoggedIn) {
+      return  <LoggedIn
+                emailName={emailName}
+                logout={this.logout}
+                handleMenuClick={handleMenuClick}
+              />
+    } else {
+      return <LoggedOut />
+    }
+  }
+
   render() {
     logRender && purple('AppBar - render')
-    const { classes, emailName, handleMenuClick, isLoggedIn, width } = this.props
+    const { classes } = this.props
+
     return (
       <MuiAppBar id='AppBar' position='fixed' className={classes.appBar}>
         <Toolbar>
@@ -42,18 +59,12 @@ class AppBar extends React.Component {
           <Link to='/' className={classes.link}>
             <Typography variant='h5' color='inherit'>
               Drone Madness
-          </Typography>
+            </Typography>
           </Link>
-          {width !== 'xs'
-            ? isLoggedIn
-              ? <LoggedIn
-                emailName={emailName}
-                logout={this.logout}
-                handleMenuClick={handleMenuClick}
-              />
-              : <LoggedOut />
-            : null
-          }
+          <Route render={() => (
+            this.whichMenu()
+
+          )}/>
         </Toolbar>
       </MuiAppBar>
     )
