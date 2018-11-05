@@ -26,10 +26,6 @@ class LoginForm extends React.PureComponent {
     this.props.pageMessage('')
   }
 
-  componentDidMount() {
-    green('** LoginForm Mount')
-  }
-
   onSubmit = (values) => {
     const { userLoginRequest } = this.props
     userLoginRequest(values)

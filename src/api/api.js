@@ -58,7 +58,7 @@ export default {
             body: JSON.stringify(user)
           }
         )
-        // pink('data returned from api.users.login: ', data)
+        // pink('api.users.login: data', data)
         return data.data
       }
       catch (e) {
@@ -66,17 +66,6 @@ export default {
         const error = await e.error
         throw error
       }
-    },
-    logout(user) {
-      pink('api.users.logout')
-      return new Promise(function (resolve, reject) {
-        resolve('Will call remove token in action creator')
-      })
-    },
-    validate(user) {
-      return new Promise(function (resolve, reject) {
-        resolve({ user })
-      })
     },
     async update(password) {
       // pink('api.users.update: ', password)

@@ -12,13 +12,13 @@ import PrivateRoute from 'ui/auth/PrivateRoute'
 import LoginForm from 'ui/auth/LoginForm'
 import RegisterForm from 'ui/auth/RegisterForm'
 import SettingsForm from 'ui/auth/SettingsForm'
-import AppBarContainer from 'ui/AppBarContainer'
+import AppBar from 'ui/AppBar'
 
-import EventsContainer from 'ui/EventsContainer'
-import MyEventsContainer from 'ui/MyEventsContainer'
-import EventDetailsContainer from 'ui/EventDetailsContainer'
-import EventFormContainer from 'ui/EventFormContainer'
-import SearchEventsContainer from 'ui/SearchEventsContainer'
+import Events from 'ui/Events'
+import MyEvents from 'ui/MyEvents'
+import EventDetails from 'ui/EventDetails'
+import EventForm from 'ui/EventForm'
+import SearchEvents from 'ui/SearchEvents'
 import AppDrawer from 'ui/AppDrawer'
 import Footer from 'ui/Footer'
 import Hero from 'ui/Hero'
@@ -30,26 +30,30 @@ import { green, yellow, orange, red, purple } from 'logger'
 
 const App = (props) => {
   const { classes } = props
-  green('props', props)
+
+  purple('App - render')
+
   return (
     <div id='App-wrapper' className={classes.wrapper}>
       {/* <Breakpoints /> */}
       <div id='App-appbar' className={classes.appbar}>
-        <AppBarContainer />
-        <Hero />
-        <AppDrawer />
+        <AppBar />
+
       </div>
+      <Hero />
+      <AppDrawer />
       <div id='App-content' className={classes.content}>
         <Switch>
-          <Route exact path='/' component={EventsContainer} />
-            <PrivateRoute exact path='/my-events' component={MyEventsContainer} />
-            <PrivateRoute exact path='/create-event' component={EventFormContainer} />
-            <Route path='/search-events' component={SearchEventsContainer} />
-            <PrivateRoute exact path='/edit-event/:id' component={EventFormContainer} />
-            <PrivateRoute exact path='/event-details/:id' component={EventDetailsContainer} />
-            <Route exact path='/login' component={LoginForm} />
-            <Route exact path='/register' component={RegisterForm} />
-            <PrivateRoute exact path='/settings' component={SettingsForm} />
+          <PrivateRoute exact path='/settings' component={SettingsForm} />
+          <Route exact path='/' component={Events} />
+          <PrivateRoute exact path='/my-events' component={MyEvents} />
+          <PrivateRoute exact path='/create-event' component={EventForm} />
+          <Route path='/search-events' component={SearchEvents} />
+          <PrivateRoute exact path='/edit-event/:id' component={EventForm} />
+          <PrivateRoute exact path='/event-details/:id' component={EventDetails} />
+          <Route exact path='/login' component={LoginForm} />
+          <Route exact path='/register' component={RegisterForm} />
+
         </Switch>
       </div>
       <footer id='App-footer' className={classes.footer}>
@@ -59,25 +63,14 @@ const App = (props) => {
   )
 }
 
-/*
-<div className={classes.fakeContent}>
-          <Typography variant='h6' align='center'>
-            Footer
-          </Typography>
-        </div>
-
-*/
-
 const styles = theme => ({
   fakeContent: {
     height: 400,
   },
   wrapper: {
     backgroundColor: 'white',
-    // height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    // alignItems: 'center',
   },
   content: {
     border: '2px dashed white',
@@ -104,11 +97,3 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
 )(App)
-
-
-App.propTypes = {
-  // appMenuToggle: PropTypes.func.isRequired,
-  emailName: PropTypes.string.isRequired,
-  isloggedIn: PropTypes.bool.isRequired,
-  userId: PropTypes.string.isRequired
-}
