@@ -15,42 +15,19 @@ import { green, red, purple } from 'logger'
 
 class AppBarContainer extends React.Component {
 
-
-
   handleMenuClick = (event, menu) => {
-    // green('handleMenuClick: menu', menu)
     if (menu === 'settings') {
       this.props.history.push('/settings')
-      // this.setState({
-      //   redirect: true,
-      //   redirectTo: '/settings',
-      // })
     } else if (menu === 'logout') {
       this.props.userLogout()
       this.props.history.push('/')
-      // this.setState({
-      //   redirect: true,
-      //   redirectTo: '/',
-      // })
     } else {
-      red('AccountMenu.handleClose: unknown condition')
+      red('AppBarContainer.handleMenuClick: unknown condition')
     }
   }
 
   render() {
-    green('props', this.props)
-    green('context', this.context)
     const { emailName, isLoggedIn, appMenuToggle } = this.props
-    // const { redirect, redirectTo } = this.state
-    // if (redirect) {
-    //   if (redirectTo === '/settings') {
-    //     green('redirect to /settings')
-    //     return <Redirect to='/settings' />
-    //   }
-    //   if (redirectTo === '/') {
-    //     return <Redirect to='/' />
-    //   }
-    // }
     return (
       <AppBar
         emailName={nameFromEmail(emailName) || ''}
