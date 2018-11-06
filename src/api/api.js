@@ -114,6 +114,8 @@ export default {
       }
       catch (e) {
         red('api.events.create', e)
+        const error = await e.error
+        throw error
       }
 
     },
@@ -131,6 +133,8 @@ export default {
       }
       catch (e) {
         red('api.events.read', e)
+        const error = await e.error
+        throw error
       }
     },
     async forUserRead(userId) {
@@ -147,6 +151,8 @@ export default {
       }
       catch (e) {
         red('api.events.forUserRead', e)
+        const error = await e.error
+        throw error
       }
     },
     async patch(event) {
@@ -165,6 +171,8 @@ export default {
       }
       catch (e) {
         red('api.events.patch', e)
+        const error = await e.error
+        throw error
       }
     },
     async delete(id) {
@@ -186,16 +194,22 @@ export default {
       }
     },
     async search(searchText) {
-      // pink('api.events.search: searchText', searchText)
-      const searchUrl = '/api/search?searchTerm=' + JSON.stringify(searchText)
-      const data = await fetchJson(
-        searchUrl,
-        {
-          method: 'GET',
-        }
-      )
-      pink('api.search: data', data.data)
-      return data.data
+      try {
+        // pink('api.events.search: searchText', searchText)
+        const searchUrl = '/api/search?searchTerm=' + JSON.stringify(searchText)
+        const data = await fetchJson(
+          searchUrl,
+          {
+            method: 'GET',
+          }
+        )
+        pink('api.search: data', data.data)
+        return data.data
+      }
+      catch (e) {
+        const error = await e.error
+        throw error
+      }
     },
   },
   images: {
@@ -212,6 +226,8 @@ export default {
         return data
       }).catch(e => {
         red('api.images.create: ERROR: ', e)
+        const error = e.error
+        throw error
       })
     },
   },
