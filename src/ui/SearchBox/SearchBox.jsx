@@ -54,7 +54,6 @@ export class SearchBox extends React.Component {
             <Button
               color='primary'
               disabled={searchString.length < 3}
-            // variant='contained'
             >
               Search
             </Button>
@@ -73,7 +72,8 @@ export class SearchBox extends React.Component {
 
 const styles = theme => ({
   wrapper: {
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
+    border: `1px solid ${theme.palette.secondary.main}`,
     padding: theme.spacing.unit,
   },
   input: {
