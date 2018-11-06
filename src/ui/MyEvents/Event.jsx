@@ -19,7 +19,7 @@ import { logRender } from 'logging'
 const Event = ({ classes, event, handleItemClick }) => {
   logRender && purple('Event (MyEvents) - render')
   return (
-    <Paper className={classes.wrapper}>
+    <Paper>
       <Grid container>
         <Grid
           item
@@ -73,7 +73,6 @@ const Event = ({ classes, event, handleItemClick }) => {
 }
 
 const styles = theme => {
-
   return ({
     svg: {
       width: 10,
@@ -89,10 +88,6 @@ const styles = theme => {
       justifyContent: 'center',
       backgroundColor: theme.palette.primary.main,
       color: 'white',
-    },
-    wrapper: {
-      display: 'flex',
-      flexFlow: 'row nowrap',
     },
   })
 }

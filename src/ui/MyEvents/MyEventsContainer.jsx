@@ -15,14 +15,9 @@ class MyEventsContainer extends React.Component {
 
     const { events } = this.props
     return (
-      <div id='MyEventsContainer'>
-        {/* <ContentNotice>
-          {`${events.length} Events`}
-        </ContentNotice> */}
-        <MyEvents
-          events={events}
-        />
-      </div>
+      <MyEvents
+        events={events}
+      />
     )
   }
 

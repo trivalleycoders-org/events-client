@@ -41,15 +41,10 @@ const styles = theme => {
       alignItems: 'center',
     },
     wrapper: {
-      borderTop: '3px solid pink',
-      borderBottom: '3px solid pink',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'center',
-      // backgroundColor: theme.palette.grey[800],
       color: theme.palette.common.white,
-      // marginBottom: theme.spacing.unit * 4,
-      // height: '500px',
       height: 200,
 
       [theme.breakpoints.only('sm')]: {

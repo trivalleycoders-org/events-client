@@ -73,7 +73,6 @@ const styles = theme => ({
     padding: '0px 15px 0px 15px',
   },
   card: {
-    // backgroundColor: 'blue',
     minHeight: 0,
     minWidth: 0,
     maxWidth: 390, // was 250?

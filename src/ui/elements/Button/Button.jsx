@@ -54,20 +54,7 @@ const Button = (props) => {
       </Btn>
   )
 }
-/*
-      <Button
-        variant="contained"
-        color="primary"
-        className={classNames(classes.margin, classes.cssRoot)}
-      >
-        Custom CSS
-      </Button>
-*/
 const styles = theme => ({
-  // btnGreen: {
-  //   color: theme.palette.getContrastText(green[500]),
-  //   backgroundColor: green,
-  // },
   btnPrimary: {
     '&:disabled': {
       backgroundColor: theme.palette.primary.light,

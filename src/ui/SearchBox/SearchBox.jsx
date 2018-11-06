@@ -74,8 +74,6 @@ export class SearchBox extends React.Component {
 const styles = theme => ({
   wrapper: {
     backgroundColor: '#fff',
-    // backgroundColor: 'lightgrey',
-    // border: `1px solid ${theme.palette.secondary.main}`,
     padding: theme.spacing.unit,
   },
   input: {
