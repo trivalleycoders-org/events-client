@@ -42,7 +42,7 @@ const Event = ({ classes, event, handleItemClick }) => {
           xs={8}
           className={classes.detail}
         >
-          <Typography variant='h5'>
+          <Typography variant='h6'>
             {event.title}
           </Typography>
           <Typography variant='subtitle1'>
@@ -61,7 +61,7 @@ const Event = ({ classes, event, handleItemClick }) => {
             <Chevron5
               className={classes.svg}
               width={10}
-              color={blue[500]}
+              color={'#dc0747'}
             />
           </ButtonFit>
         </Grid>
