@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import { Home, Event } from '@material-ui/icons'
+import Login from '@material-ui/icons/Lock'
+import Register from '@material-ui/icons/PersonAdd'
+import Settings from '@material-ui/icons/Settings'
+import { Home, Event, List } from '@material-ui/icons'
 
 const linkStyle = {
   textDecoration: 'none'
@@ -25,7 +27,7 @@ export const menuLoggedOut = (
     <Link to='/register' style={linkStyle}>
       <ListItem button>
         <ListItemIcon>
-          <InboxIcon />
+          <Register />
         </ListItemIcon>
         <ListItemText primary='Register' />
       </ListItem>
@@ -33,7 +35,7 @@ export const menuLoggedOut = (
     <Link to='/login' style={linkStyle}>
       <ListItem button>
         <ListItemIcon>
-          <InboxIcon />
+          <Login />
         </ListItemIcon>
         <ListItemText primary='Login' />
       </ListItem>
@@ -62,7 +64,7 @@ export const menuLoggedIn = (
     <Link to='/my-events' style={linkStyle}>
       <ListItem button>
         <ListItemIcon>
-          <InboxIcon />
+          <List />
         </ListItemIcon>
         <ListItemText primary='My Events' />
       </ListItem>
@@ -70,7 +72,7 @@ export const menuLoggedIn = (
     <Link to='/settings' style={linkStyle}>
       <ListItem button>
         <ListItemIcon>
-          <InboxIcon />
+          <Settings />
         </ListItemIcon>
         <ListItemText primary='Settings' />
       </ListItem>
