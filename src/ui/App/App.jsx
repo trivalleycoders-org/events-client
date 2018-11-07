@@ -40,21 +40,25 @@ const App = (props) => {
         <AppBar />
 
       </div>
-      <Hero />
+      <div>
+        <Hero />
+      </div>
       <AppDrawer />
-      <div id='App-content' className={classes.content}>
-        <Switch>
-          <PrivateRoute exact path='/settings' component={SettingsForm} />
-          <Route exact path='/' component={Events} />
-          <PrivateRoute exact path='/my-events' component={MyEvents} />
-          <PrivateRoute exact path='/create-event' component={EventForm} />
-          <Route path='/search-events' component={SearchEvents} />
-          <PrivateRoute exact path='/edit-event/:id' component={EventForm} />
-          <PrivateRoute exact path='/event-details/:id' component={EventDetails} />
-          <Route exact path='/login' component={LoginForm} />
-          <Route exact path='/register' component={RegisterForm} />
+      <div id='App-content' className={classes.contentWrapper}>
+        <div id='App-content' className={classes.content}>
+          <Switch>
+            <PrivateRoute exact path='/settings' component={SettingsForm} />
+            <Route exact path='/' component={Events} />
+            <PrivateRoute exact path='/my-events' component={MyEvents} />
+            <PrivateRoute exact path='/create-event' component={EventForm} />
+            <Route path='/search-events' component={SearchEvents} />
+            <PrivateRoute exact path='/edit-event/:id' component={EventForm} />
+            <PrivateRoute exact path='/event-details/:id' component={EventDetails} />
+            <Route exact path='/login' component={LoginForm} />
+            <Route exact path='/register' component={RegisterForm} />
 
-        </Switch>
+          </Switch>
+        </div>
       </div>
       <footer id='App-footer' className={classes.footer}>
         <Footer />
@@ -72,15 +76,26 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  content: {
-    border: '2px dashed white',
+  contentWrapper: {
     flex: '1 0 auto',
-    maxWidth: 1024,
-    margin: '40px auto 40px auto',
+    margin: 0,
+    [theme.breakpoints.only('sm')]: {
+      // margin: '0 5%',
+    },
+    [theme.breakpoints.only('md')]: {
+      margin: '0 10%',
+    },
+    [theme.breakpoints.only('lg')]: {
+      margin: '0 15%',
+    },
+    [theme.breakpoints.only('xl')]: {
+      margin: '0 15%',
+    },
+  },
+  content: {
+    height: '100%',
   },
   footer: {
-    // border: '2px dashed black',
-    // backgroundColor: 'darkgrey',
     backgroundColor: '#2b3137',
     flexShrink: 0,
     flexGrow: 0,

@@ -36,7 +36,7 @@ const EventCard = ({
         <Divider />
         <CardActionArea>
           <CardContent>
-            <Typography variant='h5' color='primary' className={classes.title}>
+            <Typography variant='h4' color='primary' className={classes.title}>
               {title}
             </Typography>
             <Typography variant='h6' className={classes.time}>
@@ -73,7 +73,6 @@ const styles = theme => ({
     padding: '0px 15px 0px 15px',
   },
   card: {
-    // backgroundColor: 'blue',
     minHeight: 0,
     minWidth: 0,
     maxWidth: 390, // was 250?
@@ -101,7 +100,7 @@ const styles = theme => ({
   },
   time: {
     // color: theme.palette.primary.main,
-    marginTop: '1em',
+    // marginTop: '0rem',
     overflow: 'hidden',
     paddingTop: '.4rem',
     whiteSpace: 'nowrap',

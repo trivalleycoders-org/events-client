@@ -15,16 +15,21 @@ import { logRender } from 'logging'
 const MyEvents = ({ classes, events }) => {
 
   logRender && purple('MyEvents - render')
-
+  const numEvents = events.length
   return (
     <div id='MyEvents' className={classes.wrapper}>
       <PageTitle>
         Your Events
       </PageTitle>
-      <Grid container spacing={Number(8)}>
+      <Grid
+        container
+        spacing={16}
+        // className={classes.grid}
+        // justify='center'
+        >
         {events.map(e => {
           return (
-            <Grid key={e._id} item xs={12} lg={6}>
+            <Grid key={e._id} item xs={12} lg={12}>
               <Event
                 event={e}
               />
@@ -38,14 +43,18 @@ const MyEvents = ({ classes, events }) => {
 
 const styles = theme => ({
   wrapper: {
+    paddingBottom: 100,
     [theme.breakpoints.only('sm')]: {
       paddingLeft: '10%',
       paddingRight: '10%',
     },
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.up('md')]: {
       paddingLeft: '20%',
       paddingRight: '20%',
     },
+  },
+  grid: {
+    width: '100%'
   },
 })
 

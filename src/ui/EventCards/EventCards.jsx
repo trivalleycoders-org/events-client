@@ -1,4 +1,5 @@
 import React from 'react'
+import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Grid,
@@ -23,6 +24,7 @@ const EventCards = (props) => {
         container
         spacing={40}
         className={classes.grid}
+        wrap='wrap'
       >
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
@@ -52,22 +54,20 @@ const EventCards = (props) => {
 }
 
 const styles = theme => ({
-  grid: {
-  },
-  gridItem: {
-    // backgroundColor: 'pink',
-    // margin: 1,
-  },
   wrapper: {
-    // backgroundColor: 'green',
-    // paddingTop: theme.spacing.unit *3,
-    // paddingBottom: theme.spacing.unit *3,
+    // backgroundColor: 'orange',
     padding: 20,
-    // overflowX: 'hidden',
+    width: '100%',
+    [theme.breakpoints.only('xs')]: {
+      paddingRight: 0,
+      paddingLeft: 0,
+    }
   },
 })
 
-export default withStyles(styles)(EventCards)
+export default compose(
+  withStyles(styles)
+) (EventCards)
 
 /*
 venue: {

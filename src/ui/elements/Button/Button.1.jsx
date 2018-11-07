@@ -10,12 +10,7 @@ import { green, red } from '@material-ui/core/colors'
 import { green as grn } from 'logger'
 
 const Button = (props) => {
-  // grn('Button: props', props)
   const { classes, color, children, onClick } = props
-  // const btnStyle = {
-  //   color: theme.palette.getContrastText(green[500]),
-  //   backgroundColor: green,
-  // }
   const getBtnClass = () => {
     return color === 'green'
       ? classes.btnGreen
@@ -42,10 +37,6 @@ const Button = (props) => {
       </Button>
 */
 const styles = theme => ({
-  // btnGreen: {
-  //   color: theme.palette.getContrastText(green[500]),
-  //   backgroundColor: green,
-  // },
   btnGreen: {
     color: theme.palette.getContrastText(green[500]),
     backgroundColor: green[500],

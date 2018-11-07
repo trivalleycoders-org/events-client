@@ -8,7 +8,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.main
   },
   form: {
-    // border: '2px solid black',
     marginTop: 50,
   },
   actions: {

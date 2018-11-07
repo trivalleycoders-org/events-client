@@ -30,7 +30,6 @@ const styles = theme => ({
     height: 1,
   },
   verticalContainer: {
-    // backgroundColor: 'grey',
     paddingRight: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit *2,
     //

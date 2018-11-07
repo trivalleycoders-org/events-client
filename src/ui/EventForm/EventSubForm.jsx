@@ -208,7 +208,6 @@ const styles = theme => {
       paddingRight: 20,
     },
     priceFields: {
-      // backgroundColor: 'green',
       display: 'flex',
     },
     paper: {
