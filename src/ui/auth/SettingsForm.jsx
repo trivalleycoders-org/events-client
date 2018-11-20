@@ -55,9 +55,6 @@ class SettingsForm extends React.Component {
             <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
               Change Password
         </Button>
-            <Button type='button' onClick={this.onClickLogout}>
-              Logout
-        </Button>
           </form>
         </div>
       )
