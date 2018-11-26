@@ -40,7 +40,7 @@ class SettingsForm extends React.Component {
             Settings
           </PageTitle>
           <Typography variant='h6'>
-            Password
+            Enter your password
           </Typography>
           <form>
             <TextFieldRedux
@@ -52,9 +52,16 @@ class SettingsForm extends React.Component {
               error={true}
               enableEdit={true}
             />
-            <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+            <Button
+              className={classes.submitButton}
+              type='button'
+              onClick={handleSubmit(this.onSubmit)}
+              disabled={pristine || submitting}
+              color='primary'
+              variant='contained'
+            >
               Change Password
-        </Button>
+            </Button>
           </form>
         </div>
       )

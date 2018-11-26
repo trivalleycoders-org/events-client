@@ -1,7 +1,6 @@
 const styles = theme => ({
   pageWrapper: {
     padding: '20px',
-
   },
   paper: {
     color: 'white',
@@ -12,7 +11,10 @@ const styles = theme => ({
   },
   actions: {
     marginTop: 30,
-  }
+  },
+  submitButton: {
+    marginTop: '1.3em',
+  },
 })
 
 export default styles
