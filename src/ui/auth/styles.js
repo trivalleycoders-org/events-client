@@ -1,20 +1,26 @@
 const styles = theme => ({
   pageWrapper: {
+    margin: '0 auto',
     padding: '20px',
+    width: '50%',
   },
   paper: {
     color: 'white',
     backgroundColor: theme.palette.primary.main
   },
   form: {
-    marginTop: 50,
-  },
-  actions: {
-    marginTop: 30,
+    display: 'grid',
+    gridRowGap: '1.2em',
+    marginTop: '.75em',
   },
   submitButton: {
+    justifySelf: 'start',
     marginTop: '1.3em',
   },
+  cancelButton: {
+    marginTop: '1.3em',
+    marginLeft: '.7em'
+  }
 })
 
 export default styles

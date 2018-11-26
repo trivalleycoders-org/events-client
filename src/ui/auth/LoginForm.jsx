@@ -42,14 +42,9 @@ class LoginForm extends React.PureComponent {
     } else {
       return (
         <div id='LoginForm' className={classes.pageWrapper}>
-          <Paper
-            className={classes.paper}
-            elevation={0}
-          >
-            <PageTitle color='inherit'>
-              Login
+          <PageTitle color='primary'>
+            Login
             </PageTitle>
-          </Paper>
           <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
@@ -69,11 +64,23 @@ class LoginForm extends React.PureComponent {
               enableEdit={true}
             />
             <div className={classes.actions}>
-              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+              <Button
+                className={classes.submitButton}
+                type='button'
+                color='primary'
+                variant='contained'
+                onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}
+              >
                 Login
               </Button>
-                <Button type='button' disabled={pristine || submitting} onClick={reset}>
-                  Cancel
+              <Button
+                className={classes.cancelButton}
+                type='button'
+                variant='contained'
+                disabled={pristine || submitting}
+                onClick={reset}
+              >
+                Cancel
               </Button>
             </div>
           </form>

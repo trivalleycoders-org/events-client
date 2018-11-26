@@ -44,14 +44,9 @@ class RegisterForm extends React.Component {
     } else {
       return (
         <div id='RegisterForm' className={classes.pageWrapper}>
-        <Paper
-            className={classes.paper}
-            elevation={0}
-          >
-            <PageTitle color='inherit'>
-              Register
+          <PageTitle color='primary'>
+            Register
             </PageTitle>
-          </Paper>
           <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
@@ -71,11 +66,22 @@ class RegisterForm extends React.Component {
               enableEdit={true}
             />
             <div className={classes.actions}>
-              <Button type='button' onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
-                    Register
+              <Button
+                className={classes.submitButton}
+                type='button'
+                onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}
+                color='primary'
+                variant='contained'
+              >
+                Register
               </Button>
-              <Button type='button' disabled={pristine || submitting} onClick={reset}>
-                    Cancel
+              <Button
+                className={classes.cancelButton}
+                type='button'
+                disabled={pristine || submitting} onClick={reset}
+                variant='contained'
+              >
+                Cancel
               </Button>
             </div>
           </form>
@@ -87,7 +93,7 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   ...state.auth,
-  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey ),
+  userRegisterRequestStatus: requestSelectors.getRequest(state, userRegisterRequestKey),
 })
 
 export default compose(

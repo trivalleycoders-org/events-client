@@ -36,13 +36,13 @@ class SettingsForm extends React.Component {
     } else {
       return (
         <div id='SettingsForm' className={classes.pageWrapper}>
-          <PageTitle>
+          <PageTitle color='primary'>
             Settings
           </PageTitle>
           <Typography variant='h6'>
             Enter your password
           </Typography>
-          <form>
+          <form className={classes.form}>
             <TextFieldRedux
               fieldName='password'
               fieldLabel='Password'
@@ -55,10 +55,10 @@ class SettingsForm extends React.Component {
             <Button
               className={classes.submitButton}
               type='button'
-              onClick={handleSubmit(this.onSubmit)}
-              disabled={pristine || submitting}
               color='primary'
               variant='contained'
+              onClick={handleSubmit(this.onSubmit)}
+              disabled={pristine || submitting}
             >
               Change Password
             </Button>
