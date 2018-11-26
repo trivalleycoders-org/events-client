@@ -172,6 +172,8 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       // margin: '0 10% 40px 10%',
       gridTemplateColumns: '1fr',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
     [theme.breakpoints.up('md')]: {
       // margin: '0 15% 40px 15%',
@@ -195,7 +197,7 @@ const styles = theme => ({
   mediaImg: {
     marginRight: '1em',
     gridArea: 'img',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       borderBottom: '1px solid rgb(225,225,225)',
     }
   },
