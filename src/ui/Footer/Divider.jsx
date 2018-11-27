@@ -1,6 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-// import classNames from 'classnames'
 
 const Divider = (props) => {
   const {
@@ -31,8 +30,7 @@ const styles = theme => ({
   },
   verticalContainer: {
     paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit *2,
-    //
+    paddingLeft: theme.spacing.unit * 2,
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
       paddingLeft: 0,
@@ -43,8 +41,6 @@ const styles = theme => ({
   verticalDivider: {
     backgroundColor: 'grey',
     height: 1,
-    // width: '100%',
-
     [theme.breakpoints.up('md')]: {
       height: '100%',
       width: 1
@@ -53,7 +49,3 @@ const styles = theme => ({
 })
 
 export default withStyles(styles)(Divider)
-
-/* vertical
-
-*/

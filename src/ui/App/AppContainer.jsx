@@ -29,7 +29,6 @@ import App from './App'
 // Dev
 // eslint-disable-next-line
 import { green, red, purple } from 'logger'
-import { logRender } from 'logging'
 
 class AppContainer extends React.Component {
 
@@ -45,7 +44,7 @@ class AppContainer extends React.Component {
         token: tokenObj.token
       }
       this.props.userSetLoggedIn(user)
-    } 
+    }
   }
 
   loadData = async (from, prevProps = undefined) => {
@@ -121,8 +120,8 @@ class AppContainer extends React.Component {
     // const { isLoggedIn } = this.props
     return (
       // isLoggedIn
-        <App />
-        // : <h1 style={{color: 'red'}}>not logged in</h1>
+      <App />
+      // : <h1 style={{color: 'red'}}>not logged in</h1>
 
     )
   }

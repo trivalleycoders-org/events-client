@@ -53,7 +53,6 @@ const Event = ({ classes, event, handleItemClick }) => {
         <Grid
           item xs={1}
           className={classes.chevronWrap}
-          // onClick={() => handleItemClick(event._id)}
         >
           <ButtonFit
             to={`/event-details/${event._id}`}

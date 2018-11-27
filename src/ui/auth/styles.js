@@ -3,6 +3,9 @@ const styles = theme => ({
     margin: '0 auto',
     padding: '20px',
     width: '50%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    }
   },
   paper: {
     color: 'white',

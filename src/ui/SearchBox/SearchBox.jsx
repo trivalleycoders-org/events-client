@@ -16,7 +16,6 @@ export class SearchBox extends React.Component {
   }
 
   handleChange = (e) => {
-    // green('handleChange: value', value)
     this.setState({
       searchString: e.target.value
     })

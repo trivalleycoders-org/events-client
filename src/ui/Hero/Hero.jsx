@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import {
   Paper
 } from '@material-ui/core'
-// import ResponsiveImage from 'ui/elements/ResponsiveImage'
-// import SearchBox from 'ui/SearchBox'
 import iHero from './media/hero4.jpg'
 import SearchBox from 'ui/SearchBox'
 // eslint-disable-next-line
@@ -20,13 +18,13 @@ const Hero = ({ classes, location }) => {
     backgroundPosition: 'center',
   }
   const showHero = location.pathname.startsWith('/search-events')
-      || location.pathname === '/'
+    || location.pathname === '/'
   return showHero
     ? <Paper id='Hero' className={classes.wrapper} style={background} square elevation={0}>
-        <div className={classes.background}>
-          <SearchBox />
-        </div>
-      </Paper>
+      <div className={classes.background}>
+        <SearchBox />
+      </div>
+    </Paper>
     : null
 }
 
