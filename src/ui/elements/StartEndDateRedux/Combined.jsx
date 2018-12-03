@@ -10,7 +10,7 @@ import EventIcon from '@material-ui/icons/Event'
 // eslint-disable-next-line
 import { green } from 'logger'
 
-let startMinDate
+//let startMinDate
 
 class Combined extends React.Component {
   constructor(props) {
@@ -22,25 +22,36 @@ class Combined extends React.Component {
   }
 
   localOnChange = (date, control) => {
-    let sd
-    let ed
+
+    const { startDateTime, endDateTime } = this.state
+    let sd = startDateTime
+    let ed = endDateTime
+    green('localOnChange')
+    // green(`date: ${date}, startDate: ${startDateTime}, endDate: ${endDateTime}`)
+    
     if (control === 'startDateTime') {
       sd = date
-      if (isBefore(ed, sd)) {
-        ed = sd
-      } else {
-        ed = this.state.endDateTime
-      }
     } else {
-      sd = this.state.startDateTime
       ed = date
     }
 
+    if (control === 'startDateTime') {
+      // if ed < sd -> sd = ed
+      if (ed === null || isBefore(ed,sd)) {
+        ed = sd
+      }
+      
+    }
+
+    if (control === 'endDateTime') {
+      // if sd > ed ++should not happen
+    }
+  
     this.setState({
       startDateTime: sd,
       endDateTime: ed,
     })
-
+    green(`date: ${date}, startDate: ${sd}, endDate: ${ed}`)
     // calls redux-form onChange()
     this.props.onChange({
       startDateTime: sd,
@@ -50,6 +61,7 @@ class Combined extends React.Component {
   render() {
     const { startDateTime, endDateTime, /*errorEndDate, errorStartDate*/ } = this.state
     const { classes } = this.props
+    // green('startMinDate', startMinDate)
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>
@@ -67,7 +79,7 @@ class Combined extends React.Component {
                 </InputAdornment>
               )
             }}
-            minDate={startMinDate}
+            //minDate={startMinDate}
             onChange={(date) => this.localOnChange(date, 'startDateTime')}
             required={true}
             value={startDateTime}
