@@ -8,10 +8,6 @@ import EventSubForm from './EventSubForm'
 import AreYouSure from './AreYouSure'
 import PageTitle from 'ui/elements/PageTitle'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class EventForm extends React.Component {
   state = {
     imageUrl: '',
@@ -48,7 +44,7 @@ class EventForm extends React.Component {
 
   freeClick = () => {
     this.setState((prevState) => {
-      return {free: !prevState.free}
+      return { free: !prevState.free }
     })
   }
 

@@ -5,19 +5,12 @@ import { CssBaseline } from '@material-ui/core'
 
 const theme = createMuiTheme({
   palette: {
-    // type: 'dark',
     primary: {
       light: '#ff5572',
       main: '#dc0747',
       dark: '#a30021',
       contrastText: '#fff',
     },
-    // secondary: {
-    //   light: '#64b5f6',
-    //   main: '#fff',
-    //   dark: '#1976d2',
-    //   contrastText: '#000',
-    // },
   },
   typography: {
     h1: {
@@ -30,7 +23,6 @@ const theme = createMuiTheme({
       fontSize: '2.55rem',
     },
     h4: {
-      // fontSize: '1.806rem',
       fontSize: '1.3rem'
     },
     h5: {

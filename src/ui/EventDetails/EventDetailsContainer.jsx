@@ -8,10 +8,6 @@ import { getEventById } from 'store/selectors/events-selectors'
 import { eventDeleteOneRequest } from 'store/actions/event-actions'
 import EventDetails from './EventDetails'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class EventDetailsContainer extends React.Component {
 
 
@@ -20,7 +16,6 @@ class EventDetailsContainer extends React.Component {
   }
 
   deleteEvent = (id, option) => {
-    console.log('delete event id, option: ', id, option)
     if (option === 'Yes') {
       this.props.eventDeleteOneRequest(id)
       this.goBack()
@@ -29,7 +24,6 @@ class EventDetailsContainer extends React.Component {
 
   render() {
     const { classes, event } = this.props
-    console.log('event in container: ', event)
     return (
       <div className={classes.wrapper}>
         <PageTitle>

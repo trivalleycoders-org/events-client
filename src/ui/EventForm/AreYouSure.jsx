@@ -7,7 +7,7 @@ import Button from 'ui/elements/Button'
 
 /* Dev */
 // eslint-disable-next-line
-import { green, purple } from 'logger'
+import { purple } from 'logger'
 import { logRender } from 'logging'
 
 const getModalStyle = () => {

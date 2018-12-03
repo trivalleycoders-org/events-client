@@ -96,7 +96,8 @@
   "scripts": {
     "start": "SET \"NODE_PATH=src\" && node scripts/start.js || export NODE_PATH=src && node scripts/start.js",
     "build": "SET \"NODE_PATH=src\" && node scripts/build.js || export NODE_PATH=src && node scripts/build.js",
-    "test": "jest"
+    "test": "jest",
+    "deploy2test": "rsync -avzhe 'ssh -i ~/.ssh/tvc-do-deploy-rsa' --progress ./build/* deploy@test.droneevents.live:~/client"
   },
   "jest": {
     "collectCoverageFrom": [

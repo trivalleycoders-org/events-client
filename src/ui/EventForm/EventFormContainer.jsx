@@ -7,17 +7,13 @@ import { mergeAll, path } from 'ramda'
 import { hasProp } from 'lib/hasProp'
 import EventForm from './EventForm'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 export const EDIT_MODE = 'edit-mode'
 export const CREATE_MODE = 'create-mode'
 
 const shapeEditDataIn = (event) => {
-  const free = path(['free'], event) === undefined ? false :  true
-  const r =  {
+  const free = path(['free'], event) === undefined ? false : true
+  const r = {
     free: free,
-    // initialValues: event,
     ...event
   }
   return r
@@ -26,7 +22,7 @@ const shapeEditDataIn = (event) => {
 const shapeEditDataOut = (formValues, currentUserId) => {
   const mergedData = mergeAll([
     formValues,
-    {userId: currentUserId}
+    { userId: currentUserId }
   ])
   return mergedData
 }
@@ -35,14 +31,9 @@ class EventFormContainer extends React.Component {
 
   eventCreate = (formValues) => {
     const data = shapeEditDataOut(formValues, this.props.userId)
-    // green('EventformContainer.eventCreate: data', data)
     this.props.eventCreateOneRequest(data)
     this.goBack()
   }
-
-  // eventDelete = () => {
-  //   this.goBack()
-  // }
 
   eventUpdate = (formValues) => {
     const data = shapeEditDataOut(formValues)
@@ -80,6 +71,6 @@ const mstp = (state, ownProps) => {
 }
 
 export default connect(
-    mstp,
-    { eventCreateOneRequest, eventUpdateOneRequest }
+  mstp,
+  { eventCreateOneRequest, eventUpdateOneRequest }
 )(EventFormContainer)

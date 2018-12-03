@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
 import EventCards from 'ui/EventCards'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class EventCardsContainer extends React.Component {
 
   render() {
@@ -13,10 +10,6 @@ class EventCardsContainer extends React.Component {
 
     return (
       <div id='EventCardsContainer'>
-        {/* <ContentNotice>
-          {`${events.length} Events`}
-        </ContentNotice> */}
-
         <EventCards
           events={events}
         />
@@ -33,5 +26,5 @@ const mstp = (state) => {
 }
 
 export default connect(
-    mstp
+  mstp
 )(EventCardsContainer)

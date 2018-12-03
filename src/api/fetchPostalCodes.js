@@ -2,10 +2,6 @@ import debounce from 'lib/debounce'
 import { fetchJson } from './api-helpers'
 import { red } from 'logger'
 
-/* Dev */
-// eslint-disable-next-line
-import { pink } from 'logger'
-
 const fetchPostalCodes = debounce(
 
   async (searchString) => {
@@ -16,7 +12,6 @@ const fetchPostalCodes = debounce(
           method: 'GET',
         }
       )
-      // pink('fetchPostalCodes: data.data', data.data)
       return data.data
     }
     catch (e) {

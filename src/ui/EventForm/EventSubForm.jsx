@@ -17,10 +17,6 @@ import CheckboxRedux from 'ui/elements/CheckboxRedux'
 import UploadImage from 'ui/elements/UploadImage'
 import PostalCodesRedux from 'ui/elements/PostalCodesRedux'
 
-// Dev
-// eslint-disable-next-line
-import { green } from 'logger'
-
 const EventSubForm = (props) => {
 
   const {
@@ -30,7 +26,6 @@ const EventSubForm = (props) => {
     onCancel,
     onSubmit,
     pristine,
-    // reset,
     submitting,
     free
   } = props
@@ -48,7 +43,6 @@ const EventSubForm = (props) => {
               fieldLabel='Event title'
               fullWidth
               required={true}
-              // rows={2}
               error={true}
               enableEdit={true}
             />
@@ -94,10 +88,6 @@ const EventSubForm = (props) => {
             </div>
           </Paper>
 
-
-          {/* <Paper className={classes.uploadPaper} elevation={0}>
-          <MediaCard />
-          </Paper> */}
           <Paper className={classes.paper} elevation={0}>
             <Typography variant='h6'>TICKETING</Typography>
             <TextFieldRedux
@@ -124,12 +114,12 @@ const EventSubForm = (props) => {
                 {
                   !free
                     ? <TextFieldRedux
-                        fullWidth
-                        fieldLabel='Price'
-                        fieldName='price'
-                        disabled={free}
-                        enableEdit={true}
-                      />
+                      fullWidth
+                      fieldLabel='Price'
+                      fieldName='price'
+                      disabled={free}
+                      enableEdit={true}
+                    />
                     : null
                 }
               </div>
@@ -166,14 +156,6 @@ const EventSubForm = (props) => {
             >
               Cancel
             </Button>
-            {/* <Button
-              type='button'
-              color='secondary'
-              disabled={submitting}
-              onClick={reset}
-            >
-              Delete
-            </Button> */}
           </div>
         </form>
 
@@ -191,7 +173,6 @@ const styles = theme => {
     },
     dropZone: {
       margin: '22px auto',
-      // padding: '0 30px 30px 30px',
       maxWidth: 400,
       paddingBottom: 32,
 
@@ -216,24 +197,6 @@ const styles = theme => {
       paddingLeft: space * 2,
       margin: space * 2,
     },
-    uploadPaper: {
-      // paddingTop: space * 2,
-      // paddingRight: space * 2,
-      // paddingLeft: space * 2,
-      // paddingBottom: space * 2,
-      // margin: space * 2,
-
-
-      // ?
-      [theme.breakpoints.up('sm')]: {
-        // padding: '0 10% 40px 10%',
-      },
-      [theme.breakpoints.up('md')]: {
-        // padding: '0 15% 40px 15%',
-      },
-
-
-    },
   })
 }
 
@@ -241,7 +204,5 @@ export default compose(
   withStyles(styles),
   reduxForm({
     form: 'EventForm',
-    // validate,
-    // asyncBlurFields: ['combinedDateTime']
   })
 )(EventSubForm)

@@ -1,1 +1,0 @@
-// export { hasProp } from './hasProp'

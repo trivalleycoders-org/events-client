@@ -10,14 +10,9 @@ import Edit from '@material-ui/icons/Edit'
 import LinkIcon from '@material-ui/icons/Link'
 import LabelIcon from '@material-ui/icons/Label'
 
-// import { formattedDate } from 'lib/formattedDate'
 import IconButtonLink from 'ui/elements/IconButtonLink'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
 import ConfirmDialog from 'ui/ConfirmDialog'
-
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
 
 const hourAmPm = (date) => {
   const h = date.getHours()
@@ -55,7 +50,6 @@ class EventDetails extends React.Component {
   };
 
   render() {
-    console.log('this.props: ', this.props)
     const { classes, event } = this.props
     const price = event.price ? `$${event.price}` : 'Free'
 
@@ -170,11 +164,9 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
     [theme.breakpoints.down('sm')]: {
-      // margin: '0 10% 40px 10%',
       gridTemplateColumns: '1fr',
-    },
-    [theme.breakpoints.up('md')]: {
-      // margin: '0 15% 40px 15%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
   media: {
@@ -195,7 +187,7 @@ const styles = theme => ({
   mediaImg: {
     marginRight: '1em',
     gridArea: 'img',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       borderBottom: '1px solid rgb(225,225,225)',
     }
   },

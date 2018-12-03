@@ -24,9 +24,7 @@ const MyEvents = ({ classes, events }) => {
       <Grid
         container
         spacing={16}
-        // className={classes.grid}
-        // justify='center'
-        >
+      >
         {events.map(e => {
           return (
             <Grid key={e._id} item xs={12} lg={12}>

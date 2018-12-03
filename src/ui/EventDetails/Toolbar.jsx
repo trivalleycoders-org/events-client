@@ -10,9 +10,6 @@ import DeleteForever from '@material-ui/icons/DeleteForever'
 import Edit from '@material-ui/icons/Edit'
 import IconButtonLink from 'ui/elements/IconButtonLink'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 export const Toolbar = ({ classes, handleDeleteClick, id, title }) => {
   return (
     <Paper id='Toolbar'>

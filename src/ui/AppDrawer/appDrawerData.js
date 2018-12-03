@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Login from '@material-ui/icons/Lock'
+import Logout from '@material-ui/icons/LockOpen'
 import Register from '@material-ui/icons/PersonAdd'
 import Settings from '@material-ui/icons/Settings'
 import { Home, Event, List } from '@material-ui/icons'
@@ -77,6 +78,11 @@ export const menuLoggedIn = (
         <ListItemText primary='Settings' />
       </ListItem>
     </Link>
+    <ListItem button>
+      <ListItemIcon>
+        <Logout />
+      </ListItemIcon>
+      <ListItemText primary='Logout' />
+    </ListItem>
   </div>
 )
-
