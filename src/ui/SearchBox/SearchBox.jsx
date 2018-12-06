@@ -1,18 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { compose } from 'recompose'
 import { Input, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import {withRouter} from 'react-router-dom'
 import Button from 'ui/elements/Button'
 import CancelIcon from '@material-ui/icons/Cancel'
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
 
 export class SearchBox extends React.Component {
   state = {
     showSearchIcon: true,
     searchString: '',
+  }
+
+  handleKeyPress = (e) => {
+    if (e.keyCode === 0 || e.which === 0) {
+      this.setState({
+        searchString: e.target.value
+      })
+      this.props.history.push(`/search-events/?searchString=${e.target.value}`)
+    }
   }
 
   handleChange = (e) => {
@@ -31,8 +38,6 @@ export class SearchBox extends React.Component {
 
   render() {
 
-    logRender && purple('SearchBox - render')
-
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
     return (
@@ -40,14 +45,23 @@ export class SearchBox extends React.Component {
         id='SearchBox'
         className={classes.wrapper}
       >
-        <Input className={classes.input} value={this.state.searchString} onChange={this.handleChange} />
+        <Input 
+          className={classes.input}
+          value={this.state.searchString}
+          onChange={this.handleChange} 
+          onKeyPress={this.handleKeyPress.bind(this)}/>
         {showSearchIcon
           ?
           <Link
-            to={{
+            to={
+              searchString.length > 3 ?
+              {
               pathname: '/search-events/',
               search: `?searchString=${searchString}`,
-            }}
+              }
+              :
+              ''
+            }
             className={classes.link}
           >
             <Button
@@ -83,4 +97,6 @@ const styles = theme => ({
   }
 })
 
-export default withStyles(styles)(SearchBox)
+export default compose (
+  withRouter,
+  withStyles(styles))(SearchBox)
