@@ -7,10 +7,6 @@ import {
   Input,
   FormHelperText
 } from '@material-ui/core'
-
-/* Dev */
-// eslint-disable-next-line
-import { green, red } from 'logger'
 class TextFieldRedux extends React.Component {
   state = {
     isError: false

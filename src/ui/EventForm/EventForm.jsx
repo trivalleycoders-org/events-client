@@ -1,10 +1,8 @@
 import React from 'react'
-// import PastEvent from './PastEvent'
 import { EDIT_MODE } from './EventFormContainer'
 import EventSubForm from './EventSubForm'
 
 // fix?
-// import styles from './styles'
 import AreYouSure from './AreYouSure'
 import PageTitle from 'ui/elements/PageTitle'
 
@@ -51,13 +49,9 @@ class EventForm extends React.Component {
   render() {
     const { areYouSure } = this.state
     const { event } = this.props
-
     return (
       <div id='EventForm'>
         <AreYouSure open={areYouSure} close={this.closeModal} />
-        {/* <PastEvent
-          event={event}
-        /> */}
         <PageTitle>
           Create Event
         </PageTitle>

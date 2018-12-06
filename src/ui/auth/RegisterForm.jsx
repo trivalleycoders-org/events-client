@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { Redirect } from 'react-router-dom'
-import { Button, Paper } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
 // actions, selectors
@@ -15,6 +15,7 @@ import styles from './styles'
 import validate from './validate'
 import PropTypes from 'prop-types'
 import PageTitle from 'ui/elements/PageTitle'
+import PageMessage from 'ui/elements/PageMessage'
 
 /* Dev */
 // eslint-disable-next-line
@@ -32,10 +33,16 @@ class RegisterForm extends React.Component {
     userRegisterRequest(values)
   }
 
+  onCancel = () => {
+    this.props.history.goBack()
+  }
+
   render() {
-    const { classes, handleSubmit, pristine, reset, submitting, userRegisterRequestStatus } = this.props
+    const { classes, handleSubmit, pristine, submitting, userRegisterRequestStatus } = this.props
     const { justMounted } = this.state
     const { status } = userRegisterRequestStatus
+    console.log('props', this.props)
+    
 
     if (status === 'success' && !justMounted) {
       return (
@@ -46,7 +53,8 @@ class RegisterForm extends React.Component {
         <div id='RegisterForm' className={classes.pageWrapper}>
           <PageTitle color='primary'>
             Register
-            </PageTitle>
+          </PageTitle>
+          <PageMessage />
           <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
@@ -78,7 +86,8 @@ class RegisterForm extends React.Component {
               <Button
                 className={classes.cancelButton}
                 type='button'
-                disabled={pristine || submitting} onClick={reset}
+                disabled={pristine || submitting} 
+                onClick={this.onCancel}
                 variant='contained'
               >
                 Cancel
@@ -110,6 +119,5 @@ RegisterForm.propTypes = {
   classes: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
-  reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 }

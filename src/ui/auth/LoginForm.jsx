@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
-import { Button, Paper } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
+import PageMessage from 'ui/elements/PageMessage'
 import TextFieldRedux from 'ui/elements/TextFieldRedux'
 import styles from './styles'
 
@@ -31,9 +32,13 @@ class LoginForm extends React.PureComponent {
     userLoginRequest(values)
   }
 
+  onCancel = () => {
+    this.props.history.goBack()
+  }
+
   render() {
 
-    const { classes, handleSubmit, pristine, reset, submitting, logInUserRequest, loggedIn } = this.props
+    const { classes, handleSubmit, pristine, submitting, logInUserRequest, loggedIn } = this.props
 
     if (logInUserRequest.status === 'success' && loggedIn) {
       return (
@@ -44,7 +49,8 @@ class LoginForm extends React.PureComponent {
         <div id='LoginForm' className={classes.pageWrapper}>
           <PageTitle color='primary'>
             Login
-            </PageTitle>
+          </PageTitle>
+          <PageMessage />
           <form className={classes.form}>
             <TextFieldRedux
               fieldName='email'
@@ -78,7 +84,7 @@ class LoginForm extends React.PureComponent {
                 type='button'
                 variant='contained'
                 disabled={pristine || submitting}
-                onClick={reset}
+                onClick={this.onCancel}
               >
                 Cancel
               </Button>

@@ -14,9 +14,6 @@ import {
 } from '@material-ui/core'
 // import { nameFromEmail } from 'lib/nameFromEmail'
 /* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
 
 class AccountMenu extends React.Component {
   state = {
@@ -38,7 +35,6 @@ class AccountMenu extends React.Component {
   }
 
   render() {
-    logRender && purple('AccountMenu - render')
     const { open } = this.state
     const { classes, emailName } = this.props
 

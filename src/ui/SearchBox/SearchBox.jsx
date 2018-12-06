@@ -37,7 +37,6 @@ export class SearchBox extends React.Component {
   }
 
   render() {
-
     const { classes } = this.props
     const { searchString, showSearchIcon } = this.state
     return (

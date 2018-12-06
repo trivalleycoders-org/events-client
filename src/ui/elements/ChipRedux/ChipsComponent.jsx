@@ -3,9 +3,6 @@ import ChipInput from 'material-ui-chip-input'
 import { append, without } from 'ramda'
 import { withStyles } from '@material-ui/core/styles'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 const keyCodes = [9, 32]
 
 class Chips extends React.Component {

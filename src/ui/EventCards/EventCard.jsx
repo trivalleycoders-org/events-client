@@ -10,9 +10,6 @@ import {
 } from '@material-ui/core'
 import { formattedDate } from 'lib/formattedDate'
 import Tag from './Tag'
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
 import { Typography } from '@material-ui/core'
 
 const EventCard = ({
@@ -25,7 +22,6 @@ const EventCard = ({
   hasTags,
   tags,
 }) => {
-  logRender && purple('EventCard - render')
   return (
     <Card className={classes.card}>
       <a href={linkToUrl} className={classes.link}>

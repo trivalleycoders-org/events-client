@@ -12,10 +12,6 @@ import * as imageActions from 'store/actions/upload-actions'
 import * as uploadSelectors from 'store/selectors/upload-selectors'
 import ResponsiveImage from 'ui/elements/ResponsiveImage'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 const dropZoneDefault = <ResponsiveImage
   src='https://s3-us-west-2.amazonaws.com/photo-app-tvc/drag-or-browse.png' alt='drag and drop of click to browse'
   />
@@ -74,7 +70,7 @@ class UploadImage extends React.Component {
             ? <div className={classes.imageDiv}>
                 <ResponsiveImage
                   src={this.state.imageUrl}
-                  // className={classes.media}
+                  alt='uploaded image'
                 />
                 {enableEdit
                   ? <Button

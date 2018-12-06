@@ -2,10 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Select from '@material-ui/core/Select'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class SelectReduxComponent extends React.Component {
   constructor(props) {
     super(props)

@@ -4,11 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { Button as Btn } from '@material-ui/core'
 import { green, red } from '@material-ui/core/colors'
 
-
-/* Dev */
-// eslint-disable-next-line
-import { green as grn } from 'logger'
-
 const Button = (props) => {
   const { classes, color, children, onClick } = props
   const getBtnClass = () => {
@@ -27,15 +22,7 @@ const Button = (props) => {
       </Btn>
   )
 }
-/*
-      <Button
-        variant="contained"
-        color="primary"
-        className={classNames(classes.margin, classes.cssRoot)}
-      >
-        Custom CSS
-      </Button>
-*/
+
 const styles = theme => ({
   btnGreen: {
     color: theme.palette.getContrastText(green[500]),

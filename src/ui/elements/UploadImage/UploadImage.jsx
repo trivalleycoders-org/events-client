@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Component from './Component'
 import { Field } from 'redux-form'
-// eslint-disable-next-line
-import { green } from 'logger'
 
 class UploadImage extends React.Component {
 
@@ -13,14 +11,11 @@ class UploadImage extends React.Component {
     const { onChange } = props.input
     const { initial } = props.meta
     return (
-
       <Component
         onChange={onChange}
         initial={initial}
         enableEdit={enableEdit}
       />
-
-
     )
   }
   render() {
@@ -37,7 +32,6 @@ class UploadImage extends React.Component {
     )
   }
 }
-/* <div style={{padding: 20, backgroundColor: 'green'}}>Hello</div> */
 
 export default UploadImage
 

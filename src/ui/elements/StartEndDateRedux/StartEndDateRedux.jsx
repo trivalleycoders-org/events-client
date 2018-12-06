@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Combined from './Combined'
 import { Field } from 'redux-form'
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
 import { hasProp } from 'lib/hasProp'
 
 class StartEndDateRedux extends React.Component {

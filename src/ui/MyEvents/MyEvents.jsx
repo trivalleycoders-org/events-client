@@ -7,15 +7,7 @@ import {
 import Event from './Event'
 import PageTitle from 'ui/elements/PageTitle'
 
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
-
 const MyEvents = ({ classes, events }) => {
-
-  logRender && purple('MyEvents - render')
-  const numEvents = events.length
   return (
     <div id='MyEvents' className={classes.wrapper}>
       <PageTitle>

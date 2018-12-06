@@ -5,6 +5,7 @@ import { parse } from '../../api/cookie-parser'
 import jwt from 'jsonwebtoken'
 import 'url-search-params-polyfill'
 import withRoot from 'ui/withRoot'
+import { red } from 'logger'
 
 // Store
 import {
@@ -25,10 +26,6 @@ import {
 
 // User
 import App from './App'
-
-// Dev
-// eslint-disable-next-line
-import { green, red, purple } from 'logger'
 
 class AppContainer extends React.Component {
 
@@ -83,12 +80,9 @@ class AppContainer extends React.Component {
       if (currPath !== prevPath) {
         switch (currPath) {
           case '/':
-            // green('** getting all events')
-            // green(`${componentName} - case /`)
             await eventsReadRequest()
             break
           case '/my-events':
-            // green(`${componentName} - case /my-events`)
             await eventsForUserReadRequest(userId)
             break
           case '/edit-event':
@@ -115,14 +109,8 @@ class AppContainer extends React.Component {
   }
 
   render() {
-
-    purple('AppContainer - render')
-    // const { isLoggedIn } = this.props
     return (
-      // isLoggedIn
       <App />
-      // : <h1 style={{color: 'red'}}>not logged in</h1>
-
     )
   }
 }
@@ -131,8 +119,6 @@ const actions = { eventsForUserReadRequest, eventsReadRequest, eventsSearchReadR
 
 const mapStateToProps = (state) => {
   return {
-    // emailName: getEmailName(state),
-    // isLoggedIn: getLoggedIn(state),
     userId: getUserId(state)
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   Route,
   Switch,
@@ -22,16 +21,9 @@ import SearchEvents from 'ui/SearchEvents'
 import AppDrawer from 'ui/AppDrawer'
 import Footer from 'ui/Footer'
 import Hero from 'ui/Hero'
-// Dev
-// eslint-disable-next-line
-import { green, yellow, orange, red, purple } from 'logger'
-// import Breakpoints from 'ui/elements/Breakpoints'
-// import ContentFiller from './ContentFiller'
 
 const App = (props) => {
   const { classes } = props
-
-  purple('App - render')
 
   return (
     <div id='App-wrapper' className={classes.wrapper}>

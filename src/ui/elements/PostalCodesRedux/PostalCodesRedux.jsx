@@ -2,9 +2,6 @@ import React from 'react'
 import { Field } from 'redux-form'
 import { FormControl } from '@material-ui/core'
 import PostalCodesComponent from './PostalCodesComponent'
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
 
 class PostalCodesRedux extends React.Component {
   picker = (props) => {

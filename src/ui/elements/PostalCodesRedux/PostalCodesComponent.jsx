@@ -10,9 +10,6 @@ import {
 import { withStyles } from '@material-ui/core/styles'
 import { renderInput, renderSuggestion } from './postalcode-helpers'
 
-// eslint-disable-next-line
-import { green, red } from 'logger'
-
 class PostalCodesRedux extends React.Component {
   onInputValueChange = (inputValue, state) => {
     if (!(inputValue === '') && inputValue !== undefined ) {

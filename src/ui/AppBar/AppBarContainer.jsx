@@ -8,10 +8,7 @@ import { userLogout } from 'store/actions/auth-actions'
 import { appMenuToggle } from 'store/actions/app-menu-actions'
 import AppBar from './AppBar'
 import { nameFromEmail } from 'lib/nameFromEmail'
-
-/* Dev */
-// eslint-disable-next-line
-import { green, red, purple } from 'logger'
+import { red } from 'logger'
 
 class AppBarContainer extends React.Component {
 

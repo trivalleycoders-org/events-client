@@ -3,13 +3,7 @@ import PropTypes from 'prop-types'
 import ButtonNavLink from 'ui/elements/ButtonNavLink'
 import AccountMenu from './AccountMenu'
 
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
-
 const  LoggedIn = ({ emailName, handleMenuClick, logout }) => {
-  logRender && purple('LoggedIn - render')
 
   return (
     <React.Fragment>

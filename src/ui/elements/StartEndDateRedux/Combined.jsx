@@ -6,11 +6,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { InputAdornment } from '@material-ui/core'
 import AlarmIcon from '@material-ui/icons/Alarm'
 import EventIcon from '@material-ui/icons/Event'
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
-//let startMinDate
 
 class Combined extends React.Component {
   constructor(props) {
@@ -26,8 +21,6 @@ class Combined extends React.Component {
     const { startDateTime, endDateTime } = this.state
     let sd = startDateTime
     let ed = endDateTime
-    green('localOnChange')
-    // green(`date: ${date}, startDate: ${startDateTime}, endDate: ${endDateTime}`)
     
     if (control === 'startDateTime') {
       sd = date
@@ -36,22 +29,16 @@ class Combined extends React.Component {
     }
 
     if (control === 'startDateTime') {
-      // if ed < sd -> sd = ed
       if (ed === null || isBefore(ed,sd)) {
         ed = sd
       }
       
     }
 
-    if (control === 'endDateTime') {
-      // if sd > ed ++should not happen
-    }
-  
     this.setState({
       startDateTime: sd,
       endDateTime: ed,
     })
-    green(`date: ${date}, startDate: ${sd}, endDate: ${ed}`)
     // calls redux-form onChange()
     this.props.onChange({
       startDateTime: sd,
@@ -61,7 +48,6 @@ class Combined extends React.Component {
   render() {
     const { startDateTime, endDateTime, /*errorEndDate, errorStartDate*/ } = this.state
     const { classes } = this.props
-    // green('startMinDate', startMinDate)
     return (
       <div className={classes.wrapper}>
         <div className={classes.datesWrapper}>

@@ -55,6 +55,7 @@ class EventFormContainer extends React.Component {
         eventCreate={this.eventCreate}
         eventUpdate={this.eventUpdate}
         mode={hasEvent ? EDIT_MODE : CREATE_MODE}
+        goBack={this.goBack}
       />
     )
   }
@@ -72,5 +73,5 @@ const mstp = (state, ownProps) => {
 
 export default connect(
   mstp,
-  { eventCreateOneRequest, eventUpdateOneRequest }
+  { eventCreateOneRequest, eventUpdateOneRequest },
 )(EventFormContainer)

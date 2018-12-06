@@ -8,15 +8,9 @@ import {
 import EventCard from './EventCard'
 import { has } from 'ramda'
 
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
-
 const hasTags = has('tags')
 
 const EventCards = (props) => {
-  logRender && purple('EventCard(s) - render')
   const { classes, events } = props
   return (
     <div id='EventCards' className={classes.wrapper}>
@@ -28,7 +22,6 @@ const EventCards = (props) => {
       >
         {events.map(c => {
           const location = `${c.location.cityName}, ${c.location.stateCode} ${c.location.postalCode}`
-          // green('c', c)
           return (
             <Grid
               key={c._id}
@@ -55,7 +48,6 @@ const EventCards = (props) => {
 
 const styles = theme => ({
   wrapper: {
-    // backgroundColor: 'orange',
     padding: 20,
     width: '100%',
     [theme.breakpoints.only('xs')]: {
@@ -68,24 +60,3 @@ const styles = theme => ({
 export default compose(
   withStyles(styles)
 ) (EventCards)
-
-/*
-venue: {
-    // fontSize: '1.3em',
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-
-organization: {
-    height: '33px',
-    lineHeight: '16.5px',
-    overflow: 'hidden',
-    paddingTop: '7px',
-    paddingBottom: '4px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-*/
