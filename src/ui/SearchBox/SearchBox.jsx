@@ -5,16 +5,16 @@ import { Input, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import {withRouter} from 'react-router-dom'
 import Button from 'ui/elements/Button'
-import CancelIcon from '@material-ui/icons/Cancel'
 
 export class SearchBox extends React.Component {
   state = {
-    showSearchIcon: true,
     searchString: '',
   }
 
-  handleKeyPress = (e) => {
-    if (e.keyCode === 0 || e.which === 0) {
+  handleEnterKey = (e) => {
+    e.persist()
+    if (e.keyCode === 13 || e.which === 13) {
+      console.log('enter key pressed')
       this.setState({
         searchString: e.target.value
       })
@@ -23,22 +23,24 @@ export class SearchBox extends React.Component {
   }
 
   handleChange = (e) => {
+    e.persist()
+    
     this.setState({
       searchString: e.target.value
     })
   }
 
   clearSearchResults = () => {
-    this.setState((prevState, props) => ({
-      showSearchIcon: !prevState.showSearchIcon,
+    this.setState({
       searchString: ''
-    }))
+    })
     this.props.eventsReadRequest()
   }
 
   render() {
     const { classes } = this.props
-    const { searchString, showSearchIcon } = this.state
+    const { searchString } = this.state
+
     return (
       <Paper
         id='SearchBox'
@@ -48,9 +50,7 @@ export class SearchBox extends React.Component {
           className={classes.input}
           value={this.state.searchString}
           onChange={this.handleChange} 
-          onKeyPress={this.handleKeyPress.bind(this)}/>
-        {showSearchIcon
-          ?
+          onKeyDown={this.handleEnterKey}/>
           <Link
             to={
               searchString.length > 3 ?
@@ -70,12 +70,6 @@ export class SearchBox extends React.Component {
               Search
             </Button>
           </Link>
-          :
-          <CancelIcon
-            className={classes.cancelIcon}
-            onClick={this.clearSearchResults}
-          />
-        }
       </Paper>
     )
   }
