@@ -8,8 +8,6 @@ import {
   userValidateKey
 } from 'store/actions/auth-actions'
 import { merge } from 'ramda'
-import { blue } from 'logger'
-
 
 export default (state = { loggedIn: false }, { type, payload }) => {
   switch (type) {

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DateTimePicker } from 'material-ui-pickers'
 import { Field } from 'redux-form'
-import { green } from 'logger'
 import { has } from 'ramda'
 
 class DateTimeField extends React.Component {
@@ -12,7 +11,6 @@ class DateTimeField extends React.Component {
 
   dateTimePicker = (props) => {
     const { input, meta, ...rest} = props
-    const { touched, error, warning } = meta
     const { onChange } = input
     const { currentDateTime } = this.state  
     return (

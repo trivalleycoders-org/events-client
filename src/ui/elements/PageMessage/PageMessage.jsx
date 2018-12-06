@@ -2,18 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
-import Headline from 'ui/elements/typography/Headline'
 import * as pageMessageSelectors from 'store/selectors/page-message-selectors'
-import { Paper } from '@material-ui/core'
+import { Paper, Typography } from '@material-ui/core'
+import { green } from 'logger'
 
 const PageMessage = ({ classes, message = '', variant }) => {
-  return message !== ''
-    ? (
-        <Paper className={classes.root}>
-          <Headline className={classes.headline}>{message}</Headline>
-        </Paper>
-      )
+  green('PageMessage: message', message)
+  const ret = message !== '' 
+    ? <Paper className={classes.root}>
+        <Typography variant='h5' className={classes.headline}>{message}</Typography>
+      </Paper>
     : null
+  return ret
 }
 
 const styles = theme => ({
@@ -24,7 +24,8 @@ const styles = theme => ({
     alignContent: 'center',
     width: '100%',
     backgroundColor: theme.palette.error.dark,
-    padding: '15px 0 15px 0',
+    padding: `${theme.spacing.unit * 2}px 0 ${theme.spacing.unit * 2}px 0`,
+    marginBottom: theme.spacing.unit * 3,
   },
   headline: {
     color: 'white',

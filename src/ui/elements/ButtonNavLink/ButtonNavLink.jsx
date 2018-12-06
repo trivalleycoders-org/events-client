@@ -4,10 +4,6 @@ import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 const ButtonNavLink = ({ classes, children, color, to, variant, className }) => {
   const LinkComponent = props => <NavLink
     to={to}

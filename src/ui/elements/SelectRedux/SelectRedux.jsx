@@ -6,13 +6,9 @@ import InputLabel from '@material-ui/core/InputLabel'
 import { Field } from 'redux-form'
 import SelectReduxComponent from './SelectReduxComponent'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 const styles = theme => ({
 
   formControl: {
-    // margin: theme.spacing.unit,
     minWidth: 120,
   },
 
@@ -39,22 +35,17 @@ class SelectRedux extends React.Component {
     const { classes, children, fieldLabel, fieldName, fullWidth } = this.props
 
     return (
-
-        <FormControl className={classes.formControl} fullWidth>
-          <InputLabel>{fieldLabel}</InputLabel>
-          <Field
-            component={picker}
-            name={fieldName}
-            // fieldValue={this.state.value}
-            fullWidth={fullWidth}
-            onChange={(e, val) => this.handleChange(e, val)}
-          >
-            {children}
-          </Field>
-          {/* <FormHelperText>Placeholder</FormHelperText> */}
-        </FormControl>
-
-
+      <FormControl className={classes.formControl} fullWidth>
+        <InputLabel>{fieldLabel}</InputLabel>
+        <Field
+          component={picker}
+          name={fieldName}
+          fullWidth={fullWidth}
+          onChange={(e, val) => this.handleChange(e, val)}
+        >
+          {children}
+        </Field>
+      </FormControl>
     )
   }
 }

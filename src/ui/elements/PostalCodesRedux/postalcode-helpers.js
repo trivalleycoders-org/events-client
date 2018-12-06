@@ -3,9 +3,6 @@ import {
   MenuItem,
   TextField,
 } from '@material-ui/core'
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
 
 export const renderInput = (inputProps) => {
   const { InputProps, classes, ref, ...other } = inputProps
@@ -41,7 +38,6 @@ export const renderSuggestion = ({
       component="div"
       style={{
         fontWeight: isSelected ? 500 : 400,
-        // color: isSelected ? 'red' : 'black'
       }}
     >
       {suggestion.searchString}

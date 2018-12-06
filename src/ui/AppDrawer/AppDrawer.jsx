@@ -9,11 +9,6 @@ import { userLogout } from 'store/actions/auth-actions'
 import { appMenuToggle } from 'store/actions/app-menu-actions'
 import * as appMenuSelectors from 'store/selectors/app-menu-selectors'
 import * as authSelectors from 'store/selectors/auth-selectors'
-import { logRender } from 'logging'
-
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
 
 class AppDrawer extends React.Component {
   state = {
@@ -34,8 +29,6 @@ class AppDrawer extends React.Component {
   }
 
   render() {
-
-    logRender && purple('AppDrawer - render')
 
     const { classes, isLoggedIn } = this.props
 

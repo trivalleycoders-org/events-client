@@ -3,16 +3,8 @@ import { connect } from 'react-redux'
 import { getAllEvents } from 'store/selectors/events-selectors'
 import MyEvents from './MyEvents'
 
-// eslint-disable-next-line
-import { green, orange, red, purple } from 'logger'
-import { logRender } from 'logging'
-
 class MyEventsContainer extends React.Component {
-
   render() {
-
-    logRender && purple('MyEventsContainer - render')
-
     const { events } = this.props
     return (
       <MyEvents
@@ -20,7 +12,6 @@ class MyEventsContainer extends React.Component {
       />
     )
   }
-
 }
 
 const mstp = (state, ownProps) => {

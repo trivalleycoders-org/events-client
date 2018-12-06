@@ -6,18 +6,12 @@ import {
   withWidth,
   Grid,
 } from '@material-ui/core'
-import blue from '@material-ui/core/colors/blue'
 import { dateFormat } from './helpers'
 import { Typography } from '@material-ui/core'
 import ButtonFit from 'ui/elements/ButtonFit'
 import Chevron5 from './Chevron5'
-// Dev
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
 
-const Event = ({ classes, event, handleItemClick }) => {
-  logRender && purple('Event (MyEvents) - render')
+const Event = ({ classes, event }) => {
   return (
     <Paper>
       <Grid container>

@@ -15,11 +15,6 @@ import MenuIcon from '@material-ui/icons/Menu'
 import LoggedIn from './LoggedIn'
 import LoggedOut from './LoggedOut'
 
-/* Dev */
-// eslint-disable-next-line
-import { green, purple } from 'logger'
-import { logRender } from 'logging'
-
 class AppBar extends React.Component {
   toggleDrawer = () => {
     this.props.appMenuToggle()
@@ -42,7 +37,6 @@ class AppBar extends React.Component {
   }
 
   render() {
-    logRender && purple('AppBar - render')
     const { classes } = this.props
 
     return (

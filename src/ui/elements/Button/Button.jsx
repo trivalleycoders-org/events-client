@@ -4,21 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { Button as Btn } from '@material-ui/core'
 import { green, red } from '@material-ui/core/colors'
 
-
-/* Dev */
-// eslint-disable-next-line
-import { green as grn } from 'logger'
-
-/*
-    - color: (primary|secondary|green|red)
-    - disabled: (true|false)
-    - size: (small|medium|large)
-
-*/
-
-
 const Button = (props) => {
-  // grn('Button: props', props)
   const { classes, color, children, onClick, disabled } = props
 
   const getBtnClass = () => {
@@ -81,11 +67,6 @@ const styles = theme => ({
       backgroundColor: red[700],
     },
   },
-  // secondary: {
-  //   main: '#dc0747',
-  //     dark: '#a30021',
-
-  // },
   margin: {
     margin: theme.spacing.unit,
   },

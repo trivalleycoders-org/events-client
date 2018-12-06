@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import ChipsComponent from './ChipsComponent'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class ChipRedux extends React.Component {
 
   picker = (props) => {
