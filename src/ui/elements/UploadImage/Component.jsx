@@ -74,7 +74,7 @@ class UploadImage extends React.Component {
             ? <div className={classes.imageDiv}>
                 <ResponsiveImage
                   src={this.state.imageUrl}
-                  // className={classes.media}
+                  alt='uploaded image'
                 />
                 {enableEdit
                   ? <Button
