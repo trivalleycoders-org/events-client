@@ -33,12 +33,11 @@ class PostalCodesRedux extends React.Component {
       <div className={classes.root}>
         <Downshift
           onInputValueChange={this.onInputValueChange}
-          defaultInputValue={initialValue}
+          initialSelectedItem={initialValue}
         >
           {
             downshift => {
               const {
-                // defaultSelectedItem=
                 getInputProps,
                 getItemProps,
                 getMenuProps,

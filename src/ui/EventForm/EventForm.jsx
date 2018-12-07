@@ -1,11 +1,8 @@
 import React from 'react'
 import { EDIT_MODE } from './EventFormContainer'
 import EventSubForm from './EventSubForm'
-
-// fix?
 import AreYouSure from './AreYouSure'
 import PageTitle from 'ui/elements/PageTitle'
-
 class EventForm extends React.Component {
   state = {
     imageUrl: '',

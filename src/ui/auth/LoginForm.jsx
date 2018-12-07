@@ -34,7 +34,7 @@ class LoginForm extends React.PureComponent {
   }
 
   onCancel = () => {
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   handleEnterKey = (e, handleSubmit) => {
@@ -91,7 +91,7 @@ class LoginForm extends React.PureComponent {
                 className={classes.cancelButton}
                 type='button'
                 variant='contained'
-                disabled={pristine || submitting}
+                disabled={submitting}
                 onClick={this.onCancel}
               >
                 Cancel

@@ -30,7 +30,7 @@ class RegisterForm extends React.Component {
   }
 
   onCancel = () => {
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   handleEnterKey = (e, handleSubmit) => {
@@ -87,7 +87,7 @@ class RegisterForm extends React.Component {
               <Button
                 className={classes.cancelButton}
                 type='button'
-                disabled={pristine || submitting} 
+                disabled={submitting}
                 onClick={this.onCancel}
                 variant='contained'
               >
