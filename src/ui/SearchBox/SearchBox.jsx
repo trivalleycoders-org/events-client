@@ -14,7 +14,6 @@ export class SearchBox extends React.Component {
   handleEnterKey = (e) => {
     e.persist()
     if (e.keyCode === 13 || e.which === 13) {
-      console.log('enter key pressed')
       this.setState({
         searchString: e.target.value
       })
