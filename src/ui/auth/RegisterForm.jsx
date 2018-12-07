@@ -17,10 +17,6 @@ import PropTypes from 'prop-types'
 import PageTitle from 'ui/elements/PageTitle'
 import PageMessage from 'ui/elements/PageMessage'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class RegisterForm extends React.Component {
 
   state = {
@@ -37,12 +33,16 @@ class RegisterForm extends React.Component {
     this.props.history.goBack()
   }
 
+  handleEnterKey = (e, handleSubmit) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      handleSubmit(this.onSubmit)()
+    }
+  }
+
   render() {
     const { classes, handleSubmit, pristine, submitting, userRegisterRequestStatus } = this.props
     const { justMounted } = this.state
     const { status } = userRegisterRequestStatus
-    console.log('props', this.props)
-    
 
     if (status === 'success' && !justMounted) {
       return (
@@ -72,6 +72,7 @@ class RegisterForm extends React.Component {
               required={true}
               error={true}
               enableEdit={true}
+              onKeyDown={(e) => { this.handleEnterKey(e, handleSubmit) }}
             />
             <div className={classes.actions}>
               <Button
