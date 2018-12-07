@@ -12,8 +12,6 @@ import {
   Paper,
   Popper,
 } from '@material-ui/core'
-// import { nameFromEmail } from 'lib/nameFromEmail'
-/* Dev */
 
 class AccountMenu extends React.Component {
   state = {
@@ -72,8 +70,18 @@ class AccountMenu extends React.Component {
               <Paper>
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <MenuList>
-                    <MenuItem onClick={(event) => this.handleClose(event, 'settings')}>Settings</MenuItem>
-                    <MenuItem name='logout' onClick={(event) => this.handleClose(event, 'logout')}>Logout</MenuItem>
+                    <MenuItem
+                      name='settings'
+                      onClick={(event) => this.handleClose(event, 'settings')}
+                    >
+                      Settings
+                    </MenuItem>
+                    <MenuItem
+                      name='logout'
+                      onClick={(event) => this.handleClose(event, 'logout')}
+                    >
+                      Logout
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

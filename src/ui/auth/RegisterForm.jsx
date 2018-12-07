@@ -34,7 +34,7 @@ class RegisterForm extends React.Component {
   }
 
   onCancel = () => {
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   render() {
@@ -42,7 +42,7 @@ class RegisterForm extends React.Component {
     const { justMounted } = this.state
     const { status } = userRegisterRequestStatus
     console.log('props', this.props)
-    
+
 
     if (status === 'success' && !justMounted) {
       return (
@@ -86,7 +86,7 @@ class RegisterForm extends React.Component {
               <Button
                 className={classes.cancelButton}
                 type='button'
-                disabled={pristine || submitting} 
+                disabled={submitting}
                 onClick={this.onCancel}
                 variant='contained'
               >

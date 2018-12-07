@@ -29,6 +29,10 @@ class SettingsForm extends React.Component {
     passwordUpdateRequest(values)
   }
 
+  onCancel = () => {
+    this.props.history.push('/')
+  }
+
   render() {
     const { classes, handleSubmit, pristine, submitting, userPasswordUpdateStatus } = this.props
     if (userPasswordUpdateStatus.status === 'success') {
@@ -52,16 +56,27 @@ class SettingsForm extends React.Component {
               error={true}
               enableEdit={true}
             />
-            <Button
-              className={classes.submitButton}
-              type='button'
-              color='primary'
-              variant='contained'
-              onClick={handleSubmit(this.onSubmit)}
-              disabled={pristine || submitting}
-            >
-              Change Password
-            </Button>
+            <div className={classes.actions}>
+              <Button
+                className={classes.submitButton}
+                type='button'
+                color='primary'
+                variant='contained'
+                onClick={handleSubmit(this.onSubmit)}
+                disabled={pristine || submitting}
+              >
+                Change Password
+              </Button>
+              <Button
+                className={classes.cancelButton}
+                type='button'
+                variant='contained'
+                disabled={submitting}
+                onClick={this.onCancel}
+              >
+                Cancel
+              </Button>
+            </div>
           </form>
         </div>
       )

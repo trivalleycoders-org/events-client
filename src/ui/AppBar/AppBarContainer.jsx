@@ -9,10 +9,12 @@ import { appMenuToggle } from 'store/actions/app-menu-actions'
 import AppBar from './AppBar'
 import { nameFromEmail } from 'lib/nameFromEmail'
 import { red } from 'logger'
+import { green } from 'logger'
 
 class AppBarContainer extends React.Component {
 
   handleMenuClick = (event, menu) => {
+    green('handleMenuClick: menu', menu)
     if (menu === 'settings') {
       this.props.history.push('/settings')
     } else if (menu === 'logout') {
