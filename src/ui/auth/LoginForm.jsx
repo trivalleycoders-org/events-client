@@ -17,14 +17,15 @@ import * as authSelectors from 'store/selectors/auth-selectors'
 import validate from './validate'
 import PageTitle from 'ui/elements/PageTitle'
 
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class LoginForm extends React.PureComponent {
 
   constructor(props) {
     super(props)
     this.props.pageMessage('')
+    this.state = {
+      username: '',
+      password: ''
+    }
   }
 
   onSubmit = (values) => {
@@ -34,6 +35,12 @@ class LoginForm extends React.PureComponent {
 
   onCancel = () => {
     this.props.history.push('/')
+  }
+
+  handleEnterKey = (e, handleSubmit) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      handleSubmit(this.onSubmit)()
+    }
   }
 
   render() {
@@ -68,6 +75,7 @@ class LoginForm extends React.PureComponent {
               required={true}
               error={true}
               enableEdit={true}
+              onKeyDown={(e) => { this.handleEnterKey(e, handleSubmit) }}
             />
             <div className={classes.actions}>
               <Button
@@ -113,3 +121,4 @@ export default compose(
     destroyOnUnmount: true
   })
 )(LoginForm)
+

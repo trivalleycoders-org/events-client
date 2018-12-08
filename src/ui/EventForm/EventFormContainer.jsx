@@ -49,6 +49,7 @@ class EventFormContainer extends React.Component {
     const { event } = this.props
     const hasEvent = hasProp('event', this.props) ? true : false
     const mergedEvent = hasEvent ? shapeEditDataIn(event) : {}
+    
     return (
       <EventForm
         event={mergedEvent}

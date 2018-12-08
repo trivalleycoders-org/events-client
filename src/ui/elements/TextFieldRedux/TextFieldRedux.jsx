@@ -75,7 +75,16 @@ class TextFieldRedux extends React.Component {
 
   }
   render() {
-    const { fieldName, fieldLabel, disabled, enableEdit=false, fullWidth = false, required, rows = 0, type } = this.props
+    const { fieldName, 
+            fieldLabel, 
+            disabled, 
+            enableEdit=false, 
+            fullWidth = false, 
+            required, 
+            rows = 0, 
+            type,
+            onKeyDown
+           } = this.props
     return (
       <Field
         component={this.component}
@@ -90,6 +99,7 @@ class TextFieldRedux extends React.Component {
         props={{
           enableEdit: enableEdit,
         }}
+        onKeyDown={onKeyDown}
       />
     )
   }

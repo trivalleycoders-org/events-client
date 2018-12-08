@@ -13,10 +13,6 @@ import { userPasswordUpdateRequestKey } from 'store/actions/auth-actions'
 import validate from './validate'
 import PageTitle from 'ui/elements/PageTitle'
 
-/* Dev */
-// eslint-disable-next-line
-import { green } from 'logger'
-
 class SettingsForm extends React.Component {
 
   onClickLogout = () => {
@@ -29,6 +25,12 @@ class SettingsForm extends React.Component {
     passwordUpdateRequest(values)
   }
 
+  handleEnterKey = (e, handleSubmit) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      handleSubmit(this.onSubmit)()
+    }
+  }
+  
   onCancel = () => {
     this.props.history.push('/')
   }
@@ -55,6 +57,7 @@ class SettingsForm extends React.Component {
               required={true}
               error={true}
               enableEdit={true}
+              onKeyDown={(e) => { this.handleEnterKey(e, handleSubmit) }}
             />
             <div className={classes.actions}>
               <Button

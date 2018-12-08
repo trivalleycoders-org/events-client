@@ -77,7 +77,7 @@ const EventSubForm = (props) => {
 
 
 
-          <Paper id='aaaaaaaa' className={classes.paper} elevation={0}>
+          <Paper className={classes.paper} elevation={0}>
             <Typography variant='h6'>EVENT IMAGE</Typography>
             <div id='dropZone' className={classes.dropZone}>
               <UploadImage
