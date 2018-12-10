@@ -19,25 +19,15 @@ const Button = (props) => {
     }
 
   }
-  const getMUIColor = () => {
-    if (color === 'primary') {
-      return 'primary'
-    } else if (color === 'secondary') {
-      return 'secondary'
-    } else {
-      return ''
-    }
-  }
   return (
     <Btn
-        variant='contained'
-        color={getMUIColor()}
-        className={classNames(classes.margin, getBtnClass())}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {children}
-      </Btn>
+      variant='contained'
+      className={classNames(classes.margin, getBtnClass())}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </Btn>
   )
 }
 const styles = theme => ({
