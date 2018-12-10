@@ -45,12 +45,18 @@ class EventForm extends React.Component {
 
   render() {
     const { areYouSure } = this.state
-    const { event } = this.props
+    const { event, mode } = this.props
+
     return (
       <div id='EventForm'>
         <AreYouSure open={areYouSure} close={this.closeModal} />
         <PageTitle>
-          Create Event
+          {(mode !== 'edit-mode') 
+            ?
+            'Create Event'
+            :
+            'Edit Event'
+          }
         </PageTitle>
         <EventSubForm
           initialValues={event}
