@@ -17,8 +17,12 @@ const Us = (props) => {
             Join Us
           </Typography>
           <div className={classes.logoGroup}>
-            <img src={iMeetup} className={classes.logoImg} alt='meetup' />
-            <img src={iSlack} className={classes.logoImg} alt='meetup' />
+            <a href='https://www.meetup.com/trivalleycoders/'>
+              <img src={iMeetup} className={classes.logoImg} alt='meetup' />
+            </a>
+            <a href='https://join.slack.com/t/trivalleycoders/shared_invite/enQtMjk2NDY3NDAwMjI1LWU0YjFjNjE5MDgwYzYwYmUwMWJlNjk1NDU4YmI5ZmZjZGU0ZDcwY2E2Y2RlNmU0MWFlZTUyODFkYzM1NGVlYTQ'>
+              <img src={iSlack} className={classes.logoImg} alt='meetup' />
+            </a>
           </div>
         </div>
       </div>
@@ -28,8 +32,12 @@ const Us = (props) => {
             Follow Us
           </Typography>
           <div className={classes.logoGroup}>
-            <img src={iFacebook} className={classes.logoImg} alt='meetup' />
-            <img src={iGithub} className={classes.logoImg} alt='meetup' />
+            <a href='https://www.facebook.com/groups/free.code.camp.sanramon/'>
+              <img src={iFacebook} className={classes.logoImg} alt='meetup' />
+            </a>
+            <a href='https://github.com/trivalleycoders-org'>
+              <img src={iGithub} className={classes.logoImg} alt='meetup' />
+            </a>
           </div>
         </div>
       </div>
