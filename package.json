@@ -31,7 +31,7 @@
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "material-ui-chip-input": "^1.0.0-beta.5",
     "material-ui-pickers": "^1.0.0",
     "mini-css-extract-plugin": "0.4.3",
